@@ -11,12 +11,17 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.phoneme.poinvoice.R;
+import com.phoneme.poinvoice.ui.po.adapter.GeneratedListAdapter;
+import com.phoneme.poinvoice.ui.po.adapter.VendorListAdapter;
 
 public class GeneratedListFragment extends Fragment {
 
     private GeneratedListViewModel generatedListViewModel;
+    private RecyclerView recyclerView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -31,5 +36,16 @@ public class GeneratedListFragment extends Fragment {
 //            }
 //        });
         return root;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        recyclerView=(RecyclerView)view.findViewById(R.id.recyclerview_generated_list);
+        GeneratedListAdapter adapter=new GeneratedListAdapter(getContext());
+        recyclerView.setAdapter(adapter);
+        LinearLayoutManager linearVertical = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(linearVertical);
     }
 }
