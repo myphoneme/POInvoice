@@ -3,31 +3,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_invoice">
+
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.phoneme.poinvoice.ui.home.HomeFragment"
-        android:label="@string/menu_po"
-        tools:layout="@layout/fragment_home" />
-
-    <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.phoneme.poinvoice.ui.gallery.GalleryFragment"
+        android:id="@+id/nav_invoice"
+        android:name="com.phoneme.poinvoice.ui.invoice.InvoiceFragment"
         android:label="@string/menu_invoice"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_invoice" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.phoneme.poinvoice.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
+        android:id="@+id/nav_po_vendor_list"
+        android:name="com.phoneme.poinvoice.ui.po.VendorListFragment"
+        android:label="@string/menu_po"
+        tools:layout="@layout/fragment_vendorlist" />
+
+
+
+    <fragment
+        android:id="@+id/nav_po_generated_list"
+        android:name="com.phoneme.poinvoice.ui.po.GeneratedListFragment"
+        android:label="@string/menu_generated_list"
         tools:layout="@layout/fragment_slideshow" />
 
     <fragment
-        android:id="@+id/nav_tools"
-        android:name="com.phoneme.poinvoice.ui.tools.ToolsFragment"
-        android:label="@string/menu_tools"
-        tools:layout="@layout/fragment_tools" />
+        android:id="@+id/nav_po_template"
+        android:name="com.phoneme.poinvoice.ui.po.POTemplateFragment"
+        android:label="@string/menu_po_template"
+        tools:layout="@layout/fragment_potemplate" />
 
     <fragment
         android:id="@+id/nav_share"

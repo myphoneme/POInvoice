@@ -4,22 +4,23 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
+
         <item
-            android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_po" />
-        <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_invoice"
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/menu_invoice" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
+            android:id="@+id/nav_po_vendor_list"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_po" />
         <item
-            android:id="@+id/nav_tools"
+            android:id="@+id/nav_po_generated_list"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_generated_list" />
+        <item
+            android:id="@+id/nav_po_template"
             android:icon="@drawable/ic_menu_manage"
-            android:title="@string/menu_tools" />
+            android:title="@string/menu_po_template" />
     </group>
 
     <item android:title="Communicate">
