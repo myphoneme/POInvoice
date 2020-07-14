@@ -1,4 +1,4 @@
-package com.phoneme.poinvoice.ui.po;
+package com.phoneme.poinvoice.ui.po.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.phoneme.poinvoice.R;
+import com.phoneme.poinvoice.ui.po.viewmodel.VendorListViewModel;
 import com.phoneme.poinvoice.ui.po.adapter.VendorListAdapter;
 
 public class VendorListFragment extends Fragment {

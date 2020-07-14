@@ -21,6 +21,11 @@
             android:id="@+id/nav_po_template"
             android:icon="@drawable/ic_menu_manage"
             android:title="@string/menu_po_template" />
+        <item
+            android:id="@+id/nav_po_template_edit"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="@string/menu_po_template_edit"
+            />
     </group>
 
     <item android:title="Communicate">

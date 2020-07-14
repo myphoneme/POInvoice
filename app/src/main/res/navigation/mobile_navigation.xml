@@ -14,7 +14,7 @@
 
     <fragment
         android:id="@+id/nav_po_vendor_list"
-        android:name="com.phoneme.poinvoice.ui.po.VendorListFragment"
+        android:name="com.phoneme.poinvoice.ui.po.fragment.VendorListFragment"
         android:label="@string/menu_po"
         tools:layout="@layout/fragment_vendorlist" />
 
@@ -22,15 +22,21 @@
 
     <fragment
         android:id="@+id/nav_po_generated_list"
-        android:name="com.phoneme.poinvoice.ui.po.GeneratedListFragment"
+        android:name="com.phoneme.poinvoice.ui.po.fragment.GeneratedListFragment"
         android:label="@string/menu_generated_list"
         tools:layout="@layout/fragment_slideshow" />
 
     <fragment
         android:id="@+id/nav_po_template"
-        android:name="com.phoneme.poinvoice.ui.po.POTemplateFragment"
+        android:name="com.phoneme.poinvoice.ui.po.fragment.POTemplateFragment"
         android:label="@string/menu_po_template"
         tools:layout="@layout/fragment_potemplate" />
+
+    <fragment
+        android:id="@+id/nav_po_template_edit"
+        android:name="com.phoneme.poinvoice.ui.po.fragment.POTemplateEditFragment"
+        android:label="@string/menu_po_template_edit"
+        tools:layout="@layout/fragment_edit_po_template" />
 
     <fragment
         android:id="@+id/nav_share"
