@@ -69,7 +69,7 @@ public class POTemplateAdapter extends RecyclerView.Adapter<POTemplateAdapter.Vi
 
     @Override
     public POTemplateAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i){
-        View view= LayoutInflater.from(mcontext).inflate(R.layout.adapter_po_template,viewGroup,false);
+        View view= LayoutInflater.from(mcontext).inflate(R.layout.adapter_po_template2,viewGroup,false);
         return new ViewHolder(view);
     }
 
