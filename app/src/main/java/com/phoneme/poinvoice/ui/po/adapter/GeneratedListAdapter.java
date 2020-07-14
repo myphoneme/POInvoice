@@ -69,7 +69,7 @@ public class GeneratedListAdapter extends RecyclerView.Adapter<GeneratedListAdap
 
     @Override
     public GeneratedListAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i){
-        View view= LayoutInflater.from(mcontext).inflate(R.layout.adapter_generated_list,viewGroup,false);
+        View view= LayoutInflater.from(mcontext).inflate(R.layout.adapter_generated_list2,viewGroup,false);
         return new ViewHolder(view);
     }
 
