@@ -14,6 +14,35 @@
     <string name="menu_po_template_edit">PO Edit Template</string>
     <string name="menu_po_template_upload">PO Upload</string>
     <string name="menu_invoive_add_upload">Add Invoice</string>
+    <string name="menu_create_invoice">Create Invoice</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
+
+
+    <string-array name="company">
+        <item>"Funnel expert UP"</item>
+        <item>"Phoneme Noida"</item>
+        <item>"Funnel Expert Delhi"</item>
+        <item>"Phoneme Delhi"</item>
+        <item>"Phoneme Gurgaon"</item>
+    </string-array>
+    <string-array name="vendor">
+        <item>"Indian Agricultural Research Institute, (IARI)"</item>
+        <item>"RP tech India"</item>
+        <item>"Tech Data Advanced Solutions"</item>
+        <item>"NARNOLI APPARELS PVT LTD"</item>
+        <item>"AALACOM TECHNOLOGIES PRIVATE LIMITED"</item>
+
+        <item>"Justwork Technologies Private Limited"</item>
+        <item>"AB E Filling Pvt LTD"</item>
+        <item>"Sejal Agarwal"</item>
+        <item>"PS Kanodia"</item>
+        <item>"Perfect Services"</item>
+
+        <item>"WHO"</item>
+        <item>"RED FOX Bhiwadi"</item>
+        <item>"Gaurav Advant Helper"</item>
+        <item>"Napolean Dang"</item>
+        <item>"Mayur-Trainee"</item>
+    </string-array>
 </resources>

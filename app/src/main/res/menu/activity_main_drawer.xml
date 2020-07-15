@@ -36,6 +36,11 @@
             android:icon="@drawable/ic_menu_manage"
             android:title="@string/menu_invoive_add_upload"
             />
+        <item
+            android:id="@+id/nav_create_invoice"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="@string/menu_create_invoice"
+            />
     </group>
 
     <item android:title="Communicate">
