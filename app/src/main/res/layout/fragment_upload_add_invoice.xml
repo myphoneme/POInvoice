@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp">
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="PO Number "
+            android:textSize="14sp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:layout_width="230dp"
+            android:layout_height="30dp"
+            android:text="PO/IT-EXP/2020-21/10"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_alignParentRight="true"
+            />
+
+<!--        <EditText-->
+<!--            android:padding="5dp"-->
+<!--            android:id="@+id/templat_name"-->
+<!--            android:layout_width="230dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:hint="527582"-->
+<!--            android:layout_alignParentRight="true"-->
+<!--            android:textSize="12sp"-->
+<!--            android:background="@drawable/edit_bg"-->
+<!--            />-->
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Invoice Date"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:padding="5dp"
+            android:id="@+id/invoice_date"
+            android:layout_width="230dp"
+            android:layout_height="30dp"
+            android:hint="mm/dd/yyyy"
+            android:layout_alignParentRight="true"
+            android:textSize="12sp"
+            android:background="@drawable/edit_bg"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Invoice Number"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:padding="5dp"
+            android:id="@+id/address_line2"
+            android:layout_width="230dp"
+            android:layout_height="30dp"
+            android:hint="Enter Invoice number"
+            android:layout_alignParentRight="true"
+            android:textSize="12sp"
+            android:background="@drawable/edit_bg"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Invoice Amount"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:padding="5dp"
+            android:id="@+id/invoice_amount"
+            android:layout_width="230dp"
+            android:layout_height="30dp"
+            android:hint="Enter Invoice Amount"
+            android:textSize="12sp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/edit_bg"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:gravity="center_vertical"
+        android:layout_gravity="center_vertical">
+        <TextView
+            android:id="@+id/upload_image_text"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Upload File:"
+            android:gravity="center_vertical"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            />
+        <Button
+            android:id="@+id/upload"
+            android:layout_toRightOf="@+id/upload_image_text"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:textColor="#000"
+            android:layout_marginLeft="5dp"
+            android:textSize="12sp"
+            android:text="Choose file"/>
+
+        <ImageView
+            android:visibility="gone"
+            android:layout_centerVertical="true"
+            android:background="@color/colorPrimary"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:id="@+id/image"
+            android:layout_width="40dp"
+            android:layout_height="20dp"
+            android:src="@drawable/logopngphoneme"
+            />
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/reset"
+            android:background="@drawable/button_bg_rounded_corners"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:textColor="@color/text_white"
+            android:layout_margin="5dp"
+            android:visibility="gone"
+            android:text="Reset"/>
+        <Button
+            android:id="@+id/submit"
+            android:background="@drawable/button_bg_rounded_corners"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:textColor="@color/text_white"
+            android:layout_margin="5dp"
+            android:text="Submit"/>
+    </LinearLayout>
+</LinearLayout>
