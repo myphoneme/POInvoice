@@ -26,6 +26,11 @@
             android:icon="@drawable/ic_menu_manage"
             android:title="@string/menu_po_template_edit"
             />
+        <item
+            android:id="@+id/nav_po_template_upload"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="@string/menu_po_template_upload"
+            />
     </group>
 
     <item android:title="Communicate">

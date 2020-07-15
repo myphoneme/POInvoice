@@ -39,6 +39,12 @@
         tools:layout="@layout/fragment_edit_po_template" />
 
     <fragment
+        android:id="@+id/nav_po_template_upload"
+        android:name="com.phoneme.poinvoice.ui.po.fragment.POUploadFragment"
+        android:label="@string/menu_po_template_upload"
+        tools:layout="@layout/fragment_upload_po" />
+
+    <fragment
         android:id="@+id/nav_share"
         android:name="com.phoneme.poinvoice.ui.share.ShareFragment"
         android:label="@string/menu_share"
