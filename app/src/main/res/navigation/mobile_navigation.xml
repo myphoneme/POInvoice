@@ -73,6 +73,13 @@
         android:label="@string/menu_add_vendor"
         tools:layout="@layout/fragment_add_vendor"
         />
+
+    <fragment
+        android:id="@+id/nav_create_po"
+        android:name="com.phoneme.poinvoice.ui.po.fragment.CreatePOFragment"
+        android:label="@string/menu_create_po"
+        tools:layout="@layout/fragment_create_po"
+        />
     <fragment
         android:id="@+id/nav_share"
         android:name="com.phoneme.poinvoice.ui.share.ShareFragment"
