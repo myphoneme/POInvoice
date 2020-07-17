@@ -52,6 +52,11 @@
             android:icon="@drawable/ic_menu_manage"
             android:title="@string/menu_edit_vendor"
             />
+        <item
+            android:id="@+id/nav_vendor_add"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="@string/menu_add_vendor"
+            />
     </group>
 
     <item android:title="Communicate">

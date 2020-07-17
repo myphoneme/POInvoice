@@ -17,6 +17,7 @@
     <string name="menu_create_invoice">Create Invoice</string>
     <string name="menu_final_invoice">Final Invoice</string>
     <string name="menu_edit_vendor">Vendor Edit</string>
+    <string name="menu_add_vendor">Vendor Add</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
 
