@@ -4,12 +4,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview_vendor_list"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="vertical"
-        android:layout_margin="5dp"
-        />
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/add_vendor_button"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_marginRight="15dp"
+            android:layout_gravity="right"
+            android:text="Add"
+            android:textSize="12sp"
+            android:textColor="@color/colorWhite"
+            android:background="@color/colorPrimary"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_vendor_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:layout_margin="5dp"
+            />
+    </LinearLayout>
+
 
 </androidx.cardview.widget.CardView>

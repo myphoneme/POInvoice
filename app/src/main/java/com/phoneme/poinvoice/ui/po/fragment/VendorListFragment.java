@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
@@ -47,6 +48,15 @@ public class VendorListFragment extends Fragment implements VendorListAdapter.On
         recyclerView.setAdapter(adapter);
         LinearLayoutManager linearVertical = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearVertical);
+
+        Button button=(Button)view.findViewById(R.id.add_vendor_button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+                navController.navigate(R.id.nav_vendor_add);
+            }
+        });
     }
 
     public void onItemClick(int position){
