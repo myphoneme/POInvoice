@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -15,8 +16,13 @@ import com.phoneme.poinvoice.R;
 
 public class POTemplateAdapter extends RecyclerView.Adapter<POTemplateAdapter.ViewHolder>{
     private Context mcontext;
+    private OnItemClickListener listener;
     public POTemplateAdapter(Context context){
         this.mcontext=context;
+    }
+    public POTemplateAdapter(Context context,OnItemClickListener listener){
+        this.mcontext=context;
+        this.listener=listener;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -27,9 +33,17 @@ public class POTemplateAdapter extends RecyclerView.Adapter<POTemplateAdapter.Vi
         private ImageView imageView;
         //private SimpleDraweeView projectLogo;
         private RelativeLayout relativeLayoutView;
+        private Button editButton;
 
         public ViewHolder(View v) {
             super(v);
+            editButton=(Button)v.findViewById(R.id.edit_button);
+            editButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onItemClick(getAdapterPosition());
+                }
+            });
 //            title=(TextView)v.findViewById(R.id.name);
 //            company_name=(TextView)v.findViewById(R.id.company_name);
 //            imageView=(ImageView)v.findViewById(R.id.image);
@@ -82,5 +96,10 @@ public class POTemplateAdapter extends RecyclerView.Adapter<POTemplateAdapter.Vi
     @Override
     public int getItemCount(){
         return 3;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+        void onItemClick2(int position);
     }
 }

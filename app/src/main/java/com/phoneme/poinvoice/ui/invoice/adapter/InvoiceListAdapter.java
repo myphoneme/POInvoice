@@ -7,6 +7,7 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -18,7 +19,13 @@ import com.phoneme.poinvoice.R;
 
 public class InvoiceListAdapter extends RecyclerView.Adapter<InvoiceListAdapter.ViewHolder> {
     private Context mcontext;
+    private OnItemClickListener listener;
     public InvoiceListAdapter(Context context){
+        this.mcontext=context;
+    }
+
+    public InvoiceListAdapter(Context context,OnItemClickListener listener){
+        this.listener=listener;
         this.mcontext=context;
     }
 
@@ -48,9 +55,24 @@ public class InvoiceListAdapter extends RecyclerView.Adapter<InvoiceListAdapter.
         private ImageView imageView;
         //private SimpleDraweeView projectLogo;
         private RelativeLayout relativeLayoutView;
+        private Button paymentButton,poUploadButton;
 
         public ViewHolder(View v) {
             super(v);
+            paymentButton=(Button)v.findViewById(R.id.payment_button);
+            paymentButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onItemClick(getAdapterPosition());
+                }
+            });
+            poUploadButton=(Button)v.findViewById(R.id.add_new_po_button);
+            poUploadButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onItemClick2(getAdapterPosition());
+                }
+            });
 //            title=(TextView)v.findViewById(R.id.name);
 //            company_name=(TextView)v.findViewById(R.id.company_name);
 //            imageView=(ImageView)v.findViewById(R.id.image);
@@ -86,5 +108,10 @@ public class InvoiceListAdapter extends RecyclerView.Adapter<InvoiceListAdapter.
 //                projectLogo.setImageURI(uri);
 //            }
 //        }
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+        void onItemClick2(int position);
     }
 }

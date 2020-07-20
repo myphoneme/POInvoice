@@ -177,7 +177,7 @@
                     android:text="Payment"/>
 
                 <Button
-                    android:id="@+id/payment"
+                    android:id="@+id/payment_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/colorPrimary"
@@ -232,6 +232,7 @@
                     android:layout_height="wrap_content"
                     android:text="	PO/IT-EXP/2020-21/16"/>
                 <Button
+                    android:id="@+id/add_new_po_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/colorPrimary"
