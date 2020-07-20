@@ -9,6 +9,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,7 +18,7 @@ import com.phoneme.poinvoice.R;
 import com.phoneme.poinvoice.ui.po.viewmodel.VendorListViewModel;
 import com.phoneme.poinvoice.ui.po.adapter.VendorListAdapter;
 
-public class VendorListFragment extends Fragment {
+public class VendorListFragment extends Fragment implements VendorListAdapter.OnItemClickListener{
 
     private VendorListViewModel vendorListViewModel;
     private RecyclerView recyclerView;
@@ -40,9 +42,19 @@ public class VendorListFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView=(RecyclerView)view.findViewById(R.id.recyclerview_vendor_list);
-        VendorListAdapter adapter=new VendorListAdapter(getContext());
+        //VendorListAdapter adapter=new VendorListAdapter(getContext());
+        VendorListAdapter adapter=new VendorListAdapter(getContext(),this);
         recyclerView.setAdapter(adapter);
         LinearLayoutManager linearVertical = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearVertical);
+    }
+
+    public void onItemClick(int position){
+
+        NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+        navController.navigate(R.id.nav_vendor_edit);
+    }
+    public void onItemClick2(int position){
+
     }
 }
