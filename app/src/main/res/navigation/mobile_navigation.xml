@@ -87,6 +87,12 @@
         tools:layout="@layout/fragment_upload_new_payment"
         />
     <fragment
+        android:id="@+id/nav_invoice_management"
+        android:name="com.phoneme.poinvoice.ui.invoice.fragment.InvoiceManagementFragment"
+        android:label="@string/menu_invoice_management"
+        tools:layout="@layout/fragment_invoice_management"
+        />
+    <fragment
         android:id="@+id/nav_share"
         android:name="com.phoneme.poinvoice.ui.share.ShareFragment"
         android:label="@string/menu_share"
