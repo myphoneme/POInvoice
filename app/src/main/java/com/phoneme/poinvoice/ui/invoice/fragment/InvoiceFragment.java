@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -46,6 +47,14 @@ public class InvoiceFragment extends Fragment implements InvoiceListAdapter.OnIt
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView=(RecyclerView)view.findViewById(R.id.recyclerview_invoice_list);
+        Button geneateInvoice=(Button)view.findViewById(R.id.generate_new_invoice);
+        geneateInvoice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+                navController.navigate(R.id.nav_create_invoice);
+            }
+        });
         //InvoiceListAdapter adapter=new InvoiceListAdapter(getContext());
         InvoiceListAdapter adapter=new InvoiceListAdapter(getContext(),this);
         recyclerView.setAdapter(adapter);
@@ -61,5 +70,10 @@ public class InvoiceFragment extends Fragment implements InvoiceListAdapter.OnIt
     public void onItemClick2(int position){
         NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
         navController.navigate(R.id.nav_po_template_upload);
+    }
+    public void onItemClick3(int position){
+        NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+        navController.navigate(R.id.nav_final_invoice);
+
     }
 }

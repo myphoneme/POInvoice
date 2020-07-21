@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
@@ -42,6 +43,13 @@ public class POTemplateFragment extends Fragment implements POTemplateAdapter.On
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView=(RecyclerView)view.findViewById(R.id.recyclerview_po_template);
+        Button createpotemplate=(Button)view.findViewById(R.id.add_new_po_template);
+        createpotemplate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
         //POTemplateAdapter adapter=new POTemplateAdapter(getContext());
         POTemplateAdapter adapter=new POTemplateAdapter(getContext(),this);
         recyclerView.setAdapter(adapter);

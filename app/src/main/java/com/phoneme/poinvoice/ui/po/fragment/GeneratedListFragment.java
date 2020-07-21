@@ -9,6 +9,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,7 +18,7 @@ import com.phoneme.poinvoice.R;
 import com.phoneme.poinvoice.ui.po.viewmodel.GeneratedListViewModel;
 import com.phoneme.poinvoice.ui.po.adapter.GeneratedListAdapter;
 
-public class GeneratedListFragment extends Fragment {
+public class GeneratedListFragment extends Fragment implements GeneratedListAdapter.OnItemClickListener{
 
     private GeneratedListViewModel generatedListViewModel;
     private RecyclerView recyclerView;
@@ -41,9 +43,18 @@ public class GeneratedListFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView=(RecyclerView)view.findViewById(R.id.recyclerview_generated_list);
-        GeneratedListAdapter adapter=new GeneratedListAdapter(getContext());
+        //GeneratedListAdapter adapter=new GeneratedListAdapter(getContext());
+        GeneratedListAdapter adapter=new GeneratedListAdapter(getContext(),this);
         recyclerView.setAdapter(adapter);
         LinearLayoutManager linearVertical = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearVertical);
+    }
+    public void onItemClick(int position){
+        NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+        navController.navigate(R.id.nav_payment_upload);
+    }
+    public void onItemClick2(int position){
+        NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+        navController.navigate(R.id.nav_invoice_add_upload);
     }
 }

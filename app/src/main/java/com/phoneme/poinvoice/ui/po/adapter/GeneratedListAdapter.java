@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -15,8 +16,14 @@ import com.phoneme.poinvoice.R;
 
 public class GeneratedListAdapter extends RecyclerView.Adapter<GeneratedListAdapter.ViewHolder> {
     private Context mcontext;
+    private OnItemClickListener listener;
     public GeneratedListAdapter(Context context){
         this.mcontext=context;
+    }
+
+    public GeneratedListAdapter(Context context,OnItemClickListener listener){
+        this.mcontext=context;
+        this.listener=listener;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -27,9 +34,24 @@ public class GeneratedListAdapter extends RecyclerView.Adapter<GeneratedListAdap
         private ImageView imageView;
         //private SimpleDraweeView projectLogo;
         private RelativeLayout relativeLayoutView;
+        private Button addPaymentButton,addInvoice;
 
         public ViewHolder(View v) {
             super(v);
+            addPaymentButton=(Button)v.findViewById(R.id.add_payment);
+            addInvoice=(Button)v.findViewById(R.id.add_invoice);
+            addPaymentButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onItemClick(getAdapterPosition());
+                }
+            });
+            addInvoice.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onItemClick2(getAdapterPosition());
+                }
+            });
 //            title=(TextView)v.findViewById(R.id.name);
 //            company_name=(TextView)v.findViewById(R.id.company_name);
 //            imageView=(ImageView)v.findViewById(R.id.image);
@@ -82,5 +104,10 @@ public class GeneratedListAdapter extends RecyclerView.Adapter<GeneratedListAdap
     @Override
     public int getItemCount(){
         return 3;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+        void onItemClick2(int position);
     }
 }

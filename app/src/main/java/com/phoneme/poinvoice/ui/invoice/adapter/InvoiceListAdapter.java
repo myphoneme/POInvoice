@@ -50,7 +50,7 @@ public class InvoiceListAdapter extends RecyclerView.Adapter<InvoiceListAdapter.
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView title, description, company_name, allocated_users, status, createdat;
         //private ProjectModel projectModel;
-        private TextView edit;
+        private TextView edit,invoiceNumber;
         private CardView cardView;
         private ImageView imageView;
         //private SimpleDraweeView projectLogo;
@@ -71,6 +71,13 @@ public class InvoiceListAdapter extends RecyclerView.Adapter<InvoiceListAdapter.
                 @Override
                 public void onClick(View view) {
                     listener.onItemClick2(getAdapterPosition());
+                }
+            });
+            invoiceNumber=(TextView)v.findViewById(R.id.invoice_number);
+            invoiceNumber.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onItemClick3(getAdapterPosition());
                 }
             });
 //            title=(TextView)v.findViewById(R.id.name);
@@ -113,5 +120,6 @@ public class InvoiceListAdapter extends RecyclerView.Adapter<InvoiceListAdapter.
     public interface OnItemClickListener {
         void onItemClick(int position);
         void onItemClick2(int position);
+        void onItemClick3(int position);
     }
 }
