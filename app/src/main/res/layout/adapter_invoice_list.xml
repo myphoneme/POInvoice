@@ -183,6 +183,7 @@
                     android:background="@color/colorPrimary"
                     android:textColor="@color/colorWhite"
                     android:textSize="12sp"
+                    android:textAllCaps="false"
                     android:text="Add New Payment"/>
 
             </LinearLayout>
@@ -238,6 +239,7 @@
                     android:background="@color/colorPrimary"
                     android:textColor="@color/colorWhite"
                     android:textSize="12sp"
+                    android:textAllCaps="false"
                     android:padding="2dp"
                     android:text="Add new PO"/>
 

@@ -157,6 +157,7 @@
             android:textColor="#000"
             android:layout_marginLeft="5dp"
             android:textSize="12sp"
+            android:textAllCaps="false"
             android:text="Choose file"/>
 
         <ImageView
@@ -183,6 +184,7 @@
             android:layout_height="50dp"
             android:textColor="@color/text_white"
             android:layout_margin="5dp"
+            android:textAllCaps="false"
             android:visibility="gone"
             android:text="Reset"/>
         <Button
@@ -192,6 +194,7 @@
             android:layout_height="50dp"
             android:textColor="@color/text_white"
             android:layout_margin="5dp"
+            android:textAllCaps="false"
             android:text="Submit"/>
     </LinearLayout>
 </LinearLayout>

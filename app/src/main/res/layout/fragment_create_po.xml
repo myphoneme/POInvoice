@@ -283,6 +283,7 @@
         android:layout_height="50dp"
         android:textColor="@color/text_white"
         android:layout_margin="5dp"
+        android:textAllCaps="false"
         android:text="Add More Items"/>
 
     <RelativeLayout
@@ -468,6 +469,7 @@ C. All Invoices shall contain Purchase Order number."
             android:textColor="@color/text_white"
             android:layout_margin="5dp"
             android:visibility="gone"
+            android:textAllCaps="false"
             android:text="Reset"/>
         <Button
             android:id="@+id/submit"
@@ -476,6 +478,7 @@ C. All Invoices shall contain Purchase Order number."
             android:layout_height="50dp"
             android:textColor="@color/text_white"
             android:layout_margin="5dp"
+            android:textAllCaps="false"
             android:text="Generate"/>
     </LinearLayout>
 </LinearLayout>

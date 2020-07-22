@@ -25,11 +25,88 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Template Name"
+                    android:text="Title"
                     android:textStyle="bold"/>
                 <TextView
                     android:gravity="center_horizontal"
-                    android:id="@+id/template_name"
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Funnel Expert UP"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="State"/>
+
+                <TextView
+                    android:id="@+id/address_line11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Delhi"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Template Name"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/address_line3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Noida, U.P. 201305"/>
+                />
+            </LinearLayout>
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="#c0c0c0"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Address Line 1"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:gravity="center_horizontal"
+                    android:id="@+id/template_name1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Phoneme Solutions Pvt. Ltd."/>
@@ -47,7 +124,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:text="Address line 1"/>
+                    android:text="Address line 2"/>
 
                 <TextView
                     android:id="@+id/address_line1"
@@ -68,7 +145,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:text="Address Line 2"/>
+                    android:text="Address Line 3"/>
 
 
                 <TextView
@@ -97,26 +174,26 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:orientation="horizontal">
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:gravity="center_horizontal"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Address Line 3"
-                    android:textStyle="bold"/>
+<!--            <LinearLayout-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_weight="2"-->
+<!--                android:gravity="center_horizontal"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:orientation="vertical">-->
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Address Line 3"-->
+<!--                    android:textStyle="bold"/>-->
 
-                <TextView
-                    android:id="@+id/address_line3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:text="Noida, U.P. 201305"/>
+<!--                <TextView-->
+<!--                    android:id="@+id/address_line31"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:gravity="center_horizontal"-->
+<!--                    android:text="Noida, U.P. 201305"/>-->
 
-            </LinearLayout>
+<!--            </LinearLayout>-->
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -160,46 +237,72 @@
                     />
             </LinearLayout>
 
-        </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:background="#c0c0c0"/>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:orientation="horizontal">
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Action"
-                android:textStyle="bold"/>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Action"
+                    android:textStyle="bold"/>
 
 
-            <Button
-                android:id="@+id/edit_button"
-                android:layout_width="wrap_content"
-                android:layout_height="25dp"
-                android:text="Edit"
-                android:textSize="12sp"
-                android:textColor="@color/colorWhite"
-                android:background="@color/colorPrimary"/>
+                <Button
+                    android:id="@+id/edit_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:text="Edit"
+                    android:textAllCaps="false"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorWhite"
+                    android:background="@color/colorPrimary"/>
+
+            </LinearLayout>
 
         </LinearLayout>
-    </LinearLayout>
+
+<!--        <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="1dp"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_marginLeft="5dp"-->
+<!--            android:layout_marginRight="5dp"-->
+<!--            android:background="#c0c0c0"/>-->
+
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_margin="5dp"-->
+<!--        android:orientation="horizontal">-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:gravity="center_horizontal"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:orientation="vertical">-->
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Action"-->
+<!--                android:textStyle="bold"/>-->
+
+
+<!--            <Button-->
+<!--                android:id="@+id/edit_button2"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="25dp"-->
+<!--                android:text="Edit"-->
+<!--                android:textSize="12sp"-->
+<!--                android:textColor="@color/colorWhite"-->
+<!--                android:background="@color/colorPrimary"/>-->
+
+<!--        </LinearLayout>-->
+<!--    </LinearLayout>-->
 
 
 

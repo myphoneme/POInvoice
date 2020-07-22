@@ -252,6 +252,7 @@
             android:layout_height="50dp"
             android:textColor="#000"
             android:layout_marginLeft="5dp"
+            android:textAllCaps="false"
             android:textSize="12sp"
             android:text="Choose file"/>
 
@@ -278,6 +279,7 @@
             android:layout_height="50dp"
             android:textColor="@color/text_white"
             android:layout_margin="5dp"
+            android:textAllCaps="false"
             android:text="Reset"/>
         <Button
             android:id="@+id/submit"
@@ -286,6 +288,7 @@
             android:layout_height="50dp"
             android:textColor="@color/text_white"
             android:layout_margin="5dp"
+            android:textAllCaps="false"
             android:text="Submit"/>
     </LinearLayout>
 </LinearLayout>

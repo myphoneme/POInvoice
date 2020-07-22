@@ -276,6 +276,7 @@
         android:layout_height="50dp"
         android:textColor="@color/text_white"
         android:layout_margin="5dp"
+        android:textAllCaps="false"
         android:text="Service"/>
 
     <RelativeLayout
@@ -412,6 +413,7 @@
             android:layout_toRightOf="@+id/upload_image_text"
             android:layout_width="100dp"
             android:layout_height="50dp"
+            android:textAllCaps="false"
             android:textColor="#000"
             android:layout_marginLeft="5dp"
             android:textSize="12sp"
@@ -441,6 +443,7 @@
             android:layout_height="50dp"
             android:textColor="@color/text_white"
             android:layout_margin="5dp"
+            android:textAllCaps="false"
             android:visibility="gone"
             android:text="Reset"/>
         <Button
@@ -450,6 +453,7 @@
             android:layout_height="50dp"
             android:textColor="@color/text_white"
             android:layout_margin="5dp"
+            android:textAllCaps="false"
             android:text="Generate"/>
     </LinearLayout>
 </LinearLayout>

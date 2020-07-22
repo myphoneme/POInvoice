@@ -48,6 +48,7 @@
             android:layout_marginTop="40dp"
             android:background="@color/colorPrimary"
             android:padding="10dp"
+            android:textAllCaps="false"
             android:text="Login"
             android:textColor="@color/colorWhite"
             android:layout_marginBottom="?android:attr/actionBarSize"/>
