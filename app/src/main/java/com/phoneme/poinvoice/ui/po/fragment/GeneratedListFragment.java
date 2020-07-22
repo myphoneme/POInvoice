@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
@@ -22,7 +23,7 @@ public class GeneratedListFragment extends Fragment implements GeneratedListAdap
 
     private GeneratedListViewModel generatedListViewModel;
     private RecyclerView recyclerView;
-
+    private Button generateNewPOButton;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         generatedListViewModel =
@@ -43,6 +44,14 @@ public class GeneratedListFragment extends Fragment implements GeneratedListAdap
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView=(RecyclerView)view.findViewById(R.id.recyclerview_generated_list);
+        generateNewPOButton=(Button)view.findViewById(R.id.add_vendor_button);
+        generateNewPOButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+                navController.navigate(R.id.nav_create_po);
+            }
+        });
         //GeneratedListAdapter adapter=new GeneratedListAdapter(getContext());
         GeneratedListAdapter adapter=new GeneratedListAdapter(getContext(),this);
         recyclerView.setAdapter(adapter);

@@ -47,7 +47,8 @@ public class POTemplateFragment extends Fragment implements POTemplateAdapter.On
         createpotemplate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+                navController.navigate(R.id.nav_create_new_po_templatge);
             }
         });
         //POTemplateAdapter adapter=new POTemplateAdapter(getContext());
