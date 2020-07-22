@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp">
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Title"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:padding="5dp"
+            android:id="@+id/templat_tile"
+            android:layout_width="230dp"
+            android:layout_height="30dp"
+            android:hint="Enter title"
+            android:layout_alignParentRight="true"
+            android:textSize="12sp"
+            android:background="@drawable/edit_bg"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Template Name"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:padding="5dp"
+            android:id="@+id/templat_name"
+            android:layout_width="230dp"
+            android:layout_height="30dp"
+            android:hint="Enter Template Name"
+            android:layout_alignParentRight="true"
+            android:textSize="12sp"
+            android:background="@drawable/edit_bg"
+            />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Addres Line 1"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:padding="5dp"
+            android:id="@+id/address_line1"
+            android:layout_width="230dp"
+            android:layout_height="30dp"
+            android:hint="Enter Address Line 1"
+            android:layout_alignParentRight="true"
+            android:textSize="12sp"
+            android:background="@drawable/edit_bg"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Addres Line 2"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:padding="5dp"
+            android:id="@+id/address_line2"
+            android:layout_width="230dp"
+            android:layout_height="30dp"
+            android:hint="Enter Address Line 2"
+            android:layout_alignParentRight="true"
+            android:textSize="12sp"
+            android:background="@drawable/edit_bg"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Addres Line 3"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:padding="5dp"
+            android:id="@+id/address_line3"
+            android:layout_width="230dp"
+            android:layout_height="30dp"
+            android:hint="Enter Address Line 3"
+            android:textSize="12sp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/edit_bg"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="State"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        />
+    <Spinner
+        android:layout_alignParentRight="true"
+        android:id="@+id/company"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:entries="@array/india_state"
+        android:imeOptions="actionNext" /></RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="GSTN No:"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:padding="5dp"
+            android:id="@+id/gstn_no"
+            android:layout_width="230dp"
+            android:layout_height="30dp"
+            android:hint="Enter GSTN No"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/edit_bg"
+            android:textSize="12sp"
+            />
+
+    </RelativeLayout>
+
+
+<!--    <RelativeLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:text="Title"-->
+<!--            android:textSize="18sp"-->
+<!--            android:textStyle="bold"-->
+<!--            />-->
+
+<!--        <EditText-->
+<!--            android:padding="5dp"-->
+<!--            android:id="@+id/title_text"-->
+<!--            android:layout_width="200dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:text="Title text"-->
+<!--            android:layout_alignParentRight="true"-->
+<!--            android:background="@drawable/edit_bg"-->
+<!--            />-->
+<!--        />-->
+<!--    </RelativeLayout>-->
+
+
+<!--    <RelativeLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:text="Description"-->
+<!--            android:textSize="18sp"-->
+<!--            android:textStyle="bold"-->
+<!--            />-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/description_text"-->
+<!--            android:layout_width="200dp"-->
+<!--            android:padding="5dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:maxHeight="200dp"-->
+<!--            android:text="Description text"-->
+<!--            android:layout_alignParentRight="true"-->
+<!--            android:background="@drawable/edit_bg"-->
+<!--            />-->
+<!--        />-->
+<!--    </RelativeLayout>-->
+
+<!--    <RelativeLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+
+<!--        >-->
+<!--        <TextView-->
+<!--            android:id="@+id/possible_allocated_users"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:textSize="18sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:text="Allocated Users"-->
+<!--            />-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_alignParentRight="true"-->
+<!--            android:id="@+id/rootcheckbox"-->
+<!--            android:layout_width="200dp"-->
+<!--            android:orientation="vertical"-->
+<!--            android:layout_height="wrap_content">-->
+
+<!--        </LinearLayout>-->
+
+<!--        <EditText-->
+<!--            android:visibility="gone"-->
+<!--            android:layout_width="200dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:text="Allocated users"-->
+<!--            android:layout_alignParentRight="true"-->
+<!--            android:background="@drawable/edit_bg"-->
+<!--            />-->
+<!--        />-->
+<!--    </RelativeLayout>-->
+
+<!--    <RelativeLayout-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:textSize="18sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:text="Status"-->
+<!--            />-->
+
+<!--&lt;!&ndash;        <Spinner&ndash;&gt;-->
+<!--&lt;!&ndash;            android:id="@+id/spinner_status"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_width="200dp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_height="40dp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_alignParentRight="true"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:background="@drawable/custom_spinner" />&ndash;&gt;-->
+<!--        /></RelativeLayout>-->
+
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:gravity="center_vertical"
+        android:layout_gravity="center_vertical">
+        <TextView
+            android:id="@+id/upload_image_text"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Upload logo:"
+            android:gravity="center_vertical"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            />
+        <Button
+            android:id="@+id/upload"
+            android:layout_toRightOf="@+id/upload_image_text"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:textColor="#000"
+            android:layout_marginLeft="5dp"
+            android:textSize="12sp"
+            android:text="Choose file"/>
+
+        <ImageView
+            android:layout_centerVertical="true"
+            android:background="@color/colorPrimary"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:id="@+id/image"
+            android:layout_width="40dp"
+            android:layout_height="20dp"
+            android:src="@drawable/logopngphoneme"
+            />
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/reset"
+            android:background="@drawable/button_bg_rounded_corners"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:textColor="@color/text_white"
+            android:layout_margin="5dp"
+            android:text="Reset"/>
+        <Button
+            android:id="@+id/submit"
+            android:background="@drawable/button_bg_rounded_corners"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:textColor="@color/text_white"
+            android:layout_margin="5dp"
+            android:text="Submit"/>
+    </LinearLayout>
+</LinearLayout>

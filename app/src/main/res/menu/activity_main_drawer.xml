@@ -62,6 +62,7 @@
             android:icon="@drawable/ic_menu_manage"
             android:title="@string/menu_create_po"
             />
+
 <!--        <item-->
 <!--            android:id="@+id/nav_payment_upload"-->
 <!--            android:icon="@drawable/ic_menu_manage"-->
@@ -71,6 +72,11 @@
             android:id="@+id/nav_invoice_management"
             android:icon="@drawable/ic_menu_manage"
             android:title="@string/menu_invoice_management"
+            />
+        <item
+            android:id="@+id/nav_create_new_po_templatge"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="@string/menu_create_new_po_template"
             />
     </group>
 
