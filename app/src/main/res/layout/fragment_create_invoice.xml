@@ -8,6 +8,12 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="5dp">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Generate New Invoice"
+        android:textStyle="bold"/>
 
     <RelativeLayout
         android:layout_marginTop="10dp"
@@ -132,30 +138,30 @@
             android:entries="@array/vendor"
             android:imeOptions="actionNext" />
     </RelativeLayout>
-    <RelativeLayout
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="Subject"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            />
+<!--    <RelativeLayout-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:text="Subject"-->
+<!--            android:textSize="14sp"-->
+<!--            android:textStyle="bold"-->
+<!--            />-->
 
-        <EditText
-            android:padding="5dp"
-            android:id="@+id/subject"
-            android:layout_width="230dp"
-            android:layout_height="30dp"
-            android:hint="Subject"
-            android:layout_alignParentRight="true"
-            android:textSize="12sp"
-            android:background="@drawable/edit_bg"
-            />
+<!--        <EditText-->
+<!--            android:padding="5dp"-->
+<!--            android:id="@+id/subject"-->
+<!--            android:layout_width="230dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:hint="Subject"-->
+<!--            android:layout_alignParentRight="true"-->
+<!--            android:textSize="12sp"-->
+<!--            android:background="@drawable/edit_bg"-->
+<!--            />-->
 
-    </RelativeLayout>
+<!--    </RelativeLayout>-->
 
     <View
         android:layout_width="match_parent"
