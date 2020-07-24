@@ -4,10 +4,12 @@ import android.app.DatePickerDialog;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -35,6 +38,7 @@ public class CreateInvoiceFragment extends Fragment {
     DatePickerDialog.OnDateSetListener date;
     private Button serviceButton;
     private LinearLayout servicelayout;
+    private int servicecount=1;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -101,11 +105,11 @@ public class CreateInvoiceFragment extends Fragment {
     }
 
     private void createView(){
-
+        servicecount++;
         View v = new View(getContext());
         v.setLayoutParams(new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
-                5
+                1
         ));
 
         v.setBackgroundColor(Color.parseColor("#B3B3B3"));
@@ -115,8 +119,14 @@ public class CreateInvoiceFragment extends Fragment {
                 (int) getResources().getDimension(R.dimen.edit_width),
                 RelativeLayout.LayoutParams.WRAP_CONTENT);
 
+        params.setMargins((int) getResources().getDimension(R.dimen.margin),
+                (int) getResources().getDimension(R.dimen.margin),
+                0,
+                (int) getResources().getDimension(R.dimen.margin));
 
         RelativeLayout relativeLayout=new RelativeLayout(getContext());
+
+
         RelativeLayout.LayoutParams params2 = new RelativeLayout.LayoutParams (
                 RelativeLayout.LayoutParams.MATCH_PARENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -124,6 +134,7 @@ public class CreateInvoiceFragment extends Fragment {
         RelativeLayout.LayoutParams paramsLeft = new RelativeLayout.LayoutParams (
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT);
+
         //paramsLeft.bottomMargin=(int) getResources().getDimension(R.dimen.margin);
 
         //relativeLayout.setBackgroundColor((int)getResources().getColor(R.color.colorAccent));
@@ -131,16 +142,29 @@ public class CreateInvoiceFragment extends Fragment {
 //        relativeLayout.getLayoutParams().width=(int) getResources().getDimension(R.dimen.edit_width);
 //        relativeLayout.getLayoutParams().height=RelativeLayout.LayoutParams.WRAP_CONTENT;
 //
+
+
         TextView textView=new TextView(getContext());
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP,12);
-        textView.setHint("Service");
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP,14);
+        //textView.setHint("Service");
+        //textView.setHintTextColor((int)getResources().getColor(R.color.grey));
+        textView.setTypeface(textView.getTypeface(), Typeface.BOLD);
+        textView.setText("Service");
+
         textView.setLayoutParams(paramsLeft);
+
+        //textView.setBackgroundColor((int)getResources().getColor(R.color.grey));
+//        textView.setGravity(Gravity.CENTER_VERTICAL);
+        textView.setPadding(0,0,0,0);
 
         EditText edittTxt = new EditText(getContext());
         //edittTxt.setTextSize((int)getResources().getDimension(R.dimen.text_size));
         edittTxt.setTextSize(TypedValue.COMPLEX_UNIT_SP,12);
         edittTxt.setHint("Service");
-        edittTxt.setHintTextColor((int)getResources().getColor(R.color.colorAccent));
+        edittTxt.setTag("service"+servicecount);
+        edittTxt.setId(0);
+        edittTxt.setHintTextColor((int)getResources().getColor(R.color.grey));
+
 //
 //
         edittTxt.setWidth((int) getResources().getDimension(R.dimen.edit_width));
@@ -167,7 +191,7 @@ public class CreateInvoiceFragment extends Fragment {
                 5
         ));
 
-        vDescription.setBackgroundColor(Color.parseColor("#B3B3B3"));
+        vDescription.setBackgroundColor(Color.parseColor("#c8c8c8"));
 
 
         RelativeLayout.LayoutParams paramsDescription = new RelativeLayout.LayoutParams (
@@ -180,34 +204,57 @@ public class CreateInvoiceFragment extends Fragment {
                 RelativeLayout.LayoutParams.MATCH_PARENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT);
 
+
+        paramsDescription2.setMargins((int) getResources().getDimension(R.dimen.margin),
+                (int) getResources().getDimension(R.dimen.margin),
+                (int) getResources().getDimension(R.dimen.margin),
+                (int) getResources().getDimension(R.dimen.margin));
+
+
         RelativeLayout.LayoutParams paramsDescriptionLeft = new RelativeLayout.LayoutParams (
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+//        paramsDescriptionLeft.setMargins((int) getResources().getDimension(R.dimen.margin),
+//                (int) getResources().getDimension(R.dimen.margin),
+//                (int) getResources().getDimension(R.dimen.margin),
+//                (int) getResources().getDimension(R.dimen.margin));
 
         relativeLayoutDescription.setLayoutParams(paramsDescription2);
 
 
         TextView textViewDescription=new TextView(getContext());
-        textViewDescription.setTextSize(TypedValue.COMPLEX_UNIT_SP,12);
-        textViewDescription.setHint("Description");
+        textViewDescription.setTextSize(TypedValue.COMPLEX_UNIT_SP,14);
+        //textViewDescription.setHint("Description");
+        textViewDescription.setTypeface(textView.getTypeface(), Typeface.BOLD);
         textViewDescription.setLayoutParams(paramsDescriptionLeft);
+        textViewDescription.setText("Description");
+        //textViewDescription.setTextColor((int)getResources().getColor(R.color.grey));
+        //textViewDescription.setHintTextColor((int)getResources().getColor(R.color.grey));
 
         EditText edittTxtDescription = new EditText(getContext());
 
         edittTxtDescription.setTextSize(TypedValue.COMPLEX_UNIT_SP,12);
         edittTxtDescription.setHint("Description");
-        edittTxtDescription.setHintTextColor((int)getResources().getColor(R.color.colorAccent));
+        edittTxtDescription.setTag("description"+servicecount);
+        edittTxtDescription.setHintTextColor((int)getResources().getColor(R.color.grey));
 
         edittTxtDescription.setWidth((int) getResources().getDimension(R.dimen.edit_width));
-        relativeLayoutDescription.addView(vDescription);
+        //relativeLayoutDescription.addView(vDescription);
         relativeLayoutDescription.addView(edittTxtDescription);
         relativeLayoutDescription.addView(textViewDescription);
+
+        paramsDescription.setMargins((int) getResources().getDimension(R.dimen.margin),
+                (int) getResources().getDimension(R.dimen.margin),
+                0,
+                (int) getResources().getDimension(R.dimen.margin));
 
         paramsDescription.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
         edittTxtDescription.setLayoutParams(paramsDescription);
         edittTxtDescription.setBackground(getContext().getResources().getDrawable(R.drawable.edit_bg));
 
         servicelayout.addView(relativeLayoutDescription);
+
 
 
 
@@ -243,18 +290,22 @@ public class CreateInvoiceFragment extends Fragment {
 
 
         TextView textViewQuantity=new TextView(getContext());
-        textViewQuantity.setTextSize(TypedValue.COMPLEX_UNIT_SP,12);
-        textViewQuantity.setHint("Quantity");
+        textViewQuantity.setTextSize(TypedValue.COMPLEX_UNIT_SP,14);
+        //textViewQuantity.setHint("Quantity");
+        textViewQuantity.setText("Quantity");
+        textViewQuantity.setTypeface(textView.getTypeface(), Typeface.BOLD);
+        //textViewQuantity.setHintTextColor((int)getResources().getColor(R.color.grey));
         textViewQuantity.setLayoutParams(paramsQuantityLeft);
-
+        //textViewQuantity.setTextColor((int)getResources().getColor(R.color.grey));
         EditText edittTxtQuantity = new EditText(getContext());
 
         edittTxtQuantity.setTextSize(TypedValue.COMPLEX_UNIT_SP,12);
         edittTxtQuantity.setHint("Quantity");
-        edittTxtQuantity.setHintTextColor((int)getResources().getColor(R.color.colorAccent));
+        edittTxtQuantity.setTag("quantity"+servicecount);
+        edittTxtQuantity.setHintTextColor((int)getResources().getColor(R.color.grey));
 
         edittTxtQuantity.setWidth((int) getResources().getDimension(R.dimen.edit_width));
-        relativeLayoutQuantity.addView(vQuantity);
+        //relativeLayoutQuantity.addView(vQuantity);
         relativeLayoutQuantity.addView(edittTxtQuantity);
         relativeLayoutQuantity.addView(textViewQuantity);
 
@@ -297,24 +348,35 @@ public class CreateInvoiceFragment extends Fragment {
 
 
         TextView textViewPrice=new TextView(getContext());
-        textViewPrice.setTextSize(TypedValue.COMPLEX_UNIT_SP,12);
-        textViewPrice.setHint("Price");
+        textViewPrice.setTextSize(TypedValue.COMPLEX_UNIT_SP,14);
+        //textViewPrice.setHint("Price");
+        textViewPrice.setText("Price");
         textViewPrice.setLayoutParams(paramsPriceLeft);
+        //textViewPrice.setTextColor((int)getResources().getColor(R.color.grey));
+        //textViewPrice.setTypeface(null, Typeface.BOLD);
+        textViewPrice.setTypeface(textView.getTypeface(), Typeface.BOLD);
+
 
         EditText edittTxtPrice = new EditText(getContext());
 
         edittTxtPrice.setTextSize(TypedValue.COMPLEX_UNIT_SP,12);
         edittTxtPrice.setHint("Price");
-        edittTxtPrice.setHintTextColor((int)getResources().getColor(R.color.colorAccent));
+        edittTxtPrice.setTag("price"+servicecount);
+        edittTxtPrice.setHintTextColor((int)getResources().getColor(R.color.grey));
+        edittTxtPrice.setTextColor((int)getResources().getColor(R.color.grey));
 
         edittTxtPrice.setWidth((int) getResources().getDimension(R.dimen.edit_width));
-        relativeLayoutPrice.addView(vPrice);
+        //relativeLayoutPrice.addView(vPrice);
         relativeLayoutPrice.addView(edittTxtPrice);
         relativeLayoutPrice.addView(textViewPrice);
 
         paramsPrice.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
         edittTxtPrice.setLayoutParams(paramsDescription);
         edittTxtPrice.setBackground(getContext().getResources().getDrawable(R.drawable.edit_bg));
+        Toast.makeText(getContext(), "servicetag "+edittTxt.getTag().toString(), Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), "descriptiontag "+edittTxtDescription.getTag().toString(), Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), "quantitytag "+edittTxtQuantity.getTag().toString(), Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(),"pricetag "+ edittTxtPrice.getTag().toString(), Toast.LENGTH_LONG).show();
 
         servicelayout.addView(relativeLayoutPrice);
     }
