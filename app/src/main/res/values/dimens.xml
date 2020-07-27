@@ -8,4 +8,5 @@
     <dimen name="text_size">12dp</dimen>
     <dimen name="edit_width">230dp</dimen>
     <dimen name="margin">10dp</dimen>
+    <dimen name="marginText">20dp</dimen>
 </resources>

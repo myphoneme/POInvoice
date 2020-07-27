@@ -135,6 +135,7 @@ public class CreateInvoiceFragment extends Fragment {
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT);
 
+
         //paramsLeft.bottomMargin=(int) getResources().getDimension(R.dimen.margin);
 
         //relativeLayout.setBackgroundColor((int)getResources().getColor(R.color.colorAccent));
@@ -303,6 +304,7 @@ public class CreateInvoiceFragment extends Fragment {
         edittTxtQuantity.setHint("Quantity");
         edittTxtQuantity.setTag("quantity"+servicecount);
         edittTxtQuantity.setHintTextColor((int)getResources().getColor(R.color.grey));
+        //edittTxtQuantity.setPadding(30,0,0,0);
 
         edittTxtQuantity.setWidth((int) getResources().getDimension(R.dimen.edit_width));
         //relativeLayoutQuantity.addView(vQuantity);
@@ -342,7 +344,7 @@ public class CreateInvoiceFragment extends Fragment {
 
         RelativeLayout.LayoutParams paramsPriceLeft = new RelativeLayout.LayoutParams (
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT);
+                RelativeLayout.LayoutParams.MATCH_PARENT);
 
         relativeLayoutPrice.setLayoutParams(paramsPrice2);
 
@@ -352,6 +354,8 @@ public class CreateInvoiceFragment extends Fragment {
         //textViewPrice.setHint("Price");
         textViewPrice.setText("Price");
         textViewPrice.setLayoutParams(paramsPriceLeft);
+        textViewPrice.setGravity(Gravity.CENTER_VERTICAL);
+
         //textViewPrice.setTextColor((int)getResources().getColor(R.color.grey));
         //textViewPrice.setTypeface(null, Typeface.BOLD);
         textViewPrice.setTypeface(textView.getTypeface(), Typeface.BOLD);
