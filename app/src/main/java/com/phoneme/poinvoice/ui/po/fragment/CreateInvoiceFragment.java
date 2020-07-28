@@ -18,6 +18,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,12 +34,14 @@ import java.util.Locale;
 
 public class CreateInvoiceFragment extends Fragment {
 
-    private EditText dob;
+    private EditText dob,invoiceNumber,PONumber,gstPercentage,Remark;
+    private Spinner Company,Vendor;
     Calendar myCalendar;
     DatePickerDialog.OnDateSetListener date;
     private Button serviceButton;
     private LinearLayout servicelayout;
     private int servicecount=1;
+    private Button Generate;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -51,6 +54,17 @@ public class CreateInvoiceFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         myCalendar = Calendar.getInstance();
         String myFormat = "MM/dd/yyyy"; //In which you need put here
+
+
+        Generate = (Button)view.findViewById(R.id.generate);
+        PONumber=(EditText)view.findViewById(R.id.po_number);
+        Company=(Spinner)view.findViewById(R.id.company);
+
+        Vendor=(Spinner)view.findViewById(R.id.vendor);
+        gstPercentage=(EditText)view.findViewById(R.id.gst_percentage);
+        Remark=(EditText)view.findViewById(R.id.remark);
+
+
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
         dob=(EditText)view.findViewById(R.id.invoice_date);
         dob.setText(sdf.format(myCalendar.getTime()));
@@ -59,7 +73,16 @@ public class CreateInvoiceFragment extends Fragment {
         serviceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                servicecount++;
                 createView();
+            }
+        });
+        Generate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                getData();
+
             }
         });
         date = new DatePickerDialog.OnDateSetListener() {
@@ -102,6 +125,44 @@ public class CreateInvoiceFragment extends Fragment {
                 // Toast.makeText(getApplicationContext(), "In On click", Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    private void getData(){
+        String invoicedate,invoice,po,vendor,gst,remark,company;
+        String service[]=new String[servicecount];
+        String description[]=new String[servicecount];
+        String quantity[]=new String[servicecount];
+        String price[]=new String[servicecount];
+
+
+        if(dob!=null && dob.getText()!=null && dob.getText().length()>0){
+            invoicedate=dob.getText().toString();
+        }
+//
+        if(invoiceNumber!=null && invoiceNumber.getText()!=null && invoiceNumber.getText().length() > 0){
+            invoice=invoiceNumber.getText().toString();
+        }
+
+        if(PONumber!=null && PONumber.getText()!=null && PONumber.getText().length()>0){
+            po=PONumber.getText().toString();
+        }
+        if(gstPercentage!=null && gstPercentage.getText()!=null && gstPercentage.getText().length()>0){
+
+            gst=gstPercentage.getText().toString();
+        }
+        if(Remark!=null && Remark.getText()!=null && Remark.getText().length()>0){
+            remark=Remark.getText().toString();
+        }
+
+
+        vendor = Vendor.getSelectedItem().toString();
+
+        company=Company.getSelectedItem().toString();
+
+        for(int i=0;i< servicecount;i++){
+            //service[i]=
+        }
+        Toast.makeText(getContext(), "Company="+company, Toast.LENGTH_LONG).show();
     }
 
     private void createView(){

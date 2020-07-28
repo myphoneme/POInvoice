@@ -17,7 +17,7 @@
 
         <EditText
             android:padding="5dp"
-            android:id="@+id/templat_name"
+            android:id="@+id/vendor_name"
             android:layout_width="230dp"
             android:layout_height="30dp"
             android:hint="Iris Global Services Pvt Ltd."
@@ -41,7 +41,7 @@
 
         <EditText
             android:padding="5dp"
-            android:id="@+id/address_line1"
+            android:id="@+id/address"
             android:layout_width="230dp"
             android:layout_height="30dp"
             android:hint="1 Bypass Road Mahipalpur, New Delhi-110037"
@@ -66,7 +66,7 @@
 
         <EditText
             android:padding="5dp"
-            android:id="@+id/address_line2"
+            android:id="@+id/email"
             android:layout_width="230dp"
             android:layout_height="30dp"
             android:hint="Enter email"
@@ -90,7 +90,7 @@
             />
         <Spinner
             android:layout_alignParentRight="true"
-            android:id="@+id/company"
+            android:id="@+id/state"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -125,7 +125,7 @@
 
         <EditText
             android:padding="5dp"
-            android:id="@+id/gstn_no"
+            android:id="@+id/gstin_no"
             android:layout_width="230dp"
             android:layout_height="30dp"
             android:hint="07AACCI0718A2Z8"

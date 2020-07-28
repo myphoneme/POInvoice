@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
@@ -24,6 +25,8 @@ public class UploadPaymentInvoiceFragment extends Fragment {
     private EditText dob;
     Calendar myCalendar;
     DatePickerDialog.OnDateSetListener date;
+    private EditText Message,transaction,Payment;
+    private Button Submit;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -37,6 +40,17 @@ public class UploadPaymentInvoiceFragment extends Fragment {
         myCalendar = Calendar.getInstance();
         String myFormat = "MM/dd/yyyy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        Submit=(Button)view.findViewById(R.id.submit);
+        Submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getData();
+            }
+        });
+        Message=(EditText)view.findViewById(R.id.message);
+        transaction=(EditText)view.findViewById(R.id.transaction_id);
+        Payment=(EditText)view.findViewById(R.id.payment_amount);
+
 //        dob=(EditText)view.findViewById(R.id.invoice_date);
 //        dob.setText(sdf.format(myCalendar.getTime()));
 //        date = new DatePickerDialog.OnDateSetListener() {
@@ -79,5 +93,21 @@ public class UploadPaymentInvoiceFragment extends Fragment {
 //                // Toast.makeText(getApplicationContext(), "In On click", Toast.LENGTH_LONG).show();
 //            }
 //        });
+    }
+
+    private void getData(){
+        String transactionid,payment,message;
+        if(transaction!=null && transaction.getText()!=null && transaction.getText().length()>0){
+            transactionid=transaction.getText().toString();
+        }
+
+        if(Message!=null && Message.getText()!=null && Message.getText().length()>0){
+            message=Message.getText().toString();
+        }
+        if(Payment!=null && Payment.getText()!=null && Payment.getText().length()>0){
+            payment=Payment.getText().toString();
+        }
+
+
     }
 }

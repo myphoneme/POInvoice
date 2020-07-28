@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
@@ -21,9 +22,10 @@ import java.util.Locale;
 
 public class AddInvoiceFragment extends Fragment {
 
-    private EditText dob;
+    private EditText dob,invoiceNumber,invoiceAmount;
     Calendar myCalendar;
     DatePickerDialog.OnDateSetListener date;
+    private Button submit;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -39,6 +41,18 @@ public class AddInvoiceFragment extends Fragment {
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
         dob=(EditText)view.findViewById(R.id.invoice_date);
         dob.setText(sdf.format(myCalendar.getTime()));
+
+        submit=(Button)view.findViewById(R.id.submit);
+        invoiceNumber=(EditText)view.findViewById(R.id.invoice_number);
+        invoiceAmount=(EditText)view.findViewById(R.id.invoice_amount);
+
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getData();
+            }
+        });
+
         date = new DatePickerDialog.OnDateSetListener() {
 
             @Override
@@ -79,5 +93,19 @@ public class AddInvoiceFragment extends Fragment {
                 // Toast.makeText(getApplicationContext(), "In On click", Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    private void getData(){
+        String dateString,invoiceNumberString,invoiceAmountString;
+        if(dob!=null && dob.getText()!=null && dob.getText().length()>0){
+            dateString=dob.getText().toString();
+        }
+
+        if(  invoiceNumber!=null &&   invoiceNumber.getText()!=null &&   invoiceNumber.getText().length()>0){
+            invoiceNumberString = invoiceNumber.getText().toString();
+        }
+        if(  invoiceAmount!=null &&   invoiceAmount.getText()!=null &&   invoiceAmount.getText().length()>0){
+            invoiceAmountString = invoiceAmount.getText().toString();
+        }
     }
 }

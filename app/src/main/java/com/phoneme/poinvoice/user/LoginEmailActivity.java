@@ -26,6 +26,8 @@ public class LoginEmailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //MOre logic later
+                String login_email=email.getText().toString();
+                String login_password=password.getText().toString();
                 startMainActivity();
             }
         });
