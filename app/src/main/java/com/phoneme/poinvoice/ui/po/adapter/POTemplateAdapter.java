@@ -28,7 +28,7 @@ public class POTemplateAdapter extends RecyclerView.Adapter<POTemplateAdapter.Vi
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView title, description, company_name, allocated_users, status, createdat;
         //private ProjectModel projectModel;
-        private TextView edit;
+        private TextView edit,Title,State,TemplateName,AddressLine1,AddressLine2,AddressLine3,GSTNO;
         private CardView cardView;
         private ImageView imageView;
         //private SimpleDraweeView projectLogo;
@@ -44,7 +44,13 @@ public class POTemplateAdapter extends RecyclerView.Adapter<POTemplateAdapter.Vi
                     listener.onItemClick(getAdapterPosition());
                 }
             });
-//            title=(TextView)v.findViewById(R.id.name);
+            Title=(TextView)v.findViewById(R.id.title);
+            State=(TextView)v.findViewById(R.id.state);
+            TemplateName=(TextView)v.findViewById(R.id.template_name);
+            AddressLine1=(TextView)v.findViewById(R.id.address_line1);
+            AddressLine2=(TextView)v.findViewById(R.id.address_line2);
+            AddressLine3=(TextView)v.findViewById(R.id.address_line3);
+            GSTNO=(TextView)v.findViewById(R.id.gst_no);
 //            company_name=(TextView)v.findViewById(R.id.company_name);
 //            imageView=(ImageView)v.findViewById(R.id.image);
 //            relativeLayoutView=(RelativeLayout)v.findViewById(R.id.relativelayoutview);
@@ -79,6 +85,15 @@ public class POTemplateAdapter extends RecyclerView.Adapter<POTemplateAdapter.Vi
 //                projectLogo.setImageURI(uri);
 //            }
 //        }
+        private void setData2(int position){
+            this.Title.setText("Funnel Expert UP");
+            this.State.setText("Delhi");
+            this.TemplateName.setText("Phoneme Solutions Pvt. Ltd.");
+            this.AddressLine1.setText("No. B-614, 6th Floor, Advant Navis,");
+            this.AddressLine2.setText("No. B-614, 6th Floor, Advant Navis,");
+            this.AddressLine3.setText("Plot No. 07, Sector-142,");
+            this.GSTNO.setText("09AABCF9430H1Z");
+        }
     }
 
     @Override
@@ -89,6 +104,7 @@ public class POTemplateAdapter extends RecyclerView.Adapter<POTemplateAdapter.Vi
 
     public void onBindViewHolder(POTemplateAdapter.ViewHolder vh, int position){
 //        vh.setData(this.projectModelList.get(position),position);
+        vh.setData2(position);
 
 
 

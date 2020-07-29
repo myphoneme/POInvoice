@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.phoneme.poinvoice.R;
 
+import org.w3c.dom.Text;
+
 public class VendorListAdapter extends RecyclerView.Adapter<VendorListAdapter.ViewHolder> {
     private Context mcontext;
     private  OnItemClickListener listener;
@@ -28,7 +30,7 @@ public class VendorListAdapter extends RecyclerView.Adapter<VendorListAdapter.Vi
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView title, description, company_name, allocated_users, status, createdat;
         //private ProjectModel projectModel;
-        private TextView edit;
+        private TextView edit,VendorName,Address,Email,State,GSTIN,Pam;
         private CardView cardView;
         private ImageView imageView;
         //private SimpleDraweeView projectLogo;
@@ -44,6 +46,12 @@ public class VendorListAdapter extends RecyclerView.Adapter<VendorListAdapter.Vi
                     listener.onItemClick(getAdapterPosition());
                 }
             });
+            VendorName=(TextView)v.findViewById(R.id.vendor_name);
+            Address=(TextView)v.findViewById(R.id.address);
+            Email=(TextView)v.findViewById(R.id.email);
+            State=(TextView)v.findViewById(R.id.state);
+            GSTIN=(TextView)v.findViewById(R.id.gstin);
+            Pam=(TextView)v.findViewById(R.id.pam);
 //            title=(TextView)v.findViewById(R.id.name);
 //            company_name=(TextView)v.findViewById(R.id.company_name);
 //            imageView=(ImageView)v.findViewById(R.id.image);
@@ -79,6 +87,14 @@ public class VendorListAdapter extends RecyclerView.Adapter<VendorListAdapter.Vi
 //                projectLogo.setImageURI(uri);
 //            }
 //        }
+        private void setData2(int position){
+            this.VendorName.setText("Tech Data Advanced Solutions");
+            this.Address.setText("C/O- Schenker India Private Limited 273/2, Shahabad Mohamadpur, New Delhi, 110062");
+            this.Email.setText("Amit.Kumar4@techdata.com");
+            this.State.setText("Delhi");
+            this.GSTIN.setText("07AAACO3686M1ZZ");
+            this.Pam.setText("AAACO3686M");
+        }
     }
 
     @Override
@@ -89,6 +105,7 @@ public class VendorListAdapter extends RecyclerView.Adapter<VendorListAdapter.Vi
 
     public void onBindViewHolder(ViewHolder vh, int position){
 //        vh.setData(this.projectModelList.get(position),position);
+          vh.setData2(position);
 
 
 

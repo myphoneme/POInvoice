@@ -32,7 +32,7 @@
                     android:id="@+id/vendor_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tech Data Advanced Solutions"/>
+                    android:text=""/>
 
             </LinearLayout>
 
@@ -53,7 +53,7 @@
                     android:id="@+id/address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="C/O- Schenker India Private Limited 273/2, Shahabad Mohamadpur, New Delhi, 110061"/>
+                    android:text=""/>
 
             </LinearLayout>
 
@@ -74,7 +74,7 @@
                     android:id="@+id/email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Amit.Kumar4@techdata.com"/>
+                    android:text=""/>
                     />
             </LinearLayout>
 
@@ -132,7 +132,7 @@
                     android:id="@+id/gstin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="07AAACO3686M1ZZ"/>
+                    android:text=""/>
 
             </LinearLayout>
 
@@ -153,7 +153,7 @@
                     android:id="@+id/pam"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="AAACO3686M"/>
+                    android:text=""/>
             </LinearLayout>
 
         </LinearLayout>

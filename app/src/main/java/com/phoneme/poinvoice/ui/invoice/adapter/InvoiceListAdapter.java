@@ -17,6 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.phoneme.poinvoice.R;
 
+import org.w3c.dom.Text;
+
 public class InvoiceListAdapter extends RecyclerView.Adapter<InvoiceListAdapter.ViewHolder> {
     private Context mcontext;
     private OnItemClickListener listener;
@@ -42,15 +44,13 @@ public class InvoiceListAdapter extends RecyclerView.Adapter<InvoiceListAdapter.
 
     public void onBindViewHolder(InvoiceListAdapter.ViewHolder vh, int position){
 //        vh.setData(this.projectModelList.get(position),position);
-
-
-
+        vh.setData2(position);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView title, description, company_name, allocated_users, status, createdat;
         //private ProjectModel projectModel;
-        private TextView edit,invoiceNumber;
+        private TextView edit,invoiceNumber,date,Project,TotalAmount,Client,percentagePOReceived,poReceived,OrderId;
         private CardView cardView;
         private ImageView imageView;
         //private SimpleDraweeView projectLogo;
@@ -80,6 +80,15 @@ public class InvoiceListAdapter extends RecyclerView.Adapter<InvoiceListAdapter.
                     listener.onItemClick3(getAdapterPosition());
                 }
             });
+
+            date=(TextView)v.findViewById(R.id.date);
+            Project=(TextView)v.findViewById(R.id.project);
+            TotalAmount=(TextView)v.findViewById(R.id.total_amount);
+            Client=(TextView)v.findViewById(R.id.client);
+            percentagePOReceived=(TextView)v.findViewById(R.id.percentage_po_received);
+            poReceived=(TextView)v.findViewById(R.id.po_received);
+            OrderId=(TextView)v.findViewById(R.id.order_id);
+
 //            title=(TextView)v.findViewById(R.id.name);
 //            company_name=(TextView)v.findViewById(R.id.company_name);
 //            imageView=(ImageView)v.findViewById(R.id.image);
@@ -92,6 +101,17 @@ public class InvoiceListAdapter extends RecyclerView.Adapter<InvoiceListAdapter.
 //                }
 //            });
             //cardView=(CardView)v.findViewById(R.id.cardid);
+        }
+
+        public void setData2(int position){
+            this.date.setText("06 Dec 2020");
+            this.Project.setText("Ticketing System1");
+            this.TotalAmount.setText("\u20B9 61384");
+            this.invoiceNumber.setText("758703");
+            this.Client.setText("2");
+            this.percentagePOReceived.setText("23.4%");
+            this.poReceived.setText("PO/IT-EXP/2020-21/17");
+            this.OrderId.setText("2514547");
         }
 
 //        public void setData(ProjectModel item, int position) {

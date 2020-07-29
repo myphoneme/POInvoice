@@ -6,8 +6,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,9 +23,11 @@ import java.util.Locale;
 
 public class CreatePOFragment extends Fragment {
 
-    private EditText dob;
+    private EditText dob,poNumber,deliveryDate,invoiceDate,Subject,gstPercentage,termsConditions;
     Calendar myCalendar;
     DatePickerDialog.OnDateSetListener date;
+    private Button Submit;
+    private Spinner Company,Vendor;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -79,5 +83,58 @@ public class CreatePOFragment extends Fragment {
                 // Toast.makeText(getApplicationContext(), "In On click", Toast.LENGTH_LONG).show();
             }
         });
+
+        Company=(Spinner)view.findViewById(R.id.company);
+        Vendor=(Spinner)view.findViewById(R.id.vendor);
+        Submit=(Button)view.findViewById(R.id.submit);
+
+        poNumber=(EditText)view.findViewById(R.id.po_number);
+        deliveryDate=(EditText)view.findViewById(R.id.delievery_date);
+        invoiceDate=(EditText)view.findViewById(R.id.invoice_date);
+        Subject=(EditText)view.findViewById(R.id.subject);
+        gstPercentage=(EditText)view.findViewById(R.id.gst_percentage);
+        termsConditions=(EditText)view.findViewById(R.id.terms_conditions);
+
+        Submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getData();
+            }
+        });
+    }
+
+    private void getData(){
+        String ponumber,deliverydate,invoicedate,subject,gstpercetage,termscondtion,vendor,company;
+
+
+        if(poNumber!=null && poNumber.getText()!=null && poNumber.getText().length()>0){
+            ponumber=poNumber.getText().toString();
+        }
+
+        if(deliveryDate!=null && deliveryDate.getText()!=null && deliveryDate.getText().length()>0){
+            deliverydate=deliveryDate.getText().toString();
+        }
+
+        if(invoiceDate!=null && invoiceDate.getText()!=null && invoiceDate.getText().length()>0){
+
+            invoicedate=invoiceDate.getText().toString();
+        }
+
+        if(Subject!=null && Subject.getText()!=null && Subject.getText().length()>0){
+
+            subject=Subject.getText().toString();
+        }
+
+        if(gstPercentage!=null && gstPercentage.getText()!=null && gstPercentage.getText().length()>0){
+
+            gstpercetage=gstPercentage.getText().toString();
+        }
+
+        if(termsConditions!=null && termsConditions.getText()!=null && termsConditions.getText().length()>0){
+            termscondtion=termsConditions.getText().toString();
+        }
+
+        vendor=Vendor.getSelectedItem().toString();
+        company=Company.getSelectedItem().toString();
     }
 }

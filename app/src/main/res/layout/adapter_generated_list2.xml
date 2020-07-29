@@ -46,11 +46,11 @@
                     android:textStyle="bold"
                     android:text="Vendor"/>
                 <TextView
-                    android:id="@+id/project"
+                    android:id="@+id/vendor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:text="Tech Data Advanced Solutions"/>
+                    android:text=""/>
 
             </LinearLayout>
 
@@ -124,7 +124,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:textColor="@color/colorPrimary"
-                    android:text="Purchase order of invoice"/>
+                    android:text=""/>
 
             </LinearLayout>
 
@@ -144,7 +144,7 @@
                     android:id="@+id/gst"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="135"/>
+                    android:text=""/>
             </LinearLayout>
 
         </LinearLayout>
@@ -207,7 +207,7 @@
                     android:id="@+id/percentage_payment_received"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0%"/>
+                    android:text=""/>
 
             </LinearLayout>
 
@@ -229,10 +229,10 @@
                     android:textStyle="bold"
                     android:text="PO NO."/>
                 <TextView
-                    android:id="@+id/po_received"
+                    android:id="@+id/po_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="	PO/IT-EXP/2020-21/16"/>
+                    android:text="	"/>
 <!--                <Button-->
 <!--                    android:layout_width="wrap_content"-->
 <!--                    android:layout_height="wrap_content"-->

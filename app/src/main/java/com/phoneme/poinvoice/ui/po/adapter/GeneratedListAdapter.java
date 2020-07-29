@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.phoneme.poinvoice.R;
 
+import org.w3c.dom.Text;
+
 public class GeneratedListAdapter extends RecyclerView.Adapter<GeneratedListAdapter.ViewHolder> {
     private Context mcontext;
     private OnItemClickListener listener;
@@ -29,7 +31,7 @@ public class GeneratedListAdapter extends RecyclerView.Adapter<GeneratedListAdap
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView title, description, company_name, allocated_users, status, createdat;
         //private ProjectModel projectModel;
-        private TextView edit;
+        private TextView edit,Date,Vendor,TotalAmount,Subject,GST,percentagePaymentReceived,poNO;
         private CardView cardView;
         private ImageView imageView;
         //private SimpleDraweeView projectLogo;
@@ -52,6 +54,13 @@ public class GeneratedListAdapter extends RecyclerView.Adapter<GeneratedListAdap
                     listener.onItemClick2(getAdapterPosition());
                 }
             });
+            Date=(TextView)v.findViewById(R.id.date);
+            Vendor=(TextView)v.findViewById(R.id.vendor);
+            TotalAmount=(TextView)v.findViewById(R.id.total_amount);
+            Subject=(TextView)v.findViewById(R.id.subject);
+            GST=(TextView)v.findViewById(R.id.gst);
+            percentagePaymentReceived=(TextView)v.findViewById(R.id.percentage_payment_received);
+            poNO=(TextView)v.findViewById(R.id.po_no);
 //            title=(TextView)v.findViewById(R.id.name);
 //            company_name=(TextView)v.findViewById(R.id.company_name);
 //            imageView=(ImageView)v.findViewById(R.id.image);
@@ -66,27 +75,15 @@ public class GeneratedListAdapter extends RecyclerView.Adapter<GeneratedListAdap
             //cardView=(CardView)v.findViewById(R.id.cardid);
         }
 
-//        public void setData(ProjectModel item, int position) {
-//            this.projectModel = item;
-//            this.title.setText(Html.fromHtml(this.projectModel.getName()));
-//
-//            this.company_name.setText(Html.fromHtml(this.projectModel.getCompany_name()));
-//            String colorText=textcolor.get(position%4);
-//            this.company_name.setTextColor(Color.parseColor(colorText));
-//            String color=backgroundcolor.get(position%4);
-////            this.cardView.setBackgroundColor(Color.parseColor(color));
-//            //this.relativeLayoutView.setBackgroundColor(Color.parseColor("#ffffff"));
-//            this.relativeLayoutView.setBackgroundColor(Color.parseColor(color));
-//            if(item.getImage()!=null && item.getImage().length()>0) {
-//                System.out.println("imageurl=" + item.getImage());
-//                Uri uri = Uri.parse(item.getImage());
-//                projectLogo.setImageURI(uri);
-//            }else{
-//                System.out.println("no image imageurl=" + item.getImage());
-//                Uri uri = Uri.parse("android.resource://com.phoneme.ticketing/drawable/icon1.png");
-//                projectLogo.setImageURI(uri);
-//            }
-//        }
+        private void setData2(int position){
+            this.Date.setText("06 Dec 2018");
+            this.Vendor.setText("Tech Data Advanced Solutions");
+            this.TotalAmount.setText("\u20B9 885");
+            this.Subject.setText("Purchase order of invoice");
+            this.GST.setText("135");
+            this.percentagePaymentReceived.setText("1%");
+            this.poNO.setText("PO/IT-EXP/2020-21/16");
+        }
     }
 
     @Override
@@ -97,6 +94,7 @@ public class GeneratedListAdapter extends RecyclerView.Adapter<GeneratedListAdap
 
     public void onBindViewHolder(GeneratedListAdapter.ViewHolder vh, int position){
 //        vh.setData(this.projectModelList.get(position),position);
+        vh.setData2(position);
 
 
 

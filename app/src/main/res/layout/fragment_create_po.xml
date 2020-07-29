@@ -196,6 +196,7 @@
             android:layout_width="230dp"
             android:layout_height="30dp"
             android:hint="Enter Item or Service name"
+            android:tag="service1"
             android:layout_alignParentRight="true"
             android:textSize="12sp"
             android:background="@drawable/edit_bg"
@@ -246,6 +247,7 @@
             android:layout_height="30dp"
             android:hint="Quantity"
             android:layout_alignParentRight="true"
+            android:tag="quantity1"
             android:textSize="12sp"
             android:background="@drawable/edit_bg"
             />
@@ -272,6 +274,7 @@
             android:hint="Price"
             android:layout_alignParentRight="true"
             android:textSize="12sp"
+            android:tag="price1"
             android:background="@drawable/edit_bg"
             />
 
@@ -339,124 +342,6 @@ C. All Invoices shall contain Purchase Order number."
 
     </RelativeLayout>
 
-<!--    <RelativeLayout-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content">-->
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="50dp"-->
-<!--            android:text="Remarks"-->
-<!--            android:textSize="14sp"-->
-<!--            android:textStyle="bold"-->
-<!--            />-->
-
-<!--        <EditText-->
-<!--            android:padding="5dp"-->
-<!--            android:id="@+id/remark"-->
-<!--            android:layout_width="230dp"-->
-<!--            android:layout_height="130dp"-->
-<!--            android:hint="Thank you"-->
-<!--            android:gravity="top"-->
-<!--            android:layout_alignParentRight="true"-->
-<!--            android:textSize="12sp"-->
-<!--            android:background="@drawable/edit_bg"-->
-<!--            />-->
-
-<!--    </RelativeLayout>-->
-
-
-
-<!--    <RelativeLayout-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content">-->
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="50dp"-->
-<!--            android:text="PO Number "-->
-<!--            android:textSize="14sp"-->
-<!--            android:textStyle="bold"-->
-<!--            />-->
-<!--        <TextView-->
-<!--            android:layout_width="230dp"-->
-<!--            android:layout_height="30dp"-->
-<!--            android:text="PO/IT-EXP/2020-21/10"-->
-<!--            android:textSize="14sp"-->
-<!--            android:textStyle="bold"-->
-<!--            android:layout_alignParentRight="true"-->
-<!--            />-->
-
-
-
-<!--    </RelativeLayout>-->
-
-
-
-<!--    <RelativeLayout-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content">-->
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="50dp"-->
-<!--            android:text="Invoice Amount"-->
-<!--            android:textSize="14sp"-->
-<!--            android:textStyle="bold"-->
-<!--            />-->
-
-<!--        <EditText-->
-<!--            android:padding="5dp"-->
-<!--            android:id="@+id/invoice_amount"-->
-<!--            android:layout_width="230dp"-->
-<!--            android:layout_height="30dp"-->
-<!--            android:hint="Enter Invoice Amount"-->
-<!--            android:textSize="12sp"-->
-<!--            android:layout_alignParentRight="true"-->
-<!--            android:background="@drawable/edit_bg"-->
-<!--            />-->
-
-<!--    </RelativeLayout>-->
-
-<!--    <RelativeLayout-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="55dp"-->
-<!--        android:gravity="center_vertical"-->
-<!--        android:visibility="gone"-->
-<!--        android:layout_gravity="center_vertical">-->
-<!--        <TextView-->
-<!--            android:id="@+id/upload_image_text"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="50dp"-->
-<!--            android:text="Upload File:"-->
-<!--            android:gravity="center_vertical"-->
-<!--            android:textSize="14sp"-->
-<!--            android:textStyle="bold"-->
-<!--            />-->
-<!--        <Button-->
-<!--            android:id="@+id/upload"-->
-<!--            android:layout_toRightOf="@+id/upload_image_text"-->
-<!--            android:layout_width="100dp"-->
-<!--            android:layout_height="50dp"-->
-<!--            android:textColor="#000"-->
-<!--            android:layout_marginLeft="5dp"-->
-<!--            android:textSize="12sp"-->
-<!--            android:text="Choose file"/>-->
-
-<!--        <ImageView-->
-<!--            android:visibility="gone"-->
-<!--            android:layout_centerVertical="true"-->
-<!--            android:background="@color/colorPrimary"-->
-<!--            android:layout_alignParentEnd="true"-->
-<!--            android:layout_alignParentRight="true"-->
-<!--            android:id="@+id/image"-->
-<!--            android:layout_width="40dp"-->
-<!--            android:layout_height="20dp"-->
-<!--            android:src="@drawable/logopngphoneme"-->
-<!--            />-->
-
-<!--    </RelativeLayout>-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

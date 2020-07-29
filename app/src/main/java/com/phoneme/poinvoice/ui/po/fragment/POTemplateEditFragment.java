@@ -40,8 +40,23 @@ public class POTemplateEditFragment extends Fragment {
 
     private void getData(){
         String poNumber,poAmount,Date;
-        poNumber=PONumber.getText().toString();
-        poAmount=POAmount.getText().toString();
-        Date=date.getText().toString();
+        if(PONumber!=null && PONumber.getText()!=null && PONumber.getText().length()>0){
+            poNumber=PONumber.getText().toString();
+        }
+
+        if(POAmount!=null && POAmount.getText()!=null && POAmount.getText().length()>0){
+            poAmount=POAmount.getText().toString();
+        }
+
+        if(PONumber!=null && PONumber.getText()!=null && PONumber.getText().length()>0){
+            poNumber=PONumber.getText().toString();
+        }
+
+        if(date!=null && date.getText()!=null && date.getText().length()>0){
+
+            Date=date.getText().toString();
+        }
+
+
     }
 }

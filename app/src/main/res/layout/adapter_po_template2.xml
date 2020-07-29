@@ -32,7 +32,7 @@
                     android:id="@+id/title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Funnel Expert UP"/>
+                    android:text=""/>
 
             </LinearLayout>
 
@@ -50,11 +50,11 @@
                     android:text="State"/>
 
                 <TextView
-                    android:id="@+id/address_line11"
+                    android:id="@+id/state"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:text="Delhi"/>
+                    android:text=""/>
 
             </LinearLayout>
 
@@ -71,7 +71,7 @@
                     android:textStyle="bold"/>
 
                 <TextView
-                    android:id="@+id/address_line3"
+                    android:id="@+id/template_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
@@ -106,10 +106,10 @@
                     android:textStyle="bold"/>
                 <TextView
                     android:gravity="center_horizontal"
-                    android:id="@+id/template_name1"
+                    android:id="@+id/address_line1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Phoneme Solutions Pvt. Ltd."/>
+                    android:text=""/>
 
             </LinearLayout>
 
@@ -127,11 +127,11 @@
                     android:text="Address line 2"/>
 
                 <TextView
-                    android:id="@+id/address_line1"
+                    android:id="@+id/address_line2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:text="No. B-614, 6th Floor, Advant Navis,"/>
+                    android:text=""/>
 
             </LinearLayout>
 
@@ -149,11 +149,11 @@
 
 
                 <TextView
-                    android:id="@+id/address_line2"
+                    android:id="@+id/address_line3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:text="Plot No. 07, Sector-142,"/>
+                    android:text=""/>
                     />
             </LinearLayout>
 
@@ -209,10 +209,10 @@
                     android:text="GST NO"/>
 
                 <TextView
-                    android:id="@+id/gstin"
+                    android:id="@+id/gst_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="09AABCF9430H1ZK"/>
+                    android:text=""/>
 
             </LinearLayout>
 
