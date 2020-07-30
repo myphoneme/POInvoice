@@ -37,7 +37,6 @@ public class LoginEmailActivity extends AppCompatActivity {
         UserAuth userAuth=new UserAuth(this);
         if(userAuth.isJwtTokenValid()){
             Intent intent1=new Intent(this, MainActivity.class);
-//            Intent intent1=new Intent(this, RegistrationActivity.class);
             startActivity(intent1);
             finish();
         }
@@ -47,7 +46,7 @@ public class LoginEmailActivity extends AppCompatActivity {
                 //MOre logic later
                 String email_text=email.getText().toString();
                 String password_text=password.getText().toString();
-                if(email_text!=null && email_text.length()>0 &&  isEmailValid(email_text) && password_text.length()>0){
+                if(email_text!=null && email_text.length()>0 &&  Helper.isEmailValid(email_text) && password_text.length()>0){
                     postLoginData(email_text,password_text);
                 }
 
@@ -108,13 +107,4 @@ public class LoginEmailActivity extends AppCompatActivity {
         }
         return true;
     }
-
-    public static boolean isEmailValid(String email) {
-        String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
-        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(email);
-        return matcher.matches();
-    }
-
-
 }
