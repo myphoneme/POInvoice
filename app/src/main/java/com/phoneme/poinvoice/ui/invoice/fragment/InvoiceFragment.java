@@ -19,6 +19,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.phoneme.poinvoice.R;
+import com.phoneme.poinvoice.config.RetrofitClientInstance;
+import com.phoneme.poinvoice.interfaces.GetDataService;
 import com.phoneme.poinvoice.ui.invoice.InvoiceViewModel;
 import com.phoneme.poinvoice.ui.invoice.adapter.InvoiceListAdapter;
 
@@ -75,5 +77,9 @@ public class InvoiceFragment extends Fragment implements InvoiceListAdapter.OnIt
         NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
         navController.navigate(R.id.nav_final_invoice);
 
+    }
+
+    private void getInvoiceListData(){
+        GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
     }
 }
