@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
@@ -23,6 +24,14 @@ import com.phoneme.poinvoice.config.RetrofitClientInstance;
 import com.phoneme.poinvoice.interfaces.GetDataService;
 import com.phoneme.poinvoice.ui.invoice.InvoiceViewModel;
 import com.phoneme.poinvoice.ui.invoice.adapter.InvoiceListAdapter;
+import com.phoneme.poinvoice.ui.invoice.network.CheckInvoiceListResponse1;
+import com.phoneme.poinvoice.ui.invoice.network.InvoiceListResponse;
+import com.phoneme.poinvoice.ui.invoice.network.InvoiceResponse;
+import com.phoneme.poinvoice.user.network.OTPVerifactionResponse;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class InvoiceFragment extends Fragment implements InvoiceListAdapter.OnItemClickListener{
 
@@ -41,6 +50,8 @@ public class InvoiceFragment extends Fragment implements InvoiceListAdapter.OnIt
 //                textView.setText(s);
 //            }
 //        });
+        Toast.makeText(getContext(),"onCreateView", Toast.LENGTH_LONG).show();
+        //getInvoiceListData();
         return root;
     }
 
@@ -81,5 +92,40 @@ public class InvoiceFragment extends Fragment implements InvoiceListAdapter.OnIt
 
     private void getInvoiceListData(){
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+        Call<CheckInvoiceListResponse1> call=service.getInvoiceList();
+        call.enqueue(new Callback<CheckInvoiceListResponse1>() {
+            @Override
+            public void onResponse(Call<CheckInvoiceListResponse1> call, Response<CheckInvoiceListResponse1> response) {
+                Toast.makeText(getContext()," onResponse", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onFailure(Call<CheckInvoiceListResponse1> call, Throwable t) {
+                Toast.makeText(getContext()," onFailure", Toast.LENGTH_LONG).show();
+            }
+        });
+//        call.enqueue(new Callback<InvoiceResponse>() {
+//            @Override
+//            public void onResponse(Call<InvoiceResponse> call, Response<InvoiceResponse> response) {
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<InvoiceResponse> call, Throwable t) {
+//
+//            }
+//        });
+//        call.enqueue(new Callback<InvoiceResponse>() {
+//            @Override
+//            public void onResponse(Call<InvoiceResponse> call, Response<InvoiceResponse> response) {
+//                Toast.makeText(getContext()," onResponse", Toast.LENGTH_LONG).show();
+//            }
+//
+//            @Override
+//            public void onFailure(Call<InvoiceResponse> call, Throwable t) {
+//                Toast.makeText(getContext()," onFailure", Toast.LENGTH_LONG).show();
+//
+//            }
+//        });
     }
 }

@@ -5,6 +5,7 @@ import com.phoneme.poinvoice.ui.invoice.model.FPOTotalModel;
 import com.phoneme.poinvoice.ui.invoice.model.FTotalModel;
 import com.phoneme.poinvoice.ui.invoice.model.FUTotalModel;
 import com.phoneme.poinvoice.ui.invoice.model.FunnelTotalModel;
+import com.phoneme.poinvoice.ui.invoice.model.InvoiceRowModel;
 import com.phoneme.poinvoice.ui.invoice.model.PPOTotalModel;
 import com.phoneme.poinvoice.ui.invoice.model.PTotalModel;
 import com.phoneme.poinvoice.ui.invoice.model.PaymentModel;
@@ -31,6 +32,9 @@ public class InvoiceListResponse {
     @SerializedName("dtArr")
     private List<String> dtArr;
 
+    @SerializedName("invoicerow")
+    private List<InvoiceRowModel> invoicerowList;
+
     @SerializedName("totalamountagainpo")
     private List<TotalModel> totalamountagainpoList;
 
@@ -42,6 +46,10 @@ public class InvoiceListResponse {
 
     @SerializedName("totalfunnelinvoice")
     private List<FTotalModel> totalfunnelinvoiceList;
+
+    @SerializedName("totalphonemepo")
+    private List<PPOTotalModel> totalphonemepoList;
+
 
     @SerializedName("totalfunnelpo")
     private List<FPOTotalModel> totalfunnelpoList;
@@ -65,6 +73,12 @@ public class InvoiceListResponse {
 
     @SerializedName("totalfunnelpayment")
     private List<FUTotalModel> totalfunnelpaymentList;
+
+
+
+    private List<InvoiceRowModel> getInvoicerowList(){
+        return this.invoicerowList;
+    }
 
     private List<TotalInvoiceModel> getTotalinvoiceList(){
         return this.totalinvoiceList;
@@ -100,8 +114,7 @@ public class InvoiceListResponse {
         return this.totalfunnelpoList;
     }
 
-    @SerializedName("totalphonemepo")
-    private List<PPOTotalModel> totalphonemepoList;
+
 
 
     private List<TotalModel> getTotalpoList(){
