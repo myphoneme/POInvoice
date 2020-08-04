@@ -61,71 +61,70 @@ public class InvoiceRowModel {
     @SerializedName("invoice_time")
     private String invoice_time;
 
-    private String getInvoice_time(){
+    public String getInvoice_time(){
         return this.invoice_time;
     }
-    private String getInvoice_date(){
+    public String getInvoice_date(){
         return this.invoice_date;
     }
 
-    private String getRemarks(){
+    public String getRemarks(){
         return this.remarks;
     }
 
-    private String getGrand_total(){
+    public String getGrand_total(){
         return this.grand_total;
     }
-    private String getTotal(){
+    public String getTotal(){
         return this.total;
     }
-    private String getGsttype(){
+    public String getGsttype(){
         return this.gsttype;
     }
-    private String getIgst_amount(){
+    public String getIgst_amount(){
         return this.igst_amount;
     }
 
-    private String getIgst(){
+    public String getIgst(){
         return this.igst;
     }
 
-    private String getSgst_amount(){
+    public String getSgst_amount(){
         return this.sgst_amount;
     }
 
-    private String getSgst(){
+    public String getSgst(){
         return this.sgst;
     }
 
 
 
-    private String getCgst_amount(){
+    public String getCgst_amount(){
         return this.cgst_amount;
     }
-    private String getCgst(){
+    public String getCgst(){
         return this.cgst;
     }
-    private String getName(){
+    public String getName(){
         return this.name;
     }
-    private String getDuedate(){
+    public String getDuedate(){
         return this.duedate;
     }
-    private String getSubject(){
+    public String getSubject(){
         return this.subject;
     }
 
-    private String getVendor_id(){
+    public String getVendor_id(){
         return this.vendor_id;
     }
-    private String getOrder_id(){
+    public String getOrder_id(){
         return this.order_id;
     }
-    private String getInvoice_number(){
+    public String getInvoice_number(){
         return this.invoice_number;
     }
-    private String getId(){
+    public String getId(){
         return this.id;
     }
-
 }

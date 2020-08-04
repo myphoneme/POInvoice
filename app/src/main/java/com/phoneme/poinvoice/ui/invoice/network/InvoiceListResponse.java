@@ -76,7 +76,7 @@ public class InvoiceListResponse {
 
 
 
-    private List<InvoiceRowModel> getInvoicerowList(){
+    public  List<InvoiceRowModel> getInvoicerowList(){
         return this.invoicerowList;
     }
 

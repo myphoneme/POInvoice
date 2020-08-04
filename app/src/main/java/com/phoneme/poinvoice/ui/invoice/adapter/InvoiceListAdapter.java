@@ -16,12 +16,16 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.phoneme.poinvoice.R;
+import com.phoneme.poinvoice.ui.invoice.model.InvoiceRowModel;
 
 import org.w3c.dom.Text;
+
+import java.util.List;
 
 public class InvoiceListAdapter extends RecyclerView.Adapter<InvoiceListAdapter.ViewHolder> {
     private Context mcontext;
     private OnItemClickListener listener;
+    private List<InvoiceRowModel> invoiceRowModelList;
     public InvoiceListAdapter(Context context){
         this.mcontext=context;
     }
@@ -29,6 +33,12 @@ public class InvoiceListAdapter extends RecyclerView.Adapter<InvoiceListAdapter.
     public InvoiceListAdapter(Context context,OnItemClickListener listener){
         this.listener=listener;
         this.mcontext=context;
+    }
+
+    public InvoiceListAdapter(Context context, OnItemClickListener listener, List<InvoiceRowModel> invoiceRowModelList){
+        this.listener=listener;
+        this.mcontext=context;
+        this.invoiceRowModelList=invoiceRowModelList;
     }
 
     @Override
@@ -39,7 +49,7 @@ public class InvoiceListAdapter extends RecyclerView.Adapter<InvoiceListAdapter.
 
     @Override
     public int getItemCount(){
-        return 3;
+        return this.invoiceRowModelList.size();
     }
 
     public void onBindViewHolder(InvoiceListAdapter.ViewHolder vh, int position){
@@ -104,14 +114,15 @@ public class InvoiceListAdapter extends RecyclerView.Adapter<InvoiceListAdapter.
         }
 
         public void setData2(int position){
-            this.date.setText("06 Dec 2020");
-            this.Project.setText("Ticketing System1");
-            this.TotalAmount.setText("\u20B9 61384");
-            this.invoiceNumber.setText("758703");
+            //invoiceRow.getDuedate();
+            this.date.setText(invoiceRowModelList.get(position).getDuedate());
+            this.Project.setText("Ticketing System1");//To be removed
+            this.TotalAmount.setText("\u20B9"+invoiceRowModelList.get(position).getGrand_total());
+            this.invoiceNumber.setText(invoiceRowModelList.get(position).getInvoice_number());
             this.Client.setText("2");
             this.percentagePOReceived.setText("23.4%");
             this.poReceived.setText("PO/IT-EXP/2020-21/17");
-            this.OrderId.setText("2514547");
+            this.OrderId.setText(invoiceRowModelList.get(position).getOrder_id());
         }
 
 //        public void setData(ProjectModel item, int position) {

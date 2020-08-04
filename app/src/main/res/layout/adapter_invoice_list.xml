@@ -122,6 +122,7 @@
                     android:id="@+id/invoice_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
                     android:textColor="@color/colorPrimary"
                     android:text="758703"/>
 
@@ -256,7 +257,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:text="Order id"/>
+                    android:text="PO NO"/>
                 <TextView
                     android:id="@+id/order_id"
                     android:layout_width="wrap_content"

@@ -57,8 +57,8 @@ import retrofit2.http.Query;
 
 public interface GetDataService {
 //    // https://phoneme.in/android/napolean
-    @GET("/invoiceapis/invoicelist/")
-    Call<CheckInvoiceListResponse1> getInvoiceList();
+    @GET("/invoiceapis/invoice/invoicelist/")
+    Call<InvoiceListResponse> getInvoiceList();
 
 //    @GET("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/dashboard/index1")
 //    Call<DashboardApi> getDashboardData();

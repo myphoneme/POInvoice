@@ -24,10 +24,13 @@ import com.phoneme.poinvoice.config.RetrofitClientInstance;
 import com.phoneme.poinvoice.interfaces.GetDataService;
 import com.phoneme.poinvoice.ui.invoice.InvoiceViewModel;
 import com.phoneme.poinvoice.ui.invoice.adapter.InvoiceListAdapter;
+import com.phoneme.poinvoice.ui.invoice.model.InvoiceRowModel;
 import com.phoneme.poinvoice.ui.invoice.network.CheckInvoiceListResponse1;
 import com.phoneme.poinvoice.ui.invoice.network.InvoiceListResponse;
 import com.phoneme.poinvoice.ui.invoice.network.InvoiceResponse;
 import com.phoneme.poinvoice.user.network.OTPVerifactionResponse;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -51,7 +54,7 @@ public class InvoiceFragment extends Fragment implements InvoiceListAdapter.OnIt
 //            }
 //        });
         Toast.makeText(getContext(),"onCreateView", Toast.LENGTH_LONG).show();
-        //getInvoiceListData();
+
         return root;
     }
 
@@ -68,11 +71,20 @@ public class InvoiceFragment extends Fragment implements InvoiceListAdapter.OnIt
                 navController.navigate(R.id.nav_create_invoice);
             }
         });
+        getInvoiceListData();
         //InvoiceListAdapter adapter=new InvoiceListAdapter(getContext());
-        InvoiceListAdapter adapter=new InvoiceListAdapter(getContext(),this);
+//        InvoiceListAdapter adapter=new InvoiceListAdapter(getContext(),this);
+//        recyclerView.setAdapter(adapter);
+//        LinearLayoutManager linearVertical = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+//        recyclerView.setLayoutManager(linearVertical);
+    }
+
+    private void setAdapter(List<InvoiceRowModel> invoiceRowModelList){
+        InvoiceListAdapter adapter=new InvoiceListAdapter(getContext(),this,invoiceRowModelList);
         recyclerView.setAdapter(adapter);
         LinearLayoutManager linearVertical = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearVertical);
+
     }
 
     public void onItemClick(int position){
@@ -92,18 +104,31 @@ public class InvoiceFragment extends Fragment implements InvoiceListAdapter.OnIt
 
     private void getInvoiceListData(){
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-        Call<CheckInvoiceListResponse1> call=service.getInvoiceList();
-        call.enqueue(new Callback<CheckInvoiceListResponse1>() {
+        Call<InvoiceListResponse> call=service.getInvoiceList();
+        call.enqueue(new Callback<InvoiceListResponse>() {
             @Override
-            public void onResponse(Call<CheckInvoiceListResponse1> call, Response<CheckInvoiceListResponse1> response) {
-                Toast.makeText(getContext()," onResponse", Toast.LENGTH_LONG).show();
+            public void onResponse(Call<InvoiceListResponse> call, Response<InvoiceListResponse> response) {
+                Toast.makeText(getContext(),"onResponse"+response.toString(), Toast.LENGTH_LONG).show();
+                System.out.println("onresponse="+response.body().getInvoicerowList().get(0).getDuedate());
+                setAdapter(response.body().getInvoicerowList());
             }
 
             @Override
-            public void onFailure(Call<CheckInvoiceListResponse1> call, Throwable t) {
-                Toast.makeText(getContext()," onFailure", Toast.LENGTH_LONG).show();
+            public void onFailure(Call<InvoiceListResponse> call, Throwable t) {
+                Toast.makeText(getContext(),"onFailure", Toast.LENGTH_LONG).show();
             }
         });
+//        call.enqueue(new Callback<CheckInvoiceListResponse1>() {
+//            @Override
+//            public void onResponse(Call<CheckInvoiceListResponse1> call, Response<CheckInvoiceListResponse1> response) {
+//                Toast.makeText(getContext()," onResponse", Toast.LENGTH_LONG).show();
+//            }
+//
+//            @Override
+//            public void onFailure(Call<CheckInvoiceListResponse1> call, Throwable t) {
+//                Toast.makeText(getContext()," onFailure", Toast.LENGTH_LONG).show();
+//            }
+//        });
 //        call.enqueue(new Callback<InvoiceResponse>() {
 //            @Override
 //            public void onResponse(Call<InvoiceResponse> call, Response<InvoiceResponse> response) {
