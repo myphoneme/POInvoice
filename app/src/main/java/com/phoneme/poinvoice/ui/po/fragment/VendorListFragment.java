@@ -16,8 +16,19 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.phoneme.poinvoice.R;
+import com.phoneme.poinvoice.config.RetrofitClientInstance;
+import com.phoneme.poinvoice.interfaces.GetDataService;
+import com.phoneme.poinvoice.ui.invoice.model.InvoiceRowModel;
+import com.phoneme.poinvoice.ui.po.model.VendorDataModel;
+import com.phoneme.poinvoice.ui.po.network.VendorListResponse;
 import com.phoneme.poinvoice.ui.po.viewmodel.VendorListViewModel;
 import com.phoneme.poinvoice.ui.po.adapter.VendorListAdapter;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class VendorListFragment extends Fragment implements VendorListAdapter.OnItemClickListener{
 
@@ -43,12 +54,12 @@ public class VendorListFragment extends Fragment implements VendorListAdapter.On
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView=(RecyclerView)view.findViewById(R.id.recyclerview_vendor_list);
-        //VendorListAdapter adapter=new VendorListAdapter(getContext());
-        VendorListAdapter adapter=new VendorListAdapter(getContext(),this);
-        recyclerView.setAdapter(adapter);
-        LinearLayoutManager linearVertical = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(linearVertical);
 
+//        VendorListAdapter adapter=new VendorListAdapter(getContext(),this);
+//        recyclerView.setAdapter(adapter);
+//        LinearLayoutManager linearVertical = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+//        recyclerView.setLayoutManager(linearVertical);
+        getVendorListData();
         Button button=(Button)view.findViewById(R.id.add_vendor_button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +76,32 @@ public class VendorListFragment extends Fragment implements VendorListAdapter.On
         navController.navigate(R.id.nav_vendor_edit);
     }
     public void onItemClick2(int position){
+
+    }
+
+    private void getVendorListData(){
+        GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+        Call<VendorListResponse> call=service.getVendorList();
+
+        call.enqueue(new Callback<VendorListResponse>() {
+            @Override
+            public void onResponse(Call<VendorListResponse> call, Response<VendorListResponse> response) {
+                setAdapter(response.body().getVendordata());
+            }
+
+            @Override
+            public void onFailure(Call<VendorListResponse> call, Throwable t) {
+
+            }
+        });
+
+    }
+
+    private void setAdapter(List<VendorDataModel> vendorDataModelList){
+        VendorListAdapter adapter=new VendorListAdapter(getContext(),this,vendorDataModelList);
+        recyclerView.setAdapter(adapter);
+        LinearLayoutManager linearVertical = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(linearVertical);
 
     }
 }

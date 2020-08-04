@@ -36,6 +36,7 @@ package com.phoneme.poinvoice.interfaces;
 import com.phoneme.poinvoice.ui.invoice.network.CheckInvoiceListResponse1;
 import com.phoneme.poinvoice.ui.invoice.network.InvoiceListResponse;
 import com.phoneme.poinvoice.ui.invoice.network.InvoiceResponse;
+import com.phoneme.poinvoice.ui.po.network.VendorListResponse;
 import com.phoneme.poinvoice.user.network.OTPVerifactionResponse;
 
 import java.util.ArrayList;
@@ -59,6 +60,9 @@ public interface GetDataService {
 //    // https://phoneme.in/android/napolean
     @GET("/invoiceapis/invoice/invoicelist/")
     Call<InvoiceListResponse> getInvoiceList();
+
+    @GET("/invoiceapis/vendor/vendorlist")
+    Call<VendorListResponse> getVendorList();
 
 //    @GET("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/dashboard/index1")
 //    Call<DashboardApi> getDashboardData();

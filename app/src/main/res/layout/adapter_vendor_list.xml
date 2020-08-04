@@ -51,6 +51,7 @@
 
                 <TextView
                     android:id="@+id/address"
+                    android:gravity="center_horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""/>
@@ -72,6 +73,7 @@
 
                 <TextView
                     android:id="@+id/email"
+                    android:gravity="center_horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""/>
@@ -109,6 +111,7 @@
 
                 <TextView
                     android:id="@+id/state"
+                    android:gravity="center_horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="DELHI"/>

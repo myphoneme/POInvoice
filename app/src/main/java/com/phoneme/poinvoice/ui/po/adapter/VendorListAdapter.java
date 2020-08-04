@@ -13,18 +13,28 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.phoneme.poinvoice.R;
+import com.phoneme.poinvoice.ui.po.model.VendorDataModel;
 
 import org.w3c.dom.Text;
+
+import java.util.List;
 
 public class VendorListAdapter extends RecyclerView.Adapter<VendorListAdapter.ViewHolder> {
     private Context mcontext;
     private  OnItemClickListener listener;
+    private List<VendorDataModel> vendorDataModelList;
     public VendorListAdapter(Context context){
         this.mcontext=context;
     }
     public VendorListAdapter(Context context, OnItemClickListener listener){
         this.mcontext=context;
         this.listener=listener;
+    }
+
+    public VendorListAdapter(Context context, OnItemClickListener listener, List<VendorDataModel> vendorDataModelList){
+        this.mcontext=context;
+        this.listener=listener;
+        this.vendorDataModelList=vendorDataModelList;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -88,12 +98,12 @@ public class VendorListAdapter extends RecyclerView.Adapter<VendorListAdapter.Vi
 //            }
 //        }
         private void setData2(int position){
-            this.VendorName.setText("Tech Data Advanced Solutions");
-            this.Address.setText("C/O- Schenker India Private Limited 273/2, Shahabad Mohamadpur, New Delhi, 110062");
-            this.Email.setText("Amit.Kumar4@techdata.com");
-            this.State.setText("Delhi");
-            this.GSTIN.setText("07AAACO3686M1ZZ");
-            this.Pam.setText("AAACO3686M");
+            this.VendorName.setText(vendorDataModelList.get(position).getVendor_name());
+            this.Address.setText(vendorDataModelList.get(position).getAddress());
+            this.Email.setText(vendorDataModelList.get(position).getEmail());
+            this.State.setText(vendorDataModelList.get(position).getState());
+            this.GSTIN.setText(vendorDataModelList.get(position).getGSTIN());
+            this.Pam.setText(vendorDataModelList.get(position).getPAM());
         }
     }
 
@@ -112,7 +122,7 @@ public class VendorListAdapter extends RecyclerView.Adapter<VendorListAdapter.Vi
     }
     @Override
     public int getItemCount(){
-        return 3;
+        return     this.vendorDataModelList.size();
     }
 
     public interface OnItemClickListener {
