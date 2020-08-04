@@ -61,6 +61,21 @@ public class InvoiceRowModel {
     @SerializedName("invoice_time")
     private String invoice_time;
 
+    @SerializedName("vendor_name")
+    private String vendor_name;
+
+    @SerializedName("percentage_po_received")
+    private String percentage_po_received;
+
+
+    public String getPercentage_po_received(){
+        return this.percentage_po_received;
+    }
+
+    public String getVendor_name(){
+        return this.vendor_name;
+    }
+
     public String getInvoice_time(){
         return this.invoice_time;
     }

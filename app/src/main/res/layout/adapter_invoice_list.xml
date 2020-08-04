@@ -44,7 +44,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:text="Project"/>
+                    android:text="GST Amount"/>
                 <TextView
                     android:id="@+id/project"
                     android:layout_width="wrap_content"
@@ -139,10 +139,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:text="Client"/>
+                    android:text="Vendor"/>
                 <TextView
-                    android:id="@+id/client"
+                    android:id="@+id/vendor_name"
                     android:layout_width="wrap_content"
+                    android:gravity="center_horizontal"
                     android:layout_height="wrap_content"
                     android:text="1"/>
             </LinearLayout>

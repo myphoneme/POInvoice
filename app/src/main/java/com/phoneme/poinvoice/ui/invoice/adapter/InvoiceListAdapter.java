@@ -1,9 +1,6 @@
 package com.phoneme.poinvoice.ui.invoice.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.net.Uri;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.phoneme.poinvoice.R;
 import com.phoneme.poinvoice.ui.invoice.model.InvoiceRowModel;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -60,7 +55,7 @@ public class InvoiceListAdapter extends RecyclerView.Adapter<InvoiceListAdapter.
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView title, description, company_name, allocated_users, status, createdat;
         //private ProjectModel projectModel;
-        private TextView edit,invoiceNumber,date,Project,TotalAmount,Client,percentagePOReceived,poReceived,OrderId;
+        private TextView edit,invoiceNumber,date,Project,TotalAmount, Vendor,percentagePOReceived,poReceived,OrderId;
         private CardView cardView;
         private ImageView imageView;
         //private SimpleDraweeView projectLogo;
@@ -94,7 +89,7 @@ public class InvoiceListAdapter extends RecyclerView.Adapter<InvoiceListAdapter.
             date=(TextView)v.findViewById(R.id.date);
             Project=(TextView)v.findViewById(R.id.project);
             TotalAmount=(TextView)v.findViewById(R.id.total_amount);
-            Client=(TextView)v.findViewById(R.id.client);
+            Vendor =(TextView)v.findViewById(R.id.vendor_name);
             percentagePOReceived=(TextView)v.findViewById(R.id.percentage_po_received);
             poReceived=(TextView)v.findViewById(R.id.po_received);
             OrderId=(TextView)v.findViewById(R.id.order_id);
@@ -115,12 +110,14 @@ public class InvoiceListAdapter extends RecyclerView.Adapter<InvoiceListAdapter.
 
         public void setData2(int position){
             //invoiceRow.getDuedate();
+            int gst_amount=Integer.parseInt(invoiceRowModelList.get(position).getCgst_amount())+Integer.parseInt(invoiceRowModelList.get(position).getSgst_amount());
+
             this.date.setText(invoiceRowModelList.get(position).getDuedate());
-            this.Project.setText("Ticketing System1");//To be removed
+            this.Project.setText("\u20B9"+gst_amount);//To be removed
             this.TotalAmount.setText("\u20B9"+invoiceRowModelList.get(position).getGrand_total());
             this.invoiceNumber.setText(invoiceRowModelList.get(position).getInvoice_number());
-            this.Client.setText("2");
-            this.percentagePOReceived.setText("23.4%");
+            this.Vendor.setText(invoiceRowModelList.get(position).getVendor_name());
+            this.percentagePOReceived.setText(invoiceRowModelList.get(position).getPercentage_po_received()+"%");
             this.poReceived.setText("PO/IT-EXP/2020-21/17");
             this.OrderId.setText(invoiceRowModelList.get(position).getOrder_id());
         }
