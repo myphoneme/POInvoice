@@ -175,6 +175,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
                     android:text="Payment"/>
 
                 <Button
@@ -189,6 +191,7 @@
 
             </LinearLayout>
             <LinearLayout
+                android:visibility="gone"
                 android:id="@+id/percentage_po_layout"
                 android:layout_toRightOf="@+id/payment_layout"
                 android:layout_width="0dp"
@@ -232,6 +235,7 @@
                     android:id="@+id/po_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
                     android:text="	"/>
 <!--                <Button-->
 <!--                    android:layout_width="wrap_content"-->
@@ -255,6 +259,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
+                    android:gravity="center_horizontal"
+                    android:text="Invoice Received"/>
+                <TextView
+                    android:id="@+id/invoice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:textColor="@color/colorPrimary"
+                    android:gravity="center_horizontal"
                     android:text="Invoice Received"/>
                 <Button
                     android:id="@+id/add_invoice"
