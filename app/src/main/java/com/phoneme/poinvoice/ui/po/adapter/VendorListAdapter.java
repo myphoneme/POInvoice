@@ -18,12 +18,16 @@ import com.phoneme.poinvoice.ui.po.model.VendorDataModel;
 
 import org.w3c.dom.Text;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class VendorListAdapter extends RecyclerView.Adapter<VendorListAdapter.ViewHolder> {
     private Context mcontext;
     private  OnItemClickListener listener;
     private List<VendorDataModel> vendorDataModelList;
+    private SimpleDateFormat formatter;
     public VendorListAdapter(Context context){
         this.mcontext=context;
     }
@@ -35,6 +39,7 @@ public class VendorListAdapter extends RecyclerView.Adapter<VendorListAdapter.Vi
     public VendorListAdapter(Context context, OnItemClickListener listener, List<VendorDataModel> vendorDataModelList){
         this.mcontext=context;
         this.listener=listener;
+        formatter = new SimpleDateFormat("yyyy-MM-dd");
         this.vendorDataModelList=vendorDataModelList;
     }
 
@@ -105,6 +110,8 @@ public class VendorListAdapter extends RecyclerView.Adapter<VendorListAdapter.Vi
             this.State.setText(vendorDataModelList.get(position).getState());
             this.GSTIN.setText(vendorDataModelList.get(position).getGSTIN());
             this.Pam.setText(vendorDataModelList.get(position).getPAM());
+
+
         }
     }
 

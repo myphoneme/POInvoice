@@ -15,12 +15,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.phoneme.poinvoice.R;
 import com.phoneme.poinvoice.ui.invoice.model.InvoiceRowModel;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class InvoiceListAdapter extends RecyclerView.Adapter<InvoiceListAdapter.ViewHolder> {
     private Context mcontext;
     private OnItemClickListener listener;
     private List<InvoiceRowModel> invoiceRowModelList;
+    private SimpleDateFormat formatter;
     public InvoiceListAdapter(Context context){
         this.mcontext=context;
     }
@@ -34,6 +38,7 @@ public class InvoiceListAdapter extends RecyclerView.Adapter<InvoiceListAdapter.
         this.listener=listener;
         this.mcontext=context;
         this.invoiceRowModelList=invoiceRowModelList;
+        formatter = new SimpleDateFormat("yyyy-MM-dd");
     }
 
     @Override
@@ -112,7 +117,7 @@ public class InvoiceListAdapter extends RecyclerView.Adapter<InvoiceListAdapter.
             //invoiceRow.getDuedate();
             int gst_amount=Integer.parseInt(invoiceRowModelList.get(position).getCgst_amount())+Integer.parseInt(invoiceRowModelList.get(position).getSgst_amount());
 
-            this.date.setText(invoiceRowModelList.get(position).getDuedate());
+            //this.date.setText(invoiceRowModelList.get(position).getDuedate());
             this.Project.setText("\u20B9"+gst_amount);//To be removed
             this.TotalAmount.setText("\u20B9"+invoiceRowModelList.get(position).getGrand_total());
             this.invoiceNumber.setText(invoiceRowModelList.get(position).getInvoice_number());
@@ -120,6 +125,17 @@ public class InvoiceListAdapter extends RecyclerView.Adapter<InvoiceListAdapter.
             this.percentagePOReceived.setText(invoiceRowModelList.get(position).getPercentage_po_received()+"%");
             this.poReceived.setText("PO/IT-EXP/2020-21/17");
             this.OrderId.setText(invoiceRowModelList.get(position).getOrder_id());
+
+
+            try {
+                Date date = formatter.parse(invoiceRowModelList.get(position).getDuedate());
+                SimpleDateFormat dt1 = new SimpleDateFormat("dd/MM/yyyy");
+                //createdat.setText(dt1.format(date));
+                this.date.setText(dt1.format(date));
+
+            }catch(ParseException e){
+
+            }
         }
 
 //        public void setData(ProjectModel item, int position) {
