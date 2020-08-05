@@ -16,13 +16,25 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.phoneme.poinvoice.R;
+import com.phoneme.poinvoice.config.RetrofitClientInstance;
+import com.phoneme.poinvoice.interfaces.GetDataService;
+import com.phoneme.poinvoice.ui.po.model.PoTemplateDataModel;
+import com.phoneme.poinvoice.ui.po.network.PoTemplateListResponse;
+import com.phoneme.poinvoice.ui.po.network.VendorListResponse;
 import com.phoneme.poinvoice.ui.po.viewmodel.POTemplateViewModel;
 import com.phoneme.poinvoice.ui.po.adapter.POTemplateAdapter;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class POTemplateFragment extends Fragment implements POTemplateAdapter.OnItemClickListener{
 
     private com.phoneme.poinvoice.ui.po.viewmodel.POTemplateViewModel POTemplateViewModel;
     private RecyclerView recyclerView;
+    private List<PoTemplateDataModel> poTemplateDataModelList;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         POTemplateViewModel =
@@ -51,11 +63,12 @@ public class POTemplateFragment extends Fragment implements POTemplateAdapter.On
                 navController.navigate(R.id.nav_create_new_po_templatge);
             }
         });
+        getPoTemplateListData();
         //POTemplateAdapter adapter=new POTemplateAdapter(getContext());
-        POTemplateAdapter adapter=new POTemplateAdapter(getContext(),this);
-        recyclerView.setAdapter(adapter);
-        LinearLayoutManager linearVertical = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(linearVertical);
+//        POTemplateAdapter adapter=new POTemplateAdapter(getContext(),this);
+//        recyclerView.setAdapter(adapter);
+//        LinearLayoutManager linearVertical = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+//        recyclerView.setLayoutManager(linearVertical);
     }
 
     public void onItemClick(int position){
@@ -63,4 +76,34 @@ public class POTemplateFragment extends Fragment implements POTemplateAdapter.On
         navController.navigate(R.id.nav_po_template_edit);
     }
     public void onItemClick2(int position){}
+
+    private void setAdapter(List<PoTemplateDataModel> poTemplateDataModelList){
+        POTemplateAdapter adapter=new POTemplateAdapter(getContext(),this,poTemplateDataModelList);
+        recyclerView.setAdapter(adapter);
+        LinearLayoutManager linearVertical = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(linearVertical);
+
+    }
+
+    private void getPoTemplateListData(){
+        GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+        Call<PoTemplateListResponse> call=service.getPoTemplateList();
+
+
+        call.enqueue(new Callback<PoTemplateListResponse>() {
+            @Override
+            public void onResponse(Call<PoTemplateListResponse> call, Response<PoTemplateListResponse> response) {
+                poTemplateDataModelList=response.body().getPotemplate_data();
+
+                setAdapter(poTemplateDataModelList);
+
+            }
+
+            @Override
+            public void onFailure(Call<PoTemplateListResponse> call, Throwable t) {
+
+            }
+        });
+
+    }
 }

@@ -13,16 +13,28 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.phoneme.poinvoice.R;
+import com.phoneme.poinvoice.ui.po.model.PoTemplateDataModel;
+import com.squareup.picasso.Picasso;
+
+import java.util.List;
 
 public class POTemplateAdapter extends RecyclerView.Adapter<POTemplateAdapter.ViewHolder>{
     private Context mcontext;
     private OnItemClickListener listener;
+    private List<PoTemplateDataModel> poTemplateDataModelList;
+    private String base_url_image="http://support.phoneme.in/assets/images/userimage/";
     public POTemplateAdapter(Context context){
         this.mcontext=context;
     }
     public POTemplateAdapter(Context context,OnItemClickListener listener){
         this.mcontext=context;
         this.listener=listener;
+    }
+
+    public POTemplateAdapter(Context context, OnItemClickListener listener, List<PoTemplateDataModel> poTemplateDataModelList){
+        this.mcontext=context;
+        this.listener=listener;
+        this.poTemplateDataModelList=poTemplateDataModelList;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -34,6 +46,7 @@ public class POTemplateAdapter extends RecyclerView.Adapter<POTemplateAdapter.Vi
         //private SimpleDraweeView projectLogo;
         private RelativeLayout relativeLayoutView;
         private Button editButton;
+        private ImageView Logo;
 
         public ViewHolder(View v) {
             super(v);
@@ -51,6 +64,7 @@ public class POTemplateAdapter extends RecyclerView.Adapter<POTemplateAdapter.Vi
             AddressLine2=(TextView)v.findViewById(R.id.address_line2);
             AddressLine3=(TextView)v.findViewById(R.id.address_line3);
             GSTNO=(TextView)v.findViewById(R.id.gst_no);
+            Logo=(ImageView)v.findViewById(R.id.logo);
 //            company_name=(TextView)v.findViewById(R.id.company_name);
 //            imageView=(ImageView)v.findViewById(R.id.image);
 //            relativeLayoutView=(RelativeLayout)v.findViewById(R.id.relativelayoutview);
@@ -86,23 +100,25 @@ public class POTemplateAdapter extends RecyclerView.Adapter<POTemplateAdapter.Vi
 //            }
 //        }
         private void setData2(int position){
-            this.Title.setText("Funnel Expert UP");
-            this.State.setText("Delhi");
-            this.TemplateName.setText("Phoneme Solutions Pvt. Ltd.");
-            this.AddressLine1.setText("No. B-614, 6th Floor, Advant Navis,");
-            this.AddressLine2.setText("No. B-614, 6th Floor, Advant Navis,");
-            this.AddressLine3.setText("Plot No. 07, Sector-142,");
-            this.GSTNO.setText("09AABCF9430H1Z");
+            this.Title.setText(poTemplateDataModelList.get(position).getTitle());
+            this.State.setText(poTemplateDataModelList.get(position).getState());
+            this.TemplateName.setText(poTemplateDataModelList.get(position).getTemplate_name());
+            this.AddressLine1.setText(poTemplateDataModelList.get(position).getAddress_line1());
+            this.AddressLine2.setText(poTemplateDataModelList.get(position).getAddress_line2());
+            this.AddressLine3.setText(poTemplateDataModelList.get(position).getAddress_line3());
+            this.GSTNO.setText(poTemplateDataModelList.get(position).getGSTN_NO());
+
+            Picasso.with(mcontext).load(base_url_image+poTemplateDataModelList.get(position).getLogo()).into( this.Logo);
         }
     }
 
     @Override
-    public POTemplateAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i){
+    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i){
         View view= LayoutInflater.from(mcontext).inflate(R.layout.adapter_po_template2,viewGroup,false);
         return new ViewHolder(view);
     }
 
-    public void onBindViewHolder(POTemplateAdapter.ViewHolder vh, int position){
+    public void onBindViewHolder(ViewHolder vh, int position){
 //        vh.setData(this.projectModelList.get(position),position);
         vh.setData2(position);
 
@@ -111,7 +127,7 @@ public class POTemplateAdapter extends RecyclerView.Adapter<POTemplateAdapter.Vi
     }
     @Override
     public int getItemCount(){
-        return 3;
+        return this.poTemplateDataModelList.size();
     }
 
     public interface OnItemClickListener {
