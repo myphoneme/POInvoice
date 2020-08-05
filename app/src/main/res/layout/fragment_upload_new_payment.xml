@@ -137,6 +137,16 @@
             android:layout_height="20dp"
             android:src="@drawable/logopngphoneme"
             />
+        <TextView
+            android:visibility="gone"
+            android:layout_centerVertical="true"
+            android:background="@color/colorPrimary"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:text="FILERA"
+            android:id="@+id/file_name"
+            android:layout_width="40dp"
+            android:layout_height="20dp"/>
 
     </RelativeLayout>
     <LinearLayout
