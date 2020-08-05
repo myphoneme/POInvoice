@@ -83,15 +83,20 @@ public class VendorListFragment extends Fragment implements VendorListAdapter.On
 
     private void getVendorListData(final int page){
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-        Call<VendorListResponse> call=service.getVendorList_Page(page);
+        Call<VendorListResponse> call=service.getVendorList();
+       // Call<VendorListResponse> call=service.getVendorList_Page(page);
 
         call.enqueue(new Callback<VendorListResponse>() {
             @Override
             public void onResponse(Call<VendorListResponse> call, Response<VendorListResponse> response) {
-                if(page==1){
-                    vendorDataModelList=response.body().getVendordata();
-                    setAdapter(vendorDataModelList);
-                }
+                vendorDataModelList=response.body().getVendordata();
+                setAdapter(vendorDataModelList);
+//                if(page==1){
+//                    vendorDataModelList=response.body().getVendordata();
+//                    setAdapter(vendorDataModelList);
+//                }else{
+//                    addNewData(response.body().getVendordata());
+//                }
 
             }
 
@@ -100,6 +105,13 @@ public class VendorListFragment extends Fragment implements VendorListAdapter.On
 
             }
         });
+
+    }
+
+    private void addNewData(List<VendorDataModel> vendorDataModelListNew){
+        for(int i=0;i<vendorDataModelListNew.size();i++){
+            vendorDataModelList.add(vendorDataModelListNew.get(i));
+        }
 
     }
 
