@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -115,6 +116,9 @@ public class VendorListAdapter extends RecyclerView.Adapter<VendorListAdapter.Vi
 
     public void onBindViewHolder(ViewHolder vh, int position){
 //        vh.setData(this.projectModelList.get(position),position);
+        if(position==(this.vendorDataModelList.size()-1)){
+            Toast.makeText(mcontext,"Last item", Toast.LENGTH_LONG).show();
+        }
           vh.setData2(position);
 
 
@@ -129,4 +133,5 @@ public class VendorListAdapter extends RecyclerView.Adapter<VendorListAdapter.Vi
         void onItemClick(int position);
         void onItemClick2(int position);
     }
+
 }

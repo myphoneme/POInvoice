@@ -64,6 +64,9 @@ public interface GetDataService {
     @GET("/invoiceapis/vendor/vendorlist")
     Call<VendorListResponse> getVendorList();
 
+    @GET("/invoiceapis/vendor/vendorlist")
+    Call<VendorListResponse> getVendorList_Page(@Query("page") int page);
+
 //    @GET("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/dashboard/index1")
 //    Call<DashboardApi> getDashboardData();
 //

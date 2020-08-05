@@ -91,6 +91,8 @@ public class VendorListFragment extends Fragment implements VendorListAdapter.On
                 if(page==1){
                     vendorDataModelList=response.body().getVendordata();
                     setAdapter(vendorDataModelList);
+                }else{
+                    addMoreData(response.body().getVendordata());
                 }
 
             }
@@ -100,6 +102,9 @@ public class VendorListFragment extends Fragment implements VendorListAdapter.On
 
             }
         });
+
+    }
+    private void addMoreData(List<VendorDataModel> vendorDataModelList){
 
     }
 
