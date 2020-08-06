@@ -37,16 +37,10 @@ public class POTemplateFragment extends Fragment implements POTemplateAdapter.On
     private List<PoTemplateDataModel> poTemplateDataModelList;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        POTemplateViewModel =
-                ViewModelProviders.of(this).get(POTemplateViewModel.class);
+//        POTemplateViewModel =
+//                ViewModelProviders.of(this).get(POTemplateViewModel.class);
         View root = inflater.inflate(R.layout.fragment_potemplate, container, false);
-//        final TextView textView = root.findViewById(R.id.text_tools);
-//        POTemplateViewModel.getText().observe(this, new Observer<String>() {
-//            @Override
-//            public void onChanged(@Nullable String s) {
-//                textView.setText(s);
-//            }
-//        });
+
         return root;
     }
 
@@ -72,8 +66,11 @@ public class POTemplateFragment extends Fragment implements POTemplateAdapter.On
     }
 
     public void onItemClick(int position){
+        Bundle args2 = new Bundle();
+        args2.putString("id",this.poTemplateDataModelList.get(position).getId());
+
         NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
-        navController.navigate(R.id.nav_po_template_edit);
+        navController.navigate(R.id.nav_po_template_edit,args2);
     }
     public void onItemClick2(int position){}
 

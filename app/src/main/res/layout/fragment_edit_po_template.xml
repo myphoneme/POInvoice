@@ -10,6 +10,30 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="50dp"
+            android:text="Title"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:padding="5dp"
+            android:id="@+id/template_title"
+            android:layout_width="230dp"
+            android:layout_height="30dp"
+            android:hint="Funnelxpert Solutions Private Limited"
+            android:layout_alignParentRight="true"
+            android:textSize="12sp"
+            android:background="@drawable/edit_bg"
+            />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
             android:text="Template Name"
             android:textSize="14sp"
             android:textStyle="bold"
@@ -17,7 +41,7 @@
 
         <EditText
             android:padding="5dp"
-            android:id="@+id/templat_name"
+            android:id="@+id/template_name"
             android:layout_width="230dp"
             android:layout_height="30dp"
             android:hint="Funnelxpert Solutions Private Limited"
@@ -101,7 +125,39 @@
             />
 
     </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="State"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            />
+        <Spinner
+            android:layout_alignParentRight="true"
+            android:id="@+id/spinner_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:entries="@array/india_state"
+            android:imeOptions="actionNext" />
 
+        <!--        <EditText-->
+        <!--            android:padding="5dp"-->
+        <!--            android:id="@+id/address_line3"-->
+        <!--            android:layout_width="230dp"-->
+        <!--            android:layout_height="30dp"-->
+        <!--            android:hint="No. B-614, 6th Floor, Advant Navis,"-->
+        <!--            android:textSize="12sp"-->
+        <!--            android:layout_alignParentRight="true"-->
+        <!--            android:background="@drawable/edit_bg"-->
+        <!--            />-->
+
+    </RelativeLayout>
     <RelativeLayout
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
