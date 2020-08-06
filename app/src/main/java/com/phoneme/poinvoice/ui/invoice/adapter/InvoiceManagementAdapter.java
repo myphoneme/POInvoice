@@ -13,10 +13,14 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.phoneme.poinvoice.R;
+import com.phoneme.poinvoice.ui.invoice.model.InvoiceManagementDataModel;
+import com.phoneme.poinvoice.ui.invoice.model.InvoiceResponseModel;
+import java.util.List;
 
 public class InvoiceManagementAdapter extends RecyclerView.Adapter<InvoiceManagementAdapter.ViewHolder> {
     private Context mcontext;
     private OnItemClickListener listener;
+    private List<InvoiceManagementDataModel> InvoiceManagementDataModelList;
     public InvoiceManagementAdapter(Context context){
         this.mcontext=context;
     }
@@ -26,6 +30,13 @@ public class InvoiceManagementAdapter extends RecyclerView.Adapter<InvoiceManage
         this.mcontext=context;
     }
 
+    public InvoiceManagementAdapter(Context context, OnItemClickListener listener,List<InvoiceManagementDataModel> data){
+        this.listener=listener;
+        this.mcontext=context;
+        this.InvoiceManagementDataModelList=data;
+    }
+
+
     @Override
     public InvoiceManagementAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i){
         View view= LayoutInflater.from(mcontext).inflate(R.layout.adapter_invoice_management,viewGroup,false);
@@ -34,18 +45,18 @@ public class InvoiceManagementAdapter extends RecyclerView.Adapter<InvoiceManage
 
     @Override
     public int getItemCount(){
-        return 4;
+        return InvoiceManagementDataModelList.size();
     }
 
     public void onBindViewHolder(InvoiceManagementAdapter.ViewHolder vh, int position){
-//        vh.setData(this.projectModelList.get(position),position);
+        vh.setData(this.InvoiceManagementDataModelList.get(position),position);
 
 
 
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView title, description, company_name, allocated_users, status, createdat;
+        private TextView Title, Value,Phoneme_value,Funnel_value, company_name, allocated_users, status, createdat;
         //private ProjectModel projectModel;
         private TextView edit,invoiceNumber;
         private CardView cardView;
@@ -56,6 +67,10 @@ public class InvoiceManagementAdapter extends RecyclerView.Adapter<InvoiceManage
 
         public ViewHolder(View v) {
             super(v);
+            Title=(TextView)v.findViewById(R.id.title);
+            Value=(TextView)v.findViewById(R.id.value);
+            Phoneme_value=(TextView)v.findViewById(R.id.phoneme_value);
+            Funnel_value=(TextView)v.findViewById(R.id.funnel_value);
 //            paymentButton=(Button)v.findViewById(R.id.payment_button);
 //            paymentButton.setOnClickListener(new View.OnClickListener() {
 //                @Override
@@ -89,6 +104,21 @@ public class InvoiceManagementAdapter extends RecyclerView.Adapter<InvoiceManage
 //                }
 //            });
             //cardView=(CardView)v.findViewById(R.id.cardid);
+        }
+        public void setData(InvoiceManagementDataModel data,int position){
+            Title.setText(data.getTitle());
+            Value.setText(data.getValue());
+            if(data.getPhoneme_value()==null){
+                Phoneme_value.setText("0");
+            }else{
+                Phoneme_value.setText(data.getPhoneme_value());
+            }
+            if(data.getFunnel_value()==null){
+                Funnel_value.setText("0");
+            }else{
+                Funnel_value.setText(data.getFunnel_value());
+            }
+
         }
 
 //        public void setData(ProjectModel item, int position) {

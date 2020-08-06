@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,9 +16,22 @@ import com.phoneme.poinvoice.R;
 import com.phoneme.poinvoice.config.RetrofitClientInstance;
 import com.phoneme.poinvoice.interfaces.GetDataService;
 import com.phoneme.poinvoice.ui.invoice.adapter.InvoiceManagementAdapter;
+import com.phoneme.poinvoice.ui.invoice.model.InvoiceResponseModel;
+import com.phoneme.poinvoice.ui.po.network.GeneratedListCompleteResponse;
+import com.phoneme.poinvoice.ui.invoice.model.InvoiceManagementDataModel;
+
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class InvoiceManagementFragment extends Fragment implements InvoiceManagementAdapter.OnItemClickListener {
     private RecyclerView recyclerview;
+    private List<InvoiceManagementDataModel> invoiceManagementDataModelList=new ArrayList<InvoiceManagementDataModel>();
+    private  InvoiceResponseModel invoiceResponseModel;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_invoice_management, container, false);
@@ -28,10 +42,11 @@ public class InvoiceManagementFragment extends Fragment implements InvoiceManage
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerview=(RecyclerView)view.findViewById(R.id.invoice_management);
-        setAdapter();
+        //setAdapter();
+        getInvoiceManagementData();
     }
-    private void setAdapter(){
-        InvoiceManagementAdapter adapter=new InvoiceManagementAdapter(getContext(),this);
+    private void setAdapter(List<InvoiceManagementDataModel> invoiceManagementDataModelList){
+        InvoiceManagementAdapter adapter=new InvoiceManagementAdapter(getContext(),this,invoiceManagementDataModelList);
         recyclerview.setAdapter(adapter);
 
         GridLayoutManager manager;
@@ -42,8 +57,57 @@ public class InvoiceManagementFragment extends Fragment implements InvoiceManage
 
     private void getInvoiceManagementData(){
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+        Call<GeneratedListCompleteResponse> call=service.getGeneratedListComplete("2020-21");
+        call.enqueue(new Callback<GeneratedListCompleteResponse>() {
+            @Override
+            public void onResponse(Call<GeneratedListCompleteResponse> call, Response<GeneratedListCompleteResponse> response) {
+                invoiceResponseModel=response.body().getInvoiceResponseModelList().get(0);
+                //poDataModelList=response.body().getPoDataModelList();
+                //setAdapter(poDataModelList);
+                //Toast.makeText(getContext(),"success", Toast.LENGTH_LONG).show();
+                setData(invoiceResponseModel);
+            }
+
+            @Override
+            public void onFailure(Call<GeneratedListCompleteResponse> call, Throwable t) {
+                //Toast.makeText(getContext(),"fail", Toast.LENGTH_LONG).show();
+
+            }
+        });
     }
 
+    private void setData( InvoiceResponseModel netData){
+
+        InvoiceManagementDataModel data1=new InvoiceManagementDataModel();
+        data1.setTitle("Total Revenue");
+        data1.setValue(netData.getTotal());
+        data1.setPhoneme_value(netData.getTotalphonemeinvoice());
+        data1.setFunnel_value(netData.getTotalfunnelinvoice());
+        invoiceManagementDataModelList.add(data1);
+
+        InvoiceManagementDataModel data2=new InvoiceManagementDataModel();
+        data2.setTitle("Total Expense");
+        data2.setValue(netData.getTotalpo());
+        data2.setPhoneme_value( netData.getTotalphonemepo());
+        data2.setFunnel_value(netData.getTotalfunnelpo());
+        invoiceManagementDataModelList.add(data2);
+
+        InvoiceManagementDataModel data3=new InvoiceManagementDataModel();
+        data3.setTitle("Receivable Revenue");
+        data3.setValue(netData.getTotalinvoice());
+        data3.setPhoneme_value(netData.getTotalinvociephoneme());
+        data3.setFunnel_value(netData.getTotalinvoicefunnel());
+        invoiceManagementDataModelList.add(data3);
+
+        InvoiceManagementDataModel data4=new InvoiceManagementDataModel();
+        data4.setTitle("Pending Payments");
+        data4.setValue(netData.getTotalpayment());
+        data4.setPhoneme_value(netData.getTotalphonemepayment());
+        data4.setFunnel_value(netData.getTotalfunnelpayment());
+        invoiceManagementDataModelList.add(data4);
+        //Toast.makeText(getContext(),"before set adapter", Toast.LENGTH_LONG).show();
+        setAdapter(invoiceManagementDataModelList);
+    }
     public void onItemClick(int position){}
     public void onItemClick2(int position){}
     public void onItemClick3(int position){}
