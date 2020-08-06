@@ -84,8 +84,11 @@ public class POTemplateEditFragment extends Fragment implements
 
     private void getData(){
         String poNumber,poAmount,Date,title,templateName,addressLine1,addressLine2,addressLine3,gstno;
-        if(Title!=null && Title.getText()!=null && Title.getText().length()>0){
-            title=Title.getText().toString();
+        if(Title!=null && Title.getText()!=null && Title.getText().length()>0) {
+            title = Title.getText().toString();
+        }else{
+            Toast.makeText(getContext(),"title cannot be empty", Toast.LENGTH_LONG).show();
+            return;
         }
 
         if(TemplateName!=null && TemplateName.getText()!=null && TemplateName.getText().length()>0){
