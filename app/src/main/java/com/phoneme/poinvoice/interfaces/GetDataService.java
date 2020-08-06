@@ -39,6 +39,7 @@ import com.phoneme.poinvoice.ui.invoice.network.InvoiceResponse;
 import com.phoneme.poinvoice.ui.po.network.GeneratedListResponse;
 import com.phoneme.poinvoice.ui.po.network.GeneratedListCompleteResponse;
 import com.phoneme.poinvoice.ui.po.network.PoTemplateEditGETResponse;
+import com.phoneme.poinvoice.ui.po.network.PoTemplateEditPOSTResponse;
 import com.phoneme.poinvoice.ui.po.network.PoTemplateListResponse;
 import com.phoneme.poinvoice.ui.po.network.VendorListResponse;
 import com.phoneme.poinvoice.user.network.OTPVerifactionResponse;
@@ -81,9 +82,18 @@ public interface GetDataService {
     @GET("/invoiceapis/po/potemplate2")
     Call<PoTemplateListResponse> getPoTemplateList();
 
-
     @GET("/invoiceapis/PoTemplate/edit")
     Call<PoTemplateEditGETResponse> getPoTemplateEditData(@Query("id") String id);
+
+    @Multipart
+    @POST("/invoiceapis/PoTemplate/edit")
+    Call<PoTemplateEditPOSTResponse> postPOTemplateWithImage(@Part MultipartBody.Part file, @PartMap() Map<String, RequestBody> partMap);
+
+    @Multipart
+    @POST("/invoiceapis/PoTemplate/edit")
+    Call<PoTemplateEditPOSTResponse> postPOTemplateWithoutImage(@PartMap() Map<String, RequestBody> partMap);
+
+
 
 
 

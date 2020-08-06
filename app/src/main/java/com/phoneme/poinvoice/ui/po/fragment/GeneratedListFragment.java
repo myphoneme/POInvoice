@@ -42,16 +42,10 @@ public class GeneratedListFragment extends Fragment implements GeneratedListAdap
     private List<PODataModel> poDataModelList;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        generatedListViewModel =
-                ViewModelProviders.of(this).get(GeneratedListViewModel.class);
+//        generatedListViewModel =
+//                ViewModelProviders.of(this).get(GeneratedListViewModel.class);
         View root = inflater.inflate(R.layout.fragment_generatedlist, container, false);
-//        final TextView textView = root.findViewById(R.id.text_slideshow);
-//        generatedListViewModel.getText().observe(this, new Observer<String>() {
-//            @Override
-//            public void onChanged(@Nullable String s) {
-//                textView.setText(s);
-//            }
-//        });
+
         return root;
     }
 
