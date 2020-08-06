@@ -21,7 +21,9 @@ import com.phoneme.poinvoice.interfaces.GetDataService;
 import com.phoneme.poinvoice.ui.po.adapter.VendorListAdapter;
 import com.phoneme.poinvoice.ui.po.model.PODataModel;
 import com.phoneme.poinvoice.ui.po.model.VendorDataModel;
+
 import com.phoneme.poinvoice.ui.po.network.GeneratedListResponse;
+import com.phoneme.poinvoice.ui.po.network.GeneratedListCompleteResponse;
 import com.phoneme.poinvoice.ui.po.network.VendorListResponse;
 import com.phoneme.poinvoice.ui.po.viewmodel.GeneratedListViewModel;
 import com.phoneme.poinvoice.ui.po.adapter.GeneratedListAdapter;
@@ -67,7 +69,8 @@ public class GeneratedListFragment extends Fragment implements GeneratedListAdap
             }
         });
         //GeneratedListAdapter adapter=new GeneratedListAdapter(getContext());
-        getGeneratedListData();
+        //getGeneratedListData();
+        getGeneratedListCompleteData();
 //        GeneratedListAdapter adapter=new GeneratedListAdapter(getContext(),this);
 //        recyclerView.setAdapter(adapter);
 //        LinearLayoutManager linearVertical = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
@@ -81,10 +84,26 @@ public class GeneratedListFragment extends Fragment implements GeneratedListAdap
         NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
         navController.navigate(R.id.nav_invoice_add_upload);
     }
+    private void getGeneratedListCompleteData(){
+        GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+        Call<GeneratedListCompleteResponse> call=service.getGeneratedListComplete("2020-21");
+        call.enqueue(new Callback<GeneratedListCompleteResponse>() {
+            @Override
+            public void onResponse(Call<GeneratedListCompleteResponse> call, Response<GeneratedListCompleteResponse> response) {
+                poDataModelList=response.body().getPoDataModelList();
+                setAdapter(poDataModelList);
+            }
 
+            @Override
+            public void onFailure(Call<GeneratedListCompleteResponse> call, Throwable t) {
+
+            }
+        });
+    }
     private void getGeneratedListData(){
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
         Call<GeneratedListResponse> call=service.getGeneratedList();
+        //Call<GeneratedListCompleteResponse> call=service.getGeneratedListComplete("2020-21");
         // Call<VendorListResponse> call=service.getVendorList_Page(page);
 
         call.enqueue(new Callback<GeneratedListResponse>() {

@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.phoneme.poinvoice.R;
+import com.phoneme.poinvoice.config.RetrofitClientInstance;
+import com.phoneme.poinvoice.interfaces.GetDataService;
 import com.phoneme.poinvoice.ui.invoice.adapter.InvoiceManagementAdapter;
 
 public class InvoiceManagementFragment extends Fragment implements InvoiceManagementAdapter.OnItemClickListener {
@@ -36,6 +38,10 @@ public class InvoiceManagementFragment extends Fragment implements InvoiceManage
         manager = new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false);
 
         recyclerview.setLayoutManager(manager);
+    }
+
+    private void getInvoiceManagementData(){
+        GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
     }
 
     public void onItemClick(int position){}

@@ -37,6 +37,7 @@ import com.phoneme.poinvoice.ui.invoice.network.CheckInvoiceListResponse1;
 import com.phoneme.poinvoice.ui.invoice.network.InvoiceListResponse;
 import com.phoneme.poinvoice.ui.invoice.network.InvoiceResponse;
 import com.phoneme.poinvoice.ui.po.network.GeneratedListResponse;
+import com.phoneme.poinvoice.ui.po.network.GeneratedListCompleteResponse;
 import com.phoneme.poinvoice.ui.po.network.PoTemplateEditGETResponse;
 import com.phoneme.poinvoice.ui.po.network.PoTemplateListResponse;
 import com.phoneme.poinvoice.ui.po.network.VendorListResponse;
@@ -58,6 +59,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.PartMap;
 import retrofit2.http.Query;
+import retrofit2.http.Path;
 
 public interface GetDataService {
 //    // https://phoneme.in/android/napolean
@@ -72,6 +74,9 @@ public interface GetDataService {
 
     @GET("/invoiceapis/po/")
     Call<GeneratedListResponse> getGeneratedList();
+
+    @GET("/invoiceapis/Po/polist/{yr}")
+    Call<GeneratedListCompleteResponse> getGeneratedListComplete(@Path("yr") String year);
 
     @GET("/invoiceapis/po/potemplate2")
     Call<PoTemplateListResponse> getPoTemplateList();
