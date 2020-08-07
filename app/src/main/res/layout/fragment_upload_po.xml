@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
+
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:text="Invoice Number"
@@ -16,9 +17,10 @@
             android:textStyle="bold"
             />
         <TextView
+            android:id="@+id/invoice_number"
             android:layout_width="230dp"
             android:layout_height="30dp"
-            android:text="527582"
+            android:text="5275823"
             android:textSize="14sp"
             android:textStyle="bold"
             android:layout_alignParentRight="true"

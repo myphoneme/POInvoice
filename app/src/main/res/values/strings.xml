@@ -12,7 +12,7 @@
     <string name="menu_generated_list">Generated List</string>
     <string name="menu_po_template">PO Template</string>
     <string name="menu_po_template_edit">PO Edit Template</string>
-    <string name="menu_po_template_upload">PO Upload</string>
+    <string name="menu_po_template_upload">Upload New Po</string>
     <string name="menu_invoive_add_upload">Add Invoice</string>
     <string name="menu_create_invoice">Create Invoice</string>
     <string name="menu_final_invoice">Final Invoice</string>

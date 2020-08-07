@@ -1,4 +1,4 @@
-package com.phoneme.poinvoice.ui.invoice.invoice;
+package com.phoneme.poinvoice.ui.invoice.model;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -17,6 +17,11 @@ public class InvoiceModel {
 
     @SerializedName("project")
     private String project;
+
+
+    @SerializedName("subject")
+    private String subject;
+
 
     @SerializedName("duedate")
     private String duedate;
@@ -62,6 +67,10 @@ public class InvoiceModel {
 
     @SerializedName("invoice_time")
     private String invoie_time;
+
+    private String getSubject(){
+        return this.subject;
+    }
 
     public String getId(){
         return this.id;

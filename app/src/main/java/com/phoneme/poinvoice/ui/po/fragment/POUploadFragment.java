@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,24 +22,38 @@ import androidx.fragment.app.Fragment;
 import androidx.loader.content.CursorLoader;
 
 import com.phoneme.poinvoice.R;
+import com.phoneme.poinvoice.config.RetrofitClientInstance;
+import com.phoneme.poinvoice.interfaces.GetDataService;
+import com.phoneme.poinvoice.ui.invoice.network.InvoiceListResponse;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
 
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
+import com.phoneme.poinvoice.ui.invoice.network.PoUploadPOSTResponse;
+import com.phoneme.poinvoice.ui.invoice.network.UploadPOGetResponse;
+import com.phoneme.poinvoice.ui.po.network.PoTemplateEditPOSTResponse;
+
+import java.util.List;
 public class POUploadFragment extends Fragment {
 
-    private EditText dob;
+    private EditText dob,PONumber,POAmount;
     Calendar myCalendar;
     DatePickerDialog.OnDateSetListener date;
     private String imagePath=new String();
     private boolean imageSelected = false;
-    private Button fileUpload;
-
+    private Button fileUpload,Submit;
+    private TextView InvoiceNumber;
+    private String id;
 
     public static final String MULTIPART_FORM_DATA = "multipart/form-data";
 
@@ -50,6 +66,7 @@ public class POUploadFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        id = getArguments().getString("id");
         myCalendar = Calendar.getInstance();
         String myFormat = "MM/dd/yyyy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
@@ -64,6 +81,17 @@ public class POUploadFragment extends Fragment {
                 startActivityForResult(galleryIntent, 0);
             }
         });
+        InvoiceNumber=(TextView)view.findViewById(R.id.invoice_number);
+        PONumber=(EditText)view.findViewById(R.id.po_number);
+        POAmount=(EditText)view.findViewById(R.id.po_amount);
+        Submit=(Button)view.findViewById(R.id.submit);
+        Submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getData();
+            }
+        });
+        getPOData(id);
         date = new DatePickerDialog.OnDateSetListener() {
 
             @Override
@@ -190,5 +218,83 @@ public class POUploadFragment extends Fragment {
         String result = cursor.getString(column_index);
         cursor.close();
         return result;
+    }
+
+    private void getPOData(String id){
+        GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+        Call<UploadPOGetResponse> call=service.getPOUploadData(id);
+        call.enqueue(new Callback<UploadPOGetResponse>() {
+            @Override
+            public void onResponse(Call<UploadPOGetResponse> call, Response<UploadPOGetResponse> response) {
+                Toast.makeText(getContext(),"aisa",Toast.LENGTH_LONG).show();
+                InvoiceNumber.setText(response.body().getInvoiceModelList().get(0).getInvoice_number());
+            }
+
+            @Override
+            public void onFailure(Call<UploadPOGetResponse> call, Throwable t) {
+                Toast.makeText(getContext(),"failure",Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void getData(){
+        String date= dob.getText().toString();
+        String ponumber= PONumber.getText().toString();
+        String poamount= POAmount.getText().toString();
+
+        HashMap<String,RequestBody> map= new HashMap<>();
+
+        RequestBody DATE=createPartFromString(date);
+        map.put("podate",DATE);
+
+        RequestBody PONUMBER=createPartFromString(ponumber);
+        map.put("po_number",PONUMBER);
+
+        RequestBody POAMOUNT=createPartFromString(poamount);
+        map.put("po_amount",POAMOUNT);
+
+        RequestBody ID=createPartFromString(id);
+        map.put("id",ID);
+        postDataWithImage(map);
+    }
+
+    private void postDataWithImage(HashMap<String,RequestBody> map){
+        GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+        File file;
+
+        if (imagePath != null && !imagePath.isEmpty()) {
+            //String newimagePath = compressImage(imagePath);
+            //file = new File(newimagePath);
+            file = new File(imagePath);//This one working
+
+        }else{
+            file = new File("");
+        }
+
+        final RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("pofile", file.getName(), requestBody);//these 3 lines extra
+        Call<PoUploadPOSTResponse> call;
+
+        if(imageSelected){
+            call=service.postPOUploadWithImage(body,map);
+            Toast.makeText(getContext(),"image selected",Toast.LENGTH_LONG).show();
+        }else{
+            Toast.makeText(getContext(),"image not selected",Toast.LENGTH_LONG).show();
+            call=service.postPOUploadWithoutImage(map);
+        }
+
+        call.enqueue(new Callback<PoUploadPOSTResponse>() {
+            @Override
+            public void onResponse(Call<PoUploadPOSTResponse> call, Response<PoUploadPOSTResponse> response) {
+                Toast.makeText(getContext(),"success post"+response.body().isAdded(),Toast.LENGTH_LONG).show();
+
+            }
+
+            @Override
+            public void onFailure(Call<PoUploadPOSTResponse> call, Throwable t) {
+                Toast.makeText(getContext(),"failure post"+t.getMessage(),Toast.LENGTH_LONG).show();
+
+            }
+        });
     }
 }

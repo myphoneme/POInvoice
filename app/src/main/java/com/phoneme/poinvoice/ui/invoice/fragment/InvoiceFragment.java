@@ -93,8 +93,10 @@ public class InvoiceFragment extends Fragment implements InvoiceListAdapter.OnIt
 
     }
     public void onItemClick2(int position){
+        Bundle args2 = new Bundle();
+        args2.putString("id","46");//To be changed to dynamic data
         NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
-        navController.navigate(R.id.nav_po_template_upload);
+        navController.navigate(R.id.nav_po_template_upload,args2);
     }
     public void onItemClick3(int position){
         NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);

@@ -36,12 +36,14 @@ package com.phoneme.poinvoice.interfaces;
 import com.phoneme.poinvoice.ui.invoice.network.CheckInvoiceListResponse1;
 import com.phoneme.poinvoice.ui.invoice.network.InvoiceListResponse;
 import com.phoneme.poinvoice.ui.invoice.network.InvoiceResponse;
+import com.phoneme.poinvoice.ui.invoice.network.PoUploadPOSTResponse;
 import com.phoneme.poinvoice.ui.po.network.GeneratedListResponse;
 import com.phoneme.poinvoice.ui.po.network.GeneratedListCompleteResponse;
 import com.phoneme.poinvoice.ui.po.network.PoTemplateEditGETResponse;
 import com.phoneme.poinvoice.ui.po.network.PoTemplateEditPOSTResponse;
 import com.phoneme.poinvoice.ui.po.network.PoTemplateListResponse;
 import com.phoneme.poinvoice.ui.po.network.VendorListResponse;
+import com.phoneme.poinvoice.ui.invoice.network.UploadPOGetResponse;
 import com.phoneme.poinvoice.user.network.OTPVerifactionResponse;
 
 import java.util.ArrayList;
@@ -64,6 +66,10 @@ import retrofit2.http.Path;
 
 public interface GetDataService {
 //    // https://phoneme.in/android/napolean
+    //UploadPOGetResponse
+    @GET("/invoiceapis/invoice/uploadpo")
+    Call<UploadPOGetResponse> getPOUploadData(@Query("id") String id);
+
     @GET("/invoiceapis/invoice/invoicelist/")
     Call<InvoiceListResponse> getInvoiceList();
 
@@ -92,6 +98,15 @@ public interface GetDataService {
     @Multipart
     @POST("/invoiceapis/PoTemplate/edit")
     Call<PoTemplateEditPOSTResponse> postPOTemplateWithoutImage(@PartMap() Map<String, RequestBody> partMap);
+
+
+    @Multipart
+    @POST("/invoiceapis/invoice/uploadpo")
+    Call<PoUploadPOSTResponse> postPOUploadWithImage(@Part MultipartBody.Part file, @PartMap() Map<String, RequestBody> partMap);
+
+    @Multipart
+    @POST("/invoiceapis/invoice/uploadpo")
+    Call<PoUploadPOSTResponse> postPOUploadWithoutImage(@PartMap() Map<String, RequestBody> partMap);
 
 
 
