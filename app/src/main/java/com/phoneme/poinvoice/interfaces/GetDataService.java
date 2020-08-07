@@ -36,6 +36,7 @@ package com.phoneme.poinvoice.interfaces;
 import com.phoneme.poinvoice.ui.invoice.network.CheckInvoiceListResponse1;
 import com.phoneme.poinvoice.ui.invoice.network.InvoiceListResponse;
 import com.phoneme.poinvoice.ui.invoice.network.InvoiceResponse;
+import com.phoneme.poinvoice.ui.invoice.network.PoPaymentPOSTResponse;
 import com.phoneme.poinvoice.ui.invoice.network.PoUploadPOSTResponse;
 import com.phoneme.poinvoice.ui.invoice.network.UPloadPOPaymentGetResponse;
 import com.phoneme.poinvoice.ui.po.network.GeneratedListResponse;
@@ -111,6 +112,16 @@ public interface GetDataService {
     @Multipart
     @POST("/invoiceapis/invoice/uploadpo")
     Call<PoUploadPOSTResponse> postPOUploadWithoutImage(@PartMap() Map<String, RequestBody> partMap);
+
+
+
+    @Multipart
+    @POST("/invoiceapis/Invoice/uploadinvoicepayment")
+    Call<PoPaymentPOSTResponse> postPOPaymentWithImage(@Part MultipartBody.Part file, @PartMap() Map<String, RequestBody> partMap);
+
+    @Multipart
+    @POST("/invoiceapis/Invoice/uploadinvoicepayment")
+    Call<PoPaymentPOSTResponse> postPOPaymentWithoutImage(@PartMap() Map<String, RequestBody> partMap);
 
 
 
