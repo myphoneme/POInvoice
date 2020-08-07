@@ -21,14 +21,23 @@ import androidx.fragment.app.Fragment;
 import androidx.loader.content.CursorLoader;
 
 import com.phoneme.poinvoice.R;
+import com.phoneme.poinvoice.config.RetrofitClientInstance;
+import com.phoneme.poinvoice.interfaces.GetDataService;
+import com.phoneme.poinvoice.ui.invoice.model.InvoiceModel;
+import com.phoneme.poinvoice.ui.invoice.network.UPloadPOPaymentGetResponse;
+import com.phoneme.poinvoice.ui.invoice.network.UploadPOGetResponse;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
 
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class UploadPaymentInvoiceFragment extends Fragment {
 
@@ -37,7 +46,9 @@ public class UploadPaymentInvoiceFragment extends Fragment {
     DatePickerDialog.OnDateSetListener date;
     private EditText Message,transaction,Payment;
     private Button Submit,uploadfile;
-    private TextView file_name;
+    private TextView file_name,PO_Number;
+    private String id;
+    private InvoiceModel invoiceModel;
 
     private String imagePath=new String();
     private boolean imageSelected = false;
@@ -54,10 +65,12 @@ public class UploadPaymentInvoiceFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        id = getArguments().getString("id");
         myCalendar = Calendar.getInstance();
         String myFormat = "MM/dd/yyyy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
         Submit=(Button)view.findViewById(R.id.submit);
+        PO_Number=(TextView)view.findViewById(R.id.po_number);
         Submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,53 +90,11 @@ public class UploadPaymentInvoiceFragment extends Fragment {
                 startActivityForResult(galleryIntent, 0);
             }
         });
-
-//        dob=(EditText)view.findViewById(R.id.invoice_date);
-//        dob.setText(sdf.format(myCalendar.getTime()));
-//        date = new DatePickerDialog.OnDateSetListener() {
-//
-//            @Override
-//            public void onDateSet(DatePicker view, int year, int monthOfYear,
-//                                  int dayOfMonth) {
-//                // TODO Auto-generated method stub
-//                myCalendar.set(Calendar.YEAR, year);
-//                myCalendar.set(Calendar.MONTH, monthOfYear);
-//                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-//
-//                //alldates.clear();
-//                updateLabel(year,monthOfYear,dayOfMonth);
-//
-//            }
-//
-//            private void updateLabel(int year,int monthOfYear,int dayOfMonth) {
-//                Log.v("TAG","MONTH:"+monthOfYear);
-//                String temp;
-//                String myFormat = "MM/dd/yyyy"; //In which you need put here
-//                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-//                //Toast.makeText(getApplicationContext(), "My calendar"+myCalendar.getTime(), Toast.LENGTH_LONG).show();
-//                dob.setText(sdf.format(myCalendar.getTime()));
-//            }
-//        };
-//        dob.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//                // TODO Auto-generated method stub
-//                DatePickerDialog dialog=  new DatePickerDialog(getContext(), date, myCalendar
-//                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-//                        myCalendar.get(Calendar.DAY_OF_MONTH));
-//                dialog.getDatePicker().setMaxDate(System.currentTimeMillis());
-//
-//                dialog.show();
-//
-//                ;
-//                // Toast.makeText(getApplicationContext(), "In On click", Toast.LENGTH_LONG).show();
-//            }
-//        });
+        getPaymentData(id);
     }
 
     private void getData(){
-        String transactionid,payment,message;
+        String transactionid=new String(),payment,message;
         if(transaction!=null && transaction.getText()!=null && transaction.getText().length()>0){
             transactionid=transaction.getText().toString();
         }
@@ -135,6 +106,10 @@ public class UploadPaymentInvoiceFragment extends Fragment {
             payment=Payment.getText().toString();
         }
 
+        HashMap<String,RequestBody> map= new HashMap<>();
+
+        RequestBody TransactionId=createPartFromString(transactionid);
+        map.put("transactionid",TransactionId);
 
     }
 
@@ -176,4 +151,25 @@ public class UploadPaymentInvoiceFragment extends Fragment {
         cursor.close();
         return result;
     }
+
+    private void getPaymentData(String id){
+        GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+        Call<UPloadPOPaymentGetResponse> call=service.getPOPaymentUploadData(id);
+        call.enqueue(new Callback<UPloadPOPaymentGetResponse>() {
+            @Override
+            public void onResponse(Call<UPloadPOPaymentGetResponse> call, Response<UPloadPOPaymentGetResponse> response) {
+                if(response!=null && response.body()!=null ){
+                    invoiceModel=response.body().getInvoiceModelList().get(0);
+                    PO_Number.setText(invoiceModel.getInvoice_number());
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<UPloadPOPaymentGetResponse> call, Throwable t) {
+
+            }
+        });
+    }
+
 }

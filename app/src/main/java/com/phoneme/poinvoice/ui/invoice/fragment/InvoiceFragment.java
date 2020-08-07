@@ -40,6 +40,7 @@ public class InvoiceFragment extends Fragment implements InvoiceListAdapter.OnIt
 
     private InvoiceViewModel invoiceViewModel;
     private RecyclerView recyclerView;
+    private List<InvoiceRowModel> invoiceRowModelList;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -88,13 +89,17 @@ public class InvoiceFragment extends Fragment implements InvoiceListAdapter.OnIt
     }
 
     public void onItemClick(int position){
+        Bundle args2 = new Bundle();
+        String id=invoiceRowModelList.get(position).getId();
+        args2.putString("id",id);//To be changed to dynamic data
         NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
-        navController.navigate(R.id.nav_payment_upload);
+        navController.navigate(R.id.nav_payment_upload,args2);
 
     }
     public void onItemClick2(int position){
         Bundle args2 = new Bundle();
-        args2.putString("id","46");//To be changed to dynamic data
+        String id=invoiceRowModelList.get(position).getId();
+        args2.putString("id",id);//To be changed to dynamic data
         NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
         navController.navigate(R.id.nav_po_template_upload,args2);
     }
@@ -112,6 +117,7 @@ public class InvoiceFragment extends Fragment implements InvoiceListAdapter.OnIt
             public void onResponse(Call<InvoiceListResponse> call, Response<InvoiceListResponse> response) {
                 Toast.makeText(getContext(),"onResponse"+response.toString(), Toast.LENGTH_LONG).show();
                 System.out.println("onresponse="+response.body().getInvoicerowList().get(0).getDuedate());
+                invoiceRowModelList=response.body().getInvoicerowList();
                 setAdapter(response.body().getInvoicerowList());
             }
 

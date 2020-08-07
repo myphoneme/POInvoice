@@ -37,6 +37,7 @@ import com.phoneme.poinvoice.ui.invoice.network.CheckInvoiceListResponse1;
 import com.phoneme.poinvoice.ui.invoice.network.InvoiceListResponse;
 import com.phoneme.poinvoice.ui.invoice.network.InvoiceResponse;
 import com.phoneme.poinvoice.ui.invoice.network.PoUploadPOSTResponse;
+import com.phoneme.poinvoice.ui.invoice.network.UPloadPOPaymentGetResponse;
 import com.phoneme.poinvoice.ui.po.network.GeneratedListResponse;
 import com.phoneme.poinvoice.ui.po.network.GeneratedListCompleteResponse;
 import com.phoneme.poinvoice.ui.po.network.PoTemplateEditGETResponse;
@@ -72,6 +73,9 @@ public interface GetDataService {
 
     @GET("/invoiceapis/invoice/invoicelist/")
     Call<InvoiceListResponse> getInvoiceList();
+
+    @GET("/invoiceapis/Invoice/uploadinvoicepayment")
+    Call<UPloadPOPaymentGetResponse> getPOPaymentUploadData(@Query("id") String id);
 
     @GET("/invoiceapis/vendor/vendorlist")
     Call<VendorListResponse> getVendorList();
