@@ -40,8 +40,10 @@ import com.phoneme.poinvoice.ui.invoice.network.PoPaymentPOSTResponse;
 import com.phoneme.poinvoice.ui.invoice.network.PoUploadPOSTResponse;
 import com.phoneme.poinvoice.ui.invoice.network.UPloadPOPaymentGetResponse;
 import com.phoneme.poinvoice.ui.invoice.network.VendorAddPostResponse;
+import com.phoneme.poinvoice.ui.po.network.GeneratedListPOPaymentGetResponse;
 import com.phoneme.poinvoice.ui.po.network.GeneratedListResponse;
 import com.phoneme.poinvoice.ui.po.network.GeneratedListCompleteResponse;
+import com.phoneme.poinvoice.ui.po.network.InvoiceAddPostResponse;
 import com.phoneme.poinvoice.ui.po.network.PoTemplateEditGETResponse;
 import com.phoneme.poinvoice.ui.po.network.PoTemplateEditPOSTResponse;
 import com.phoneme.poinvoice.ui.po.network.PoTemplateListResponse;
@@ -100,12 +102,23 @@ public interface GetDataService {
     @GET("/invoiceapis/Po/polist/{yr}")
     Call<GeneratedListCompleteResponse> getGeneratedListComplete(@Path("yr") String year);
 
+    @GET("/invoiceapis/Po/uploadpayment")
+    Call<GeneratedListPOPaymentGetResponse> getGeneratedListPOPaymentData(@Query("id") String id);
+
+
     @GET("/invoiceapis/po/potemplate2")
     Call<PoTemplateListResponse> getPoTemplateList();
 
     @GET("/invoiceapis/PoTemplate/edit")
     Call<PoTemplateEditGETResponse> getPoTemplateEditData(@Query("id") String id);
 
+
+
+
+
+    @FormUrlEncoded
+    @POST("/invoiceapis/po/uploadinvoice")
+    Call<InvoiceAddPostResponse> postInvoiceAdd(@FieldMap Map<String, String> invoiceData);
 
     @FormUrlEncoded
     @POST("/invoiceapis/vendor/create")

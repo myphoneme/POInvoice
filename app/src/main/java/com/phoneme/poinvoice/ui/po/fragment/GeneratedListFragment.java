@@ -71,12 +71,19 @@ public class GeneratedListFragment extends Fragment implements GeneratedListAdap
 //        recyclerView.setLayoutManager(linearVertical);
     }
     public void onItemClick(int position){
+        Bundle args2 = new Bundle();
+        args2.putString("id",this.poDataModelList.get(position).getId());
+
         NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
-        navController.navigate(R.id.nav_payment_upload);
+        navController.navigate(R.id.nav_payment_upload,args2);
     }
     public void onItemClick2(int position){
+        Bundle args2 = new Bundle();
+        args2.putString("id",this.poDataModelList.get(position).getId());
+        args2.putString("po_number",this.poDataModelList.get(position).getPo_number());
+
         NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
-        navController.navigate(R.id.nav_invoice_add_upload);
+        navController.navigate(R.id.nav_invoice_add_upload,args2);
     }
     private void getGeneratedListCompleteData(){
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);

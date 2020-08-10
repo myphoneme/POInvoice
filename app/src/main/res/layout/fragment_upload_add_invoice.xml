@@ -15,6 +15,7 @@
             android:textStyle="bold"
             />
         <TextView
+            android:id="@+id/po_number"
             android:layout_width="230dp"
             android:layout_height="30dp"
             android:text="PO/IT-EXP/2020-21/10"

@@ -9,23 +9,36 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.phoneme.poinvoice.R;
+import com.phoneme.poinvoice.config.RetrofitClientInstance;
+import com.phoneme.poinvoice.interfaces.GetDataService;
+import com.phoneme.poinvoice.ui.po.network.InvoiceAddPostResponse;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AddInvoiceFragment extends Fragment {
 
     private EditText dob,invoiceNumber,invoiceAmount;
+    private TextView PO_number;
     Calendar myCalendar;
     DatePickerDialog.OnDateSetListener date;
     private Button submit;
+    String id;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -36,6 +49,9 @@ public class AddInvoiceFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        id = getArguments().getString("id");
+        String po_number=getArguments().getString("po_number");
+
         myCalendar = Calendar.getInstance();
         String myFormat = "MM/dd/yyyy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
@@ -45,6 +61,8 @@ public class AddInvoiceFragment extends Fragment {
         submit=(Button)view.findViewById(R.id.submit);
         invoiceNumber=(EditText)view.findViewById(R.id.invoice_number);
         invoiceAmount=(EditText)view.findViewById(R.id.invoice_amount);
+        PO_number=(TextView)view.findViewById(R.id.po_number);
+        PO_number.setText(po_number);
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,7 +114,7 @@ public class AddInvoiceFragment extends Fragment {
     }
 
     private void getData(){
-        String dateString,invoiceNumberString,invoiceAmountString;
+        String dateString=new String(),invoiceNumberString=new String(),invoiceAmountString=new String();
         if(dob!=null && dob.getText()!=null && dob.getText().length()>0){
             dateString=dob.getText().toString();
         }
@@ -107,5 +125,32 @@ public class AddInvoiceFragment extends Fragment {
         if(  invoiceAmount!=null &&   invoiceAmount.getText()!=null &&   invoiceAmount.getText().length()>0){
             invoiceAmountString = invoiceAmount.getText().toString();
         }
+
+        Map<String,String> map=new HashMap<String,String>();
+        map.put("id",id);
+        map.put("invoicedate",dateString);
+        map.put("invoice_number",invoiceNumberString);
+        map.put("invoice_amount",invoiceAmountString);
+
+        postAddInvoiceData(map);
+    }
+
+    private void postAddInvoiceData(Map<String ,String> map){
+        GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+        Call<InvoiceAddPostResponse> call=service.postInvoiceAdd(map);
+        call.enqueue(new Callback<InvoiceAddPostResponse>() {
+            @Override
+            public void onResponse(Call<InvoiceAddPostResponse> call, Response<InvoiceAddPostResponse> response) {
+                Toast.makeText(getContext(),"Succes",Toast.LENGTH_LONG).show();
+
+            }
+
+            @Override
+            public void onFailure(Call<InvoiceAddPostResponse> call, Throwable t) {
+                Toast.makeText(getContext(),"Failure",Toast.LENGTH_LONG).show();
+
+            }
+        });
+
     }
 }

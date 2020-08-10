@@ -29,11 +29,14 @@ import com.phoneme.poinvoice.ui.invoice.network.PoPaymentPOSTResponse;
 import com.phoneme.poinvoice.ui.invoice.network.PoUploadPOSTResponse;
 import com.phoneme.poinvoice.ui.invoice.network.UPloadPOPaymentGetResponse;
 import com.phoneme.poinvoice.ui.invoice.network.UploadPOGetResponse;
+import com.phoneme.poinvoice.ui.po.model.PODataModel;
+import com.phoneme.poinvoice.ui.po.network.GeneratedListPOPaymentGetResponse;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 import okhttp3.MediaType;
@@ -42,6 +45,7 @@ import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.http.Query;
 
 public class UploadPaymentInvoiceFragment extends Fragment {
 
@@ -56,7 +60,8 @@ public class UploadPaymentInvoiceFragment extends Fragment {
 
     private String imagePath=new String();
     private boolean imageSelected = false;
-
+    private List<PODataModel> poDataModelList;
+    private PODataModel poDataModel;
 
     public static final String MULTIPART_FORM_DATA = "multipart/form-data";
 
@@ -94,7 +99,8 @@ public class UploadPaymentInvoiceFragment extends Fragment {
                 startActivityForResult(galleryIntent, 0);
             }
         });
-        getPaymentData(id);
+        //getPaymentData(id);
+        getPaymentData2(id);
     }
 
     private void getData(){
@@ -168,6 +174,24 @@ public class UploadPaymentInvoiceFragment extends Fragment {
         return result;
     }
 
+    private void getPaymentData2(String id){
+        GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+        Call<GeneratedListPOPaymentGetResponse> call=service.getGeneratedListPOPaymentData(id);
+        call.enqueue(new Callback<GeneratedListPOPaymentGetResponse>() {
+            @Override
+            public void onResponse(Call<GeneratedListPOPaymentGetResponse> call, Response<GeneratedListPOPaymentGetResponse> response) {
+                if(response!=null && response.body()!=null ){
+                    poDataModelList=response.body().getPoDataModelList();
+                    PO_Number.setText(response.body().getPoDataModelList().get(0).getPo_number());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GeneratedListPOPaymentGetResponse> call, Throwable t) {
+
+            }
+        });
+    }
     private void getPaymentData(String id){
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
         Call<UPloadPOPaymentGetResponse> call=service.getPOPaymentUploadData(id);
