@@ -73,9 +73,11 @@ public class VendorListFragment extends Fragment implements VendorListAdapter.On
     }
 
     public void onItemClick(int position){
+        Bundle args2 = new Bundle();
+        args2.putString("id",this.vendorDataModelList.get(position).getId());
 
         NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
-        navController.navigate(R.id.nav_vendor_edit);
+        navController.navigate(R.id.nav_vendor_edit,args2);
     }
     public void onItemClick2(int position){
 

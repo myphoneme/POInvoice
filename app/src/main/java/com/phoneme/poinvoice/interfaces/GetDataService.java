@@ -46,6 +46,8 @@ import com.phoneme.poinvoice.ui.po.network.PoTemplateEditGETResponse;
 import com.phoneme.poinvoice.ui.po.network.PoTemplateEditPOSTResponse;
 import com.phoneme.poinvoice.ui.po.network.PoTemplateListResponse;
 import com.phoneme.poinvoice.ui.po.network.VendorAddGetResponse;
+import com.phoneme.poinvoice.ui.po.network.VendorEditGetResponse;
+import com.phoneme.poinvoice.ui.po.network.VendorEditPostResponse;
 import com.phoneme.poinvoice.ui.po.network.VendorListResponse;
 import com.phoneme.poinvoice.ui.invoice.network.UploadPOGetResponse;
 import com.phoneme.poinvoice.user.network.OTPVerifactionResponse;
@@ -89,6 +91,9 @@ public interface GetDataService {
     @GET("/invoiceapis/vendor/vendorlist")
     Call<VendorListResponse> getVendorList_Page(@Query("page") int page);
 
+    @GET("/invoiceapis/vendor/edit")
+    Call<VendorEditGetResponse> getVendorEditData(@Query("id") String id);
+
     @GET("/invoiceapis/po/")
     Call<GeneratedListResponse> getGeneratedList();
 
@@ -100,6 +105,12 @@ public interface GetDataService {
 
     @GET("/invoiceapis/PoTemplate/edit")
     Call<PoTemplateEditGETResponse> getPoTemplateEditData(@Query("id") String id);
+
+
+    @FormUrlEncoded
+    @POST("/invoiceapis/vendor/create")
+    Call<VendorEditPostResponse> postVendorEdit(@FieldMap Map<String, String> vendorData);
+
 
    @FormUrlEncoded
     @POST("/invoiceapis/vendor/create")
