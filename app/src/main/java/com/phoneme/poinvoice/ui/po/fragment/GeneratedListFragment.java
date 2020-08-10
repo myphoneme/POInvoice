@@ -75,7 +75,7 @@ public class GeneratedListFragment extends Fragment implements GeneratedListAdap
         args2.putString("id",this.poDataModelList.get(position).getId());
 
         NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
-        navController.navigate(R.id.nav_payment_upload,args2);
+        navController.navigate(R.id.nav_generated_list_payment_upload,args2);
     }
     public void onItemClick2(int position){
         Bundle args2 = new Bundle();
