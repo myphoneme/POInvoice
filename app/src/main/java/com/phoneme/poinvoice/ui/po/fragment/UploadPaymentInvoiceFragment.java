@@ -99,8 +99,8 @@ public class UploadPaymentInvoiceFragment extends Fragment {
                 startActivityForResult(galleryIntent, 0);
             }
         });
-        //getPaymentData(id);
-        getPaymentData2(id);
+        getPaymentData(id);
+        //getPaymentData2(id);
     }
 
     private void getData(){
