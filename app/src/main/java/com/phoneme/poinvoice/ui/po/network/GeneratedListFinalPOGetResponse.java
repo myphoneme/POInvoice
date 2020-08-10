@@ -8,7 +8,7 @@ import com.phoneme.poinvoice.ui.po.model.VendorDataModel;
 
 import java.util.List;
 
-public class GeneratedListFunnelPOGetResponse {
+public class GeneratedListFinalPOGetResponse {
     @SerializedName("title")
     private String title;
 
@@ -21,14 +21,13 @@ public class GeneratedListFunnelPOGetResponse {
     @SerializedName("po_main_data")
     private List<PODataModel> poDataModelList;
 
-    @SerializedName("vendor")
-    private VendorDataModel vendorDataModel;
-
     @SerializedName("org")
     private OrgDataModel orgDataModel;
     public OrgDataModel getOrgDataModel(){
         return this.orgDataModel;
     }
+    @SerializedName("vendor")
+    private VendorDataModel vendorDataModel;
 
     public VendorDataModel getVendorDataModel(){
         return this.vendorDataModel;
@@ -44,4 +43,6 @@ public class GeneratedListFunnelPOGetResponse {
     public List<POItemData> getPoItemDataList(){
         return this.poItemDataList;
     }
+
+
 }

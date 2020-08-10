@@ -85,6 +85,14 @@ public class GeneratedListFragment extends Fragment implements GeneratedListAdap
         NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
         navController.navigate(R.id.nav_invoice_add_upload,args2);
     }
+    public void onItemClick3(int position){
+        Bundle args2 = new Bundle();
+        args2.putString("id",this.poDataModelList.get(position).getId());
+        args2.putString("organization",this.poDataModelList.get(position).getOrganization());
+
+        NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+        navController.navigate(R.id.nav_po_final_funnel_data);
+    }
     private void getGeneratedListCompleteData(){
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
         Call<GeneratedListCompleteResponse> call=service.getGeneratedListComplete("2020-21");

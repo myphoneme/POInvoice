@@ -74,6 +74,12 @@ public class GeneratedListAdapter extends RecyclerView.Adapter<GeneratedListAdap
             percentagePaymentReceived=(TextView)v.findViewById(R.id.percentage_payment_received);
             percentagePaymentReceived.setVisibility(View.GONE);
             poNO=(TextView)v.findViewById(R.id.po_no);
+            poNO.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onItemClick3(getAdapterPosition());
+                }
+            });
             imageView=(ImageView)v.findViewById(R.id.organisation);
             Invoice=(TextView)v.findViewById(R.id.invoice);
 //            title=(TextView)v.findViewById(R.id.name);
@@ -142,5 +148,6 @@ public class GeneratedListAdapter extends RecyclerView.Adapter<GeneratedListAdap
     public interface OnItemClickListener {
         void onItemClick(int position);
         void onItemClick2(int position);
+        void onItemClick3(int position);
     }
 }

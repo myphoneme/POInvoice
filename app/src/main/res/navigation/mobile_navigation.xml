@@ -103,8 +103,15 @@
     <fragment
         android:id="@+id/nav_create_new_po_templatge"
         android:name="com.phoneme.poinvoice.ui.po.fragment.AddNewPoTemplateFragment"
-        android:label="@string/menu_create_new_po_template"
+        android:label="@string/menu_funnel_final_po_data"
         tools:layout="@layout/fragment_create_new_po_template"
+        />
+
+    <fragment
+        android:id="@+id/nav_po_final_funnel_data"
+        android:name="com.phoneme.poinvoice.ui.po.fragment.PODataFinalFunnelFragment"
+        android:label="@string/menu_create_new_po_template"
+        tools:layout="@layout/fragment_po_final_funnel_data"
         />
 
     <fragment

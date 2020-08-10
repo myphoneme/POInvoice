@@ -41,6 +41,8 @@ import com.phoneme.poinvoice.ui.invoice.network.PoUploadPOSTResponse;
 import com.phoneme.poinvoice.ui.invoice.network.UPloadPOPaymentGetResponse;
 import com.phoneme.poinvoice.ui.invoice.network.VendorAddPostResponse;
 import com.phoneme.poinvoice.ui.po.network.AddNewPoTemplateGetResponse;
+import com.phoneme.poinvoice.ui.po.network.GeneratedListFinalPOGetResponse;
+import com.phoneme.poinvoice.ui.po.network.GeneratedListFunnelPOGetResponse;
 import com.phoneme.poinvoice.ui.po.network.GeneratedListPOPaymentGetResponse;
 import com.phoneme.poinvoice.ui.po.network.GeneratedListPOPaymentPostResponse;
 import com.phoneme.poinvoice.ui.po.network.GeneratedListResponse;
@@ -109,8 +111,13 @@ public interface GetDataService {
     Call<GeneratedListPOPaymentGetResponse> getGeneratedListPOPaymentData(@Query("id") String id);
 
 
-    @GET("/invoiceapis/po/potemplate2")
-    Call<PoTemplateListResponse> getPoTemplateList();
+    @GET("/invoiceapis/po/funnelpo")
+    Call<GeneratedListFunnelPOGetResponse> getGeneratedListFunnelPOData(@Query("id") String id);
+
+
+    @GET("/invoiceapis/po/finalpo")
+    Call<GeneratedListFinalPOGetResponse> getGeneratedListFinalPOData(@Query("id") String id);
+
 
     @GET("/invoiceapis/PoTemplate/edit")
     Call<PoTemplateEditGETResponse> getPoTemplateEditData(@Query("id") String id);
