@@ -40,11 +40,13 @@ import com.phoneme.poinvoice.ui.invoice.network.PoPaymentPOSTResponse;
 import com.phoneme.poinvoice.ui.invoice.network.PoUploadPOSTResponse;
 import com.phoneme.poinvoice.ui.invoice.network.UPloadPOPaymentGetResponse;
 import com.phoneme.poinvoice.ui.invoice.network.VendorAddPostResponse;
+import com.phoneme.poinvoice.ui.po.network.AddNewPoTemplateGetResponse;
 import com.phoneme.poinvoice.ui.po.network.GeneratedListPOPaymentGetResponse;
 import com.phoneme.poinvoice.ui.po.network.GeneratedListPOPaymentPostResponse;
 import com.phoneme.poinvoice.ui.po.network.GeneratedListResponse;
 import com.phoneme.poinvoice.ui.po.network.GeneratedListCompleteResponse;
 import com.phoneme.poinvoice.ui.po.network.InvoiceAddPostResponse;
+import com.phoneme.poinvoice.ui.po.network.POTemplateAddPostResponse;
 import com.phoneme.poinvoice.ui.po.network.PoTemplateEditGETResponse;
 import com.phoneme.poinvoice.ui.po.network.PoTemplateEditPOSTResponse;
 import com.phoneme.poinvoice.ui.po.network.PoTemplateListResponse;
@@ -113,6 +115,9 @@ public interface GetDataService {
     @GET("/invoiceapis/PoTemplate/edit")
     Call<PoTemplateEditGETResponse> getPoTemplateEditData(@Query("id") String id);
 
+    @GET("/invoiceapis/PoTemplate/create")
+    Call<AddNewPoTemplateGetResponse> getPoTemplateAddData();
+
 
 
 
@@ -126,7 +131,7 @@ public interface GetDataService {
     Call<VendorEditPostResponse> postVendorEdit(@FieldMap Map<String, String> vendorData);
 
 
-   @FormUrlEncoded
+    @FormUrlEncoded
     @POST("/invoiceapis/vendor/create")
     Call<VendorAddPostResponse> postVendorAdd(@FieldMap Map<String, String> vendorData);
 
@@ -164,6 +169,17 @@ public interface GetDataService {
     @Multipart
     @POST("/invoiceapis/po/uploadpayment")
     Call<GeneratedListPOPaymentPostResponse> postGeneratedListPOPaymentWithoutImage(@PartMap() Map<String, RequestBody> partMap);
+
+
+
+    @Multipart
+    @POST("/invoiceapis/PoTemplate/create")
+    Call<POTemplateAddPostResponse> postPOTemplateAddWithImage(@Part MultipartBody.Part file, @PartMap() Map<String, RequestBody> partMap);
+
+    @Multipart
+    @POST("/invoiceapis/PoTemplate/create")
+    Call<POTemplateAddPostResponse> postPOTemplateAddWithoutImage(@PartMap() Map<String, RequestBody> partMap);
+
 
 
 
