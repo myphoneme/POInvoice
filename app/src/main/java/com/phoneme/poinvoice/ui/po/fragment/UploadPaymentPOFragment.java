@@ -27,6 +27,7 @@ import com.phoneme.poinvoice.ui.invoice.network.PoPaymentPOSTResponse;
 import com.phoneme.poinvoice.ui.invoice.network.UPloadPOPaymentGetResponse;
 import com.phoneme.poinvoice.ui.po.model.PODataModel;
 import com.phoneme.poinvoice.ui.po.network.GeneratedListPOPaymentGetResponse;
+import com.phoneme.poinvoice.ui.po.network.GeneratedListPOPaymentPostResponse;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -127,7 +128,7 @@ public class UploadPaymentPOFragment extends Fragment {
         RequestBody ID=createPartFromString(id);
         map.put("id",ID);
 
-        postDataWithImage(map);
+        postDataWithImage2(map);
     }
 
     @Override
@@ -240,6 +241,46 @@ public class UploadPaymentPOFragment extends Fragment {
 
             @Override
             public void onFailure(Call<PoPaymentPOSTResponse> call, Throwable t) {
+                Toast.makeText(getContext(),"failure post"+t.getMessage(),Toast.LENGTH_LONG).show();
+                System.out.println("UploadPaymentInvoiceFragment failure postpayment "+t.getMessage());
+
+            }
+        });
+    }
+
+    private void postDataWithImage2(HashMap<String,RequestBody> map){
+        GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+        File file;
+
+        if (imagePath != null && !imagePath.isEmpty()) {
+            //String newimagePath = compressImage(imagePath);
+            //file = new File(newimagePath);
+            file = new File(imagePath);//This one working
+
+        }else{
+            file = new File("");
+        }
+
+        final RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("userfile", file.getName(), requestBody);//these 3 lines extra
+        Call<GeneratedListPOPaymentPostResponse> call;
+
+        if(imageSelected){
+            call=service.postGeneratedListPOPaymentWithImage(body,map);
+            Toast.makeText(getContext(),"image selected",Toast.LENGTH_LONG).show();
+        }else{
+            Toast.makeText(getContext(),"image not selected",Toast.LENGTH_LONG).show();
+            call=service.postGeneratedListPOPaymentWithoutImage(map);
+        }
+        call.enqueue(new Callback<GeneratedListPOPaymentPostResponse>() {
+            @Override
+            public void onResponse(Call<GeneratedListPOPaymentPostResponse> call, Response<GeneratedListPOPaymentPostResponse> response) {
+                Toast.makeText(getContext(),"success post"+response.body().isUpdate(),Toast.LENGTH_LONG).show();
+
+            }
+
+            @Override
+            public void onFailure(Call<GeneratedListPOPaymentPostResponse> call, Throwable t) {
                 Toast.makeText(getContext(),"failure post"+t.getMessage(),Toast.LENGTH_LONG).show();
                 System.out.println("UploadPaymentInvoiceFragment failure postpayment "+t.getMessage());
 
