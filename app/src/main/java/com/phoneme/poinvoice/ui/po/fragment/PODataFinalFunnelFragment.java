@@ -40,8 +40,8 @@ public class PODataFinalFunnelFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         String id = getArguments().getString("id");
-        String organisation = getArguments().getString("organisation");
-        if(organisation.equalsIgnoreCase("2")||organisation.equalsIgnoreCase("4")||organisation.equalsIgnoreCase("5")){
+        String organization = getArguments().getString("organization");
+        if(organization.equalsIgnoreCase("2")||organization.equalsIgnoreCase("4")||organization.equalsIgnoreCase("5")){
             getFinalData(id);
         }else{
             getFunnelData(id);

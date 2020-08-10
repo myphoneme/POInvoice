@@ -118,6 +118,8 @@ public interface GetDataService {
     @GET("/invoiceapis/po/finalpo")
     Call<GeneratedListFinalPOGetResponse> getGeneratedListFinalPOData(@Query("id") String id);
 
+    @GET("/invoiceapis/po/potemplate2")
+    Call<PoTemplateListResponse> getPoTemplateList();
 
     @GET("/invoiceapis/PoTemplate/edit")
     Call<PoTemplateEditGETResponse> getPoTemplateEditData(@Query("id") String id);

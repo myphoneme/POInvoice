@@ -91,7 +91,7 @@ public class GeneratedListFragment extends Fragment implements GeneratedListAdap
         args2.putString("organization",this.poDataModelList.get(position).getOrganization());
 
         NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
-        navController.navigate(R.id.nav_po_final_funnel_data);
+        navController.navigate(R.id.nav_po_final_funnel_data,args2);
     }
     private void getGeneratedListCompleteData(){
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
