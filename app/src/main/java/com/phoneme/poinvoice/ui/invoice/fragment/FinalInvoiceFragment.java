@@ -1,14 +1,11 @@
 package com.phoneme.poinvoice.ui.invoice.fragment;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -18,22 +15,35 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.phoneme.poinvoice.R;
+import com.phoneme.poinvoice.config.RetrofitClientInstance;
+import com.phoneme.poinvoice.interfaces.GetDataService;
 import com.phoneme.poinvoice.ui.invoice.InvoiceViewModel;
+import com.phoneme.poinvoice.ui.invoice.network.InvoiceFinalInvoiceGetResponse;
+import com.phoneme.poinvoice.ui.invoice.network.InvoiceFunnelInvoiceGetResponse;
+import com.squareup.picasso.Picasso;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class FinalInvoiceFragment extends Fragment {
 
     private InvoiceViewModel invoiceViewModel;
     private RecyclerView recyclerView;
 
+    private InvoiceFinalInvoiceGetResponse finalData;
+    private InvoiceFunnelInvoiceGetResponse funnelData;
+    private TextView Company,FromCompany,ToCompany,InvoicePoData,TermsConditions,totalWithoutGst,CGSTPERCENTAMOUNT, SGSTPERCENTAMOUNT;
+    private TextView GrandTotal;
+
+    private ImageView Logo;
+    private String base_url_image="http://support.phoneme.in/assets/images/userimage/";
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         invoiceViewModel =
                 ViewModelProviders.of(this).get(InvoiceViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_final_invoice, container, false);
+        View root = inflater.inflate(R.layout.fragment_final_funnel_invoice, container, false);
 
         return root;
     }
@@ -41,6 +51,26 @@ public class FinalInvoiceFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        String id = getArguments().getString("id");
+        String name= getArguments().getString("name");
+        Toast.makeText(getContext(),"id="+id, Toast.LENGTH_LONG).show();
+        Company=(TextView)view.findViewById(R.id.company);
+        Logo=(ImageView)view.findViewById(R.id.logo);
+        FromCompany=(TextView)view.findViewById(R.id.from_company);
+        ToCompany=(TextView)view.findViewById(R.id.to_company);
+        InvoicePoData=(TextView)view.findViewById(R.id.invoice_po_data);
+        TermsConditions=(TextView)view.findViewById(R.id.terms_conditions);
+        totalWithoutGst=(TextView)view.findViewById(R.id.total_without_gst);
+        CGSTPERCENTAMOUNT = (TextView) view.findViewById(R.id.cgst_percent_amount);
+        SGSTPERCENTAMOUNT = (TextView) view.findViewById(R.id.sgst_percent_amount);
+        GrandTotal=(TextView)view.findViewById(R.id.grand_total);
+
+
+        if (name.equalsIgnoreCase("2") || name.equalsIgnoreCase("4") || name.equalsIgnoreCase("5")) {
+            getFinalData(id);
+        } else {
+            getFunnelData(id);
+        }
     }
 
 //    private void createPdf() {
@@ -116,4 +146,86 @@ public class FinalInvoiceFragment extends Fragment {
 //        createPdf();// create pdf after creating bitmap and saving
 //
 //    }
+
+    private void getFinalData(String id) {
+        GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+        //InvoiceFinalInvoiceGetResponse
+        Call<InvoiceFinalInvoiceGetResponse> call=service.getInvoiceListFinalPOData(id);
+        call.enqueue(new Callback<InvoiceFinalInvoiceGetResponse>() {
+            @Override
+            public void onResponse(Call<InvoiceFinalInvoiceGetResponse> call, Response<InvoiceFinalInvoiceGetResponse> response) {
+                finalData=response.body();
+                setFinallData(finalData);
+            }
+
+            @Override
+            public void onFailure(Call<InvoiceFinalInvoiceGetResponse> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void getFunnelData(String id) {
+        GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+        //InvoiceFunnelInvoiceGetResponse
+        Call<InvoiceFunnelInvoiceGetResponse> call=service.getInvoiceListFunnelPOData(id);
+        call.enqueue(new Callback<InvoiceFunnelInvoiceGetResponse>() {
+            @Override
+            public void onResponse(Call<InvoiceFunnelInvoiceGetResponse> call, Response<InvoiceFunnelInvoiceGetResponse> response) {
+               funnelData=response.body();
+                setFunnelData(funnelData);
+            }
+
+            @Override
+            public void onFailure(Call<InvoiceFunnelInvoiceGetResponse> call, Throwable t) {
+
+            }
+        });
+
+    }
+
+    private void setFunnelData(InvoiceFunnelInvoiceGetResponse data) {
+        String fromAddressdata = new String();
+        fromAddressdata=data.getInvoiceListDataModelList().get(0).getTemplate_name()+"\n"
+                +data.getInvoiceListDataModelList().get(0).getAddress_line1()+"\n";
+        Company.setText(data.getInvoiceListDataModelList().get(0).getTemplate_name());
+        FromCompany.setText(fromAddressdata);
+        Picasso.with(getContext()).load(base_url_image+data.getInvoiceListDataModelList().get(0).getLogo()).into( this.Logo);
+    }
+
+    private void setFinallData(InvoiceFinalInvoiceGetResponse data) {
+        String fromAddressdata = new String(), toAddressdata = new String(),invoice_no=new String();
+        String po_invoice_data = new String(),termsConditions=new String(),total_without_gst=new String();
+        String cgst_percentage_amount = new String(), sgst_percentage_amount = new String();
+        String grandTotal=new String();
+
+        fromAddressdata="From\n"+data.getInvoiceListDataModelList().get(0).getTemplate_name()+"\n"
+                +data.getInvoiceListDataModelList().get(0).getAddress_line1()+"\n"
+                +data.getInvoiceListDataModelList().get(0).getAddress_line2()+"\n"
+                +data.getInvoiceListDataModelList().get(0).getAddress_line3()+"\n";
+
+        toAddressdata="To\n"+data.getVendorDataModelList().get(0).getVendor_name()+"\n"
+                +data.getVendorDataModelList().get(0).getAddress();
+        po_invoice_data="Invoice#"+data.getInvoiceDataModelList().get(0).getInvoice_number()+"\n"
+                +"Po No:"+data.getInvoiceDataModelList().get(0).getOrder_id()+"\n"
+                +"Invoice Date:"+data.getInvoiceDataModelList().get(0).getDuedate();
+
+        total_without_gst="Total without GST: ₹"+data.getInvoiceDataModelList().get(0).getTotal();
+        termsConditions=data.getInvoiceDataModelList().get(0).getRemarks();
+        cgst_percentage_amount = "CGST @" + data.getInvoiceDataModelList().get(0).getCgst() + "% ₹" + data.getInvoiceDataModelList().get(0).getCgst_amount();
+        sgst_percentage_amount = "SGST @" +data.getInvoiceDataModelList().get(0).getSgst() + "% ₹" + data.getInvoiceDataModelList().get(0).getSgst_amount();
+        grandTotal="Grand Total: ₹"+data.getInvoiceDataModelList().get(0).getGrand_total();
+
+        Company.setText(data.getInvoiceListDataModelList().get(0).getTemplate_name());
+        FromCompany.setText(fromAddressdata);
+        ToCompany.setText(toAddressdata);
+        InvoicePoData.setText(po_invoice_data);
+        TermsConditions.setText(termsConditions);
+        totalWithoutGst.setText(total_without_gst);
+        CGSTPERCENTAMOUNT.setText(cgst_percentage_amount);
+        SGSTPERCENTAMOUNT.setText(sgst_percentage_amount);
+        GrandTotal.setText(grandTotal);
+
+        Picasso.with(getContext()).load(base_url_image+data.getInvoiceListDataModelList().get(0).getLogo()).into( this.Logo);
+    }
 }

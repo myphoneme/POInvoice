@@ -59,7 +59,7 @@
         android:id="@+id/nav_final_invoice"
         android:name="com.phoneme.poinvoice.ui.invoice.fragment.FinalInvoiceFragment"
         android:label="@string/menu_final_invoice"
-        tools:layout="@layout/fragment_final_invoice"
+        tools:layout="@layout/fragment_final_funnel_invoice"
         />
     <fragment
         android:id="@+id/nav_vendor_edit"

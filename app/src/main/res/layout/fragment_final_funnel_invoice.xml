@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+        <ImageView
+            android:id="@+id/logo"
+            android:src="@drawable/logopngphoneme"
+            android:layout_width="100dp"
+            android:layout_height="50dp"/>
+        <TextView
+            android:visibility="visible"
+            android:id="@+id/company"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phoneme Solutions Private Limited"/>
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/from_company"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="From Phoneme Solutions Pvt. Ltd.
+Advant Navis Business Park Plot No. 7, Tower-B, 614, Sector 142
+Noida - Greater Noida Expressway, Noida - 201305
+Phone: (+91) 120-4354074
+Email: info@myphoneme.com"
+                />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="#c0c0c0"/>
+
+            <TextView
+                android:id="@+id/to_company"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="To
+Phoneme Solutions Pvt. Ltd.
+No. B-614, 6th Floor, Advant Navis,
+Plot No. 07, Sector-142,
+Email: Ramanagara Taluk, Bangalore - 562109"
+                />
+        </LinearLayout>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:gravity="center_horizontal">
+    <TextView
+        android:id="@+id/invoice_po_data"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Invoice ## PS/0061/02/2020
+Po No: NXT/PO/OPE/306-M/2019-202
+Invoice Date: 2020-01-27
+Account: 968-34567
+GST No. 09 AAHCP9748G 2ZS"
+        />
+</RelativeLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="5dp"
+            android:visibility="gone">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="B86028 -Oracle Publi"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Data Analysis ,Support and Maintenance Services(2018-19)"/>
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:background="#c0c0c0"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                        android:text="QTY:0"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Price:32"
+                        />
+                    <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                        android:text="Subtotal:13"/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="5dp">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview_items"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical"
+                android:layout_margin="5dp"
+                />
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="5dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/terms_conditions"
+                    android:layout_margin="5dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:background="@drawable/border"
+                    android:text="Terms conditions 1. Payments are to be made directly to the company without any deduction or discount other than stated in invoice. 2. Any issue and concern with invoice or supporting should be addressed to Phoneme Solutions PVT LTD with in 7 days o"/>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:text="Amount Due 2020-07-08"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:id="@+id/total_without_gst"
+                        android:text="Total without GST:	₹20720"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/cgst_percent_amount"
+                        android:layout_width="match_parent"
+                        android:text="CGST @ 9%	₹1865000"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/sgst_percent_amount"
+                        android:layout_width="match_parent"
+                        android:text="SGST @ 9%	₹1865"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/grand_total"
+                        android:layout_width="match_parent"
+                        android:text="Grand Total:	₹2444"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</ScrollView>

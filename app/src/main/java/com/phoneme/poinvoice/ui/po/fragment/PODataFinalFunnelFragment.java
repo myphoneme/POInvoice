@@ -50,7 +50,7 @@ public class PODataFinalFunnelFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         invoiceViewModel =
                 ViewModelProviders.of(this).get(InvoiceViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_final_invoice, container, false);
+        View root = inflater.inflate(R.layout.fragment_final_funnel_po, container, false);
 
         return root;
     }

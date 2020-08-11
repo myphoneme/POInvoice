@@ -104,8 +104,13 @@ public class InvoiceFragment extends Fragment implements InvoiceListAdapter.OnIt
         navController.navigate(R.id.nav_po_template_upload,args2);
     }
     public void onItemClick3(int position){
+        Bundle args2 = new Bundle();
+        String id=invoiceRowModelList.get(position).getId();
+        String name=invoiceRowModelList.get(position).getName();
+        args2.putString("id",id);
+        args2.putString("name",name);
         NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
-        navController.navigate(R.id.nav_final_invoice);
+        navController.navigate(R.id.nav_final_invoice,args2);
 
     }
 
