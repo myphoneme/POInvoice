@@ -9,10 +9,12 @@
         android:orientation="vertical"
         android:gravity="center_horizontal">
         <ImageView
+            android:id="@+id/logo"
             android:src="@drawable/logopngphoneme"
             android:layout_width="100dp"
             android:layout_height="50dp"/>
         <TextView
+            android:visibility="gone"
             android:id="@+id/company"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -22,6 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
+                android:id="@+id/from_company"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
@@ -42,6 +45,7 @@ Email: info@myphoneme.com"
                 android:background="#c0c0c0"/>
 
             <TextView
+                android:id="@+id/to_company"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
@@ -73,7 +77,8 @@ GST No. 09 AAHCP9748G 2ZS"
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardElevation="5dp">
+            app:cardElevation="5dp"
+            android:visibility="gone">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -123,6 +128,22 @@ GST No. 09 AAHCP9748G 2ZS"
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="5dp">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview_items"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical"
+                android:layout_margin="5dp"
+                />
+
+        </androidx.cardview.widget.CardView>
+
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -132,6 +153,7 @@ GST No. 09 AAHCP9748G 2ZS"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
+                    android:id="@+id/terms_conditions"
                     android:layout_margin="5dp"
                     android:layout_width="0dp"
                     android:layout_weight="1"
@@ -151,17 +173,21 @@ GST No. 09 AAHCP9748G 2ZS"
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:layout_width="match_parent"
+                        android:id="@+id/total_without_gst"
                         android:text="Total without GST:	₹20720"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:id="@+id/cgst_percent_amount"
                         android:layout_width="match_parent"
                         android:text="CGST @ 9%	₹1865"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:id="@+id/sgst_percent_amount"
                         android:layout_width="match_parent"
                         android:text="SGST @ 9%	₹1865"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:id="@+id/grand_total"
                         android:layout_width="match_parent"
                         android:text="Grand Total:	₹2444"
                         android:layout_height="wrap_content"/>
