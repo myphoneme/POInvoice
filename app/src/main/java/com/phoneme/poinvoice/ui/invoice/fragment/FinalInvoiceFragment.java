@@ -12,15 +12,20 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.phoneme.poinvoice.R;
 import com.phoneme.poinvoice.config.RetrofitClientInstance;
 import com.phoneme.poinvoice.interfaces.GetDataService;
 import com.phoneme.poinvoice.ui.invoice.InvoiceViewModel;
+import com.phoneme.poinvoice.ui.invoice.adapter.InvoiceFinalFunnelItemAdapter;
+import com.phoneme.poinvoice.ui.invoice.model.InvoiceProductsDataModel;
 import com.phoneme.poinvoice.ui.invoice.network.InvoiceFinalInvoiceGetResponse;
 import com.phoneme.poinvoice.ui.invoice.network.InvoiceFunnelInvoiceGetResponse;
 import com.squareup.picasso.Picasso;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,6 +40,7 @@ public class FinalInvoiceFragment extends Fragment {
     private InvoiceFunnelInvoiceGetResponse funnelData;
     private TextView Company,FromCompany,ToCompany,InvoicePoData,TermsConditions,totalWithoutGst,CGSTPERCENTAMOUNT, SGSTPERCENTAMOUNT;
     private TextView GrandTotal;
+    private List<InvoiceProductsDataModel> invoiceProductsDataModels;
 
     private ImageView Logo;
     private String base_url_image="http://support.phoneme.in/assets/images/userimage/";
@@ -64,6 +70,7 @@ public class FinalInvoiceFragment extends Fragment {
         CGSTPERCENTAMOUNT = (TextView) view.findViewById(R.id.cgst_percent_amount);
         SGSTPERCENTAMOUNT = (TextView) view.findViewById(R.id.sgst_percent_amount);
         GrandTotal=(TextView)view.findViewById(R.id.grand_total);
+        recyclerView=(RecyclerView)view.findViewById(R.id.recyclerview_items);
 
 
         if (name.equalsIgnoreCase("2") || name.equalsIgnoreCase("4") || name.equalsIgnoreCase("5")) {
@@ -226,7 +233,15 @@ public class FinalInvoiceFragment extends Fragment {
         SGSTPERCENTAMOUNT.setText(sgst_percentage_amount);
         GrandTotal.setText(grandTotal);
 
-        
+        invoiceProductsDataModels=data. getInvoiceProductsDataModels();
         Picasso.with(getContext()).load(base_url_image+data.getInvoiceListDataModelList().get(0).getLogo()).into( this.Logo);
+        setAdapter(invoiceProductsDataModels);
+    }
+
+    private void setAdapter(List<InvoiceProductsDataModel> invoiceProductsDataModels){
+        InvoiceFinalFunnelItemAdapter adapter=new InvoiceFinalFunnelItemAdapter(getContext(),invoiceProductsDataModels);
+        recyclerView.setAdapter(adapter);
+        LinearLayoutManager linearVertical = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(linearVertical);
     }
 }

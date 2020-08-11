@@ -1,6 +1,5 @@
 package com.phoneme.poinvoice.ui.po.fragment;
 
-import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,8 +18,7 @@ import com.phoneme.poinvoice.R;
 import com.phoneme.poinvoice.config.RetrofitClientInstance;
 import com.phoneme.poinvoice.interfaces.GetDataService;
 import com.phoneme.poinvoice.ui.invoice.InvoiceViewModel;
-import com.phoneme.poinvoice.ui.po.adapter.FinalFunnelItemAdapter;
-import com.phoneme.poinvoice.ui.po.model.PODataModel;
+import com.phoneme.poinvoice.ui.po.adapter.POFinalFunnelItemAdapter;
 import com.phoneme.poinvoice.ui.po.model.POItemData;
 import com.phoneme.poinvoice.ui.po.network.GeneratedListFinalPOGetResponse;
 import com.phoneme.poinvoice.ui.po.network.GeneratedListFunnelPOGetResponse;
@@ -257,7 +255,7 @@ public class PODataFinalFunnelFragment extends Fragment {
     }
 
     private void setAdapter(List<POItemData> poItemDataList){
-        FinalFunnelItemAdapter adapter=new FinalFunnelItemAdapter(getContext(),poItemDataList);
+        POFinalFunnelItemAdapter adapter=new POFinalFunnelItemAdapter(getContext(),poItemDataList);
         recyclerView.setAdapter(adapter);
         LinearLayoutManager linearVertical = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearVertical);

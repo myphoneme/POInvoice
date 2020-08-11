@@ -1,4 +1,4 @@
-package com.phoneme.poinvoice.ui.po.adapter;
+package com.phoneme.poinvoice.ui.invoice.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,17 +9,16 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.phoneme.poinvoice.R;
-import com.phoneme.poinvoice.ui.po.model.PODataModel;
+import com.phoneme.poinvoice.ui.invoice.model.InvoiceProductsDataModel;
 import com.phoneme.poinvoice.ui.po.model.POItemData;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
-public class FinalFunnelItemAdapter extends RecyclerView.Adapter<FinalFunnelItemAdapter.ViewHolder> {
+public class InvoiceFinalFunnelItemAdapter extends RecyclerView.Adapter<InvoiceFinalFunnelItemAdapter.ViewHolder> {
     private Context mcontex;
-    private List<POItemData> poItemDataList;
-    public FinalFunnelItemAdapter(Context context,List<POItemData> poitemDatalist){
+//    private List<POItemData> poItemDataList;
+    List<InvoiceProductsDataModel> poItemDataList ;
+    public InvoiceFinalFunnelItemAdapter(Context context, List<InvoiceProductsDataModel> poitemDatalist){
         this.mcontex=context;
         this.poItemDataList=poitemDatalist;
     }
@@ -34,7 +33,7 @@ public class FinalFunnelItemAdapter extends RecyclerView.Adapter<FinalFunnelItem
             subTotal=(TextView)v.findViewById(R.id.subtotal);
         }
         private void setData2(int position){
-            item.setText(poItemDataList.get(position).getItem());
+            item.setText(poItemDataList.get(position).getProduct());
             item_description.setText(poItemDataList.get(position).getDescription());
             quantity.setText(poItemDataList.get(position).getQty());
             unitPrice.setText("₹"+poItemDataList.get(position).getPrice());
@@ -49,12 +48,12 @@ public class FinalFunnelItemAdapter extends RecyclerView.Adapter<FinalFunnelItem
 
 
         @Override
-        public FinalFunnelItemAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i){
-            View view= LayoutInflater.from(this.mcontex).inflate(R.layout.adapter_poitem_list,viewGroup,false);
-            return new FinalFunnelItemAdapter.ViewHolder(view);
+        public InvoiceFinalFunnelItemAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i){
+            View view= LayoutInflater.from(this.mcontex).inflate(R.layout.adapter_invoice_final_funnel_item_list,viewGroup,false);
+            return new InvoiceFinalFunnelItemAdapter.ViewHolder(view);
         }
 
-    public void onBindViewHolder(FinalFunnelItemAdapter.ViewHolder vh, int position){
+    public void onBindViewHolder(InvoiceFinalFunnelItemAdapter.ViewHolder vh, int position){
         vh.setData2(position);
     }
 

@@ -9,17 +9,14 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.phoneme.poinvoice.R;
-import com.phoneme.poinvoice.ui.po.model.PODataModel;
 import com.phoneme.poinvoice.ui.po.model.POItemData;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
-public class FinalFunnelItemAdapter extends RecyclerView.Adapter<FinalFunnelItemAdapter.ViewHolder> {
+public class POFinalFunnelItemAdapter extends RecyclerView.Adapter<POFinalFunnelItemAdapter.ViewHolder> {
     private Context mcontex;
     private List<POItemData> poItemDataList;
-    public FinalFunnelItemAdapter(Context context,List<POItemData> poitemDatalist){
+    public POFinalFunnelItemAdapter(Context context, List<POItemData> poitemDatalist){
         this.mcontex=context;
         this.poItemDataList=poitemDatalist;
     }
@@ -49,12 +46,12 @@ public class FinalFunnelItemAdapter extends RecyclerView.Adapter<FinalFunnelItem
 
 
         @Override
-        public FinalFunnelItemAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i){
+        public POFinalFunnelItemAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i){
             View view= LayoutInflater.from(this.mcontex).inflate(R.layout.adapter_poitem_list,viewGroup,false);
-            return new FinalFunnelItemAdapter.ViewHolder(view);
+            return new POFinalFunnelItemAdapter.ViewHolder(view);
         }
 
-    public void onBindViewHolder(FinalFunnelItemAdapter.ViewHolder vh, int position){
+    public void onBindViewHolder(POFinalFunnelItemAdapter.ViewHolder vh, int position){
         vh.setData2(position);
     }
 

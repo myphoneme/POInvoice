@@ -23,10 +23,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Item/Services"
+                android:text="Service"
                 android:textStyle="bold"/>
             <TextView
                 android:id="@+id/item"
+                android:gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="06 Dec 2019"/>
@@ -45,7 +46,7 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:gravity="center_horizontal"
-                    android:text="Item Description"/>
+                    android:text="Description"/>
                 <TextView
                     android:id="@+id/item_description"
                     android:layout_width="wrap_content"
@@ -132,7 +133,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:text="Unit Price"/>
+                    android:text="Price"/>
                 <TextView
                     android:id="@+id/unit_price"
                     android:layout_width="wrap_content"
