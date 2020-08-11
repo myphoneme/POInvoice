@@ -226,6 +226,7 @@ public class FinalInvoiceFragment extends Fragment {
         SGSTPERCENTAMOUNT.setText(sgst_percentage_amount);
         GrandTotal.setText(grandTotal);
 
+        
         Picasso.with(getContext()).load(base_url_image+data.getInvoiceListDataModelList().get(0).getLogo()).into( this.Logo);
     }
 }
