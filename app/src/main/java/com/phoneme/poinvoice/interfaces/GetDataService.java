@@ -37,6 +37,7 @@ import com.phoneme.poinvoice.ui.invoice.network.CheckInvoiceListResponse1;
 import com.phoneme.poinvoice.ui.invoice.network.InvoiceFinalInvoiceGetResponse;
 import com.phoneme.poinvoice.ui.invoice.network.InvoiceFunnelInvoiceGetResponse;
 import com.phoneme.poinvoice.ui.invoice.network.InvoiceGenerateGetResponse;
+import com.phoneme.poinvoice.ui.invoice.network.InvoiceGeneratePostResponse;
 import com.phoneme.poinvoice.ui.invoice.network.InvoiceListResponse;
 import com.phoneme.poinvoice.ui.invoice.network.InvoiceResponse;
 import com.phoneme.poinvoice.ui.invoice.network.PoPaymentPOSTResponse;
@@ -148,6 +149,9 @@ public interface GetDataService {
 
 
 
+    @FormUrlEncoded
+    @POST("/invoiceapis/invoice/generatenewinvoice")
+    Call<InvoiceGeneratePostResponse> postInvoiceGenerate(@FieldMap Map<String, String> generateInvoiceData);
 
 
     @FormUrlEncoded

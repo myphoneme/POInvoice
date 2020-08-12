@@ -107,7 +107,7 @@
     <Spinner
         android:layout_alignParentRight="true"
         android:id="@+id/company"
-        android:layout_width="wrap_content"
+        android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
@@ -295,21 +295,22 @@
         android:text="Service"/>
 
     <RelativeLayout
+        android:id="@+id/igst_layout"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:text="GST%(in Number)"
+            android:text="IGST%(in Number)"
             android:textSize="14sp"
             android:textStyle="bold"
             />
 
         <EditText
             android:padding="5dp"
-            android:id="@+id/gst_percentage"
-            android:layout_width="230dp"
+            android:id="@+id/igst_percentage"
+            android:layout_width="210dp"
             android:layout_height="30dp"
             android:hint="18"
             android:layout_alignParentRight="true"
@@ -317,6 +318,62 @@
             android:background="@drawable/edit_bg"
             />
 
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/sgst_cgst_layout"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:visibility="visible"
+        android:layout_height="wrap_content">
+    <RelativeLayout
+        android:id="@+id/cgst_layout"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="CGST%(in Number)"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:padding="5dp"
+            android:id="@+id/cgst_percentage"
+            android:layout_width="210dp"
+            android:layout_height="30dp"
+            android:hint="18"
+            android:layout_alignParentRight="true"
+            android:textSize="12sp"
+            android:background="@drawable/edit_bg"
+            />
+    </RelativeLayout>
+        <RelativeLayout
+            android:layout_below="@+id/cgst_layout"
+            android:id="@+id/sgst_layout"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="SGST%(in Number)"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                />
+
+            <EditText
+                android:padding="5dp"
+                android:id="@+id/sgst_percentage"
+                android:layout_width="210dp"
+                android:layout_height="30dp"
+                android:hint="18"
+                android:layout_alignParentRight="true"
+                android:textSize="12sp"
+                android:background="@drawable/edit_bg"
+                />
+        </RelativeLayout>
     </RelativeLayout>
 
     <RelativeLayout
