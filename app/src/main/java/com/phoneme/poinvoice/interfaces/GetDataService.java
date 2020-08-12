@@ -36,6 +36,7 @@ package com.phoneme.poinvoice.interfaces;
 import com.phoneme.poinvoice.ui.invoice.network.CheckInvoiceListResponse1;
 import com.phoneme.poinvoice.ui.invoice.network.InvoiceFinalInvoiceGetResponse;
 import com.phoneme.poinvoice.ui.invoice.network.InvoiceFunnelInvoiceGetResponse;
+import com.phoneme.poinvoice.ui.invoice.network.InvoiceGenerateGetResponse;
 import com.phoneme.poinvoice.ui.invoice.network.InvoiceListResponse;
 import com.phoneme.poinvoice.ui.invoice.network.InvoiceResponse;
 import com.phoneme.poinvoice.ui.invoice.network.PoPaymentPOSTResponse;
@@ -124,8 +125,15 @@ public interface GetDataService {
     Call<InvoiceFunnelInvoiceGetResponse> getInvoiceListFunnelPOData(@Query("id") String id);
 
 
+    //InvoiceGenerateGetResponse
+
+
     @GET("/invoiceapis/invoice/finalinvoice")
     Call<InvoiceFinalInvoiceGetResponse> getInvoiceListFinalPOData(@Query("id") String id);
+
+    @GET("/invoiceapis/invoice/generatenewinvoice")
+    Call<InvoiceGenerateGetResponse> getInvoiceGenerateData();
+
 
     @GET("/invoiceapis/po/potemplate2")
     Call<PoTemplateListResponse> getPoTemplateList();
@@ -135,6 +143,8 @@ public interface GetDataService {
 
     @GET("/invoiceapis/PoTemplate/create")
     Call<AddNewPoTemplateGetResponse> getPoTemplateAddData();
+
+
 
 
 

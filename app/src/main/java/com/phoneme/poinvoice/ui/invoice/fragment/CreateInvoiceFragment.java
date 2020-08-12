@@ -1,4 +1,4 @@
-package com.phoneme.poinvoice.ui.po.fragment;
+package com.phoneme.poinvoice.ui.invoice.fragment;
 
 import android.app.DatePickerDialog;
 import android.graphics.Canvas;
