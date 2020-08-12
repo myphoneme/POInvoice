@@ -192,12 +192,41 @@ public class FinalInvoiceFragment extends Fragment {
     }
 
     private void setFunnelData(InvoiceFunnelInvoiceGetResponse data) {
-        String fromAddressdata = new String();
-        fromAddressdata=data.getInvoiceListDataModelList().get(0).getTemplate_name()+"\n"
-                +data.getInvoiceListDataModelList().get(0).getAddress_line1()+"\n";
+        String fromAddressdata = new String(), toAddressdata = new String(),invoice_no=new String();
+        String po_invoice_data = new String(),termsConditions=new String(),total_without_gst=new String();
+        String cgst_percentage_amount = new String(), sgst_percentage_amount = new String();
+        String grandTotal=new String();
+
+        fromAddressdata="From\n"+data.getInvoiceListDataModelList().get(0).getTemplate_name()+"\n"
+                +data.getInvoiceListDataModelList().get(0).getAddress_line1()+"\n"
+                +data.getInvoiceListDataModelList().get(0).getAddress_line2()+"\n"
+                +data.getInvoiceListDataModelList().get(0).getAddress_line3()+"\n";
+
+        toAddressdata="To\n"+data.getVendorDataModelList().get(0).getVendor_name()+"\n"
+                +data.getVendorDataModelList().get(0).getAddress();
+        po_invoice_data="Invoice#"+data.getInvoiceDataModelList().get(0).getInvoice_number()+"\n"
+                +"Po No:"+data.getInvoiceDataModelList().get(0).getOrder_id()+"\n"
+                +"Invoice Date:"+data.getInvoiceDataModelList().get(0).getDuedate();
+
+        total_without_gst="Total without GST: ₹"+data.getInvoiceDataModelList().get(0).getTotal();
+        termsConditions=data.getInvoiceDataModelList().get(0).getRemarks();
+        cgst_percentage_amount = "CGST @" + data.getInvoiceDataModelList().get(0).getCgst() + "% ₹" + data.getInvoiceDataModelList().get(0).getCgst_amount();
+        sgst_percentage_amount = "SGST @" +data.getInvoiceDataModelList().get(0).getSgst() + "% ₹" + data.getInvoiceDataModelList().get(0).getSgst_amount();
+        grandTotal="Grand Total: ₹"+data.getInvoiceDataModelList().get(0).getGrand_total();
+
         Company.setText(data.getInvoiceListDataModelList().get(0).getTemplate_name());
         FromCompany.setText(fromAddressdata);
+        ToCompany.setText(toAddressdata);
+        InvoicePoData.setText(po_invoice_data);
+        TermsConditions.setText(termsConditions);
+        totalWithoutGst.setText(total_without_gst);
+        CGSTPERCENTAMOUNT.setText(cgst_percentage_amount);
+        SGSTPERCENTAMOUNT.setText(sgst_percentage_amount);
+        GrandTotal.setText(grandTotal);
+
+        invoiceProductsDataModels=data. getInvoiceProductsDataModels();
         Picasso.with(getContext()).load(base_url_image+data.getInvoiceListDataModelList().get(0).getLogo()).into( this.Logo);
+        setAdapter(invoiceProductsDataModels);
     }
 
     private void setFinallData(InvoiceFinalInvoiceGetResponse data) {
