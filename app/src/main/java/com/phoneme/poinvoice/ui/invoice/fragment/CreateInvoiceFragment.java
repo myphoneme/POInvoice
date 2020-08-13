@@ -106,7 +106,7 @@ public class CreateInvoiceFragment extends Fragment {
         serviceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                servicecount++;
+                //servicecount++;
                 createView();
             }
         });
@@ -211,11 +211,29 @@ public class CreateInvoiceFragment extends Fragment {
             map.put("igst",igstPercentage);
         }
 
-        for(int i=0;i< servicecount;i++){
+        for(int i=1;i<= servicecount;i++){
+            EditText serviceEdit = getView().findViewWithTag("service"+i);
+            EditText descriptionEdit = getView().findViewWithTag("description"+i);
+            EditText quantityEdit = getView().findViewWithTag("quantity"+i);
+            EditText priceEdit = getView().findViewWithTag("price"+i);
+            String servicekey="service["+(i-1)+"]";
+            String descriptionkey="description["+(i-1)+"]";
+            String quantitykey="description["+(i-1)+"]";
+            String pricekey="price["+(i-1)+"]";
+
+            map.put(servicekey,serviceEdit.getText().toString());
+            map.put(descriptionkey,descriptionEdit.getText().toString());
+            map.put(quantitykey,quantityEdit.getText().toString());
+            map.put(pricekey,priceEdit.getText().toString());
+
+            Toast.makeText(getContext(), "service value= i="+i+" "+serviceEdit.getText().toString(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "service key="+servicekey, Toast.LENGTH_LONG).show();
+
             //service[i]=
         }
         Toast.makeText(getContext(), "Companyid="+map.get("companystateid"), Toast.LENGTH_LONG).show();
         Toast.makeText(getContext(), "Vendorid="+map.get("vendorstateid"), Toast.LENGTH_LONG).show();
+        postInvoiceGenerateData(map);
     }
 
     private void createView(){
@@ -277,6 +295,7 @@ public class CreateInvoiceFragment extends Fragment {
         edittTxt.setTextSize(TypedValue.COMPLEX_UNIT_SP,12);
         edittTxt.setHint("Service");
         edittTxt.setTag("service"+servicecount);
+        Toast.makeText(getContext(),"tag="+edittTxt.getTag().toString(),Toast.LENGTH_LONG).show();
         edittTxt.setId(0);
         edittTxt.setHintTextColor((int)getResources().getColor(R.color.grey));
 
