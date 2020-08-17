@@ -14,6 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.phoneme.poinvoice.R;
 import com.phoneme.poinvoice.config.RetrofitClientInstance;
@@ -170,6 +172,8 @@ public class VendorEditFragment extends Fragment {
             @Override
             public void onResponse(Call<VendorEditPostResponse> call, Response<VendorEditPostResponse> response) {
                 Toast.makeText(getContext(),"Succes",Toast.LENGTH_LONG).show();
+                NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+                navController.popBackStack();
 
             }
 
