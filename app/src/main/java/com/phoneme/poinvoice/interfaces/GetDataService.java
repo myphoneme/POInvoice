@@ -53,6 +53,8 @@ import com.phoneme.poinvoice.ui.po.network.GeneratedListResponse;
 import com.phoneme.poinvoice.ui.po.network.GeneratedListCompleteResponse;
 import com.phoneme.poinvoice.ui.po.network.InvoiceAddPostResponse;
 import com.phoneme.poinvoice.ui.po.network.POTemplateAddPostResponse;
+import com.phoneme.poinvoice.ui.po.network.PoGenerateGetResponse;
+import com.phoneme.poinvoice.ui.po.network.PoGeneratePostResponse;
 import com.phoneme.poinvoice.ui.po.network.PoTemplateEditGETResponse;
 import com.phoneme.poinvoice.ui.po.network.PoTemplateEditPOSTResponse;
 import com.phoneme.poinvoice.ui.po.network.PoTemplateListResponse;
@@ -139,6 +141,9 @@ public interface GetDataService {
     @GET("/invoiceapis/po/potemplate2")
     Call<PoTemplateListResponse> getPoTemplateList();
 
+    @GET("/invoiceapis/po/generatenewpo")
+    Call<PoGenerateGetResponse> getPoGenerate();
+
     @GET("/invoiceapis/PoTemplate/edit")
     Call<PoTemplateEditGETResponse> getPoTemplateEditData(@Query("id") String id);
 
@@ -147,6 +152,9 @@ public interface GetDataService {
 
 
 
+    @FormUrlEncoded
+    @POST("/invoiceapis/po/generatenewpo")
+    Call<PoGeneratePostResponse> postPoGenerate(@FieldMap Map<String, String> generatePoData);
 
 
     @FormUrlEncoded

@@ -89,7 +89,7 @@ public class CreateInvoiceFragment extends Fragment {
         PONumber=(EditText)view.findViewById(R.id.po_number);
         Company=(Spinner)view.findViewById(R.id.company);
         Vendor=(Spinner)view.findViewById(R.id.vendor);
-        gstPercentage=(EditText)view.findViewById(R.id.gst_percentage);
+        gstPercentage=(EditText)view.findViewById(R.id.igst_percentage);
         Remark=(EditText)view.findViewById(R.id.remark);
         iGSTLayout=(RelativeLayout)view.findViewById(R.id.igst_layout);
         cGSTsGSTLayout=(RelativeLayout)view.findViewById(R.id.sgst_cgst_layout);
@@ -193,6 +193,10 @@ public class CreateInvoiceFragment extends Fragment {
         vendor = Vendor.getSelectedItem().toString();
 
         company=Company.getSelectedItem().toString();
+
+        map.put("vendorid",vendor_vendorid_Map.get(vendor));
+        map.put("companyid",company_companyid_Map.get(company));
+
         map.put("vendorstateid",vendor_vendorid_Map.get(vendor));
         map.put("companystateid",company_companyid_Map.get(company));
         map.put("invoice_number",invoice);
@@ -218,7 +222,7 @@ public class CreateInvoiceFragment extends Fragment {
             EditText priceEdit = getView().findViewWithTag("price"+i);
             String servicekey="service["+(i-1)+"]";
             String descriptionkey="description["+(i-1)+"]";
-            String quantitykey="description["+(i-1)+"]";
+            String quantitykey="quantity["+(i-1)+"]";
             String pricekey="price["+(i-1)+"]";
 
             map.put(servicekey,serviceEdit.getText().toString());
@@ -486,6 +490,7 @@ public class CreateInvoiceFragment extends Fragment {
         textViewPrice.setTextSize(TypedValue.COMPLEX_UNIT_SP,14);
         //textViewPrice.setHint("Price");
         textViewPrice.setText("Price");
+        textViewPrice.setTypeface(textView.getTypeface(), Typeface.BOLD);
         textViewPrice.setLayoutParams(paramsPriceLeft);
         textViewPrice.setGravity(Gravity.CENTER_VERTICAL);
 
