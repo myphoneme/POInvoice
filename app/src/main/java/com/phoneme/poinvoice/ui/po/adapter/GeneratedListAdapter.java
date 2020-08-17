@@ -97,12 +97,18 @@ public class GeneratedListAdapter extends RecyclerView.Adapter<GeneratedListAdap
         }
 
         private void setData2(int position){
-            int gst_amount=0;
+            //int gst_amount=0;
+            float gst_amount=0;
+            Float f = new Float("20.75f");
             if(poDataModelList.get(position).getGsttype().equalsIgnoreCase("match")){
-                gst_amount=Integer.parseInt(poDataModelList.get(position).getCgst_amount());
-                gst_amount=gst_amount+Integer.parseInt(poDataModelList.get(position).getSgst_amount());
+                //gst_amount=Integer.parseInt(poDataModelList.get(position).getCgst_amount());
+                gst_amount=f.parseFloat(poDataModelList.get(position).getCgst_amount());
+
+                //gst_amount=gst_amount+Integer.parseInt(poDataModelList.get(position).getSgst_amount());
+                gst_amount=gst_amount+f.parseFloat(poDataModelList.get(position).getSgst_amount());
             }else{
-                gst_amount=Integer.parseInt(poDataModelList.get(position).getIgst_amount());
+                //gst_amount=Integer.parseInt(poDataModelList.get(position).getIgst_amount());
+                gst_amount=f.parseFloat(poDataModelList.get(position).getIgst_amount());
             }
 
 
