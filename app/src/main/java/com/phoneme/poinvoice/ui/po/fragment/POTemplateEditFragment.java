@@ -16,6 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.loader.content.CursorLoader;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.phoneme.poinvoice.R;
 import com.phoneme.poinvoice.config.RetrofitClientInstance;
@@ -105,6 +107,7 @@ public class POTemplateEditFragment extends Fragment implements
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(getContext(),"Submit Button clicked",Toast.LENGTH_LONG).show();
                 getData();
             }
         });
@@ -322,6 +325,9 @@ public class POTemplateEditFragment extends Fragment implements
             @Override
             public void onResponse(Call<PoTemplateEditPOSTResponse> call, Response<PoTemplateEditPOSTResponse> response) {
                 Toast.makeText(getContext(),"success post",Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),"Succes",Toast.LENGTH_LONG).show();
+                NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+                navController.popBackStack();
             }
 
             @Override

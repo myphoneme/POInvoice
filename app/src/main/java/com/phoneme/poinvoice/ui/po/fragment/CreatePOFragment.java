@@ -24,6 +24,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.phoneme.poinvoice.R;
 import com.phoneme.poinvoice.config.RetrofitClientInstance;
@@ -223,6 +225,7 @@ public class CreatePOFragment extends Fragment {
         Submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(getContext(),"Submit Button clicked",Toast.LENGTH_LONG).show();
                 getLocalData();
             }
         });
@@ -671,7 +674,9 @@ public class CreatePOFragment extends Fragment {
         call.enqueue(new Callback<PoGeneratePostResponse>() {
             @Override
             public void onResponse(Call<PoGeneratePostResponse> call, Response<PoGeneratePostResponse> response) {
-
+                Toast.makeText(getContext(),"Succes",Toast.LENGTH_LONG).show();
+                NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+                navController.popBackStack();
             }
 
             @Override
