@@ -38,7 +38,7 @@ public class InvoiceManagementAdapter extends RecyclerView.Adapter<InvoiceManage
 
 
     @Override
-    public InvoiceManagementAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i){
+    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i){
         View view= LayoutInflater.from(mcontext).inflate(R.layout.adapter_invoice_management,viewGroup,false);
         return new ViewHolder(view);
     }
@@ -48,7 +48,7 @@ public class InvoiceManagementAdapter extends RecyclerView.Adapter<InvoiceManage
         return InvoiceManagementDataModelList.size();
     }
 
-    public void onBindViewHolder(InvoiceManagementAdapter.ViewHolder vh, int position){
+    public void onBindViewHolder(ViewHolder vh, int position){
         vh.setData(this.InvoiceManagementDataModelList.get(position),position);
 
 
