@@ -5,5 +5,15 @@
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:title="@string/action_settings"
+       android:visible="false"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_search"
+        android:orderInCategory="200"
+        android:title="+"
+
+        android:tooltipText=""
+
+        app:showAsAction="ifRoom"
+        />
 </menu>

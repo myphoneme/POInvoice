@@ -3,94 +3,94 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+  <group android:checkableBehavior="single">
 
-        <item
-            android:id="@+id/nav_invoice"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_invoice" />
-        <item
-            android:id="@+id/nav_po_vendor_list"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_po" />
-        <item
-            android:id="@+id/nav_po_generated_list"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_generated_list" />
-        <item
-            android:id="@+id/nav_po_template"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="@string/menu_po_template" />
-<!--        <item-->
-<!--            android:id="@+id/nav_po_template_edit"-->
-<!--            android:icon="@drawable/ic_menu_manage"-->
-<!--            android:title="@string/menu_po_template_edit"-->
-<!--            />-->
-<!--        <item-->
-<!--            android:id="@+id/nav_po_template_upload"-->
-<!--            android:icon="@drawable/ic_menu_manage"-->
-<!--            android:title="@string/menu_po_template_upload"-->
-<!--            />-->
-<!--        <item-->
-<!--            android:id="@+id/nav_invoice_add_upload"-->
-<!--            android:icon="@drawable/ic_menu_manage"-->
-<!--            android:title="@string/menu_invoive_add_upload"-->
-<!--            />-->
-<!--        <item-->
-<!--            android:id="@+id/nav_create_invoice"-->
-<!--            android:icon="@drawable/ic_menu_manage"-->
-<!--            android:title="@string/menu_create_invoice"-->
-<!--            />-->
+    <item
+        android:id="@+id/nav_invoice"
+        android:icon="@drawable/ic_menu_gallery"
+        android:title="@string/menu_invoice" />
+    <item
+        android:id="@+id/nav_po_vendor_list"
+        android:icon="@drawable/ic_menu_camera"
+        android:title="@string/menu_po" />
+    <item
+        android:id="@+id/nav_po_generated_list"
+        android:icon="@drawable/ic_menu_slideshow"
+        android:title="@string/menu_generated_list" />
+    <item
+        android:id="@+id/nav_po_template"
+        android:icon="@drawable/ic_menu_manage"
+        android:title="@string/menu_po_template" />
+    <!--        <item-->
+    <!--            android:id="@+id/nav_po_template_edit"-->
+    <!--            android:icon="@drawable/ic_menu_manage"-->
+    <!--            android:title="@string/menu_po_template_edit"-->
+    <!--            />-->
+    <!--        <item-->
+    <!--            android:id="@+id/nav_po_template_upload"-->
+    <!--            android:icon="@drawable/ic_menu_manage"-->
+    <!--            android:title="@string/menu_po_template_upload"-->
+    <!--            />-->
+    <!--        <item-->
+    <!--            android:id="@+id/nav_invoice_add_upload"-->
+    <!--            android:icon="@drawable/ic_menu_manage"-->
+    <!--            android:title="@string/menu_invoive_add_upload"-->
+    <!--            />-->
+    <!--        <item-->
+    <!--            android:id="@+id/nav_create_invoice"-->
+    <!--            android:icon="@drawable/ic_menu_manage"-->
+    <!--            android:title="@string/menu_create_invoice"-->
+    <!--            />-->
 
-<!--        <item-->
-<!--            android:id="@+id/nav_final_invoice"-->
-<!--            android:icon="@drawable/ic_menu_manage"-->
-<!--            android:title="@string/menu_final_invoice"-->
-<!--            />-->
-<!--        <item-->
-<!--            android:id="@+id/nav_vendor_edit"-->
-<!--            android:icon="@drawable/ic_menu_manage"-->
-<!--            android:title="@string/menu_edit_vendor"-->
-<!--            />-->
-<!--        <item-->
-<!--            android:id="@+id/nav_vendor_add"-->
-<!--            android:icon="@drawable/ic_menu_manage"-->
-<!--            android:title="@string/menu_add_vendor"-->
-<!--            />-->
-<!--        <item-->
-<!--            android:id="@+id/nav_create_po"-->
-<!--            android:icon="@drawable/ic_menu_manage"-->
-<!--            android:title="@string/menu_create_po"-->
-<!--            />-->
+    <!--        <item-->
+    <!--            android:id="@+id/nav_final_invoice"-->
+    <!--            android:icon="@drawable/ic_menu_manage"-->
+    <!--            android:title="@string/menu_final_invoice"-->
+    <!--            />-->
+    <!--        <item-->
+    <!--            android:id="@+id/nav_vendor_edit"-->
+    <!--            android:icon="@drawable/ic_menu_manage"-->
+    <!--            android:title="@string/menu_edit_vendor"-->
+    <!--            />-->
+    <!--        <item-->
+    <!--            android:id="@+id/nav_vendor_add"-->
+    <!--            android:icon="@drawable/ic_menu_manage"-->
+    <!--            android:title="@string/menu_add_vendor"-->
+    <!--            />-->
+    <!--        <item-->
+    <!--            android:id="@+id/nav_create_po"-->
+    <!--            android:icon="@drawable/ic_menu_manage"-->
+    <!--            android:title="@string/menu_create_po"-->
+    <!--            />-->
 
-<!--        <item-->
-<!--            android:id="@+id/nav_payment_upload"-->
-<!--            android:icon="@drawable/ic_menu_manage"-->
-<!--            android:title="@string/menu_upload_payment"-->
-<!--            />-->
-        <item
-            android:id="@+id/nav_invoice_management"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="@string/menu_invoice_management"
-            />
-<!--        <item-->
-<!--            android:id="@+id/nav_create_new_po_templatge"-->
-<!--            android:icon="@drawable/ic_menu_manage"-->
-<!--            android:title="@string/menu_create_new_po_template"-->
-<!--            />-->
-    </group>
+    <!--        <item-->
+    <!--            android:id="@+id/nav_payment_upload"-->
+    <!--            android:icon="@drawable/ic_menu_manage"-->
+    <!--            android:title="@string/menu_upload_payment"-->
+    <!--            />-->
+    <item
+        android:id="@+id/nav_invoice_management"
+        android:icon="@drawable/ic_menu_manage"
+        android:title="@string/menu_invoice_management"
+        />
+    <!--        <item-->
+    <!--            android:id="@+id/nav_create_new_po_templatge"-->
+    <!--            android:icon="@drawable/ic_menu_manage"-->
+    <!--            android:title="@string/menu_create_new_po_template"-->
+    <!--            />-->
+  </group>
 
-<!--    <item android:title="Communicate">-->
-<!--        <menu>-->
-<!--            <item-->
-<!--                android:id="@+id/nav_share"-->
-<!--                android:icon="@drawable/ic_menu_share"-->
-<!--                android:title="@string/menu_share" />-->
-<!--            <item-->
-<!--                android:id="@+id/nav_send"-->
-<!--                android:icon="@drawable/ic_menu_send"-->
-<!--                android:title="@string/menu_send" />-->
-<!--        </menu>-->
-<!--    </item>-->
+  <!--    <item android:title="Communicate">-->
+  <!--        <menu>-->
+  <!--            <item-->
+  <!--                android:id="@+id/nav_share"-->
+  <!--                android:icon="@drawable/ic_menu_share"-->
+  <!--                android:title="@string/menu_share" />-->
+  <!--            <item-->
+  <!--                android:id="@+id/nav_send"-->
+  <!--                android:icon="@drawable/ic_menu_send"-->
+  <!--                android:title="@string/menu_send" />-->
+  <!--        </menu>-->
+  <!--    </item>-->
 
 </menu>
