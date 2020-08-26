@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        >
+
+        <ImageView
+            android:layout_width="164dp"
+            android:layout_height="34dp"
+            android:layout_marginTop="105dp"
+            android:src="@drawable/phoneme" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="23dp"
+            android:text="Better control of finances."
+            android:textColor="#252525"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/id_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="23dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginRight="23dp"
+            android:paddingBottom="10dp"
+            android:hint="Username"
+            android:textColorHint="#A3A2AC"
+            android:textColor="#A3A2AC"
+            app:backgroundTint="#A3A2AC99" />
+
+        <EditText
+            android:id="@+id/id_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="23dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginRight="23dp"
+            android:hint="Password"
+            android:textColorHint="#A3A2AC"
+            android:inputType="textPassword"
+            android:textColor="#A3A2AC"
+            app:backgroundTint="#A3A2AC99" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/labeltext"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="46dp"
+            android:layout_marginBottom="?android:attr/actionBarSize"
+            android:background="@drawable/button_bg_rounded_corners_yellow_background"
+            android:padding="10dp"
+            android:text="Sign In"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <com.scwang.wave.MultiWaveHeader
+        android:layout_alignParentBottom="true"
+        android:id="@+id/wavebottom"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:scaleY="-1"
+        app:mwhCloseColor="@color/wavecolor2"
+        app:mwhStartColor="@color/wavecolor1"
+        app:mwhVelocity="1"
+
+
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:visibility="gone">
+
+        <EditText
+            android:id="@+id/id_email1"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:hint="Email"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorPrimary" />
+
+        <EditText
+            android:id="@+id/id_password1"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorPrimary" />
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/labeltext"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="?android:attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            android:padding="10dp"
+            android:text="Login"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite" />
+    </LinearLayout>
+
+
+</RelativeLayout>

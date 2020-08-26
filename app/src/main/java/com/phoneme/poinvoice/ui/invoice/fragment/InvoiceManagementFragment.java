@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.phoneme.poinvoice.R;
@@ -48,11 +49,12 @@ public class InvoiceManagementFragment extends Fragment implements InvoiceManage
     private void setAdapter(List<InvoiceManagementDataModel> invoiceManagementDataModelList){
         InvoiceManagementAdapter adapter=new InvoiceManagementAdapter(getContext(),this,invoiceManagementDataModelList);
         recyclerview.setAdapter(adapter);
+        LinearLayoutManager linearVertical = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
 
         GridLayoutManager manager;
         manager = new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false);
 
-        recyclerview.setLayoutManager(manager);
+        recyclerview.setLayoutManager(linearVertical);
     }
 
     private void getInvoiceManagementData(){

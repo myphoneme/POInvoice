@@ -14,6 +14,7 @@ import com.phoneme.poinvoice.R;
 import com.phoneme.poinvoice.config.RetrofitClientInstance;
 import com.phoneme.poinvoice.interfaces.GetDataService;
 import com.phoneme.poinvoice.user.network.OTPVerifactionResponse;
+import com.scwang.wave.MultiWaveHeader;
 
 import java.util.HashMap;
 import java.util.regex.Matcher;
@@ -29,9 +30,27 @@ public class LoginEmailActivity extends AppCompatActivity {
     private Button button;
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_email);
+        setContentView(R.layout.activity_login_email_new_ui);
+        getSupportActionBar().hide();
         email=(EditText)findViewById(R.id.id_email);
         password=(EditText)findViewById(R.id.id_password);
+
+        MultiWaveHeader waveHeader = findViewById(R.id.wavebottom);
+        //waveHeader.setStartColor(R.color.wavecolor1);
+        //waveHeader.setCloseColor(R.color.wavecolor2);
+        waveHeader.setColorAlpha(.5f);
+//
+//        waveHeader.setWaveHeight(50);
+//        waveHeader.setGradientAngle(360);
+//        waveHeader.setProgress(.8f);
+//        waveHeader.setVelocity(1f);
+//        waveHeader.setScaleY(-1f);
+//
+//        waveHeader.setWaves("PairWave");
+//
+        waveHeader.start();
+//        waveHeader.stop();
+//        waveHeader.isRunning();
 
         button=(Button)findViewById(R.id.button);
         UserAuth userAuth=new UserAuth(this);

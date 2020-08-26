@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.phoneme.poinvoice.R;
 import com.phoneme.poinvoice.ui.invoice.model.InvoiceRowModel;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -42,7 +44,7 @@ public class InvoiceListAdapter extends RecyclerView.Adapter<InvoiceListAdapter.
     }
 
     @Override
-    public InvoiceListAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i){
+    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i){
         View view= LayoutInflater.from(mcontext).inflate(R.layout.adapter_invoice_list,viewGroup,false);
         return new ViewHolder(view);
     }
@@ -52,7 +54,7 @@ public class InvoiceListAdapter extends RecyclerView.Adapter<InvoiceListAdapter.
         return this.invoiceRowModelList.size();
     }
 
-    public void onBindViewHolder(InvoiceListAdapter.ViewHolder vh, int position){
+    public void onBindViewHolder(ViewHolder vh, int position){
 //        vh.setData(this.projectModelList.get(position),position);
         vh.setData2(position);
     }
@@ -115,7 +117,17 @@ public class InvoiceListAdapter extends RecyclerView.Adapter<InvoiceListAdapter.
 
         public void setData2(int position){
             //invoiceRow.getDuedate();
-            int gst_amount=Integer.parseInt(invoiceRowModelList.get(position).getCgst_amount())+Integer.parseInt(invoiceRowModelList.get(position).getSgst_amount());
+            Float gst_amount=0f;
+            if(invoiceRowModelList.get(position).getCgst_amount()!=null && !invoiceRowModelList.get(position).getCgst_amount().isEmpty() && invoiceRowModelList.get(position).getCgst_amount().length()>0){
+                gst_amount=gst_amount+   Float.parseFloat(invoiceRowModelList.get(position).getCgst_amount());
+            }
+            if(invoiceRowModelList.get(position).getSgst_amount()!=null && !invoiceRowModelList.get(position).getSgst_amount().isEmpty() && invoiceRowModelList.get(position).getSgst_amount().length()>0){
+                gst_amount=gst_amount+Float.parseFloat(invoiceRowModelList.get(position).getSgst_amount());
+            }
+            BigDecimal rounded = new BigDecimal(""+gst_amount).setScale(2, RoundingMode.HALF_UP);
+
+
+            //int gst_amount=Integer.parseInt(invoiceRowModelList.get(position).getCgst_amount())+Integer.parseInt(invoiceRowModelList.get(position).getSgst_amount());
 
             //this.date.setText(invoiceRowModelList.get(position).getDuedate());
             this.Project.setText("\u20B9"+gst_amount);//To be removed

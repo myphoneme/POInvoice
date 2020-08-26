@@ -1,6 +1,7 @@
 package com.phoneme.poinvoice.ui.invoice.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +16,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.phoneme.poinvoice.R;
 import com.phoneme.poinvoice.ui.invoice.model.InvoiceManagementDataModel;
 import com.phoneme.poinvoice.ui.invoice.model.InvoiceResponseModel;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 public class InvoiceManagementAdapter extends RecyclerView.Adapter<InvoiceManagementAdapter.ViewHolder> {
     private Context mcontext;
     private OnItemClickListener listener;
+    private String[] colors = {"#6C18A4", "#FF7200", "#3827B4", "#5FB427"};
     private List<InvoiceManagementDataModel> InvoiceManagementDataModelList;
     public InvoiceManagementAdapter(Context context){
         this.mcontext=context;
@@ -39,7 +44,7 @@ public class InvoiceManagementAdapter extends RecyclerView.Adapter<InvoiceManage
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i){
-        View view= LayoutInflater.from(mcontext).inflate(R.layout.adapter_invoice_management,viewGroup,false);
+        View view= LayoutInflater.from(mcontext).inflate(R.layout.adapter_invoice_management_new_ui,viewGroup,false);
         return new ViewHolder(view);
     }
 
@@ -67,6 +72,7 @@ public class InvoiceManagementAdapter extends RecyclerView.Adapter<InvoiceManage
 
         public ViewHolder(View v) {
             super(v);
+            cardView=(CardView)v.findViewById(R.id.card_id);
             Title=(TextView)v.findViewById(R.id.title);
             Value=(TextView)v.findViewById(R.id.value);
             Phoneme_value=(TextView)v.findViewById(R.id.phoneme_value);
@@ -107,41 +113,23 @@ public class InvoiceManagementAdapter extends RecyclerView.Adapter<InvoiceManage
         }
         public void setData(InvoiceManagementDataModel data,int position){
             Title.setText(data.getTitle());
-            Value.setText(data.getValue());
+            BigDecimal rounded = new BigDecimal(data.getValue()).setScale(2, RoundingMode.HALF_UP);
+            Value.setText("\u20B9"+rounded);
             if(data.getPhoneme_value()==null){
-                Phoneme_value.setText("0");
+                Phoneme_value.setText("\u20B9"+"0");
             }else{
-                Phoneme_value.setText(data.getPhoneme_value());
+                BigDecimal rounded2 = new BigDecimal(data.getPhoneme_value()).setScale(2, RoundingMode.HALF_UP);
+                Phoneme_value.setText("\u20B9"+rounded2);
             }
             if(data.getFunnel_value()==null){
-                Funnel_value.setText("0");
+                Funnel_value.setText("\u20B9"+"0");
             }else{
-                Funnel_value.setText(data.getFunnel_value());
+                BigDecimal rounded3 = new BigDecimal(data.getFunnel_value()).setScale(2, RoundingMode.HALF_UP);
+                Funnel_value.setText("\u20B9"+rounded3);
             }
+            cardView.setCardBackgroundColor(Color.parseColor(colors[position]));
 
         }
-
-//        public void setData(ProjectModel item, int position) {
-//            this.projectModel = item;
-//            this.title.setText(Html.fromHtml(this.projectModel.getName()));
-//
-//            this.company_name.setText(Html.fromHtml(this.projectModel.getCompany_name()));
-//            String colorText=textcolor.get(position%4);
-//            this.company_name.setTextColor(Color.parseColor(colorText));
-//            String color=backgroundcolor.get(position%4);
-////            this.cardView.setBackgroundColor(Color.parseColor(color));
-//            //this.relativeLayoutView.setBackgroundColor(Color.parseColor("#ffffff"));
-//            this.relativeLayoutView.setBackgroundColor(Color.parseColor(color));
-//            if(item.getImage()!=null && item.getImage().length()>0) {
-//                System.out.println("imageurl=" + item.getImage());
-//                Uri uri = Uri.parse(item.getImage());
-//                projectLogo.setImageURI(uri);
-//            }else{
-//                System.out.println("no image imageurl=" + item.getImage());
-//                Uri uri = Uri.parse("android.resource://com.phoneme.ticketing/drawable/icon1.png");
-//                projectLogo.setImageURI(uri);
-//            }
-//        }
     }
 
     public interface OnItemClickListener {
