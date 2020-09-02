@@ -115,6 +115,13 @@
         />
 
     <fragment
+        android:id="@+id/nav_client_list"
+        android:name="com.phoneme.poinvoice.ui.invoice.fragment.ClientListFragment"
+        android:label="@string/menu_client_list"
+        tools:layout="@layout/fragment_client_list"
+        />
+
+    <fragment
         android:id="@+id/nav_share"
         android:name="com.phoneme.poinvoice.ui.share.ShareFragment"
         android:label="@string/menu_share"

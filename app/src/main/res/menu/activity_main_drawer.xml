@@ -73,6 +73,12 @@
         android:icon="@drawable/ic_menu_manage"
         android:title="@string/menu_invoice_management"
         />
+
+    <item
+        android:id="@+id/nav_client_list"
+        android:icon="@drawable/ic_menu_manage"
+        android:title="@string/menu_client_list"
+        />
     <!--        <item-->
     <!--            android:id="@+id/nav_create_new_po_templatge"-->
     <!--            android:icon="@drawable/ic_menu_manage"-->

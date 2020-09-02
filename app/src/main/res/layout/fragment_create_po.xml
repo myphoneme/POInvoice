@@ -1,431 +1,1 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="5dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="10dp"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:gravity="center_vertical"
-                android:text="Select Company"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <Spinner
-                android:id="@+id/company"
-                android:layout_width="210dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:entries="@array/company"
-                android:imeOptions="actionNext" />
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:text="PO Number"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/po_number"
-                android:layout_width="230dp"
-                android:layout_height="30dp"
-                android:layout_alignParentRight="true"
-                android:background="@drawable/edit_bg"
-                android:hint="Enter PO number"
-                android:padding="5dp"
-                android:textSize="12sp" />
-
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:text="Delivery Date"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/delievery_date"
-                android:layout_width="230dp"
-                android:layout_height="30dp"
-                android:layout_alignParentRight="true"
-                android:background="@drawable/edit_bg"
-                android:hint="mm/dd/yyyy"
-                android:padding="5dp"
-                android:textSize="12sp" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:text="Po Date"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/po_date"
-                android:layout_width="230dp"
-                android:layout_height="30dp"
-                android:layout_alignParentRight="true"
-                android:background="@drawable/edit_bg"
-                android:hint="mm/dd/yyyy"
-                android:padding="5dp"
-                android:textSize="12sp" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:text="Subject"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/subject"
-                android:layout_width="230dp"
-                android:layout_height="30dp"
-                android:layout_alignParentRight="true"
-                android:background="@drawable/edit_bg"
-                android:hint="Subject"
-                android:padding="5dp"
-                android:textSize="12sp" />
-
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="10dp"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:gravity="center_vertical"
-                android:text="Select Vendor"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <Spinner
-                android:id="@+id/vendor"
-                android:layout_width="230dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:entries="@array/vendor"
-                android:imeOptions="actionNext" />
-        </RelativeLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"
-            android:background="#c0c0c0" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:text="Add Items / Services"
-            android:textSize="18sp" />
-
-        <LinearLayout
-            android:id="@+id/service_products_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:text="Item/Service"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/service"
-                    android:layout_width="230dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentRight="true"
-                    android:background="@drawable/edit_bg"
-                    android:hint="Enter Item or Service name"
-                    android:padding="5dp"
-                    android:tag="service1"
-                    android:textSize="12sp" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:text="Item/Service \n Description"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/description"
-                    android:layout_width="230dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentRight="true"
-                    android:background="@drawable/edit_bg"
-                    android:hint="Enter Item or service  Description"
-                    android:padding="5dp"
-                    android:tag="description1"
-                    android:textSize="12sp" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:text="Quantity"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/quantity"
-                    android:layout_width="230dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentRight="true"
-                    android:background="@drawable/edit_bg"
-                    android:hint="Quantity"
-                    android:padding="5dp"
-                    android:tag="quantity1"
-                    android:textSize="12sp" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:text="Price"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/price"
-                    android:layout_width="230dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentRight="true"
-                    android:background="@drawable/edit_bg"
-                    android:hint="Price"
-                    android:padding="5dp"
-                    android:tag="price1"
-                    android:textSize="12sp" />
-
-            </RelativeLayout>
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/service_button"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:layout_margin="5dp"
-            android:background="@drawable/button_bg_rounded_corners"
-            android:text="Add More Items"
-            android:textAllCaps="false"
-            android:textColor="@color/text_white" />
-
-        <RelativeLayout
-            android:id="@+id/igst_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:text="IGST%(in Number)"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/igst_percentage"
-                android:layout_width="230dp"
-                android:layout_height="30dp"
-                android:layout_alignParentRight="true"
-                android:background="@drawable/edit_bg"
-                android:hint="18"
-                android:padding="5dp"
-                android:textSize="12sp" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/sgst_cgst_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:visibility="visible">
-
-            <RelativeLayout
-                android:id="@+id/cgst_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:text="CGST%(in Number)"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/cgst_percentage"
-                    android:layout_width="210dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentRight="true"
-                    android:background="@drawable/edit_bg"
-                    android:hint="18"
-                    android:padding="5dp"
-                    android:textSize="12sp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/sgst_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/cgst_layout"
-                android:layout_marginTop="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:text="SGST%(in Number)"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/sgst_percentage"
-                    android:layout_width="210dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentRight="true"
-                    android:background="@drawable/edit_bg"
-                    android:hint="18"
-                    android:padding="5dp"
-                    android:textSize="12sp" />
-            </RelativeLayout>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:text="Terms and\n Conditions"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/terms_conditions"
-                android:layout_width="230dp"
-                android:layout_height="280dp"
-                android:layout_alignParentRight="true"
-                android:background="@drawable/edit_bg"
-                android:gravity="top"
-                android:hint="A. The SELLER shall sign a copy of Purchase Order (PO) and return to the BUYER. The parties shall be bound by this Purchase Order (PO) and its terms and conditions when SELLER signs or otherwise accepts the Purchase Order by commencing the work.\n
-B. The prices  mentioned shall remain firm during the duration of execution of this Purchase Order.\n
-C. All Invoices shall contain Purchase Order number."
-                android:padding="5dp"
-                android:textSize="12sp" />
-
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/reset"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:layout_margin="5dp"
-                android:background="@drawable/button_bg_rounded_corners"
-                android:text="Reset"
-                android:textAllCaps="false"
-                android:textColor="@color/text_white"
-                android:visibility="gone" />
-
-            <Button
-                android:id="@+id/submit"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:layout_margin="5dp"
-                android:background="@drawable/button_bg_rounded_corners_green"
-                android:text="Generate"
-                android:textAllCaps="false"
-                android:textColor="@color/text_white" />
-        </LinearLayout>
-    </LinearLayout>
-</ScrollView>
+<?xml version="1.0" encoding="utf-8"?><ScrollView xmlns:android="http://schemas.android.com/apk/res/android"    android:layout_width="match_parent"    android:layout_height="match_parent">    <LinearLayout        android:layout_width="match_parent"        android:layout_height="match_parent"        android:orientation="vertical"        android:padding="5dp">        <RelativeLayout            android:layout_width="match_parent"            android:layout_height="wrap_content"            android:layout_gravity="center_vertical"            android:layout_marginTop="10dp"            android:gravity="center_vertical">            <TextView                android:layout_width="wrap_content"                android:layout_height="50dp"                android:gravity="center_vertical"                android:text="Select Company"                android:textSize="14sp"                android:textStyle="bold" />            <Spinner                android:id="@+id/company"                android:layout_width="210dp"                android:layout_height="wrap_content"                android:layout_alignParentRight="true"                android:layout_marginTop="10dp"                android:layout_marginBottom="10dp"                android:entries="@array/company"                android:imeOptions="actionNext" />        </RelativeLayout>        <RelativeLayout            android:layout_width="match_parent"            android:layout_height="wrap_content"            android:layout_marginTop="10dp">            <TextView                android:layout_width="wrap_content"                android:layout_height="50dp"                android:text="PO Number"                android:textSize="14sp"                android:textStyle="bold" />            <EditText                android:id="@+id/po_number"                android:layout_width="230dp"                android:layout_height="30dp"                android:layout_alignParentRight="true"                android:background="@drawable/edit_bg"                android:hint="Enter PO number"                android:padding="5dp"                android:textSize="12sp" />        </RelativeLayout>        <RelativeLayout            android:layout_width="match_parent"            android:layout_height="wrap_content"            android:layout_marginTop="10dp">            <TextView                android:layout_width="wrap_content"                android:layout_height="50dp"                android:text="Delivery Date"                android:textSize="14sp"                android:textStyle="bold" />            <EditText                android:id="@+id/delievery_date"                android:layout_width="230dp"                android:layout_height="30dp"                android:layout_alignParentRight="true"                android:background="@drawable/edit_bg"                android:hint="mm/dd/yyyy"                android:padding="5dp"                android:textSize="12sp" />        </RelativeLayout>        <RelativeLayout            android:layout_width="match_parent"            android:layout_height="wrap_content"            android:layout_marginTop="10dp">            <TextView                android:layout_width="wrap_content"                android:layout_height="50dp"                android:text="Po Date"                android:textSize="14sp"                android:textStyle="bold" />            <EditText                android:id="@+id/po_date"                android:layout_width="230dp"                android:layout_height="30dp"                android:layout_alignParentRight="true"                android:background="@drawable/edit_bg"                android:hint="mm/dd/yyyy"                android:padding="5dp"                android:textSize="12sp" />        </RelativeLayout>        <RelativeLayout            android:layout_width="match_parent"            android:layout_height="wrap_content"            android:layout_marginTop="10dp">            <TextView                android:layout_width="wrap_content"                android:layout_height="50dp"                android:text="Subject"                android:textSize="14sp"                android:textStyle="bold" />            <EditText                android:id="@+id/subject"                android:layout_width="230dp"                android:layout_height="30dp"                android:layout_alignParentRight="true"                android:background="@drawable/edit_bg"                android:hint="Subject"                android:padding="5dp"                android:textSize="12sp" />        </RelativeLayout>        <RelativeLayout            android:layout_width="match_parent"            android:layout_height="wrap_content"            android:layout_gravity="center_vertical"            android:layout_marginTop="10dp"            android:gravity="center_vertical">            <TextView                android:layout_width="wrap_content"                android:layout_height="50dp"                android:gravity="center_vertical"                android:text="Select Vendor"                android:textSize="14sp"                android:textStyle="bold" />            <Spinner                android:id="@+id/vendor"                android:layout_width="230dp"                android:layout_height="wrap_content"                android:layout_alignParentRight="true"                android:layout_marginTop="10dp"                android:layout_marginBottom="10dp"                android:entries="@array/vendor"                android:imeOptions="actionNext" />        </RelativeLayout>        <View            android:layout_width="match_parent"            android:layout_height="1dp"            android:layout_marginLeft="5dp"            android:layout_marginTop="5dp"            android:layout_marginRight="5dp"            android:background="#c0c0c0" />        <TextView            android:layout_width="match_parent"            android:layout_height="40dp"            android:layout_marginTop="10dp"            android:text="Add Items / Services"            android:textSize="18sp" />        <LinearLayout            android:id="@+id/service_products_layout"            android:layout_width="match_parent"            android:layout_height="wrap_content"            android:orientation="vertical">            <RelativeLayout                android:layout_width="match_parent"                android:layout_height="wrap_content"                android:layout_marginTop="10dp">                <TextView                    android:layout_width="wrap_content"                    android:layout_height="50dp"                    android:text="Item/Service"                    android:textSize="14sp"                    android:textStyle="bold" />                <EditText                    android:id="@+id/service"                    android:layout_width="230dp"                    android:layout_height="30dp"                    android:layout_alignParentRight="true"                    android:background="@drawable/edit_bg"                    android:hint="Enter Item or Service name"                    android:padding="5dp"                    android:tag="service1"                    android:textSize="12sp" />            </RelativeLayout>            <RelativeLayout                android:layout_width="match_parent"                android:layout_height="wrap_content"                android:layout_marginTop="10dp">                <TextView                    android:layout_width="wrap_content"                    android:layout_height="50dp"                    android:text="Item/Service \n Description"                    android:textSize="14sp"                    android:textStyle="bold" />                <EditText                    android:id="@+id/description"                    android:layout_width="230dp"                    android:layout_height="30dp"                    android:layout_alignParentRight="true"                    android:background="@drawable/edit_bg"                    android:hint="Enter Item or service  Description"                    android:padding="5dp"                    android:tag="description1"                    android:textSize="12sp" />            </RelativeLayout>            <RelativeLayout                android:layout_width="match_parent"                android:layout_height="wrap_content"                android:layout_marginTop="10dp">                <TextView                    android:layout_width="wrap_content"                    android:layout_height="50dp"                    android:text="Quantity"                    android:textSize="14sp"                    android:textStyle="bold" />                <EditText                    android:id="@+id/quantity"                    android:layout_width="230dp"                    android:layout_height="30dp"                    android:layout_alignParentRight="true"                    android:background="@drawable/edit_bg"                    android:hint="Quantity"                    android:padding="5dp"                    android:tag="quantity1"                    android:textSize="12sp" />            </RelativeLayout>            <RelativeLayout                android:layout_width="match_parent"                android:layout_height="wrap_content"                android:layout_marginTop="10dp">                <TextView                    android:layout_width="wrap_content"                    android:layout_height="50dp"                    android:text="Price"                    android:textSize="14sp"                    android:textStyle="bold" />                <EditText                    android:id="@+id/price"                    android:layout_width="230dp"                    android:layout_height="30dp"                    android:layout_alignParentRight="true"                    android:background="@drawable/edit_bg"                    android:hint="Price"                    android:padding="5dp"                    android:tag="price1"                    android:textSize="12sp" />            </RelativeLayout>        </LinearLayout>        <Button            android:id="@+id/service_button"            android:layout_width="100dp"            android:layout_height="50dp"            android:layout_margin="5dp"            android:background="@drawable/button_bg_rounded_corners"            android:text="Add More Items"            android:textAllCaps="false"            android:textColor="@color/text_white" />        <RelativeLayout            android:id="@+id/igst_layout"            android:layout_width="match_parent"            android:layout_height="wrap_content"            android:layout_marginTop="10dp">            <TextView                android:layout_width="wrap_content"                android:layout_height="50dp"                android:text="IGST%(in Number)"                android:textSize="14sp"                android:textStyle="bold" />            <EditText                android:id="@+id/igst_percentage"                android:layout_width="230dp"                android:layout_height="30dp"                android:layout_alignParentRight="true"                android:background="@drawable/edit_bg"                android:hint="18"                android:padding="5dp"                android:textSize="12sp" />        </RelativeLayout>        <RelativeLayout            android:id="@+id/sgst_cgst_layout"            android:layout_width="match_parent"            android:layout_height="wrap_content"            android:layout_marginTop="10dp"            android:visibility="visible">            <RelativeLayout                android:id="@+id/cgst_layout"                android:layout_width="match_parent"                android:layout_height="wrap_content"                android:layout_marginTop="10dp">                <TextView                    android:layout_width="wrap_content"                    android:layout_height="50dp"                    android:text="CGST%(in Number)"                    android:textSize="14sp"                    android:textStyle="bold" />                <EditText                    android:id="@+id/cgst_percentage"                    android:layout_width="210dp"                    android:layout_height="30dp"                    android:layout_alignParentRight="true"                    android:background="@drawable/edit_bg"                    android:hint="18"                    android:padding="5dp"                    android:textSize="12sp" />            </RelativeLayout>            <RelativeLayout                android:id="@+id/sgst_layout"                android:layout_width="match_parent"                android:layout_height="wrap_content"                android:layout_below="@+id/cgst_layout"                android:layout_marginTop="10dp">                <TextView                    android:layout_width="wrap_content"                    android:layout_height="50dp"                    android:text="SGST%(in Number)"                    android:textSize="14sp"                    android:textStyle="bold" />                <EditText                    android:id="@+id/sgst_percentage"                    android:layout_width="210dp"                    android:layout_height="30dp"                    android:layout_alignParentRight="true"                    android:background="@drawable/edit_bg"                    android:hint="18"                    android:padding="5dp"                    android:textSize="12sp" />            </RelativeLayout>        </RelativeLayout>        <RelativeLayout            android:layout_width="match_parent"            android:layout_height="wrap_content"            android:layout_marginTop="10dp">            <TextView                android:layout_width="wrap_content"                android:layout_height="50dp"                android:text="Terms and\n Conditions"                android:textSize="14sp"                android:textStyle="bold" />            <EditText                android:id="@+id/terms_conditions"                android:layout_width="230dp"                android:layout_height="280dp"                android:layout_alignParentRight="true"                android:background="@drawable/edit_bg"                android:gravity="top"                android:hint="A. The SELLER shall sign a copy of Purchase Order (PO) and return to the BUYER. The parties shall be bound by this Purchase Order (PO) and its terms and conditions when SELLER signs or otherwise accepts the Purchase Order by commencing the work.\nB. The prices  mentioned shall remain firm during the duration of execution of this Purchase Order.\nC. All Invoices shall contain Purchase Order number."                android:padding="5dp"                android:textSize="12sp" />        </RelativeLayout>        <LinearLayout            android:layout_width="match_parent"            android:layout_height="match_parent"            android:orientation="horizontal">            <Button                android:id="@+id/reset"                android:layout_width="100dp"                android:layout_height="50dp"                android:layout_margin="5dp"                android:background="@drawable/button_bg_rounded_corners"                android:text="Reset"                android:textAllCaps="false"                android:textColor="@color/text_white"                android:visibility="gone" />            <Button                android:id="@+id/submit"                android:layout_width="100dp"                android:layout_height="50dp"                android:layout_margin="5dp"                android:background="@drawable/button_bg_rounded_corners_green"                android:text="Generate"                android:textAllCaps="false"                android:textColor="@color/text_white" />        </LinearLayout>    </LinearLayout></ScrollView>

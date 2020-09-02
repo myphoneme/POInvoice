@@ -23,6 +23,7 @@
     <string name="menu_invoice_management">Invoice Mangement</string>
     <string name="menu_create_new_po_template">Add New Po Template</string>
     <string name="menu_funnel_final_po_data">FunnelXpert</string>
+    <string name="menu_client_list">Client List</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
 
