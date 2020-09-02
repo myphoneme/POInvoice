@@ -84,141 +84,141 @@ import retrofit2.http.Query;
 import retrofit2.http.Path;
 
 public interface GetDataService {
-//    // https://phoneme.in/android/napolean
-    //UploadPOGetResponse
-    @GET("/invoiceapis/invoice/uploadpo")
-    Call<UploadPOGetResponse> getPOUploadData(@Query("id") String id);
+	//    // https://phoneme.in/android/napolean
+	//UploadPOGetResponse
+	@GET("/invoiceapis/invoice/uploadpo")
+	Call<UploadPOGetResponse> getPOUploadData(@Query("id") String id);
 
-    @GET("/invoiceapis/invoice/invoicelist/")
-    Call<InvoiceListResponse> getInvoiceList();
+	@GET("/invoiceapis/invoice/invoicelist/")
+	Call<InvoiceListResponse> getInvoiceList();
 
-    @GET("/invoiceapis/Invoice/uploadinvoicepayment")
-    Call<UPloadPOPaymentGetResponse> getPOPaymentUploadData(@Query("id") String id);
+	@GET("/invoiceapis/Invoice/uploadinvoicepayment")
+	Call<UPloadPOPaymentGetResponse> getPOPaymentUploadData(@Query("id") String id);
 
-    @GET("/invoiceapis/vendor/create")
-    Call<VendorAddGetResponse> getVendorAddData();
+	@GET("/invoiceapis/vendor/create")
+	Call<VendorAddGetResponse> getVendorAddData();
 
-    @GET("/invoiceapis/vendor/vendorlist")
-    Call<VendorListResponse> getVendorList();
+	@GET("/invoiceapis/vendor/vendorlist")
+	Call<VendorListResponse> getVendorList();
 
-    @GET("/invoiceapis/vendor/vendorlist")
-    Call<VendorListResponse> getVendorList_Page(@Query("page") int page);
+	@GET("/invoiceapis/vendor/vendorlist")
+	Call<VendorListResponse> getVendorList_Page(@Query("page") int page);
 
-    @GET("/invoiceapis/vendor/edit")
-    Call<VendorEditGetResponse> getVendorEditData(@Query("id") String id);
+	@GET("/invoiceapis/vendor/edit")
+	Call<VendorEditGetResponse> getVendorEditData(@Query("id") String id);
 
-    @GET("/invoiceapis/po/")
-    Call<GeneratedListResponse> getGeneratedList();
+	@GET("/invoiceapis/po/")
+	Call<GeneratedListResponse> getGeneratedList();
 
-    @GET("/invoiceapis/Po/polist/{yr}")
-    Call<GeneratedListCompleteResponse> getGeneratedListComplete(@Path("yr") String year);
+	@GET("/invoiceapis/Po/polist/{yr}")
+	Call<GeneratedListCompleteResponse> getGeneratedListComplete(@Path("yr") String year);
 
-    @GET("/invoiceapis/Po/uploadpayment")
-    Call<GeneratedListPOPaymentGetResponse> getGeneratedListPOPaymentData(@Query("id") String id);
-
-
-    @GET("/invoiceapis/po/funnelpo")
-    Call<GeneratedListFunnelPOGetResponse> getGeneratedListFunnelPOData(@Query("id") String id);
+	@GET("/invoiceapis/Po/uploadpayment")
+	Call<GeneratedListPOPaymentGetResponse> getGeneratedListPOPaymentData(@Query("id") String id);
 
 
-    @GET("/invoiceapis/po/finalpo")
-    Call<GeneratedListFinalPOGetResponse> getGeneratedListFinalPOData(@Query("id") String id);
-
-    @GET("/invoiceapis/invoice/funnelinvoice")
-    Call<InvoiceFunnelInvoiceGetResponse> getInvoiceListFunnelPOData(@Query("id") String id);
+	@GET("/invoiceapis/po/funnelpo")
+	Call<GeneratedListFunnelPOGetResponse> getGeneratedListFunnelPOData(@Query("id") String id);
 
 
-    //InvoiceGenerateGetResponse
+	@GET("/invoiceapis/po/finalpo")
+	Call<GeneratedListFinalPOGetResponse> getGeneratedListFinalPOData(@Query("id") String id);
+
+	@GET("/invoiceapis/invoice/funnelinvoice")
+	Call<InvoiceFunnelInvoiceGetResponse> getInvoiceListFunnelPOData(@Query("id") String id);
 
 
-    @GET("/invoiceapis/invoice/finalinvoice")
-    Call<InvoiceFinalInvoiceGetResponse> getInvoiceListFinalPOData(@Query("id") String id);
-
-    @GET("/invoiceapis/invoice/generatenewinvoice")
-    Call<InvoiceGenerateGetResponse> getInvoiceGenerateData();
+	//InvoiceGenerateGetResponse
 
 
-    @GET("/invoiceapis/po/potemplate2")
-    Call<PoTemplateListResponse> getPoTemplateList();
+	@GET("/invoiceapis/invoice/finalinvoice")
+	Call<InvoiceFinalInvoiceGetResponse> getInvoiceListFinalPOData(@Query("id") String id);
 
-    @GET("/invoiceapis/po/generatenewpo")
-    Call<PoGenerateGetResponse> getPoGenerate();
-
-    @GET("/invoiceapis/PoTemplate/edit")
-    Call<PoTemplateEditGETResponse> getPoTemplateEditData(@Query("id") String id);
-
-    @GET("/invoiceapis/PoTemplate/create")
-    Call<AddNewPoTemplateGetResponse> getPoTemplateAddData();
+	@GET("/invoiceapis/invoice/generatenewinvoice")
+	Call<InvoiceGenerateGetResponse> getInvoiceGenerateData();
 
 
+	@GET("/invoiceapis/po/potemplate2")
+	Call<PoTemplateListResponse> getPoTemplateList();
 
-    @FormUrlEncoded
-    @POST("/invoiceapis/po/generatenewpo")
-    Call<PoGeneratePostResponse> postPoGenerate(@FieldMap Map<String, String> generatePoData);
+	@GET("/invoiceapis/po/generatenewpo")
+	Call<PoGenerateGetResponse> getPoGenerate();
 
+	@GET("/invoiceapis/PoTemplate/edit")
+	Call<PoTemplateEditGETResponse> getPoTemplateEditData(@Query("id") String id);
 
-    @FormUrlEncoded
-    @POST("/invoiceapis/invoice/generatenewinvoice")
-    Call<InvoiceGeneratePostResponse> postInvoiceGenerate(@FieldMap Map<String, String> generateInvoiceData);
-
-
-    @FormUrlEncoded
-    @POST("/invoiceapis/po/uploadinvoice")
-    Call<InvoiceAddPostResponse> postInvoiceAdd(@FieldMap Map<String, String> invoiceData);
-
-    @FormUrlEncoded
-    @POST("/invoiceapis/vendor/create")
-    Call<VendorEditPostResponse> postVendorEdit(@FieldMap Map<String, String> vendorData);
-
-
-    @FormUrlEncoded
-    @POST("/invoiceapis/vendor/create")
-    Call<VendorAddPostResponse> postVendorAdd(@FieldMap Map<String, String> vendorData);
-
-
-    @Multipart
-    @POST("/invoiceapis/PoTemplate/edit")
-    Call<PoTemplateEditPOSTResponse> postPOTemplateWithImage(@Part MultipartBody.Part file, @PartMap() Map<String, RequestBody> partMap);
-
-    @Multipart
-    @POST("/invoiceapis/PoTemplate/edit")
-    Call<PoTemplateEditPOSTResponse> postPOTemplateWithoutImage(@PartMap() Map<String, RequestBody> partMap);
-
-
-    @Multipart
-    @POST("/invoiceapis/invoice/uploadpo")
-    Call<PoUploadPOSTResponse> postPOUploadWithImage(@Part MultipartBody.Part file, @PartMap() Map<String, RequestBody> partMap);
-
-    @Multipart
-    @POST("/invoiceapis/invoice/uploadpo")
-    Call<PoUploadPOSTResponse> postPOUploadWithoutImage(@PartMap() Map<String, RequestBody> partMap);
-
-    @Multipart
-    @POST("/invoiceapis/Invoice/uploadinvoicepayment")
-    Call<PoPaymentPOSTResponse> postPOPaymentWithImage(@Part MultipartBody.Part file, @PartMap() Map<String, RequestBody> partMap);
-
-    @Multipart
-    @POST("/invoiceapis/Invoice/uploadinvoicepayment")
-    Call<PoPaymentPOSTResponse> postPOPaymentWithoutImage(@PartMap() Map<String, RequestBody> partMap);
-
-
-    @Multipart
-    @POST("/invoiceapis/po/uploadpayment")
-    Call<GeneratedListPOPaymentPostResponse> postGeneratedListPOPaymentWithImage(@Part MultipartBody.Part file, @PartMap() Map<String, RequestBody> partMap);
-
-    @Multipart
-    @POST("/invoiceapis/po/uploadpayment")
-    Call<GeneratedListPOPaymentPostResponse> postGeneratedListPOPaymentWithoutImage(@PartMap() Map<String, RequestBody> partMap);
+	@GET("/invoiceapis/PoTemplate/create")
+	Call<AddNewPoTemplateGetResponse> getPoTemplateAddData();
 
 
 
-    @Multipart
-    @POST("/invoiceapis/PoTemplate/create")
-    Call<POTemplateAddPostResponse> postPOTemplateAddWithImage(@Part MultipartBody.Part file, @PartMap() Map<String, RequestBody> partMap);
+	@FormUrlEncoded
+	@POST("/invoiceapis/po/generatenewpo")
+	Call<PoGeneratePostResponse> postPoGenerate(@FieldMap Map<String, String> generatePoData);
 
-    @Multipart
-    @POST("/invoiceapis/PoTemplate/create")
-    Call<POTemplateAddPostResponse> postPOTemplateAddWithoutImage(@PartMap() Map<String, RequestBody> partMap);
+
+	@FormUrlEncoded
+	@POST("/invoiceapis/invoice/generatenewinvoice")
+	Call<InvoiceGeneratePostResponse> postInvoiceGenerate(@FieldMap Map<String, String> generateInvoiceData);
+
+
+	@FormUrlEncoded
+	@POST("/invoiceapis/po/uploadinvoice")
+	Call<InvoiceAddPostResponse> postInvoiceAdd(@FieldMap Map<String, String> invoiceData);
+
+	@FormUrlEncoded
+	@POST("/invoiceapis/vendor/create")
+	Call<VendorEditPostResponse> postVendorEdit(@FieldMap Map<String, String> vendorData);
+
+
+	@FormUrlEncoded
+	@POST("/invoiceapis/vendor/create")
+	Call<VendorAddPostResponse> postVendorAdd(@FieldMap Map<String, String> vendorData);
+
+
+	@Multipart
+	@POST("/invoiceapis/PoTemplate/edit")
+	Call<PoTemplateEditPOSTResponse> postPOTemplateWithImage(@Part MultipartBody.Part file, @PartMap() Map<String, RequestBody> partMap);
+
+	@Multipart
+	@POST("/invoiceapis/PoTemplate/edit")
+	Call<PoTemplateEditPOSTResponse> postPOTemplateWithoutImage(@PartMap() Map<String, RequestBody> partMap);
+
+
+	@Multipart
+	@POST("/invoiceapis/invoice/uploadpo")
+	Call<PoUploadPOSTResponse> postPOUploadWithImage(@Part MultipartBody.Part file, @PartMap() Map<String, RequestBody> partMap);
+
+	@Multipart
+	@POST("/invoiceapis/invoice/uploadpo")
+	Call<PoUploadPOSTResponse> postPOUploadWithoutImage(@PartMap() Map<String, RequestBody> partMap);
+
+	@Multipart
+	@POST("/invoiceapis/Invoice/uploadinvoicepayment")
+	Call<PoPaymentPOSTResponse> postPOPaymentWithImage(@Part MultipartBody.Part file, @PartMap() Map<String, RequestBody> partMap);
+
+	@Multipart
+	@POST("/invoiceapis/Invoice/uploadinvoicepayment")
+	Call<PoPaymentPOSTResponse> postPOPaymentWithoutImage(@PartMap() Map<String, RequestBody> partMap);
+
+
+	@Multipart
+	@POST("/invoiceapis/po/uploadpayment")
+	Call<GeneratedListPOPaymentPostResponse> postGeneratedListPOPaymentWithImage(@Part MultipartBody.Part file, @PartMap() Map<String, RequestBody> partMap);
+
+	@Multipart
+	@POST("/invoiceapis/po/uploadpayment")
+	Call<GeneratedListPOPaymentPostResponse> postGeneratedListPOPaymentWithoutImage(@PartMap() Map<String, RequestBody> partMap);
+
+
+
+	@Multipart
+	@POST("/invoiceapis/PoTemplate/create")
+	Call<POTemplateAddPostResponse> postPOTemplateAddWithImage(@Part MultipartBody.Part file, @PartMap() Map<String, RequestBody> partMap);
+
+	@Multipart
+	@POST("/invoiceapis/PoTemplate/create")
+	Call<POTemplateAddPostResponse> postPOTemplateAddWithoutImage(@PartMap() Map<String, RequestBody> partMap);
 
 
 
@@ -378,14 +378,14 @@ public interface GetDataService {
 //    @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/user/passwordchange")
 //    Call<UserPasswordChangeResponse> postPasswordChange(@FieldMap Map<String, String> pwdData);
 
-    //This one will be used
+	//This one will be used
 //    @FormUrlEncoded
 //    @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/login/index")
 //    Call<OTPVerifactionResponse> postLoginPassword(@FieldMap Map<String, String> otpData);
 
-    @FormUrlEncoded
-    @POST("/invoiceapis/login/login")
-    Call<OTPVerifactionResponse> postLoginPassword(@FieldMap Map<String, String> otpData);
+	@FormUrlEncoded
+	@POST("/invoiceapis/login/login")
+	Call<OTPVerifactionResponse> postLoginPassword(@FieldMap Map<String, String> otpData);
 
 //    @FormUrlEncoded
 //    @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/user/postphoneforlogin")
