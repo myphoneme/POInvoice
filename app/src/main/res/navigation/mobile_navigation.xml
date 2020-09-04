@@ -120,7 +120,12 @@
         android:label="@string/menu_client_list"
         tools:layout="@layout/fragment_client_list"
         />
-
+    <fragment
+        android:id="@+id/nav_client_edit"
+        android:name="com.phoneme.poinvoice.ui.invoice.fragment.ClientEditFragment"
+        android:label="@string/menu_client_edit"
+        tools:layout="@layout/fragment_client_edit"
+        />
     <fragment
         android:id="@+id/nav_share"
         android:name="com.phoneme.poinvoice.ui.share.ShareFragment"

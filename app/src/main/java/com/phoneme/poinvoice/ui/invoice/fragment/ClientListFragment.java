@@ -12,13 +12,23 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.phoneme.poinvoice.R;
+import com.phoneme.poinvoice.config.RetrofitClientInstance;
+import com.phoneme.poinvoice.interfaces.GetDataService;
 import com.phoneme.poinvoice.ui.invoice.adapter.ClientListAdapter;
+import com.phoneme.poinvoice.ui.invoice.model.ClientDataModel;
 import com.phoneme.poinvoice.ui.invoice.model.InvoiceRowModel;
+import com.phoneme.poinvoice.ui.invoice.network.ClientListGetResponse;
+import com.phoneme.poinvoice.ui.invoice.network.InvoiceListResponse;
 
 import java.util.List;
 
-public class ClientListFragment extends Fragment {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class ClientListFragment extends Fragment implements ClientListAdapter.OnItemClickListener{
     private RecyclerView recyclerView;
+    private List<ClientDataModel> clientDataModelList;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState){
         View root = inflater.inflate(R.layout.fragment_client_list, container, false);
@@ -29,14 +39,43 @@ public class ClientListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerView=(RecyclerView)view.findViewById(R.id.recyclerview_client_list);
-        setAdapter();
+        getClientListData();
+//        setAdapter();
     }
 
-    private void setAdapter(){
-        ClientListAdapter adapter=new ClientListAdapter(getContext());
+    private void setAdapter(List<ClientDataModel> clientDataModelList){
+        //ClientListAdapter adapter=new ClientListAdapter(getContext());
+        ClientListAdapter adapter=new ClientListAdapter(getContext(),this,clientDataModelList);
         recyclerView.setAdapter(adapter);
         LinearLayoutManager linearVertical = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearVertical);
 
     }
+
+    private void getClientListData(){
+        GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+        Call<ClientListGetResponse> call=service.getClientList();
+        call.enqueue(new Callback<ClientListGetResponse>() {
+            @Override
+            public void onResponse(Call<ClientListGetResponse> call, Response<ClientListGetResponse> response) {
+                if(response!=null && response.body()!=null && response.body().getClientDataModelList()!=null){
+                    clientDataModelList=response.body().getClientDataModelList();
+                    setAdapter(clientDataModelList);
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ClientListGetResponse> call, Throwable t) {
+
+            }
+        });
+
+    }
+    public void onItemClick(int position){
+
+
+    }
+    public void onItemClick2(int position){}
+    public void onItemClick3(int position){}
 }

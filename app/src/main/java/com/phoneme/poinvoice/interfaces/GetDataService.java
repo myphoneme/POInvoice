@@ -34,6 +34,7 @@ package com.phoneme.poinvoice.interfaces;
 //import com.phoneme.ticketing.user.network.PhonePostResponse;
 
 import com.phoneme.poinvoice.ui.invoice.network.CheckInvoiceListResponse1;
+import com.phoneme.poinvoice.ui.invoice.network.ClientListGetResponse;
 import com.phoneme.poinvoice.ui.invoice.network.InvoiceFinalInvoiceGetResponse;
 import com.phoneme.poinvoice.ui.invoice.network.InvoiceFunnelInvoiceGetResponse;
 import com.phoneme.poinvoice.ui.invoice.network.InvoiceGenerateGetResponse;
@@ -149,6 +150,9 @@ public interface GetDataService {
 
 	@GET("/invoiceapis/PoTemplate/create")
 	Call<AddNewPoTemplateGetResponse> getPoTemplateAddData();
+
+    @GET("/invoiceapis//clientlist/")
+	Call<ClientListGetResponse> getClientList();
 
 
 
