@@ -78,7 +78,7 @@ public class ClientDataModel {
     public String getClient_name(){
         return this.client_name;
     }
-    private String getId(){
+    public String getId(){
         return this.id;
     }
 }

@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -73,7 +75,11 @@ public class ClientListFragment extends Fragment implements ClientListAdapter.On
 
     }
     public void onItemClick(int position){
-
+        Bundle args = new Bundle();
+        String id=clientDataModelList.get(position).getId();
+        args.putString("id",id);//To be changed to dynamic data
+        NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+        navController.navigate(R.id.nav_client_edit,args);
 
     }
     public void onItemClick2(int position){}
