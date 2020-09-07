@@ -1,145 +1,232 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="5dp">
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            android:layout_gravity="center_vertical"
+            android:background="#6C18A4">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_gravity="center_vertical"
+                android:text="("
+                android:textColor="@color/text_white"
+                android:textSize="24sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center_vertical"
+                android:text="ADD INVOICE"
+                android:textColor="@color/text_white"
+                android:textSize="24sp" />
+        </RelativeLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Generate New Invoice"
-            android:textStyle="bold" />
+            android:layout_marginLeft="27dp"
+            android:layout_marginTop="10dp"
+            android:text="Enter Invoice Details"
+            android:textColor="#A3A2AC"
+            android:textSize="13sp" />
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="23dp"
                 android:text="Invoice Number"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#A3A2AC"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/invoice_number_o"
+                android:layout_width="230dp"
+                android:layout_height="30dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edit_bg"
+                android:hint="Invoice"
+                android:padding="5dp"
+                android:textSize="12sp"
+                android:visibility="gone" />
 
             <EditText
                 android:id="@+id/invoice_number"
-                android:layout_width="230dp"
-                android:layout_height="30dp"
-                android:layout_alignParentRight="true"
-                android:background="@drawable/edit_bg"
-                android:hint="Enter Invoice number"
-                android:padding="5dp"
-                android:textSize="12sp" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="23dp"
+                android:layout_marginRight="23dp"
+                android:hint="Invoice"
+                android:paddingBottom="10dp"
+                android:textColor="#A3A2AC"
+                android:textColorHint="#A3A2AC"
+                app:backgroundTint="#A3A2AC99" />
 
-        </RelativeLayout>
+        </LinearLayout>
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="23dp"
+                android:layout_marginTop="23dp"
                 android:text="PO Number"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#A3A2AC"
+                android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/po_number"
+                android:id="@+id/po_number_o"
                 android:layout_width="230dp"
                 android:layout_height="30dp"
                 android:layout_alignParentRight="true"
                 android:background="@drawable/edit_bg"
                 android:hint="Enter PO number"
                 android:padding="5dp"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:visibility="gone" />
 
-        </RelativeLayout>
+            <EditText
+                android:id="@+id/po_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="23dp"
+                android:layout_marginRight="23dp"
+                android:hint="PO Number"
+                android:paddingBottom="10dp"
+                android:textColor="#A3A2AC"
+                android:textColorHint="#A3A2AC"
+                app:backgroundTint="#A3A2AC99" />
+
+        </LinearLayout>
 
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="23dp"
+                android:layout_marginTop="23dp"
                 android:text="Invoice Date"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#A3A2AC"
+                android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/invoice_date"
+                android:id="@+id/invoice_date_o"
                 android:layout_width="230dp"
                 android:layout_height="30dp"
                 android:layout_alignParentRight="true"
                 android:background="@drawable/edit_bg"
                 android:hint="mm/dd/yyyy"
                 android:padding="5dp"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:visibility="gone" />
 
-        </RelativeLayout>
+            <EditText
+                android:id="@+id/invoice_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="23dp"
+                android:layout_marginRight="23dp"
+                android:hint="Invoice Date"
+                android:paddingBottom="10dp"
+                android:textColor="#A3A2AC"
+                android:textColorHint="#A3A2AC"
+                app:backgroundTint="#A3A2AC99" />
 
-        <RelativeLayout
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
             android:layout_marginTop="10dp"
-            android:gravity="center_vertical">
+            android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="23dp"
+                android:layout_marginTop="23dp"
                 android:gravity="center_vertical"
                 android:text="Select Company"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#A3A2AC"
+                android:textSize="14sp" />
 
             <Spinner
                 android:id="@+id/company"
                 android:layout_width="230dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="10dp"
+                android:layout_marginLeft="23dp"
                 android:layout_marginBottom="10dp"
                 android:entries="@array/company"
                 android:imeOptions="actionNext" />
-        </RelativeLayout>
+        </LinearLayout>
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
             android:layout_marginTop="10dp"
-            android:gravity="center_vertical">
+            android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="23dp"
+                android:layout_marginTop="23dp"
                 android:gravity="center_vertical"
                 android:text="Select Vendor"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#A3A2AC"
+                android:textSize="14sp" />
 
             <Spinner
                 android:id="@+id/vendor"
                 android:layout_width="230dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="10dp"
+                android:layout_marginLeft="23dp"
                 android:layout_marginBottom="10dp"
                 android:entries="@array/vendor"
                 android:imeOptions="actionNext" />
-        </RelativeLayout>
+        </LinearLayout>
         <!--    <RelativeLayout-->
         <!--        android:layout_marginTop="10dp"-->
         <!--        android:layout_width="match_parent"-->
@@ -322,77 +409,141 @@
 
         </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/sgst_cgst_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:visibility="visible">
+<!--        <RelativeLayout-->
+<!--            android:id="@+id/sgst_cgst_layout_o"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:visibility="visible">-->
 
-            <RelativeLayout
-                android:id="@+id/cgst_layout"
+            <LinearLayout
+                android:id="@+id/sgst_cgst_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp">
+
+<!--            <RelativeLayout-->
+<!--                android:id="@+id/cgst_layout_o"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp">-->
+
+                <LinearLayout
+                    android:id="@+id/cgst_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp">
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="23dp"
+                    android:layout_marginTop="23dp"
                     android:text="CGST%(in Number)"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textColor="#A3A2AC"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/cgst_percentage_o"
+                    android:layout_width="210dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/edit_bg"
+                    android:hint="18"
+                    android:padding="5dp"
+                    android:textSize="12sp"
+                    android:visibility="gone" />
 
                 <EditText
                     android:id="@+id/cgst_percentage"
-                    android:layout_width="210dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentRight="true"
-                    android:background="@drawable/edit_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="23dp"
+                    android:layout_marginRight="23dp"
                     android:hint="18"
-                    android:padding="5dp"
-                    android:textSize="12sp" />
-            </RelativeLayout>
+                    android:paddingBottom="10dp"
+                    android:textColor="#A3A2AC"
+                    android:textColorHint="#A3A2AC"
+                    app:backgroundTint="#A3A2AC99" />
 
-            <RelativeLayout
+<!--            </RelativeLayout>-->
+                </LinearLayout>
+            <!--            <RelativeLayout-->
+            <!--                android:id="@+id/sgst_layout_o"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_below="@+id/cgst_layout"-->
+            <!--                android:layout_marginTop="10dp">-->
+            <LinearLayout
                 android:id="@+id/sgst_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/cgst_layout"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp">
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="23dp"
+                    android:layout_marginTop="23dp"
                     android:text="SGST%(in Number)"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textColor="#A3A2AC"
+                    android:textSize="14sp" />
 
                 <EditText
-                    android:id="@+id/sgst_percentage"
+                    android:id="@+id/sgst_percentage_o"
                     android:layout_width="210dp"
                     android:layout_height="30dp"
                     android:layout_alignParentRight="true"
                     android:background="@drawable/edit_bg"
                     android:hint="18"
                     android:padding="5dp"
-                    android:textSize="12sp" />
-            </RelativeLayout>
-        </RelativeLayout>
+                    android:textSize="12sp"
+                    android:visibility="gone" />
 
-        <RelativeLayout
+                <EditText
+                    android:id="@+id/sgst_percentage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="23dp"
+                    android:layout_marginRight="23dp"
+                    android:hint="18"
+                    android:paddingBottom="10dp"
+                    android:textColor="#A3A2AC"
+                    android:textColorHint="#A3A2AC"
+                    app:backgroundTint="#A3A2AC99" />
+                <!--            </RelativeLayout>-->
+            </LinearLayout>
+<!--        </RelativeLayout>-->
+            </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="23dp"
+                android:layout_marginTop="23dp"
                 android:text="Remarks"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#A3A2AC"
+                android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/remark"
+                android:id="@+id/remark_o"
                 android:layout_width="230dp"
                 android:layout_height="130dp"
                 android:layout_alignParentRight="true"
@@ -400,9 +551,22 @@
                 android:gravity="top"
                 android:hint=""
                 android:padding="5dp"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:visibility="gone" />
 
-        </RelativeLayout>
+            <EditText
+                android:id="@+id/remark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="23dp"
+                android:layout_marginRight="23dp"
+                android:hint="Remarks"
+                android:paddingBottom="10dp"
+                android:textColor="#A3A2AC"
+                android:textColorHint="#A3A2AC"
+                app:backgroundTint="#A3A2AC99" />
+
+        </LinearLayout>
 
 
         <!--    <RelativeLayout-->

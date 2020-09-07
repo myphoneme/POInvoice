@@ -55,7 +55,8 @@ public class CreateInvoiceFragment extends Fragment {
     DatePickerDialog.OnDateSetListener date;
     private Button serviceButton;
     private LinearLayout servicelayout;
-    private RelativeLayout iGSTLayout,cGSTsGSTLayout;
+    private RelativeLayout iGSTLayout;
+    private LinearLayout cGSTsGSTLayout;
     private int servicecount=1;
     private Button Generate;
     private List<PoTemplateDataModel> poTemplateDataModelList;
@@ -94,7 +95,7 @@ public class CreateInvoiceFragment extends Fragment {
         gstPercentage=(EditText)view.findViewById(R.id.igst_percentage);
         Remark=(EditText)view.findViewById(R.id.remark);
         iGSTLayout=(RelativeLayout)view.findViewById(R.id.igst_layout);
-        cGSTsGSTLayout=(RelativeLayout)view.findViewById(R.id.sgst_cgst_layout);
+        cGSTsGSTLayout=(LinearLayout)view.findViewById(R.id.sgst_cgst_layout);
         cGST_Percentage=(EditText)view.findViewById(R.id.cgst_percentage);
         sGST_Percentage=(EditText)view.findViewById(R.id.sgst_percentage);
         iGST_Percentage=(EditText)view.findViewById(R.id.igst_percentage);
