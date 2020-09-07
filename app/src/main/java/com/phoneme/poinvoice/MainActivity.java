@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_po_vendor_list, R.id.nav_invoice, R.id.nav_po_generated_list,
-                R.id.nav_po_template,R.id.nav_po_template_edit,R.id.nav_po_template_upload,R.id.nav_invoice_add_upload,R.id.nav_create_invoice,R.id.nav_final_invoice,R.id.nav_vendor_edit,R.id.nav_vendor_add,R.id.nav_create_po,R.id.nav_payment_upload,R.id.nav_invoice_management,R.id.nav_generated_list_payment_upload,R.id.nav_client_list,R.id.nav_client_edit, R.id.nav_share, R.id.nav_send)
+                R.id.nav_po_template,R.id.nav_po_template_edit,R.id.nav_po_template_upload,R.id.nav_invoice_add_upload,R.id.nav_create_invoice,R.id.nav_final_invoice,R.id.nav_vendor_edit,R.id.nav_vendor_add,R.id.nav_create_po,R.id.nav_payment_upload,R.id.nav_invoice_management,R.id.nav_generated_list_payment_upload,R.id.nav_client_list,R.id.nav_client_edit,R.id.nav_client_create, R.id.nav_share, R.id.nav_send)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);

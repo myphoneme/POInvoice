@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,6 +22,7 @@ import com.phoneme.poinvoice.ui.invoice.model.ClientDataModel;
 import com.phoneme.poinvoice.ui.invoice.model.InvoiceRowModel;
 import com.phoneme.poinvoice.ui.invoice.network.ClientListGetResponse;
 import com.phoneme.poinvoice.ui.invoice.network.InvoiceListResponse;
+import com.phoneme.poinvoice.ui.po.fragment.CreatePOFragment;
 
 import java.util.List;
 
@@ -31,6 +33,9 @@ import retrofit2.Response;
 public class ClientListFragment extends Fragment implements ClientListAdapter.OnItemClickListener{
     private RecyclerView recyclerView;
     private List<ClientDataModel> clientDataModelList;
+
+
+    private Button CreateClient;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState){
         View root = inflater.inflate(R.layout.fragment_client_list, container, false);
@@ -40,12 +45,21 @@ public class ClientListFragment extends Fragment implements ClientListAdapter.On
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        CreateClient=(Button)view.findViewById(R.id.create_client);
+        CreateClient.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+                navController.navigate(R.id.nav_client_create);
+            }
+        });
         recyclerView=(RecyclerView)view.findViewById(R.id.recyclerview_client_list);
         getClientListData();
 //        setAdapter();
     }
 
     private void setAdapter(List<ClientDataModel> clientDataModelList){
+
         //ClientListAdapter adapter=new ClientListAdapter(getContext());
         ClientListAdapter adapter=new ClientListAdapter(getContext(),this,clientDataModelList);
         recyclerView.setAdapter(adapter);

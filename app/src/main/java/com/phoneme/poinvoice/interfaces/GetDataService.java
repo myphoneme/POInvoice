@@ -34,6 +34,8 @@ package com.phoneme.poinvoice.interfaces;
 //import com.phoneme.ticketing.user.network.PhonePostResponse;
 
 import com.phoneme.poinvoice.ui.invoice.network.CheckInvoiceListResponse1;
+import com.phoneme.poinvoice.ui.invoice.network.ClientCreateGetResponse;
+import com.phoneme.poinvoice.ui.invoice.network.ClientCreatePostResponse;
 import com.phoneme.poinvoice.ui.invoice.network.ClientEditGetResponse;
 import com.phoneme.poinvoice.ui.invoice.network.ClientEditPostResponse;
 import com.phoneme.poinvoice.ui.invoice.network.ClientListGetResponse;
@@ -159,6 +161,13 @@ public interface GetDataService {
 	@GET("/invoiceapis/clientlist/edit")
     Call<ClientEditGetResponse> getClientEditData(@Query("Id") String id);
 
+	@GET("/invoiceapis/clientlist/add")
+	Call<ClientCreateGetResponse> getClientCreateData();
+
+
+	@FormUrlEncoded
+	@POST("/invoiceapis/clientlist/add")
+	Call<ClientCreatePostResponse> postClientCreate(@FieldMap Map<String, String> clientData);
 
 	@FormUrlEncoded
 	@POST("/invoiceapis/clientlist/edit")

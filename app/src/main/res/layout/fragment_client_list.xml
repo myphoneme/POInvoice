@@ -13,7 +13,7 @@
             android:layout_alignParentLeft="true"
             />
         <Button
-            android:id="@+id/submit"
+            android:id="@+id/create_client"
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:layout_margin="5dp"

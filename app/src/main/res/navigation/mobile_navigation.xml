@@ -126,6 +126,13 @@
         android:label="@string/menu_client_edit"
         tools:layout="@layout/fragment_client_edit"
         />
+
+    <fragment
+        android:id="@+id/nav_client_create"
+        android:name="com.phoneme.poinvoice.ui.invoice.fragment.ClientCreateFragment"
+        android:label="@string/menu_client_create"
+        tools:layout="@layout/fragment_client_create"
+        />
     <fragment
         android:id="@+id/nav_share"
         android:name="com.phoneme.poinvoice.ui.share.ShareFragment"
