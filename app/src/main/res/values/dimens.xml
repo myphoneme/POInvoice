@@ -9,4 +9,5 @@
     <dimen name="edit_width">230dp</dimen>
     <dimen name="margin">10dp</dimen>
     <dimen name="marginText">20dp</dimen>
+    <dimen name="margin23">23dp</dimen>
 </resources>

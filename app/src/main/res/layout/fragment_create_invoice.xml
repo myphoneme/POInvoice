@@ -300,7 +300,7 @@
                     android:background="@drawable/edit_bg"
                     android:hint="Service"
                     android:padding="5dp"
-                    android:tag="service1"
+                    android:tag="service1_o"
                     android:textSize="12sp" />
 
                 <EditText
