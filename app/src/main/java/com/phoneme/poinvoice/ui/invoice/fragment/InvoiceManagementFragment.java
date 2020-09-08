@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -31,8 +34,12 @@ import java.util.List;
 
 public class InvoiceManagementFragment extends Fragment implements InvoiceManagementAdapter.OnItemClickListener {
     private RecyclerView recyclerview;
+    private Spinner YearsSpinner;
     private List<InvoiceManagementDataModel> invoiceManagementDataModelList=new ArrayList<InvoiceManagementDataModel>();
     private  InvoiceResponseModel invoiceResponseModel;
+
+    String[] yearsString = {"2020-21","2019-20","2018-19","2017-18"};
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_invoice_management, container, false);
@@ -43,7 +50,9 @@ public class InvoiceManagementFragment extends Fragment implements InvoiceManage
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerview=(RecyclerView)view.findViewById(R.id.invoice_management);
+        YearsSpinner=(Spinner)view.findViewById(R.id.years);
         //setAdapter();
+        setYearsSpinnerData();
         getInvoiceManagementData();
     }
     private void setAdapter(List<InvoiceManagementDataModel> invoiceManagementDataModelList){
@@ -109,6 +118,26 @@ public class InvoiceManagementFragment extends Fragment implements InvoiceManage
         invoiceManagementDataModelList.add(data4);
         //Toast.makeText(getContext(),"before set adapter", Toast.LENGTH_LONG).show();
         setAdapter(invoiceManagementDataModelList);
+    }
+
+    private void setYearsSpinnerData(){
+        ArrayAdapter aa = new ArrayAdapter(getContext(),android.R.layout.simple_spinner_item,yearsString);
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        YearsSpinner.setAdapter(aa);
+        YearsSpinner.setSelection(0);
+
+        YearsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String year=yearsString[YearsSpinner.getSelectedItemPosition()];
+                //getInvoiceListData(year);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
     public void onItemClick(int position){}
     public void onItemClick2(int position){}

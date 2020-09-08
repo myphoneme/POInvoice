@@ -95,7 +95,7 @@ public interface GetDataService {
 	Call<UploadPOGetResponse> getPOUploadData(@Query("id") String id);
 
 	@GET("/invoiceapis/invoice/invoicelist/")
-	Call<InvoiceListResponse> getInvoiceList();
+	Call<InvoiceListResponse> getInvoiceList(@Query("year") String year);
 
 	@GET("/invoiceapis/Invoice/uploadinvoicepayment")
 	Call<UPloadPOPaymentGetResponse> getPOPaymentUploadData(@Query("id") String id);
