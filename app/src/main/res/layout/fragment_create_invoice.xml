@@ -264,6 +264,8 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginTop="10dp"
+
+            android:gravity="center_horizontal"
             android:text="Add Services / Products"
             android:textSize="18sp" />
 
@@ -273,20 +275,25 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:orientation="vertical"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp">
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:text="Service"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:layout_marginLeft="23dp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="#A3A2AC" />
 
                 <EditText
-                    android:id="@+id/service"
+                    android:id="@+id/service_o"
+                    android:visibility="gone"
                     android:layout_width="230dp"
                     android:layout_height="30dp"
                     android:layout_alignParentRight="true"
@@ -296,82 +303,150 @@
                     android:tag="service1"
                     android:textSize="12sp" />
 
-            </RelativeLayout>
+                <EditText
+                    android:id="@+id/service"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="23dp"
+                    android:layout_marginRight="23dp"
+                    android:hint="Service"
+                    android:tag="service1"
+                    android:paddingBottom="10dp"
+                    android:textColor="#A3A2AC"
+                    android:textColorHint="#A3A2AC"
+                    app:backgroundTint="#A3A2AC99" />
 
-            <RelativeLayout
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp">
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:text="Description"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:layout_marginLeft="23dp"
+                    android:layout_marginTop="23dp"
+                    android:textColor="#A3A2AC" />
 
                 <EditText
-                    android:id="@+id/description"
+                    android:id="@+id/description_o"
+                    android:visibility="gone"
                     android:layout_width="230dp"
                     android:layout_height="30dp"
-                    android:layout_alignParentRight="true"
                     android:background="@drawable/edit_bg"
                     android:hint="Description"
                     android:padding="5dp"
-                    android:tag="description1"
+                    android:tag="description1_o"
                     android:textSize="12sp" />
 
-            </RelativeLayout>
+                <EditText
+                    android:id="@+id/description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="23dp"
+                    android:layout_marginRight="23dp"
+                    android:hint="Description"
+                    android:tag="description1"
+                    android:paddingBottom="10dp"
+                    android:textColor="#A3A2AC"
+                    android:textColorHint="#A3A2AC"
+                    app:backgroundTint="#A3A2AC99" />
 
-            <RelativeLayout
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp">
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:text="Quantity"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:layout_marginLeft="23dp"
+                    android:layout_marginTop="23dp"
+                    android:textColor="#A3A2AC" />
 
                 <EditText
-                    android:id="@+id/quantity"
+                    android:id="@+id/quantity_o"
+                    android:visibility="gone"
                     android:layout_width="230dp"
                     android:layout_height="30dp"
                     android:layout_alignParentRight="true"
                     android:background="@drawable/edit_bg"
                     android:hint="Quantity"
                     android:padding="5dp"
-                    android:tag="quantity1"
+                    android:tag="quantity1_o"
                     android:textSize="12sp" />
 
-            </RelativeLayout>
+                <EditText
+                    android:id="@+id/quantity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="23dp"
+                    android:layout_marginRight="23dp"
+                    android:hint="Quantity"
+                    android:tag="quantity1"
+                    android:paddingBottom="10dp"
+                    android:textColor="#A3A2AC"
+                    android:textColorHint="#A3A2AC"
+                    app:backgroundTint="#A3A2AC99" />
 
-            <RelativeLayout
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp">
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:text="Price"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:layout_marginLeft="23dp"
+                    android:layout_marginTop="23dp"
+                    android:textColor="#A3A2AC"/>
 
                 <EditText
-                    android:id="@+id/price"
+                    android:id="@+id/price_o"
+                    android:visibility="gone"
                     android:layout_width="230dp"
                     android:layout_height="30dp"
                     android:layout_alignParentRight="true"
                     android:background="@drawable/edit_bg"
                     android:hint="Price"
                     android:padding="5dp"
-                    android:tag="price1"
+                    android:tag="price1_o"
                     android:textSize="12sp" />
+                <EditText
+                    android:id="@+id/price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="23dp"
+                    android:layout_marginRight="23dp"
+                    android:hint="Price"
+                    android:tag="price1"
+                    android:paddingBottom="10dp"
+                    android:textColor="#A3A2AC"
+                    android:textColorHint="#A3A2AC"
+                    app:backgroundTint="#A3A2AC99" />
 
-            </RelativeLayout>
+            </LinearLayout>
         </LinearLayout>
 
         <Button
@@ -379,8 +454,10 @@
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:layout_margin="5dp"
-            android:background="@drawable/button_bg_rounded_corners"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/button_bg_rounded_corners_purple"
             android:text="Service"
+            android:textSize="16sp"
             android:textAllCaps="false"
             android:textColor="@color/text_white" />
 
@@ -657,6 +734,17 @@
                 android:visibility="gone" />
 
         </RelativeLayout>
+        <Button
+            android:id="@+id/generate"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/button_bg_rounded_corners_purple"
+            android:text="Generate"
+            android:textSize="16sp"
+            android:textAllCaps="false"
+            android:textColor="@color/text_white" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -674,15 +762,7 @@
                 android:textColor="@color/text_white"
                 android:visibility="gone" />
 
-            <Button
-                android:id="@+id/generate"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:layout_margin="5dp"
-                android:background="@drawable/button_bg_rounded_corners"
-                android:text="Generate"
-                android:textAllCaps="false"
-                android:textColor="@color/text_white" />
+
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

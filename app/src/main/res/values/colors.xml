@@ -15,4 +15,6 @@
     <color name="colorWhite">#FFFFFF</color>
     <color name="wavecolor1">#FF7200</color>
     <color name="wavecolor2">#6C18A4</color>
+
+    <color name="purple">#6C18A4</color>
 </resources>
