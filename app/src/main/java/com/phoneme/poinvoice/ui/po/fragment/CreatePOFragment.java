@@ -56,7 +56,8 @@ public class CreatePOFragment extends Fragment {
     private Spinner Company,Vendor;
 
     private LinearLayout servicelayout;
-    private RelativeLayout iGSTLayout,cGSTsGSTLayout;
+    private RelativeLayout cGSTsGSTLayout;
+    private LinearLayout iGSTLayout;
 
     private int servicecount=1;
 
@@ -207,7 +208,7 @@ public class CreatePOFragment extends Fragment {
         gstPercentage=(EditText)view.findViewById(R.id.igst_percentage);
         termsConditions=(EditText)view.findViewById(R.id.terms_conditions);
 
-        iGSTLayout=(RelativeLayout)view.findViewById(R.id.igst_layout);
+        iGSTLayout=(LinearLayout)view.findViewById(R.id.igst_layout);
         cGSTsGSTLayout=(RelativeLayout)view.findViewById(R.id.sgst_cgst_layout);
         cGST_Percentage=(EditText)view.findViewById(R.id.cgst_percentage);
         sGST_Percentage=(EditText)view.findViewById(R.id.sgst_percentage);
