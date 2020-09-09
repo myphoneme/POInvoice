@@ -23,6 +23,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -335,287 +337,448 @@ public class CreatePOFragment extends Fragment {
 
     }
 
-
-    private void createView(){
-        servicecount++;
-        View v = new View(getContext());
-        v.setLayoutParams(new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                1
-        ));
-
-        v.setBackgroundColor(Color.parseColor("#B3B3B3"));
-
-
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams (
-                (int) getResources().getDimension(R.dimen.edit_width),
-                RelativeLayout.LayoutParams.WRAP_CONTENT);
-
-        params.setMargins((int) getResources().getDimension(R.dimen.margin),
-                (int) getResources().getDimension(R.dimen.margin),
-                0,
-                (int) getResources().getDimension(R.dimen.margin));
-
-        RelativeLayout relativeLayout=new RelativeLayout(getContext());
-
-
-        RelativeLayout.LayoutParams params2 = new RelativeLayout.LayoutParams (
-                RelativeLayout.LayoutParams.MATCH_PARENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT);
-
-        RelativeLayout.LayoutParams paramsLeft = new RelativeLayout.LayoutParams (
-                RelativeLayout.LayoutParams.WRAP_CONTENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT);
-
-
-        //paramsLeft.bottomMargin=(int) getResources().getDimension(R.dimen.margin);
-
-        //relativeLayout.setBackgroundColor((int)getResources().getColor(R.color.colorAccent));
-        relativeLayout.setLayoutParams(params2);
-//        relativeLayout.getLayoutParams().width=(int) getResources().getDimension(R.dimen.edit_width);
-//        relativeLayout.getLayoutParams().height=RelativeLayout.LayoutParams.WRAP_CONTENT;
-//
-
-
-        TextView textView=new TextView(getContext());
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP,14);
-        //textView.setHint("Service");
-        //textView.setHintTextColor((int)getResources().getColor(R.color.grey));
-        textView.setTypeface(textView.getTypeface(), Typeface.BOLD);
-        textView.setText("Service");
-
-        textView.setLayoutParams(paramsLeft);
-
-        //textView.setBackgroundColor((int)getResources().getColor(R.color.grey));
-//        textView.setGravity(Gravity.CENTER_VERTICAL);
-        textView.setPadding(0,0,0,0);
-
-        EditText edittTxt = new EditText(getContext());
-        //edittTxt.setTextSize((int)getResources().getDimension(R.dimen.text_size));
-        edittTxt.setTextSize(TypedValue.COMPLEX_UNIT_SP,12);
-        edittTxt.setHint("Service");
-        edittTxt.setTag("service"+servicecount);
-        Toast.makeText(getContext(),"tag="+edittTxt.getTag().toString(),Toast.LENGTH_LONG).show();
-        edittTxt.setId(0);
-        edittTxt.setHintTextColor((int)getResources().getColor(R.color.grey));
-
-//
-//
-        edittTxt.setWidth((int) getResources().getDimension(R.dimen.edit_width));
-        relativeLayout.addView(v);
-        relativeLayout.addView(edittTxt);
-        relativeLayout.addView(textView);
-
-//
-        params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-        edittTxt.setLayoutParams(params);
-        edittTxt.setBackground(getContext().getResources().getDrawable(R.drawable.edit_bg));
-//
-        servicelayout.addView(relativeLayout);
-
-
-
-
-
-
-
-        View vDescription = new View(getContext());
-        vDescription.setLayoutParams(new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                5
-        ));
-
-        vDescription.setBackgroundColor(Color.parseColor("#c8c8c8"));
-
-
-        RelativeLayout.LayoutParams paramsDescription = new RelativeLayout.LayoutParams (
-                (int) getResources().getDimension(R.dimen.edit_width),
-                RelativeLayout.LayoutParams.WRAP_CONTENT);
-
-
-        RelativeLayout relativeLayoutDescription=new RelativeLayout(getContext());
-        RelativeLayout.LayoutParams paramsDescription2 = new RelativeLayout.LayoutParams (
-                RelativeLayout.LayoutParams.MATCH_PARENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT);
-
-
-        paramsDescription2.setMargins((int) getResources().getDimension(R.dimen.margin),
-                (int) getResources().getDimension(R.dimen.margin),
-                (int) getResources().getDimension(R.dimen.margin),
-                (int) getResources().getDimension(R.dimen.margin));
-
-
-        RelativeLayout.LayoutParams paramsDescriptionLeft = new RelativeLayout.LayoutParams (
-                RelativeLayout.LayoutParams.WRAP_CONTENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT);
-
-//        paramsDescriptionLeft.setMargins((int) getResources().getDimension(R.dimen.margin),
-//                (int) getResources().getDimension(R.dimen.margin),
-//                (int) getResources().getDimension(R.dimen.margin),
-//                (int) getResources().getDimension(R.dimen.margin));
-
-        relativeLayoutDescription.setLayoutParams(paramsDescription2);
-
+    private void createSingleTextEditService(LinearLayout servicelayout, int servicecount){
+        LinearLayout.LayoutParams mLparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        mLparams.setMargins((int) getResources().getDimension(R.dimen.margin23),(int) getResources().getDimension(R.dimen.nav_header_vertical_spacing),
+                (int) getResources().getDimension(R.dimen.margin23),(int) getResources().getDimension(R.dimen.nav_header_vertical_spacing));
 
         TextView textViewDescription=new TextView(getContext());
         textViewDescription.setTextSize(TypedValue.COMPLEX_UNIT_SP,14);
-        //textViewDescription.setHint("Description");
-        textViewDescription.setTypeface(textView.getTypeface(), Typeface.BOLD);
-        textViewDescription.setLayoutParams(paramsDescriptionLeft);
+
+//        textViewDescription.setTypeface(textView.getTypeface(), Typeface.BOLD);
+        textViewDescription.setLayoutParams(mLparams);
+        textViewDescription.setText("Enter Item or servic Description");
+        textViewDescription.setTextColor((int)getResources().getColor(R.color.edittextcolor));
+        servicelayout.addView(textViewDescription);
+
+
+
+        EditText myEditText = new EditText(getContext());
+
+        myEditText.setLayoutParams(mLparams);
+
+        myEditText.setHint("Service");
+
+        myEditText.setTag("service"+servicecount);
+        myEditText.setHintTextColor((int)getResources().getColor(R.color.edittextcolor));
+        //myEditText.setBackgroundTintList(ContextCompat.getColorStateList(getContext(), R.color.editbackgroundtintcolor));
+        ViewCompat.setBackgroundTintList(
+                myEditText,
+                ContextCompat.getColorStateList(
+                        getContext(),
+                        R.color.editbackgroundtintcolor
+                )
+        );
+//
+        //myEditText.setWidth((int) getResources().getDimension(R.dimen.edit_width));
+        servicelayout.addView(myEditText);
+
+    }
+
+    private void createSingleTextEditDescription(LinearLayout servicelayout, int servicecount){
+        LinearLayout.LayoutParams mLparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        mLparams.setMargins((int) getResources().getDimension(R.dimen.margin23),(int) getResources().getDimension(R.dimen.nav_header_vertical_spacing),
+                (int) getResources().getDimension(R.dimen.margin23),(int) getResources().getDimension(R.dimen.nav_header_vertical_spacing));
+
+        TextView textViewDescription=new TextView(getContext());
+        textViewDescription.setTextSize(TypedValue.COMPLEX_UNIT_SP,14);
+
+//        textViewDescription.setTypeface(textView.getTypeface(), Typeface.BOLD);
+        textViewDescription.setLayoutParams(mLparams);
         textViewDescription.setText("Description");
-        //textViewDescription.setTextColor((int)getResources().getColor(R.color.grey));
-        //textViewDescription.setHintTextColor((int)getResources().getColor(R.color.grey));
-
-        EditText edittTxtDescription = new EditText(getContext());
-
-        edittTxtDescription.setTextSize(TypedValue.COMPLEX_UNIT_SP,12);
-        edittTxtDescription.setHint("Description");
-        edittTxtDescription.setTag("description"+servicecount);
-        edittTxtDescription.setHintTextColor((int)getResources().getColor(R.color.grey));
-
-        edittTxtDescription.setWidth((int) getResources().getDimension(R.dimen.edit_width));
-        //relativeLayoutDescription.addView(vDescription);
-        relativeLayoutDescription.addView(edittTxtDescription);
-        relativeLayoutDescription.addView(textViewDescription);
-
-        paramsDescription.setMargins((int) getResources().getDimension(R.dimen.margin),
-                (int) getResources().getDimension(R.dimen.margin),
-                0,
-                (int) getResources().getDimension(R.dimen.margin));
-
-        paramsDescription.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-        edittTxtDescription.setLayoutParams(paramsDescription);
-        edittTxtDescription.setBackground(getContext().getResources().getDrawable(R.drawable.edit_bg));
-
-        servicelayout.addView(relativeLayoutDescription);
+        textViewDescription.setTextColor((int)getResources().getColor(R.color.edittextcolor));
+        servicelayout.addView(textViewDescription);
 
 
+
+        EditText myEditText = new EditText(getContext());
+
+        myEditText.setLayoutParams(mLparams);
+        //       servicelayout.addView(myEditText);
+        //myEditText.setTextSize(TypedValue.COMPLEX_UNIT_SP,12);
+        myEditText.setHint("Description");
+
+        myEditText.setTag("description"+servicecount);
+        myEditText.setHintTextColor((int)getResources().getColor(R.color.edittextcolor));
+        //myEditText.setBackgroundTintList(ContextCompat.getColorStateList(getContext(), R.color.editbackgroundtintcolor));
+        ViewCompat.setBackgroundTintList(
+                myEditText,
+                ContextCompat.getColorStateList(
+                        getContext(),
+                        R.color.editbackgroundtintcolor
+                )
+        );
+//
+        //myEditText.setWidth((int) getResources().getDimension(R.dimen.edit_width));
+        servicelayout.addView(myEditText);
+
+    }
+
+    private void createSingleTextEditQuantity(LinearLayout servicelayout, int servicecount){
+        LinearLayout.LayoutParams mLparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        mLparams.setMargins((int) getResources().getDimension(R.dimen.margin23),(int) getResources().getDimension(R.dimen.nav_header_vertical_spacing),
+                (int) getResources().getDimension(R.dimen.margin23),(int) getResources().getDimension(R.dimen.nav_header_vertical_spacing));
+
+        TextView textViewDescription=new TextView(getContext());
+        textViewDescription.setTextSize(TypedValue.COMPLEX_UNIT_SP,14);
+
+//        textViewDescription.setTypeface(textView.getTypeface(), Typeface.BOLD);
+        textViewDescription.setLayoutParams(mLparams);
+        textViewDescription.setText("Quantity");
+        textViewDescription.setTextColor((int)getResources().getColor(R.color.edittextcolor));
+        servicelayout.addView(textViewDescription);
+
+
+
+        EditText myEditText = new EditText(getContext());
+
+        myEditText.setLayoutParams(mLparams);
+        //       servicelayout.addView(myEditText);
+        //myEditText.setTextSize(TypedValue.COMPLEX_UNIT_SP,12);
+        myEditText.setHint("Quantity");
+
+        myEditText.setTag("quantity"+servicecount);
+        myEditText.setHintTextColor((int)getResources().getColor(R.color.edittextcolor));
+        //myEditText.setBackgroundTintList(ContextCompat.getColorStateList(getContext(), R.color.editbackgroundtintcolor));
+        ViewCompat.setBackgroundTintList(
+                myEditText,
+                ContextCompat.getColorStateList(
+                        getContext(),
+                        R.color.editbackgroundtintcolor
+                )
+        );
+//
+        //myEditText.setWidth((int) getResources().getDimension(R.dimen.edit_width));
+        servicelayout.addView(myEditText);
+
+    }
+
+
+    private void createSingleTextEditPrice(LinearLayout servicelayout, int servicecount){
+        LinearLayout.LayoutParams mLparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        mLparams.setMargins((int) getResources().getDimension(R.dimen.margin23),(int) getResources().getDimension(R.dimen.nav_header_vertical_spacing),
+                (int) getResources().getDimension(R.dimen.margin23),(int) getResources().getDimension(R.dimen.nav_header_vertical_spacing));
+
+        TextView textViewDescription=new TextView(getContext());
+        textViewDescription.setTextSize(TypedValue.COMPLEX_UNIT_SP,14);
+
+//        textViewDescription.setTypeface(textView.getTypeface(), Typeface.BOLD);
+        textViewDescription.setLayoutParams(mLparams);
+        textViewDescription.setText("Price");
+        textViewDescription.setTextColor((int)getResources().getColor(R.color.edittextcolor));
+        servicelayout.addView(textViewDescription);
+
+
+
+        EditText myEditText = new EditText(getContext());
+
+        myEditText.setLayoutParams(mLparams);
+        //       servicelayout.addView(myEditText);
+        //myEditText.setTextSize(TypedValue.COMPLEX_UNIT_SP,12);
+        myEditText.setHint("Price");
+
+        myEditText.setTag("price"+servicecount);
+        myEditText.setHintTextColor((int)getResources().getColor(R.color.edittextcolor));
+        //myEditText.setBackgroundTintList(ContextCompat.getColorStateList(getContext(), R.color.editbackgroundtintcolor));
+        ViewCompat.setBackgroundTintList(
+                myEditText,
+                ContextCompat.getColorStateList(
+                        getContext(),
+                        R.color.editbackgroundtintcolor
+                )
+        );
+//
+        //myEditText.setWidth((int) getResources().getDimension(R.dimen.edit_width));
+        servicelayout.addView(myEditText);
+
+    }
+
+
+    private void createView(){
+        servicecount++;
+//        View v = new View(getContext());
+//        v.setLayoutParams(new LinearLayout.LayoutParams(
+//                LinearLayout.LayoutParams.MATCH_PARENT,
+//                1
+//        ));
+//
+//        v.setBackgroundColor(Color.parseColor("#B3B3B3"));
+//
+//
+//        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams (
+//                (int) getResources().getDimension(R.dimen.edit_width),
+//                RelativeLayout.LayoutParams.WRAP_CONTENT);
+//
+//        params.setMargins((int) getResources().getDimension(R.dimen.margin),
+//                (int) getResources().getDimension(R.dimen.margin),
+//                0,
+//                (int) getResources().getDimension(R.dimen.margin));
+//
+//        RelativeLayout relativeLayout=new RelativeLayout(getContext());
+//
+//
+//        RelativeLayout.LayoutParams params2 = new RelativeLayout.LayoutParams (
+//                RelativeLayout.LayoutParams.MATCH_PARENT,
+//                RelativeLayout.LayoutParams.WRAP_CONTENT);
+//
+//        RelativeLayout.LayoutParams paramsLeft = new RelativeLayout.LayoutParams (
+//                RelativeLayout.LayoutParams.WRAP_CONTENT,
+//                RelativeLayout.LayoutParams.WRAP_CONTENT);
+//
+//
+//        //paramsLeft.bottomMargin=(int) getResources().getDimension(R.dimen.margin);
+//
+//        //relativeLayout.setBackgroundColor((int)getResources().getColor(R.color.colorAccent));
+//        relativeLayout.setLayoutParams(params2);
+////        relativeLayout.getLayoutParams().width=(int) getResources().getDimension(R.dimen.edit_width);
+////        relativeLayout.getLayoutParams().height=RelativeLayout.LayoutParams.WRAP_CONTENT;
+////
+//
+//
+//        TextView textView=new TextView(getContext());
+//        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP,14);
+//        //textView.setHint("Service");
+//        //textView.setHintTextColor((int)getResources().getColor(R.color.grey));
+//        textView.setTypeface(textView.getTypeface(), Typeface.BOLD);
+//        textView.setText("Service");
+//
+//        textView.setLayoutParams(paramsLeft);
+//
+//        //textView.setBackgroundColor((int)getResources().getColor(R.color.grey));
+////        textView.setGravity(Gravity.CENTER_VERTICAL);
+//        textView.setPadding(0,0,0,0);
+//
+//        EditText edittTxt = new EditText(getContext());
+//        //edittTxt.setTextSize((int)getResources().getDimension(R.dimen.text_size));
+//        edittTxt.setTextSize(TypedValue.COMPLEX_UNIT_SP,12);
+//        edittTxt.setHint("Service");
+//        edittTxt.setTag("service"+servicecount);
+//        Toast.makeText(getContext(),"tag="+edittTxt.getTag().toString(),Toast.LENGTH_LONG).show();
+//        edittTxt.setId(0);
+//        edittTxt.setHintTextColor((int)getResources().getColor(R.color.grey));
+//
+////
+////
+//        edittTxt.setWidth((int) getResources().getDimension(R.dimen.edit_width));
+//        relativeLayout.addView(v);
+//        relativeLayout.addView(edittTxt);
+//        relativeLayout.addView(textView);
+//
+////
+//        params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+//        edittTxt.setLayoutParams(params);
+//        edittTxt.setBackground(getContext().getResources().getDrawable(R.drawable.edit_bg));
+////
+//        servicelayout.addView(relativeLayout);
+
+
+        //service ends
+        createSingleTextEditService(servicelayout,servicecount);
+
+
+
+
+
+
+//        View vDescription = new View(getContext());
+//        vDescription.setLayoutParams(new LinearLayout.LayoutParams(
+//                LinearLayout.LayoutParams.MATCH_PARENT,
+//                5
+//        ));
+//
+//        vDescription.setBackgroundColor(Color.parseColor("#c8c8c8"));
+//
+//
+//        RelativeLayout.LayoutParams paramsDescription = new RelativeLayout.LayoutParams (
+//                (int) getResources().getDimension(R.dimen.edit_width),
+//                RelativeLayout.LayoutParams.WRAP_CONTENT);
+//
+//
+//        RelativeLayout relativeLayoutDescription=new RelativeLayout(getContext());
+//        RelativeLayout.LayoutParams paramsDescription2 = new RelativeLayout.LayoutParams (
+//                RelativeLayout.LayoutParams.MATCH_PARENT,
+//                RelativeLayout.LayoutParams.WRAP_CONTENT);
+//
+//
+//        paramsDescription2.setMargins((int) getResources().getDimension(R.dimen.margin),
+//                (int) getResources().getDimension(R.dimen.margin),
+//                (int) getResources().getDimension(R.dimen.margin),
+//                (int) getResources().getDimension(R.dimen.margin));
+//
+//
+//        RelativeLayout.LayoutParams paramsDescriptionLeft = new RelativeLayout.LayoutParams (
+//                RelativeLayout.LayoutParams.WRAP_CONTENT,
+//                RelativeLayout.LayoutParams.WRAP_CONTENT);
+//
+////        paramsDescriptionLeft.setMargins((int) getResources().getDimension(R.dimen.margin),
+////                (int) getResources().getDimension(R.dimen.margin),
+////                (int) getResources().getDimension(R.dimen.margin),
+////                (int) getResources().getDimension(R.dimen.margin));
+//
+//        relativeLayoutDescription.setLayoutParams(paramsDescription2);
+//
+//
+//        TextView textViewDescription=new TextView(getContext());
+//        textViewDescription.setTextSize(TypedValue.COMPLEX_UNIT_SP,14);
+//        //textViewDescription.setHint("Description");
+////        textViewDescription.setTypeface(textView.getTypeface(), Typeface.BOLD);//commented on 9th september
+//        textViewDescription.setLayoutParams(paramsDescriptionLeft);
+//        textViewDescription.setText("Description");
+//        //textViewDescription.setTextColor((int)getResources().getColor(R.color.grey));
+//        //textViewDescription.setHintTextColor((int)getResources().getColor(R.color.grey));
+//
+//        EditText edittTxtDescription = new EditText(getContext());
+//
+//        edittTxtDescription.setTextSize(TypedValue.COMPLEX_UNIT_SP,12);
+//        edittTxtDescription.setHint("Description");
+//        edittTxtDescription.setTag("description"+servicecount);
+//        edittTxtDescription.setHintTextColor((int)getResources().getColor(R.color.grey));
+//
+//        edittTxtDescription.setWidth((int) getResources().getDimension(R.dimen.edit_width));
+//        //relativeLayoutDescription.addView(vDescription);
+//        relativeLayoutDescription.addView(edittTxtDescription);
+//        relativeLayoutDescription.addView(textViewDescription);
+//
+//        paramsDescription.setMargins((int) getResources().getDimension(R.dimen.margin),
+//                (int) getResources().getDimension(R.dimen.margin),
+//                0,
+//                (int) getResources().getDimension(R.dimen.margin));
+//
+//        paramsDescription.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+//        edittTxtDescription.setLayoutParams(paramsDescription);
+//        edittTxtDescription.setBackground(getContext().getResources().getDrawable(R.drawable.edit_bg));
+//
+//        servicelayout.addView(relativeLayoutDescription);
+
+        createSingleTextEditDescription(servicelayout,servicecount);
 
 
 
 
 //Quantity
 
-        View vQuantity = new View(getContext());
-        vQuantity.setLayoutParams(new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                5
-        ));
+//        View vQuantity = new View(getContext());
+//        vQuantity.setLayoutParams(new LinearLayout.LayoutParams(
+//                LinearLayout.LayoutParams.MATCH_PARENT,
+//                5
+//        ));
+//
+//        vQuantity.setBackgroundColor(Color.parseColor("#B3B3B3"));
+//
+//
+//        RelativeLayout.LayoutParams paramsQuantity = new RelativeLayout.LayoutParams (
+//                (int) getResources().getDimension(R.dimen.edit_width),
+//                RelativeLayout.LayoutParams.WRAP_CONTENT);
+//
+//
+//        RelativeLayout relativeLayoutQuantity=new RelativeLayout(getContext());
+//        RelativeLayout.LayoutParams paramsQuantity2 = new RelativeLayout.LayoutParams (
+//                RelativeLayout.LayoutParams.MATCH_PARENT,
+//                RelativeLayout.LayoutParams.WRAP_CONTENT);
+//
+//
+//        RelativeLayout.LayoutParams paramsQuantityLeft = new RelativeLayout.LayoutParams (
+//                RelativeLayout.LayoutParams.WRAP_CONTENT,
+//                RelativeLayout.LayoutParams.WRAP_CONTENT);
+//
+//        relativeLayoutQuantity.setLayoutParams(paramsQuantity2);
+//
+//
+//        TextView textViewQuantity=new TextView(getContext());
+//        textViewQuantity.setTextSize(TypedValue.COMPLEX_UNIT_SP,14);
+//        //textViewQuantity.setHint("Quantity");
+//        textViewQuantity.setText("Quantity");
+////        textViewQuantity.setTypeface(textView.getTypeface(), Typeface.BOLD);//commented on 9th sept
+//        //textViewQuantity.setHintTextColor((int)getResources().getColor(R.color.grey));
+//        textViewQuantity.setLayoutParams(paramsQuantityLeft);
+//        //textViewQuantity.setTextColor((int)getResources().getColor(R.color.grey));
+//        EditText edittTxtQuantity = new EditText(getContext());
+//
+//        edittTxtQuantity.setTextSize(TypedValue.COMPLEX_UNIT_SP,12);
+//        edittTxtQuantity.setHint("Quantity");
+//        edittTxtQuantity.setTag("quantity"+servicecount);
+//        edittTxtQuantity.setHintTextColor((int)getResources().getColor(R.color.grey));
+//        //edittTxtQuantity.setPadding(30,0,0,0);
+//
+//        edittTxtQuantity.setWidth((int) getResources().getDimension(R.dimen.edit_width));
+//        //relativeLayoutQuantity.addView(vQuantity);
+//        relativeLayoutQuantity.addView(edittTxtQuantity);
+//        relativeLayoutQuantity.addView(textViewQuantity);
+//
+//        paramsQuantity.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+//       // edittTxtQuantity.setLayoutParams(paramsDescription);//commented on 9th sept
+//        edittTxtQuantity.setBackground(getContext().getResources().getDrawable(R.drawable.edit_bg));
+//
+//        servicelayout.addView(relativeLayoutQuantity);
 
-        vQuantity.setBackgroundColor(Color.parseColor("#B3B3B3"));
-
-
-        RelativeLayout.LayoutParams paramsQuantity = new RelativeLayout.LayoutParams (
-                (int) getResources().getDimension(R.dimen.edit_width),
-                RelativeLayout.LayoutParams.WRAP_CONTENT);
-
-
-        RelativeLayout relativeLayoutQuantity=new RelativeLayout(getContext());
-        RelativeLayout.LayoutParams paramsQuantity2 = new RelativeLayout.LayoutParams (
-                RelativeLayout.LayoutParams.MATCH_PARENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT);
-
-
-        RelativeLayout.LayoutParams paramsQuantityLeft = new RelativeLayout.LayoutParams (
-                RelativeLayout.LayoutParams.WRAP_CONTENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT);
-
-        relativeLayoutQuantity.setLayoutParams(paramsQuantity2);
-
-
-        TextView textViewQuantity=new TextView(getContext());
-        textViewQuantity.setTextSize(TypedValue.COMPLEX_UNIT_SP,14);
-        //textViewQuantity.setHint("Quantity");
-        textViewQuantity.setText("Quantity");
-        textViewQuantity.setTypeface(textView.getTypeface(), Typeface.BOLD);
-        //textViewQuantity.setHintTextColor((int)getResources().getColor(R.color.grey));
-        textViewQuantity.setLayoutParams(paramsQuantityLeft);
-        //textViewQuantity.setTextColor((int)getResources().getColor(R.color.grey));
-        EditText edittTxtQuantity = new EditText(getContext());
-
-        edittTxtQuantity.setTextSize(TypedValue.COMPLEX_UNIT_SP,12);
-        edittTxtQuantity.setHint("Quantity");
-        edittTxtQuantity.setTag("quantity"+servicecount);
-        edittTxtQuantity.setHintTextColor((int)getResources().getColor(R.color.grey));
-        //edittTxtQuantity.setPadding(30,0,0,0);
-
-        edittTxtQuantity.setWidth((int) getResources().getDimension(R.dimen.edit_width));
-        //relativeLayoutQuantity.addView(vQuantity);
-        relativeLayoutQuantity.addView(edittTxtQuantity);
-        relativeLayoutQuantity.addView(textViewQuantity);
-
-        paramsQuantity.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-        edittTxtQuantity.setLayoutParams(paramsDescription);
-        edittTxtQuantity.setBackground(getContext().getResources().getDrawable(R.drawable.edit_bg));
-
-        servicelayout.addView(relativeLayoutQuantity);
-
-
-
+//Quantity ends
+        createSingleTextEditQuantity(servicelayout,servicecount);
 
         //Price
 
-        View vPrice = new View(getContext());
-        vPrice.setLayoutParams(new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                5
-        ));
-
-        vPrice.setBackgroundColor(Color.parseColor("#B3B3B3"));
-
-
-        RelativeLayout.LayoutParams paramsPrice = new RelativeLayout.LayoutParams (
-                (int) getResources().getDimension(R.dimen.edit_width),
-                RelativeLayout.LayoutParams.WRAP_CONTENT);
-
-
-        RelativeLayout relativeLayoutPrice=new RelativeLayout(getContext());
-        RelativeLayout.LayoutParams paramsPrice2 = new RelativeLayout.LayoutParams (
-                RelativeLayout.LayoutParams.MATCH_PARENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT);
-
-
-        RelativeLayout.LayoutParams paramsPriceLeft = new RelativeLayout.LayoutParams (
-                RelativeLayout.LayoutParams.WRAP_CONTENT,
-                RelativeLayout.LayoutParams.MATCH_PARENT);
-
-        relativeLayoutPrice.setLayoutParams(paramsPrice2);
-
-
-        TextView textViewPrice=new TextView(getContext());
-        textViewPrice.setTextSize(TypedValue.COMPLEX_UNIT_SP,14);
-        //textViewPrice.setHint("Price");
-        textViewPrice.setText("Price");
-        textViewPrice.setLayoutParams(paramsPriceLeft);
-        textViewPrice.setGravity(Gravity.CENTER_VERTICAL);
-
-        //textViewPrice.setTextColor((int)getResources().getColor(R.color.grey));
-        //textViewPrice.setTypeface(null, Typeface.BOLD);
-        textViewPrice.setTypeface(textView.getTypeface(), Typeface.BOLD);
-
-
-        EditText edittTxtPrice = new EditText(getContext());
-
-        edittTxtPrice.setTextSize(TypedValue.COMPLEX_UNIT_SP,12);
-        edittTxtPrice.setHint("Price");
-        edittTxtPrice.setTag("price"+servicecount);
-        edittTxtPrice.setHintTextColor((int)getResources().getColor(R.color.grey));
-        edittTxtPrice.setTextColor((int)getResources().getColor(R.color.grey));
-
-        edittTxtPrice.setWidth((int) getResources().getDimension(R.dimen.edit_width));
-        //relativeLayoutPrice.addView(vPrice);
-        relativeLayoutPrice.addView(edittTxtPrice);
-        relativeLayoutPrice.addView(textViewPrice);
-
-        paramsPrice.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-        edittTxtPrice.setLayoutParams(paramsDescription);
-        edittTxtPrice.setBackground(getContext().getResources().getDrawable(R.drawable.edit_bg));
-        Toast.makeText(getContext(), "servicetag "+edittTxt.getTag().toString(), Toast.LENGTH_LONG).show();
-        Toast.makeText(getContext(), "descriptiontag "+edittTxtDescription.getTag().toString(), Toast.LENGTH_LONG).show();
-        Toast.makeText(getContext(), "quantitytag "+edittTxtQuantity.getTag().toString(), Toast.LENGTH_LONG).show();
-        Toast.makeText(getContext(),"pricetag "+ edittTxtPrice.getTag().toString(), Toast.LENGTH_LONG).show();
-
-        servicelayout.addView(relativeLayoutPrice);
+//        View vPrice = new View(getContext());
+//        vPrice.setLayoutParams(new LinearLayout.LayoutParams(
+//                LinearLayout.LayoutParams.MATCH_PARENT,
+//                5
+//        ));
+//
+//        vPrice.setBackgroundColor(Color.parseColor("#B3B3B3"));
+//
+//
+//        RelativeLayout.LayoutParams paramsPrice = new RelativeLayout.LayoutParams (
+//                (int) getResources().getDimension(R.dimen.edit_width),
+//                RelativeLayout.LayoutParams.WRAP_CONTENT);
+//
+//
+//        RelativeLayout relativeLayoutPrice=new RelativeLayout(getContext());
+//        RelativeLayout.LayoutParams paramsPrice2 = new RelativeLayout.LayoutParams (
+//                RelativeLayout.LayoutParams.MATCH_PARENT,
+//                RelativeLayout.LayoutParams.WRAP_CONTENT);
+//
+//
+//        RelativeLayout.LayoutParams paramsPriceLeft = new RelativeLayout.LayoutParams (
+//                RelativeLayout.LayoutParams.WRAP_CONTENT,
+//                RelativeLayout.LayoutParams.MATCH_PARENT);
+//
+//        relativeLayoutPrice.setLayoutParams(paramsPrice2);
+//
+//
+//        TextView textViewPrice=new TextView(getContext());
+//        textViewPrice.setTextSize(TypedValue.COMPLEX_UNIT_SP,14);
+//        //textViewPrice.setHint("Price");
+//        textViewPrice.setText("Price");
+//        textViewPrice.setLayoutParams(paramsPriceLeft);
+//        textViewPrice.setGravity(Gravity.CENTER_VERTICAL);
+//
+//        //textViewPrice.setTextColor((int)getResources().getColor(R.color.grey));
+//        //textViewPrice.setTypeface(null, Typeface.BOLD);
+////        textViewPrice.setTypeface(textView.getTypeface(), Typeface.BOLD);//commented on 9th sept
+//
+//
+//        EditText edittTxtPrice = new EditText(getContext());
+//
+//        edittTxtPrice.setTextSize(TypedValue.COMPLEX_UNIT_SP,12);
+//        edittTxtPrice.setHint("Price");
+//        edittTxtPrice.setTag("price"+servicecount);
+//        edittTxtPrice.setHintTextColor((int)getResources().getColor(R.color.grey));
+//        edittTxtPrice.setTextColor((int)getResources().getColor(R.color.grey));
+//
+//        edittTxtPrice.setWidth((int) getResources().getDimension(R.dimen.edit_width));
+//        //relativeLayoutPrice.addView(vPrice);
+//        relativeLayoutPrice.addView(edittTxtPrice);
+//        relativeLayoutPrice.addView(textViewPrice);
+//
+//        paramsPrice.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+////        edittTxtPrice.setLayoutParams(paramsDescription);//commente on 9th sept
+//        edittTxtPrice.setBackground(getContext().getResources().getDrawable(R.drawable.edit_bg));
+//        //Toast.makeText(getContext(), "servicetag "+edittTxt.getTag().toString(), Toast.LENGTH_LONG).show();
+//       // Toast.makeText(getContext(), "descriptiontag "+edittTxtDescription.getTag().toString(), Toast.LENGTH_LONG).show();
+//        Toast.makeText(getContext(), "quantitytag "+edittTxtQuantity.getTag().toString(), Toast.LENGTH_LONG).show();
+//        Toast.makeText(getContext(),"pricetag "+ edittTxtPrice.getTag().toString(), Toast.LENGTH_LONG).show();
+//
+//        servicelayout.addView(relativeLayoutPrice);
+//price ends
+        createSingleTextEditPrice(servicelayout,servicecount);
     }
 
     private void setSpinnerListener(){
