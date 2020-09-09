@@ -113,8 +113,15 @@ public class InvoiceManagementAdapter extends RecyclerView.Adapter<InvoiceManage
         }
         public void setData(InvoiceManagementDataModel data,int position){
             Title.setText(data.getTitle());
-            BigDecimal rounded = new BigDecimal(data.getValue()).setScale(2, RoundingMode.HALF_UP);
-            Value.setText("\u20B9"+rounded);
+            if(data.getValue()==null){
+                Value.setText("\u20B9"+"0");
+            }else{
+                BigDecimal rounded = new BigDecimal(data.getValue()).setScale(2, RoundingMode.HALF_UP);
+                Value.setText("\u20B9"+rounded);
+            }
+
+
+
             if(data.getPhoneme_value()==null){
                 Phoneme_value.setText("\u20B9"+"0");
             }else{

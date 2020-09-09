@@ -53,7 +53,7 @@ public class InvoiceManagementFragment extends Fragment implements InvoiceManage
         YearsSpinner=(Spinner)view.findViewById(R.id.years);
         //setAdapter();
         setYearsSpinnerData();
-        getInvoiceManagementData();
+        //getInvoiceManagementData();
     }
     private void setAdapter(List<InvoiceManagementDataModel> invoiceManagementDataModelList){
         InvoiceManagementAdapter adapter=new InvoiceManagementAdapter(getContext(),this,invoiceManagementDataModelList);
@@ -66,17 +66,26 @@ public class InvoiceManagementFragment extends Fragment implements InvoiceManage
         recyclerview.setLayoutManager(linearVertical);
     }
 
-    private void getInvoiceManagementData(){
+    private void getInvoiceManagementData(String year){
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-        Call<GeneratedListCompleteResponse> call=service.getGeneratedListComplete("2020-21");
+        Call<GeneratedListCompleteResponse> call=service.getGeneratedListComplete(year);
         call.enqueue(new Callback<GeneratedListCompleteResponse>() {
             @Override
             public void onResponse(Call<GeneratedListCompleteResponse> call, Response<GeneratedListCompleteResponse> response) {
-                invoiceResponseModel=response.body().getInvoiceResponseModelList().get(0);
-                //poDataModelList=response.body().getPoDataModelList();
-                //setAdapter(poDataModelList);
-                //Toast.makeText(getContext(),"success", Toast.LENGTH_LONG).show();
-                setData(invoiceResponseModel);
+                if(response!=null && response.body()!=null && response.body().getInvoiceResponseModelList()!=null && response.body().getInvoiceResponseModelList().get(0)!=null){
+                    invoiceResponseModel=response.body().getInvoiceResponseModelList().get(0);
+                    //poDataModelList=response.body().getPoDataModelList();
+                    //setAdapter(poDataModelList);
+                    //Toast.makeText(getContext(),"success", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),"NotEmpty", Toast.LENGTH_LONG).show();
+
+                    setData(invoiceResponseModel);
+                }else{
+                    Toast.makeText(getContext(),"Empty", Toast.LENGTH_LONG).show();
+
+                    setDataEmpty();
+                }
+
             }
 
             @Override
@@ -87,8 +96,10 @@ public class InvoiceManagementFragment extends Fragment implements InvoiceManage
         });
     }
 
-    private void setData( InvoiceResponseModel netData){
 
+
+    private void setData( InvoiceResponseModel netData){
+        invoiceManagementDataModelList.removeAll(invoiceManagementDataModelList);
         InvoiceManagementDataModel data1=new InvoiceManagementDataModel();
         data1.setTitle("Total Revenue");
         data1.setValue(netData.getTotal());
@@ -120,6 +131,40 @@ public class InvoiceManagementFragment extends Fragment implements InvoiceManage
         setAdapter(invoiceManagementDataModelList);
     }
 
+    private void setDataEmpty(){
+        invoiceManagementDataModelList.removeAll(invoiceManagementDataModelList);
+
+        InvoiceManagementDataModel data1=new InvoiceManagementDataModel();
+        data1.setTitle("Total Revenue");
+        data1.setValue("0");
+        data1.setPhoneme_value("0");
+        data1.setFunnel_value("0");
+        invoiceManagementDataModelList.add(data1);
+
+        InvoiceManagementDataModel data2=new InvoiceManagementDataModel();
+        data2.setTitle("Total Expense");
+        data2.setValue("0");
+        data2.setPhoneme_value( "0");
+        data2.setFunnel_value("0");
+        invoiceManagementDataModelList.add(data2);
+
+        InvoiceManagementDataModel data3=new InvoiceManagementDataModel();
+        data3.setTitle("Receivable Revenue");
+        data3.setValue("0");
+        data3.setPhoneme_value("0");
+        data3.setFunnel_value("0");
+        invoiceManagementDataModelList.add(data3);
+
+        InvoiceManagementDataModel data4=new InvoiceManagementDataModel();
+        data4.setTitle("Pending Payments");
+        data4.setValue("0");
+        data4.setPhoneme_value("0");
+        data4.setFunnel_value("0");
+        invoiceManagementDataModelList.add(data4);
+        //Toast.makeText(getContext(),"before set adapter", Toast.LENGTH_LONG).show();
+        setAdapter(invoiceManagementDataModelList);
+    }
+
     private void setYearsSpinnerData(){
         ArrayAdapter aa = new ArrayAdapter(getContext(),android.R.layout.simple_spinner_item,yearsString);
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -131,6 +176,9 @@ public class InvoiceManagementFragment extends Fragment implements InvoiceManage
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String year=yearsString[YearsSpinner.getSelectedItemPosition()];
                 //getInvoiceListData(year);
+                Toast.makeText(getContext(),"before getInvoiceManagementData", Toast.LENGTH_LONG).show();
+
+                getInvoiceManagementData(year);
             }
 
             @Override
