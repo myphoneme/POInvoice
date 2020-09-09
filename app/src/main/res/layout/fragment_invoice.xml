@@ -20,7 +20,7 @@
                 android:textSize="12sp"
                 android:padding="2dp"
                 android:textAllCaps="false"
-                android:text="Generate Invoice1"
+                android:text="Generate Invoice"
                 android:layout_alignParentLeft="true"/>
 
             <Spinner

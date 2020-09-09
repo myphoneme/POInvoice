@@ -32,6 +32,8 @@ import androidx.navigation.Navigation;
 import com.phoneme.poinvoice.R;
 import com.phoneme.poinvoice.config.RetrofitClientInstance;
 import com.phoneme.poinvoice.interfaces.GetDataService;
+import com.phoneme.poinvoice.ui.invoice.model.ClientDataModel;
+import com.phoneme.poinvoice.ui.invoice.model.ProjectsNewModel;
 import com.phoneme.poinvoice.ui.invoice.network.InvoiceGenerateGetResponse;
 import com.phoneme.poinvoice.ui.invoice.network.InvoiceGeneratePostResponse;
 import com.phoneme.poinvoice.ui.po.model.PoTemplateDataModel;
@@ -52,7 +54,7 @@ import retrofit2.Response;
 public class CreateInvoiceFragment extends Fragment {
 
     private EditText dob,invoiceNumber,PONumber,gstPercentage,Remark,cGST_Percentage,sGST_Percentage,iGST_Percentage;
-    private Spinner Company,Vendor;
+    private Spinner Company,Vendor,Project;
     Calendar myCalendar;
     DatePickerDialog.OnDateSetListener date;
     private Button serviceButton;
@@ -62,7 +64,9 @@ public class CreateInvoiceFragment extends Fragment {
     private int servicecount=1;
     private Button Generate;
     private List<PoTemplateDataModel> poTemplateDataModelList;
-    private List<VendorDataModel> vendorDataModelList;
+    //private List<VendorDataModel> vendorDataModelList;
+    private List<ClientDataModel> vendorDataModelList;
+    private List<ProjectsNewModel> projectsNewModelList;
     private ArrayList<String> companies=new ArrayList<String>();
     HashMap<String,String> company_companyid_Map = new HashMap<String, String>();
     HashMap<String,String> company_stateid_Map = new HashMap<String, String>();
@@ -72,6 +76,11 @@ public class CreateInvoiceFragment extends Fragment {
     HashMap<String,String> vendor_vendorid_Map = new HashMap<String, String>();
     HashMap<String,String> vendor_stateid_Map = new HashMap<String, String>();
     HashMap<String,String> vendorid_vendor_Map = new HashMap<String, String>();
+
+    private ArrayList<String> projects=new ArrayList<String>();
+    HashMap<String,String> projects_projectsid_Map = new HashMap<String, String>();
+//    HashMap<String,String> vendor_stateid_Map = new HashMap<String, String>();
+    HashMap<String,String> projectsid_projects_Map = new HashMap<String, String>();
 
     private String gstType="";
     String company_state_id=new String();
@@ -87,13 +96,15 @@ public class CreateInvoiceFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         myCalendar = Calendar.getInstance();
-        String myFormat = "MM/dd/yyyy"; //In which you need put here
+        //String myFormat = "MM/dd/yyyy"; //In which you need put here
+        String myFormat = "yyyy-MM-dd"; //In which you need put here
 
 
         Generate = (Button)view.findViewById(R.id.generate);
         PONumber=(EditText)view.findViewById(R.id.po_number);
         Company=(Spinner)view.findViewById(R.id.company);
         Vendor=(Spinner)view.findViewById(R.id.vendor);
+        Project=(Spinner)view.findViewById(R.id.project);
         gstPercentage=(EditText)view.findViewById(R.id.igst_percentage);
         Remark=(EditText)view.findViewById(R.id.remark);
         iGSTLayout=(RelativeLayout)view.findViewById(R.id.igst_layout);
@@ -141,7 +152,8 @@ public class CreateInvoiceFragment extends Fragment {
             private void updateLabel(int year,int monthOfYear,int dayOfMonth) {
                 Log.v("TAG","MONTH:"+monthOfYear);
                 String temp;
-                String myFormat = "MM/dd/yyyy"; //In which you need put here
+                //String myFormat = "MM/dd/yyyy"; //In which you need put here
+                String myFormat = "yyyy-MM-dd"; //In which you need put here
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
                 //Toast.makeText(getApplicationContext(), "My calendar"+myCalendar.getTime(), Toast.LENGTH_LONG).show();
                 dob.setText(sdf.format(myCalendar.getTime()));
@@ -168,7 +180,7 @@ public class CreateInvoiceFragment extends Fragment {
     }
 
     private void getLocalData(){
-        String invoicedate=new String(),invoice=new String(),po=new String(),vendor,gst=new String(),remark=new String(),company;
+        String invoicedate=new String(),invoice=new String(),po=new String(),vendor,gst=new String(),remark=new String(),company,project;
         String service[]=new String[servicecount];
         String description[]=new String[servicecount];
         String quantity[]=new String[servicecount];
@@ -199,8 +211,11 @@ public class CreateInvoiceFragment extends Fragment {
 
         company=Company.getSelectedItem().toString();
 
+        project=Project.getSelectedItem().toString();
+
         map.put("vendorid",vendor_vendorid_Map.get(vendor));
         map.put("companyid",company_companyid_Map.get(company));
+        map.put("project",projects_projectsid_Map.get(project));//Extra added on 9th september
 
         map.put("vendorstateid",vendor_vendorid_Map.get(vendor));
         map.put("companystateid",company_companyid_Map.get(company));
@@ -242,6 +257,7 @@ public class CreateInvoiceFragment extends Fragment {
         }
         Toast.makeText(getContext(), "Companyid="+map.get("companystateid"), Toast.LENGTH_LONG).show();
         Toast.makeText(getContext(), "Vendorid="+map.get("vendorstateid"), Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), "Payment due="+ map.get("payment_due"), Toast.LENGTH_LONG).show();
         postInvoiceGenerateData(map);
     }
 
@@ -701,9 +717,13 @@ public class CreateInvoiceFragment extends Fragment {
             @Override
             public void onResponse(Call<InvoiceGenerateGetResponse> call, Response<InvoiceGenerateGetResponse> response) {
                 poTemplateDataModelList=response.body().getPoTemplateDataModelList();
-                vendorDataModelList=response.body().getVendorDataModelList();
+                //vendorDataModelList=response.body().getVendorDataModelList();
+
+                vendorDataModelList=response.body().getClientDataModelList();
+                projectsNewModelList=response.body().getProjectsNewModelList();
                 setVendors(vendorDataModelList);
                 setCompanies(poTemplateDataModelList);
+                setProjects(projectsNewModelList);
                 setSpinnerListener();
             }
 
@@ -762,13 +782,13 @@ public class CreateInvoiceFragment extends Fragment {
         }
     }
 
-    private void setVendors(List<VendorDataModel> vendorDataModelList){
+    private void setVendors(List<ClientDataModel> vendorDataModelList){
         for(int i=0;i<vendorDataModelList.size();i++){
-            if(vendorDataModelList.get(i)!=null && vendorDataModelList.get(i).getVendor_name()!=null && vendorDataModelList.get(i).getId()!=null){
-                vendors.add(vendorDataModelList.get(i).getVendor_name());
-                vendor_vendorid_Map.put(vendorDataModelList.get(i).getVendor_name(),vendorDataModelList.get(i).getId());
-                vendorid_vendor_Map.put(vendorDataModelList.get(i).getId(),vendorDataModelList.get(i).getVendor_name());
-                vendor_stateid_Map.put(vendorDataModelList.get(i).getVendor_name(),vendorDataModelList.get(i).getState_id());
+            if(vendorDataModelList.get(i)!=null && vendorDataModelList.get(i).getClient_name()!=null && vendorDataModelList.get(i).getId()!=null){
+                vendors.add(vendorDataModelList.get(i).getClient_name());
+                vendor_vendorid_Map.put(vendorDataModelList.get(i).getClient_name(),vendorDataModelList.get(i).getId());
+                vendorid_vendor_Map.put(vendorDataModelList.get(i).getId(),vendorDataModelList.get(i).getClient_name());
+                vendor_stateid_Map.put(vendorDataModelList.get(i).getClient_name(),vendorDataModelList.get(i).getState_id());
             }
         }
         setVendorSpinnerData();
@@ -786,11 +806,22 @@ public class CreateInvoiceFragment extends Fragment {
         setCompanySpinnerData();
     }
 
+    private void setProjects(List<ProjectsNewModel> projectsNewModelList){
+        for(int i=0;i<projectsNewModelList.size();i++){
+            if(projectsNewModelList.get(i)!=null && projectsNewModelList.get(i).getName()!=null){
+                projects.add(projectsNewModelList.get(i).getName());
+                projects_projectsid_Map.put(projectsNewModelList.get(i).getName(),projectsNewModelList.get(i).getProspect_Id());
+                projectsid_projects_Map.put(projectsNewModelList.get(i).getProspect_Id(),projectsNewModelList.get(i).getName());
+            }
+        }
+        setProjectsSpinnerData();
+    }
+
     private void setCompanySpinnerData(){
         ArrayAdapter aa = new ArrayAdapter(getContext(),android.R.layout.simple_spinner_item,companies);
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Company.setAdapter(aa);
-        Company.setSelection(1);
+        Company.setSelection(0);
     }
     private void setVendorSpinnerData(){
         ArrayAdapter aa = new ArrayAdapter(getContext(),android.R.layout.simple_spinner_item,vendors);
@@ -798,6 +829,12 @@ public class CreateInvoiceFragment extends Fragment {
         Vendor.setAdapter(aa);
         Vendor.setSelection(0);
 
+    }
+    private void setProjectsSpinnerData(){
+        ArrayAdapter aa = new ArrayAdapter(getContext(),android.R.layout.simple_spinner_item,projects);
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Project.setAdapter(aa);
+        Project.setSelection(0);
     }
 
 }
