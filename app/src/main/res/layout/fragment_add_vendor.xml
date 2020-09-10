@@ -1,216 +1,450 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="5dp">
-    <RelativeLayout
-        android:layout_marginTop="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="Vendor Name"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            />
-
-        <EditText
-            android:padding="5dp"
-            android:id="@+id/vendor_name"
-            android:layout_width="230dp"
-            android:layout_height="30dp"
-            android:hint="Enter Vendor Name"
-            android:layout_alignParentRight="true"
-            android:textSize="12sp"
-            android:background="@drawable/edit_bg"
-            />
-
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="Addres"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            />
-
-        <EditText
-            android:padding="5dp"
-            android:id="@+id/address"
-            android:layout_width="230dp"
-            android:layout_height="30dp"
-            android:hint="Enter address"
-            android:layout_alignParentRight="true"
-            android:textSize="12sp"
-            android:background="@drawable/edit_bg"
-            />
-
-    </RelativeLayout>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
 
     <RelativeLayout
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="74dp"
+        android:layout_gravity="center_vertical"
+        android:background="#6C18A4">
+
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="Email"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            />
-
-        <EditText
-            android:padding="5dp"
-            android:id="@+id/email"
-            android:layout_width="230dp"
-            android:layout_height="30dp"
-            android:hint="Enter email"
-            android:layout_alignParentRight="true"
-            android:textSize="12sp"
-            android:background="@drawable/edit_bg"
-            />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="State"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            />
-        <Spinner
-            android:layout_alignParentRight="true"
-            android:id="@+id/state"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_gravity="center_vertical"
+            android:text="("
+            android:textColor="@color/text_white"
+            android:textSize="24sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center_vertical"
+            android:text="ADD Vendor"
+            android:textColor="@color/text_white"
+            android:textSize="24sp" />
+    </RelativeLayout>
+    <!--    <RelativeLayout-->
+    <!--        android:layout_marginTop="10dp"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content">-->
+    <!--        <TextView-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="50dp"-->
+    <!--            android:text="Vendor Name"-->
+    <!--            android:textSize="14sp"-->
+    <!--            android:textStyle="bold"-->
+    <!--            />-->
+
+    <!--        <EditText-->
+    <!--            android:padding="5dp"-->
+    <!--            android:id="@+id/vendor_name"-->
+    <!--            android:layout_width="230dp"-->
+    <!--            android:layout_height="30dp"-->
+    <!--            android:hint="Enter Vendor Name"-->
+    <!--            android:layout_alignParentRight="true"-->
+    <!--            android:textSize="12sp"-->
+    <!--            android:background="@drawable/edit_bg"-->
+    <!--            />-->
+
+    <!--    </RelativeLayout>-->
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="23dp"
+            android:text="Vendor Name"
+            android:textColor="#A3A2AC"
+            android:textSize="14sp" />
+
+
+        <EditText
+            android:id="@+id/vendor_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="23dp"
+            android:layout_marginRight="23dp"
+            android:hint="Enter Vendor Name"
+            android:paddingBottom="10dp"
+            android:textColor="#A3A2AC"
+            android:textColorHint="#A3A2AC"
+            app:backgroundTint="#A3A2AC99" />
+
+    </LinearLayout>
+
+    <!--    <RelativeLayout-->
+    <!--        android:layout_marginTop="10dp"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content">-->
+    <!--        <TextView-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="50dp"-->
+    <!--            android:text="Addres"-->
+    <!--            android:textSize="14sp"-->
+    <!--            android:textStyle="bold"-->
+    <!--            />-->
+
+    <!--        <EditText-->
+    <!--            android:padding="5dp"-->
+    <!--            android:id="@+id/address"-->
+    <!--            android:layout_width="230dp"-->
+    <!--            android:layout_height="30dp"-->
+    <!--            android:hint="Enter address"-->
+    <!--            android:layout_alignParentRight="true"-->
+    <!--            android:textSize="12sp"-->
+    <!--            android:background="@drawable/edit_bg"-->
+    <!--            />-->
+
+    <!--    </RelativeLayout>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="23dp"
+            android:text="Addres"
+            android:textColor="#A3A2AC"
+            android:textSize="14sp" />
+
+
+        <EditText
+            android:id="@+id/address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="23dp"
+            android:layout_marginRight="23dp"
+            android:hint="Enter address"
+            android:paddingBottom="10dp"
+            android:textColor="#A3A2AC"
+            android:textColorHint="#A3A2AC"
+            app:backgroundTint="#A3A2AC99" />
+
+    </LinearLayout>
+
+    <!--    <RelativeLayout-->
+    <!--        android:layout_marginTop="10dp"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content">-->
+    <!--        <TextView-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="50dp"-->
+    <!--            android:text="Email"-->
+    <!--            android:textSize="14sp"-->
+    <!--            android:textStyle="bold"-->
+    <!--            />-->
+
+    <!--        <EditText-->
+    <!--            android:padding="5dp"-->
+    <!--            android:id="@+id/email"-->
+    <!--            android:layout_width="230dp"-->
+    <!--            android:layout_height="30dp"-->
+    <!--            android:hint="Enter email"-->
+    <!--            android:layout_alignParentRight="true"-->
+    <!--            android:textSize="12sp"-->
+    <!--            android:background="@drawable/edit_bg"-->
+    <!--            />-->
+
+    <!--    </RelativeLayout>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="23dp"
+            android:text="Email"
+            android:textColor="#A3A2AC"
+            android:textSize="14sp" />
+
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="23dp"
+            android:layout_marginRight="23dp"
+            android:hint="Enter address"
+            android:paddingBottom="10dp"
+            android:textColor="#A3A2AC"
+            android:textColorHint="#A3A2AC"
+            app:backgroundTint="#A3A2AC99" />
+
+    </LinearLayout>
+
+    <!--    <RelativeLayout-->
+    <!--        android:layout_marginTop="10dp"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content">-->
+    <!--        <TextView-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="50dp"-->
+    <!--            android:text="State"-->
+    <!--            android:textSize="14sp"-->
+    <!--            android:textStyle="bold"-->
+    <!--            />-->
+    <!--        <Spinner-->
+    <!--            android:layout_alignParentRight="true"-->
+    <!--            android:id="@+id/state"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_marginBottom="10dp"-->
+    <!--            android:layout_marginTop="10dp"-->
+    <!--            android:entries="@array/india_state"-->
+    <!--            android:imeOptions="actionNext" />-->
+
+    <!--    </RelativeLayout>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="23dp"
+            android:layout_marginTop="23dp"
+            android:gravity="center_vertical"
+            android:text="State"
+            android:textColor="#A3A2AC"
+            android:textSize="14sp" />
+
+        <Spinner
+            android:id="@+id/state"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="23dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
             android:entries="@array/india_state"
             android:imeOptions="actionNext" />
+    </LinearLayout>
 
-    </RelativeLayout>
+    <!--    <RelativeLayout-->
+    <!--        android:layout_marginTop="10dp"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content">-->
+    <!--        <TextView-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="50dp"-->
+    <!--            android:text="GSTIN"-->
+    <!--            android:textSize="14sp"-->
+    <!--            android:textStyle="bold"-->
+    <!--            />-->
 
-    <RelativeLayout
-        android:layout_marginTop="10dp"
+    <!--        <EditText-->
+    <!--            android:padding="5dp"-->
+    <!--            android:id="@+id/gstin_no"-->
+    <!--            android:layout_width="230dp"-->
+    <!--            android:layout_height="30dp"-->
+    <!--            android:hint="Enter GSTIN"-->
+    <!--            android:layout_alignParentRight="true"-->
+    <!--            android:background="@drawable/edit_bg"-->
+    <!--            android:textSize="12sp"-->
+    <!--            />-->
+
+    <!--    </RelativeLayout>-->
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp">
+
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="23dp"
             android:text="GSTIN"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            />
+            android:textColor="#A3A2AC"
+            android:textSize="14sp" />
+
 
         <EditText
-            android:padding="5dp"
             android:id="@+id/gstin_no"
-            android:layout_width="230dp"
-            android:layout_height="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="23dp"
+            android:layout_marginRight="23dp"
             android:hint="Enter GSTIN"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/edit_bg"
-            android:textSize="12sp"
-            />
+            android:paddingBottom="10dp"
+            android:textColor="#A3A2AC"
+            android:textColorHint="#A3A2AC"
+            app:backgroundTint="#A3A2AC99" />
 
-    </RelativeLayout>
+    </LinearLayout>
 
-    <RelativeLayout
-        android:layout_marginTop="10dp"
+    <!--    <RelativeLayout-->
+    <!--        android:layout_marginTop="10dp"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content">-->
+    <!--        <TextView-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="50dp"-->
+    <!--            android:text="PAN"-->
+    <!--            android:textSize="14sp"-->
+    <!--            android:textStyle="bold"-->
+    <!--            />-->
+
+    <!--        <EditText-->
+    <!--            android:padding="5dp"-->
+    <!--            android:id="@+id/pan"-->
+    <!--            android:layout_width="230dp"-->
+    <!--            android:layout_height="30dp"-->
+    <!--            android:hint="Enter PAN"-->
+    <!--            android:layout_alignParentRight="true"-->
+    <!--            android:background="@drawable/edit_bg"-->
+    <!--            android:textSize="12sp"-->
+    <!--            />-->
+
+    <!--    </RelativeLayout>-->
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp">
+
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="23dp"
             android:text="PAN"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            />
+            android:textColor="#A3A2AC"
+            android:textSize="14sp" />
+
 
         <EditText
-            android:padding="5dp"
             android:id="@+id/pan"
-            android:layout_width="230dp"
-            android:layout_height="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="23dp"
+            android:layout_marginRight="23dp"
             android:hint="Enter PAN"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/edit_bg"
-            android:textSize="12sp"
-            />
+            android:paddingBottom="10dp"
+            android:textColor="#A3A2AC"
+            android:textColorHint="#A3A2AC"
+            app:backgroundTint="#A3A2AC99" />
 
-    </RelativeLayout>
+    </LinearLayout>
 
     <RelativeLayout
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="55dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="10dp"
         android:gravity="center_vertical"
-        android:visibility="gone"
-        android:layout_gravity="center_vertical">
+        android:visibility="gone">
+
         <TextView
             android:id="@+id/upload_image_text"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:text="Upload Image:"
             android:gravity="center_vertical"
+            android:text="Upload Image:"
             android:textSize="14sp"
-            android:textStyle="bold"
-            />
+            android:textStyle="bold" />
+
         <Button
             android:id="@+id/upload"
-            android:layout_toRightOf="@+id/upload_image_text"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:textColor="#000"
             android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/upload_image_text"
+            android:text="Choose file"
             android:textAllCaps="false"
-            android:textSize="12sp"
-            android:text="Choose file"/>
+            android:textColor="#000"
+            android:textSize="12sp" />
 
         <ImageView
-            android:layout_centerVertical="true"
-            android:background="@color/colorPrimary"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
             android:id="@+id/image"
             android:layout_width="40dp"
             android:layout_height="20dp"
-            android:src="@drawable/logopngphoneme"
-            />
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@color/colorPrimary"
+            android:src="@drawable/logopngphoneme" />
 
     </RelativeLayout>
-    <LinearLayout
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="match_parent">
+
         <Button
-            android:visibility="gone"
             android:id="@+id/reset"
-            android:background="@drawable/button_bg_rounded_corners"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:textColor="@color/text_white"
-            android:textAllCaps="false"
             android:layout_margin="5dp"
-            android:text="Reset"/>
-        <Button
-            android:id="@+id/submit"
             android:background="@drawable/button_bg_rounded_corners"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
+            android:text="Reset"
             android:textAllCaps="false"
             android:textColor="@color/text_white"
-            android:layout_margin="5dp"
-            android:text="Submit"/>
-    </LinearLayout>
+            android:visibility="gone" />
+        <!--        <Button-->
+        <!--            android:id="@+id/submit"-->
+        <!--            android:background="@drawable/button_bg_rounded_corners"-->
+        <!--            android:gravity="center_horizontal"-->
+        <!--            android:layout_width="100dp"-->
+        <!--            android:layout_height="50dp"-->
+        <!--            android:textAllCaps="false"-->
+        <!--            android:textColor="@color/text_white"-->
+        <!--            android:layout_margin="5dp"-->
+        <!--            android:text="Submit"/>-->
+
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="5dp"
+        android:background="@drawable/button_bg_rounded_corners_purple"
+        android:text="Generate"
+        android:textAllCaps="false"
+        android:textColor="@color/text_white"
+        android:textSize="16sp" />
 </LinearLayout>
+</ScrollView>
