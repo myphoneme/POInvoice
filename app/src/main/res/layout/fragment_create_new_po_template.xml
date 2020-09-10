@@ -1,238 +1,509 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="5dp">
-    <RelativeLayout
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="Title"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            />
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-        <EditText
-            android:padding="5dp"
-            android:id="@+id/template_title"
-            android:layout_width="230dp"
-            android:layout_height="30dp"
-            android:hint="Enter title"
-            android:layout_alignParentRight="true"
-            android:textSize="12sp"
-            android:background="@drawable/edit_bg"
-            />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="Template Name"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            />
-
-        <EditText
-            android:padding="5dp"
-            android:id="@+id/template_name"
-            android:layout_width="230dp"
-            android:layout_height="30dp"
-            android:hint="Enter Template Name"
-            android:layout_alignParentRight="true"
-            android:textSize="12sp"
-            android:background="@drawable/edit_bg"
-            />
-
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="Addres Line 1"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            />
-
-        <EditText
-            android:padding="5dp"
-            android:id="@+id/address_line1"
-            android:layout_width="230dp"
-            android:layout_height="30dp"
-            android:hint="Enter Address Line 1"
-            android:layout_alignParentRight="true"
-            android:textSize="12sp"
-            android:background="@drawable/edit_bg"
-            />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="Addres Line 2"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            />
-
-        <EditText
-            android:padding="5dp"
-            android:id="@+id/address_line2"
-            android:layout_width="230dp"
-            android:layout_height="30dp"
-            android:hint="Enter Address Line 2"
-            android:layout_alignParentRight="true"
-            android:textSize="12sp"
-            android:background="@drawable/edit_bg"
-            />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="Addres Line 3"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            />
-
-        <EditText
-            android:padding="5dp"
-            android:id="@+id/address_line3"
-            android:layout_width="230dp"
-            android:layout_height="30dp"
-            android:hint="Enter Address Line 3"
-            android:textSize="12sp"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/edit_bg"
-            />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:text="State"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        />
-    <Spinner
-        android:layout_alignParentRight="true"
-        android:id="@+id/state"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:entries="@array/india_state"
-        android:imeOptions="actionNext" /></RelativeLayout>
-
-    <RelativeLayout
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="GSTN No:"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            />
-
-        <EditText
-            android:padding="5dp"
-            android:id="@+id/gstn_no"
-            android:layout_width="230dp"
-            android:layout_height="30dp"
-            android:hint="Enter GSTN No"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/edit_bg"
-            android:textSize="12sp"
-            />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:gravity="center_vertical"
-        android:layout_gravity="center_vertical">
-        <TextView
-            android:id="@+id/upload_image_text"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="Upload logo:"
-            android:gravity="center_vertical"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            />
-        <Button
-            android:id="@+id/upload"
-            android:layout_toRightOf="@+id/upload_image_text"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:textColor="#000"
-            android:layout_marginLeft="5dp"
-            android:textAllCaps="false"
-            android:textSize="12sp"
-            android:text="Choose file"/>
-
-        <ImageView
-            android:visibility="gone"
-            android:layout_centerVertical="true"
-            android:background="@color/colorPrimary"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:id="@+id/image"
-            android:layout_width="40dp"
-            android:layout_height="20dp"
-            android:src="@drawable/logopngphoneme"
-            />
-
-    </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/reset"
-            android:background="@drawable/button_bg_rounded_corners"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:textColor="@color/text_white"
-            android:layout_margin="5dp"
-            android:textAllCaps="false"
-            android:text="Reset"/>
-        <Button
-            android:id="@+id/submit"
-            android:background="@drawable/button_bg_rounded_corners"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:textColor="@color/text_white"
-            android:layout_margin="5dp"
-            android:textAllCaps="false"
-            android:text="Submit"/>
+        android:orientation="vertical"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            android:layout_gravity="center_vertical"
+            android:background="#6C18A4">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_gravity="center_vertical"
+                android:text="("
+                android:textColor="@color/text_white"
+                android:textSize="24sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center_vertical"
+                android:text="FunnelXpert"
+                android:textColor="@color/text_white"
+                android:textSize="24sp" />
+        </RelativeLayout>
+
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="10dp">-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:text="Title"-->
+<!--                android:textSize="14sp"-->
+<!--                android:textStyle="bold" />-->
+
+<!--            <EditText-->
+<!--                android:id="@+id/template_title"-->
+<!--                android:layout_width="230dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:layout_alignParentRight="true"-->
+<!--                android:background="@drawable/edit_bg"-->
+<!--                android:hint="Enter title"-->
+<!--                android:padding="5dp"-->
+<!--                android:textSize="12sp" />-->
+
+<!--        </RelativeLayout>-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="23dp"
+                android:text="Title"
+                android:textColor="#A3A2AC"
+                android:textSize="14sp" />
+
+
+            <EditText
+                android:id="@+id/template_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="23dp"
+                android:layout_marginRight="23dp"
+                android:hint="Enter title"
+                android:paddingBottom="10dp"
+                android:textColor="#A3A2AC"
+                android:textColorHint="#A3A2AC"
+                app:backgroundTint="#A3A2AC99" />
+
+        </LinearLayout>
+
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="10dp">-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:text="Template Name"-->
+<!--                android:textSize="14sp"-->
+<!--                android:textStyle="bold" />-->
+
+<!--            <EditText-->
+<!--                android:id="@+id/template_name"-->
+<!--                android:layout_width="230dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:layout_alignParentRight="true"-->
+<!--                android:background="@drawable/edit_bg"-->
+<!--                android:hint="Enter Template Name"-->
+<!--                android:padding="5dp"-->
+<!--                android:textSize="12sp" />-->
+
+<!--        </RelativeLayout>-->
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="23dp"
+                android:text="Template Name"
+                android:textColor="#A3A2AC"
+                android:textSize="14sp" />
+
+
+            <EditText
+                android:id="@+id/template_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="23dp"
+                android:layout_marginRight="23dp"
+                android:hint="Enter Template Name"
+                android:paddingBottom="10dp"
+                android:textColor="#A3A2AC"
+                android:textColorHint="#A3A2AC"
+                app:backgroundTint="#A3A2AC99" />
+
+        </LinearLayout>
+
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="10dp">-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:text="Addres Line 1"-->
+<!--                android:textSize="14sp"-->
+<!--                android:textStyle="bold" />-->
+
+<!--            <EditText-->
+<!--                android:id="@+id/address_line1"-->
+<!--                android:layout_width="230dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:layout_alignParentRight="true"-->
+<!--                android:background="@drawable/edit_bg"-->
+<!--                android:hint="Enter Address Line 1"-->
+<!--                android:padding="5dp"-->
+<!--                android:textSize="12sp" />-->
+
+<!--        </RelativeLayout>-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="23dp"
+                android:text="Addres Line 1"
+                android:textColor="#A3A2AC"
+                android:textSize="14sp" />
+
+
+            <EditText
+                android:id="@+id/address_line1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="23dp"
+                android:layout_marginRight="23dp"
+                android:hint="Enter Address Line 1"
+                android:paddingBottom="10dp"
+                android:textColor="#A3A2AC"
+                android:textColorHint="#A3A2AC"
+                app:backgroundTint="#A3A2AC99" />
+
+        </LinearLayout>
+
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="10dp">-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:text="Addres Line 2"-->
+<!--                android:textSize="14sp"-->
+<!--                android:textStyle="bold" />-->
+
+<!--            <EditText-->
+<!--                android:id="@+id/address_line2"-->
+<!--                android:layout_width="230dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:layout_alignParentRight="true"-->
+<!--                android:background="@drawable/edit_bg"-->
+<!--                android:hint="Enter Address Line 2"-->
+<!--                android:padding="5dp"-->
+<!--                android:textSize="12sp" />-->
+
+<!--        </RelativeLayout>-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="23dp"
+                android:text="Addres Line 2"
+                android:textColor="#A3A2AC"
+                android:textSize="14sp" />
+
+
+            <EditText
+                android:id="@+id/address_line2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="23dp"
+                android:layout_marginRight="23dp"
+                android:hint="Enter Address Line 2"
+                android:paddingBottom="10dp"
+                android:textColor="#A3A2AC"
+                android:textColorHint="#A3A2AC"
+                app:backgroundTint="#A3A2AC99" />
+
+        </LinearLayout>
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="10dp">-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:text="Addres Line 3"-->
+<!--                android:textSize="14sp"-->
+<!--                android:textStyle="bold" />-->
+
+<!--            <EditText-->
+<!--                android:id="@+id/address_line3"-->
+<!--                android:layout_width="230dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:layout_alignParentRight="true"-->
+<!--                android:background="@drawable/edit_bg"-->
+<!--                android:hint="Enter Address Line 3"-->
+<!--                android:padding="5dp"-->
+<!--                android:textSize="12sp" />-->
+
+<!--        </RelativeLayout>-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="23dp"
+                android:text="Addres Line 3"
+                android:textColor="#A3A2AC"
+                android:textSize="14sp" />
+
+
+            <EditText
+                android:id="@+id/address_line3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="23dp"
+                android:layout_marginRight="23dp"
+                android:hint="Enter Address Line 3"
+                android:paddingBottom="10dp"
+                android:textColor="#A3A2AC"
+                android:textColorHint="#A3A2AC"
+                app:backgroundTint="#A3A2AC99" />
+
+        </LinearLayout>
+
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="10dp">-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:text="State"-->
+<!--                android:textSize="14sp"-->
+<!--                android:textStyle="bold" />-->
+
+<!--            <Spinner-->
+<!--                android:id="@+id/state"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignParentRight="true"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:entries="@array/india_state"-->
+<!--                android:imeOptions="actionNext" />-->
+<!--        </RelativeLayout>-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="23dp"
+                android:layout_marginTop="23dp"
+                android:gravity="center_vertical"
+                android:text="State"
+                android:textColor="#A3A2AC"
+                android:textSize="14sp" />
+
+            <Spinner
+                android:id="@+id/state"
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="23dp"
+                android:layout_marginBottom="10dp"
+                android:entries="@array/india_state"
+                android:imeOptions="actionNext" />
+        </LinearLayout>
+
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="10dp">-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:text="GSTN No:"-->
+<!--                android:textSize="14sp"-->
+<!--                android:textStyle="bold" />-->
+
+<!--            <EditText-->
+<!--                android:id="@+id/gstn_no"-->
+<!--                android:layout_width="230dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:layout_alignParentRight="true"-->
+<!--                android:background="@drawable/edit_bg"-->
+<!--                android:hint="Enter GSTN No"-->
+<!--                android:padding="5dp"-->
+<!--                android:textSize="12sp" />-->
+
+<!--        </RelativeLayout>-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="23dp"
+                android:text="GSTN No:"
+                android:textColor="#A3A2AC"
+                android:textSize="14sp" />
+
+
+            <EditText
+                android:id="@+id/gstn_no"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="23dp"
+                android:layout_marginRight="23dp"
+                android:hint="Enter Address Line 3"
+                android:paddingBottom="10dp"
+                android:textColor="#A3A2AC"
+                android:textColorHint="#A3A2AC"
+                app:backgroundTint="#A3A2AC99" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/upload_image_text"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:gravity="center_vertical"
+                android:text="Upload logo:"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/upload"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/upload_image_text"
+                android:text="Choose file"
+                android:textAllCaps="false"
+                android:textColor="#000"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="40dp"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@color/colorPrimary"
+                android:src="@drawable/logopngphoneme"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+<!--            <Button-->
+<!--                android:id="@+id/reset"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:layout_margin="5dp"-->
+<!--                android:background="@drawable/button_bg_rounded_corners"-->
+<!--                android:text="Reset"-->
+<!--                android:textAllCaps="false"-->
+<!--                android:textColor="@color/text_white" />-->
+
+            <Button
+                android:id="@+id/reset"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="5dp"
+                android:background="@drawable/button_bg_rounded_corners_purple"
+                android:text="Reset"
+                android:textAllCaps="false"
+                android:textColor="@color/text_white"
+                android:textSize="16sp" />
+
+<!--            <Button-->
+<!--                android:id="@+id/submit"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:layout_margin="5dp"-->
+<!--                android:background="@drawable/button_bg_rounded_corners"-->
+<!--                android:text="Submit"-->
+<!--                android:textAllCaps="false"-->
+<!--                android:textColor="@color/text_white" />-->
+
+            <Button
+                android:id="@+id/submit"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="5dp"
+                android:background="@drawable/button_bg_rounded_corners_purple"
+                android:text="Submit"
+                android:textAllCaps="false"
+                android:textColor="@color/text_white"
+                android:textSize="16sp" />
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</ScrollView>
