@@ -347,7 +347,7 @@ public class CreatePOFragment extends Fragment {
 
 //        textViewDescription.setTypeface(textView.getTypeface(), Typeface.BOLD);
         textViewDescription.setLayoutParams(mLparams);
-        textViewDescription.setText("Enter Item or servic Description");
+        textViewDescription.setText("Item/Service");
         textViewDescription.setTextColor((int)getResources().getColor(R.color.edittextcolor));
         servicelayout.addView(textViewDescription);
 
@@ -357,7 +357,7 @@ public class CreatePOFragment extends Fragment {
 
         myEditText.setLayoutParams(mLparams);
 
-        myEditText.setHint("Service");
+        myEditText.setHint("Enter Item or service Name");
 
         myEditText.setTag("service"+servicecount);
         myEditText.setHintTextColor((int)getResources().getColor(R.color.edittextcolor));
@@ -385,7 +385,7 @@ public class CreatePOFragment extends Fragment {
 
 //        textViewDescription.setTypeface(textView.getTypeface(), Typeface.BOLD);
         textViewDescription.setLayoutParams(mLparams);
-        textViewDescription.setText("Description");
+        textViewDescription.setText("Item/Service Description");
         textViewDescription.setTextColor((int)getResources().getColor(R.color.edittextcolor));
         servicelayout.addView(textViewDescription);
 
@@ -396,7 +396,7 @@ public class CreatePOFragment extends Fragment {
         myEditText.setLayoutParams(mLparams);
         //       servicelayout.addView(myEditText);
         //myEditText.setTextSize(TypedValue.COMPLEX_UNIT_SP,12);
-        myEditText.setHint("Description");
+        myEditText.setHint("Enter Item or service Description");
 
         myEditText.setTag("description"+servicecount);
         myEditText.setHintTextColor((int)getResources().getColor(R.color.edittextcolor));
