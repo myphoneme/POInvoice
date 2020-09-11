@@ -29,6 +29,7 @@ public class LoginEmailActivity extends AppCompatActivity {
     private EditText email,password;
     private Button button;
     protected void onCreate(Bundle savedInstanceState){
+        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_email_new_ui);
         getSupportActionBar().hide();
