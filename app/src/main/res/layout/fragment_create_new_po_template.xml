@@ -408,7 +408,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="23dp"
                 android:layout_marginRight="23dp"
-                android:hint="Enter Address Line 3"
+                android:hint="GSTN No:"
                 android:paddingBottom="10dp"
                 android:textColor="#A3A2AC"
                 android:textColorHint="#A3A2AC"

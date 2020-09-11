@@ -1,105 +1,263 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="5dp">
-    <RelativeLayout
-        android:layout_marginTop="10dp"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="PO Number"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            />
-        <TextView
-            android:layout_width="230dp"
-            android:layout_height="30dp"
-            android:id="@+id/po_number"
-            android:text="PO/IT-EXP/2020-21/10"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:layout_alignParentRight="true"
-            />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            android:layout_gravity="center_vertical"
+            android:background="#6C18A4">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center_vertical"
+                android:text="New Payment"
+                android:textColor="@color/text_white"
+                android:textSize="24sp" />
+        </RelativeLayout>
+<!--    <RelativeLayout-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:text="PO Number1"-->
+<!--            android:textSize="14sp"-->
+<!--            android:textStyle="bold"-->
+<!--            />-->
+<!--        <TextView-->
+<!--            android:layout_width="230dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:id="@+id/po_number"-->
+<!--            android:text="PO/IT-EXP/2020-21/10"-->
+<!--            android:textSize="14sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:layout_alignParentRight="true"-->
+<!--            />-->
 
 
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="Transaction Id:"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            />
+<!--    </RelativeLayout>-->
 
-        <EditText
-            android:padding="5dp"
-            android:id="@+id/transaction_id"
-            android:layout_width="230dp"
-            android:layout_height="30dp"
-            android:hint="Enter Transaction id"
-            android:layout_alignParentRight="true"
-            android:textSize="12sp"
-            android:background="@drawable/edit_bg"
-            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
 
-    </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="23dp"
+                android:text="PO Number"
+                android:textColor="#A3A2AC"
+                android:textSize="14sp" />
 
-    <RelativeLayout
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="Payment Amount1"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            />
 
-        <EditText
-            android:padding="5dp"
-            android:id="@+id/payment_amount"
-            android:layout_width="230dp"
-            android:layout_height="30dp"
-            android:hint="Enter Invoice Amount"
-            android:textSize="12sp"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/edit_bg"
-            />
+            <TextView
+                android:id="@+id/po_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="23dp"
+                android:layout_marginRight="23dp"
+                android:text="PO/IT-EXP/2020-21/10"
+                android:textSize="14sp"
+                android:textColor="#A3A2AC"
+                android:layout_alignParentRight="true"
+                />
 
-    </RelativeLayout>
+<!--            <EditText-->
+<!--                android:id="@+id/template_title"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginLeft="23dp"-->
+<!--                android:layout_marginRight="23dp"-->
+<!--                android:hint="Enter title"-->
+<!--                android:paddingBottom="10dp"-->
+<!--                android:textColor="#A3A2AC"-->
+<!--                android:textColorHint="#A3A2AC"-->
+<!--                app:backgroundTint="#A3A2AC99" />-->
 
-    <RelativeLayout
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="Message"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            />
+        </LinearLayout>
 
-        <EditText
-            android:padding="5dp"
-            android:id="@+id/message"
-            android:layout_width="230dp"
-            android:layout_height="30dp"
-            android:hint="Enter Message"
-            android:textSize="12sp"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/edit_bg"
-            />
+<!--    <RelativeLayout-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:text="Transaction Id:"-->
+<!--            android:textSize="14sp"-->
+<!--            android:textStyle="bold"-->
+<!--            />-->
 
-    </RelativeLayout>
+<!--        <EditText-->
+<!--            android:padding="5dp"-->
+<!--            android:id="@+id/transaction_id"-->
+<!--            android:layout_width="230dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:hint="Enter Transaction id"-->
+<!--            android:layout_alignParentRight="true"-->
+<!--            android:textSize="12sp"-->
+<!--            android:background="@drawable/edit_bg"-->
+<!--            />-->
+
+<!--    </RelativeLayout>-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="23dp"
+                android:text="Transaction Id:"
+                android:textColor="#A3A2AC"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/transaction_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="23dp"
+                android:layout_marginRight="23dp"
+                android:hint="Enter Transaction id"
+                android:paddingBottom="10dp"
+                android:textColor="#A3A2AC"
+                android:textColorHint="#A3A2AC"
+                app:backgroundTint="#A3A2AC99" />
+
+        </LinearLayout>
+
+
+
+<!--    <RelativeLayout-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:text="Payment Amount"-->
+<!--            android:textSize="14sp"-->
+<!--            android:textStyle="bold"-->
+<!--            />-->
+
+<!--        <EditText-->
+<!--            android:padding="5dp"-->
+<!--            android:id="@+id/payment_amount"-->
+<!--            android:layout_width="230dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:hint="Enter Invoice Amount"-->
+<!--            android:textSize="12sp"-->
+<!--            android:layout_alignParentRight="true"-->
+<!--            android:background="@drawable/edit_bg"-->
+<!--            />-->
+
+<!--    </RelativeLayout>-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="23dp"
+                android:text="Payment Amount"
+                android:textColor="#A3A2AC"
+                android:textSize="14sp" />
+
+
+            <EditText
+                android:id="@+id/payment_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="23dp"
+                android:layout_marginRight="23dp"
+                android:hint="Enter Invoice Amount"
+                android:paddingBottom="10dp"
+                android:textColor="#A3A2AC"
+                android:textColorHint="#A3A2AC"
+                app:backgroundTint="#A3A2AC99" />
+
+        </LinearLayout>
+
+<!--    <RelativeLayout-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:text="Message"-->
+<!--            android:textSize="14sp"-->
+<!--            android:textStyle="bold"-->
+<!--            />-->
+
+<!--        <EditText-->
+<!--            android:padding="5dp"-->
+<!--            android:id="@+id/message"-->
+<!--            android:layout_width="230dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:hint="Enter Message"-->
+<!--            android:textSize="12sp"-->
+<!--            android:layout_alignParentRight="true"-->
+<!--            android:background="@drawable/edit_bg"-->
+<!--            />-->
+
+<!--    </RelativeLayout>-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="23dp"
+                android:text="Message"
+                android:textColor="#A3A2AC"
+                android:textSize="14sp" />
+
+
+            <EditText
+                android:id="@+id/message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="23dp"
+                android:layout_marginRight="23dp"
+                android:hint="Enter message"
+                android:paddingBottom="10dp"
+                android:textColor="#A3A2AC"
+                android:textColorHint="#A3A2AC"
+                app:backgroundTint="#A3A2AC99" />
+
+        </LinearLayout>
+
     <RelativeLayout
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
@@ -163,14 +321,26 @@
             android:textAllCaps="false"
             android:visibility="gone"
             android:text="Reset"/>
+<!--        <Button-->
+<!--            android:id="@+id/submit"-->
+<!--            android:background="@drawable/button_bg_rounded_corners"-->
+<!--            android:layout_width="100dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:textColor="@color/text_white"-->
+<!--            android:layout_margin="5dp"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:text="Submit"/>-->
+    </LinearLayout>
         <Button
             android:id="@+id/submit"
-            android:background="@drawable/button_bg_rounded_corners"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:textColor="@color/text_white"
+            android:layout_gravity="center_horizontal"
             android:layout_margin="5dp"
+            android:background="@drawable/button_bg_rounded_corners_purple"
+            android:text="Submit"
             android:textAllCaps="false"
-            android:text="Submit"/>
-    </LinearLayout>
+            android:textColor="@color/text_white"
+            android:textSize="16sp" />
 </LinearLayout>
+</ScrollView>
