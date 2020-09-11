@@ -23,7 +23,19 @@
 <!--                <category android:name="android.intent.category.LAUNCHER" />-->
 <!--            </intent-filter>-->
         </activity>
-        <activity android:name=".user.LoginEmailActivity">
+        <activity android:name=".user.LoginEmailActivity"
+            >
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+
+        </activity>
+
+        <activity android:name=".SplashActivity"
+
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

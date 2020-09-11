@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+
+        android:orientation="vertical"
+        android:gravity="center"
+        >
+
+    <ImageView
+        android:layout_width="164dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="105dp"
+        android:src="@drawable/phoneme" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Better Control of finances."
+            android:textSize="18sp"
+            android:textColor="#252525"/>
+    </LinearLayout>
+
+    <com.scwang.wave.MultiWaveHeader
+        android:layout_alignParentBottom="true"
+        android:id="@+id/wavebottom"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:scaleY="-1"
+        app:mwhCloseColor="@color/wavecolor2"
+        app:mwhStartColor="@color/wavecolor1"
+        app:mwhVelocity="1"
+
+
+        />
+</RelativeLayout>
