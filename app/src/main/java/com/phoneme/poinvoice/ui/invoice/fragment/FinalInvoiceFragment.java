@@ -202,8 +202,12 @@ public class FinalInvoiceFragment extends Fragment {
                 +data.getInvoiceListDataModelList().get(0).getAddress_line2()+"\n"
                 +data.getInvoiceListDataModelList().get(0).getAddress_line3()+"\n";
 
-        toAddressdata="To\n"+data.getVendorDataModelList().get(0).getVendor_name()+"\n"
+//        toAddressdata="To\n"+data.getVendorDataModelList().get(0).getVendor_name()+"\n"
+//                +data.getVendorDataModelList().get(0).getAddress();
+
+        toAddressdata="To\n"+data.getVendorDataModelList().get(0).getClient_name()+"\n"
                 +data.getVendorDataModelList().get(0).getAddress();
+
         po_invoice_data="Invoice#"+data.getInvoiceDataModelList().get(0).getInvoice_number()+"\n"
                 +"Po No:"+data.getInvoiceDataModelList().get(0).getOrder_id()+"\n"
                 +"Invoice Date:"+data.getInvoiceDataModelList().get(0).getDuedate();
@@ -240,7 +244,10 @@ public class FinalInvoiceFragment extends Fragment {
                 +data.getInvoiceListDataModelList().get(0).getAddress_line2()+"\n"
                 +data.getInvoiceListDataModelList().get(0).getAddress_line3()+"\n";
 
-        toAddressdata="To\n"+data.getVendorDataModelList().get(0).getVendor_name()+"\n"
+//        toAddressdata="To\n"+data.getVendorDataModelList().get(0).getVendor_name()+"\n"
+//                +data.getVendorDataModelList().get(0).getAddress();
+
+        toAddressdata="To\n"+data.getVendorDataModelList().get(0).getClient_name()+"\n"
                 +data.getVendorDataModelList().get(0).getAddress();
         po_invoice_data="Invoice#"+data.getInvoiceDataModelList().get(0).getInvoice_number()+"\n"
                 +"Po No:"+data.getInvoiceDataModelList().get(0).getOrder_id()+"\n"
@@ -253,7 +260,7 @@ public class FinalInvoiceFragment extends Fragment {
         grandTotal="Grand Total: ₹"+data.getInvoiceDataModelList().get(0).getGrand_total();
 
         Company.setText(data.getInvoiceListDataModelList().get(0).getTemplate_name());
-        FromCompany.setText(fromAddressdata);
+        FromCompany.setText("44"+fromAddressdata);
         ToCompany.setText(toAddressdata);
         InvoicePoData.setText(po_invoice_data);
         TermsConditions.setText(termsConditions);

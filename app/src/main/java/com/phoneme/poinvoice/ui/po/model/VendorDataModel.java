@@ -9,6 +9,9 @@ public class VendorDataModel {
     @SerializedName("Vendor_name")
     private String Vendor_name;
 
+    @SerializedName("Client_Name")
+    private String Client_name;
+
     @SerializedName("Address")
     private String Address;
 
@@ -55,4 +58,9 @@ public class VendorDataModel {
     public String getId(){
         return this.Id;
     }
+
+    public String getClient_name(){
+        return this.Client_name;
+    }
+
 }
