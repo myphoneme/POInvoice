@@ -68,16 +68,32 @@
                     android:text="Indian Agricultural Research Institute, (IARI)"
                     android:textColor="@color/edittextcolor"
                     android:textSize="14sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:id="@+id/payment_button"
+                        android:layout_width="90sp"
+                        android:layout_height="20sp"
+                        android:background="@drawable/button_bg_rounded_corners_purple"
+                        android:text="New payment"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="12sp" />
 
-                <Button
-                    android:id="@+id/payment_button"
-                    android:layout_width="40sp"
-                    android:layout_height="20sp"
-                    android:background="@drawable/button_bg_rounded_corners_purple"
-                    android:text="New"
-                    android:textAllCaps="false"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="12sp" />
+                    <Button
+                        android:id="@+id/add_new_po_button"
+                        android:layout_width="70sp"
+                        android:layout_height="20sp"
+                        android:layout_marginLeft="7dp"
+                        android:background="@drawable/button_bg_rounded_corners_purple"
+                        android:text="New Po"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
             </LinearLayout>
             <TextView
                 android:id="@+id/total_amount"
@@ -340,7 +356,7 @@
                     android:text="	PO/IT-EXP/2020-21/16" />
 
                 <Button
-                    android:id="@+id/add_new_po_button"
+                    android:id="@+id/add_new_po_button1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/colorPrimary"

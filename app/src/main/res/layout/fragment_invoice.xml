@@ -25,15 +25,27 @@
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
             <Button
                 android:id="@+id/generate_new_invoice"
+                android:layout_width="90sp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_bg_rounded_corners_purple"
+                android:text="Generate Invoice"
+                android:textAllCaps="false"
+                android:textColor="@color/colorWhite"
+                android:textSize="12sp"
+                android:layout_alignParentLeft="true"/>
+            <Button
+                android:id="@+id/generate_new_invoice1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimary"
                 android:textColor="@color/colorWhite"
                 android:textSize="12sp"
                 android:padding="2dp"
+                android:visibility="gone"
                 android:textAllCaps="false"
                 android:text="Generate Invoice"
                 android:layout_alignParentLeft="true"/>
