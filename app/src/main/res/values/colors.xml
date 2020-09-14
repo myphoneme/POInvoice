@@ -19,4 +19,5 @@
     <color name="purple">#6C18A4</color>
     <color name="edittextcolor">#A3A2AC</color>
     <color name="editbackgroundtintcolor">#A3A2AC99</color>
+    <color name="colorprice">#3827b4</color>
 </resources>
