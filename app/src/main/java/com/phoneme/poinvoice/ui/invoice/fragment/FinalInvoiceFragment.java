@@ -1,20 +1,37 @@
 package com.phoneme.poinvoice.ui.invoice.fragment;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.pdf.PdfWriter;
+
+import com.itextpdf.text.*;
+
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Bitmap;
+//import android.media.Image;
+import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.itextpdf.text.pdf.PdfWriter;
 import com.phoneme.poinvoice.R;
 import com.phoneme.poinvoice.config.RetrofitClientInstance;
 import com.phoneme.poinvoice.interfaces.GetDataService;
@@ -25,6 +42,11 @@ import com.phoneme.poinvoice.ui.invoice.network.InvoiceFinalInvoiceGetResponse;
 import com.phoneme.poinvoice.ui.invoice.network.InvoiceFunnelInvoiceGetResponse;
 import com.squareup.picasso.Picasso;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 import retrofit2.Call;
@@ -44,12 +66,14 @@ public class FinalInvoiceFragment extends Fragment {
 
     private ImageView Logo;
     private String base_url_image="http://support.phoneme.in/assets/images/userimage/";
-
+    View root;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         invoiceViewModel =
                 ViewModelProviders.of(this).get(InvoiceViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_final_funnel_invoice, container, false);
+        root = inflater.inflate(R.layout.fragment_final_funnel_invoice, container, false);
+
+
 
         return root;
     }
@@ -279,5 +303,140 @@ public class FinalInvoiceFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         LinearLayoutManager linearVertical = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearVertical);
+        open(getView());
+//        createDialog();
+
     }
+
+    String dirpath;
+    public void layoutToImage(View view) {
+        // get view group using reference
+        //RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R.id.print);
+        ScrollView scrollView=(ScrollView)view.findViewById(R.id.scrollviewid);
+
+        // convert view group to bitmap
+//        relativeLayout.setDrawingCacheEnabled(true);
+//        relativeLayout.buildDrawingCache();
+//        Bitmap bm = relativeLayout.getDrawingCache();
+
+        scrollView.setDrawingCacheEnabled(true);
+        scrollView.buildDrawingCache();
+        Bitmap bm = scrollView.getDrawingCache();
+
+
+        Intent share = new Intent(Intent.ACTION_SEND);
+        share.setType("image/jpeg");
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        bm.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+
+        File f = new File(Environment.getExternalStorageDirectory() + File.separator + "invoiceimage.jpg");
+        try {
+            f.createNewFile();
+            FileOutputStream fo = new FileOutputStream(f);
+            fo.write(bytes.toByteArray());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+//    public void imageToPDF() throws FileNotFoundException {
+//        try {
+//            Document document = new Document();
+//            dirpath = android.os.Environment.getExternalStorageDirectory().toString();
+//            PdfWriter.getInstance(document, new FileOutputStream(dirpath + "/NewPDF.pdf")); //  Change pdf's name.
+//            document.open();
+//            Image img = Image.getInstance(Environment.getExternalStorageDirectory() + File.separator + "invoiceimage.jpg");
+//            float scaler = ((document.getPageSize().getWidth() - document.leftMargin()
+//                    - document.rightMargin() - 0) / img.getWidth()) * 100;
+//            img.scalePercent(scaler);
+//            img.setAlignment(Image.ALIGN_CENTER | Image.ALIGN_TOP);
+//            document.add(img);
+//            document.close();
+//            Toast.makeText(this, "PDF Generated successfully!..", Toast.LENGTH_SHORT).show();
+//        } catch (Exception e) {
+//
+//        }
+//    }
+
+    private void createDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setPositiveButton("Fire", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                //layoutToImage(getView());
+                Toast.makeText(getContext(),"enter a text here",Toast.LENGTH_SHORT).show();
+            }
+        }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                getActivity().finish();
+            }
+        });
+    }
+
+
+    public void open(View view){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+        alertDialogBuilder.setMessage("Are you sure,You wanted to make decision");
+                alertDialogBuilder.setPositiveButton("yes",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                layoutToImage(root);
+                                Toast.makeText(getContext(),"You clicked yes button",Toast.LENGTH_LONG).show();
+                            }
+                        });
+
+        alertDialogBuilder.setNegativeButton("No",new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+              getActivity().finish();
+            }
+        });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+//    private void createPdf(){
+//
+//        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(2250, 1400, 1).create();
+//
+//        // start a page
+//        PdfDocument.Page page = document.startPage(pageInfo);
+//
+//
+//        // draw something on the page
+//        LayoutInflater inflater = (LayoutInflater)
+//                getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//        View content = inflater.inflate(R.layout.pdf_layout, null);
+//
+//        content.measure(2250, 1400);
+//        content.layout(0,0, 2250, 1400);
+//
+//        tvName = (TextView)content.findViewById(R.id.tvName);
+//        tvDate = (TextView)content.findViewById(R.id.tvDate);
+//        tvAge = (TextView)content.findViewById(R.id.tvAge);
+//        tvGender = (TextView)content.findViewById(R.id.tvGender);
+//        tvPhone = (TextView)content.findViewById(R.id.tvPhone);
+//        lvList = (ListView)content.findViewById(R.id.lvList);
+//        lvList.setAdapter(adapter);
+//        Utils.setListViewHeight(lvList, CreatePDFDemo.this);
+//
+//        tvName.setText(name);
+//        tvAge.setText(age + "Y");
+//        tvGender.setText(gender);
+//        tvPhone.setText(phone);
+//
+//        content.draw(page.getCanvas());
+//
+//        // finish the page
+//        document.finishPage(page);
+//        // add more pages
+//        // write the document content
+//        try {
+//            document.writeTo(output);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }
