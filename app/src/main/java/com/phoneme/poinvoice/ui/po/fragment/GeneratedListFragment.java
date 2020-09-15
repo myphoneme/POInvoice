@@ -4,7 +4,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
@@ -39,11 +42,12 @@ public class GeneratedListFragment extends Fragment implements GeneratedListAdap
     private GeneratedListViewModel generatedListViewModel;
     private RecyclerView recyclerView;
     private Button generateNewPOButton;
+    private Spinner YearsSpinner;
+
     private List<PODataModel> poDataModelList;
+    String[] yearsString = {"2020-21","2019-20","2018-19","2017-18"};
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-//        generatedListViewModel =
-//                ViewModelProviders.of(this).get(GeneratedListViewModel.class);
         View root = inflater.inflate(R.layout.fragment_generatedlist, container, false);
 
         return root;
@@ -54,6 +58,7 @@ public class GeneratedListFragment extends Fragment implements GeneratedListAdap
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView=(RecyclerView)view.findViewById(R.id.recyclerview_generated_list);
+        YearsSpinner=(Spinner)view.findViewById(R.id.years);
         generateNewPOButton=(Button)view.findViewById(R.id.add_vendor_button);
         generateNewPOButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +69,9 @@ public class GeneratedListFragment extends Fragment implements GeneratedListAdap
         });
         //GeneratedListAdapter adapter=new GeneratedListAdapter(getContext());
         //getGeneratedListData();
-        getGeneratedListCompleteData();
+        //getGeneratedListCompleteData();
+
+        setYearsSpinnerData();
 //        GeneratedListAdapter adapter=new GeneratedListAdapter(getContext(),this);
 //        recyclerView.setAdapter(adapter);
 //        LinearLayoutManager linearVertical = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
@@ -93,14 +100,21 @@ public class GeneratedListFragment extends Fragment implements GeneratedListAdap
         NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
         navController.navigate(R.id.nav_po_final_funnel_data,args2);
     }
-    private void getGeneratedListCompleteData(){
+    private void getGeneratedListCompleteData(String year){
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-        Call<GeneratedListCompleteResponse> call=service.getGeneratedListComplete("2020-21");
+        //Call<GeneratedListCompleteResponse> call=service.getGeneratedListComplete("2020-21");
+        Call<GeneratedListCompleteResponse> call=service.getGeneratedListComplete(year);
         call.enqueue(new Callback<GeneratedListCompleteResponse>() {
             @Override
             public void onResponse(Call<GeneratedListCompleteResponse> call, Response<GeneratedListCompleteResponse> response) {
-                poDataModelList=response.body().getPoDataModelList();
-                setAdapter(poDataModelList);
+                if(response!=null && response.body()!=null && response.body().getPoDataModelList()!=null &&  !response.body().getPoDataModelList().isEmpty() && response.body().getPoDataModelList().size()>0 ){
+                    poDataModelList=response.body().getPoDataModelList();
+                    setAdapter(poDataModelList);
+                }else{
+                    poDataModelList.removeAll(poDataModelList);
+                    setAdapter(response.body().getPoDataModelList());
+                }
+
             }
 
             @Override
@@ -109,31 +123,52 @@ public class GeneratedListFragment extends Fragment implements GeneratedListAdap
             }
         });
     }
-    private void getGeneratedListData(){
-        GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-        Call<GeneratedListResponse> call=service.getGeneratedList();
-        //Call<GeneratedListCompleteResponse> call=service.getGeneratedListComplete("2020-21");
-        // Call<VendorListResponse> call=service.getVendorList_Page(page);
-
-        call.enqueue(new Callback<GeneratedListResponse>() {
-            @Override
-            public void onResponse(Call<GeneratedListResponse> call, Response<GeneratedListResponse> response) {
-                poDataModelList=response.body().getPoDataModelList();
-                setAdapter(poDataModelList);
-            }
-
-            @Override
-            public void onFailure(Call<GeneratedListResponse> call, Throwable t) {
-
-            }
-        });
-
-    }
+//    private void getGeneratedListData(){
+//        GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+//        Call<GeneratedListResponse> call=service.getGeneratedList();
+//        //Call<GeneratedListCompleteResponse> call=service.getGeneratedListComplete("2020-21");
+//        // Call<VendorListResponse> call=service.getVendorList_Page(page);
+//
+//        call.enqueue(new Callback<GeneratedListResponse>() {
+//            @Override
+//            public void onResponse(Call<GeneratedListResponse> call, Response<GeneratedListResponse> response) {
+//                poDataModelList=response.body().getPoDataModelList();
+//                setAdapter(poDataModelList);
+//            }
+//
+//            @Override
+//            public void onFailure(Call<GeneratedListResponse> call, Throwable t) {
+//
+//            }
+//        });
+//
+//    }
     private void setAdapter(List<PODataModel> vendorDataModelList){
         GeneratedListAdapter adapter=new GeneratedListAdapter(getContext(),this,vendorDataModelList);
         recyclerView.setAdapter(adapter);
         LinearLayoutManager linearVertical = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearVertical);
 
+    }
+
+    private void setYearsSpinnerData(){
+        ArrayAdapter aa = new ArrayAdapter(getContext(),android.R.layout.simple_spinner_item,yearsString);
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        YearsSpinner.setAdapter(aa);
+        YearsSpinner.setSelection(0);
+
+        YearsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String year=yearsString[YearsSpinner.getSelectedItemPosition()];
+                //getInvoiceListData(year);
+                getGeneratedListCompleteData(year);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 }

@@ -17,6 +17,7 @@ import com.phoneme.poinvoice.ui.invoice.model.InvoiceRowModel;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -141,13 +142,15 @@ public class InvoiceListAdapter extends RecyclerView.Adapter<InvoiceListAdapter.
 
             try {
                 Date date = formatter.parse(invoiceRowModelList.get(position).getDuedate());
-                SimpleDateFormat dt1 = new SimpleDateFormat("dd/MM/yyyy");
+                //SimpleDateFormat dt1 = new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat dt1 = new SimpleDateFormat("MMM dd,yyyy");
                 //createdat.setText(dt1.format(date));
                 this.date.setText(dt1.format(date));
 
             }catch(ParseException e){
 
             }
+            
         }
 
 //        public void setData(ProjectModel item, int position) {

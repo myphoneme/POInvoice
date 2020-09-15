@@ -1,32 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-    <Button
-        android:id="@+id/add_vendor_button"
-        android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:layout_marginLeft="15dp"
-        android:layout_gravity="left"
-        android:textAllCaps="false"
-        android:padding="5dp"
-        android:text="Generate New PO"
-        android:textSize="12sp"
-        android:textColor="@color/colorWhite"
-        android:background="@color/colorPrimary"/>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview_generated_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="vertical"
-        android:layout_margin="5dp"
-        />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            android:layout_gravity="center_vertical"
+            android:background="#6C18A4">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center_vertical"
+                android:text="Generated List"
+                android:textColor="@color/text_white"
+                android:textSize="24sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+        <Button
+            android:id="@+id/add_vendor_button"
+            android:layout_width="90sp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_bg_rounded_corners_purple"
+            android:text="Generate New PO"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:textSize="12sp"
+            android:layout_alignParentLeft="true"/>
+            <Spinner
+                android:id="@+id/years"
+                android:layout_width="wrap_content"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:entries="@array/vendor"
+                android:imeOptions="actionNext" />
+        </RelativeLayout>
+
+<!--        <Button-->
+<!--            android:id="@+id/add_vendor_button1"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="25dp"-->
+<!--            android:layout_gravity="left"-->
+<!--            android:layout_marginLeft="15dp"-->
+<!--            android:background="@color/colorPrimary"-->
+<!--            android:padding="5dp"-->
+<!--            android:text="Generate New POra"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:textColor="@color/colorWhite"-->
+<!--            android:textSize="12sp" />-->
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_generated_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:scrollbars="vertical" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

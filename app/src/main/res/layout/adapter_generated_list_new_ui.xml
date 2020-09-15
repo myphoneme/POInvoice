@@ -27,7 +27,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
 
             <ImageView
                 android:id="@+id/organisation"
@@ -45,7 +46,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/invoice_number"
+                    android:id="@+id/po_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
@@ -64,7 +65,7 @@
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/vendor_name"
+                    android:id="@+id/vendor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="left"
@@ -77,7 +78,7 @@
                     android:layout_height="wrap_content">
 
                     <Button
-                        android:id="@+id/payment_button"
+                        android:id="@+id/add_payment"
                         android:layout_width="90sp"
                         android:layout_height="20sp"
                         android:background="@drawable/button_bg_rounded_corners_purple"
@@ -87,12 +88,15 @@
                         android:textSize="12sp" />
 
                     <Button
-                        android:id="@+id/add_new_po_button"
-                        android:layout_width="70sp"
+                        android:id="@+id/add_invoice"
+                        android:layout_width="wrap_content"
                         android:layout_height="20sp"
                         android:layout_marginLeft="7dp"
                         android:background="@drawable/button_bg_rounded_corners_purple"
-                        android:text="Add PO"
+                        android:gravity="left"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:text="Add Invoice"
                         android:textAllCaps="false"
                         android:textColor="@color/colorWhite"
                         android:textSize="12sp" />
@@ -110,9 +114,8 @@
                 android:text="\u20B9 61384"
                 android:textColor="@color/colorPrimary"
                 android:textSize="14sp" />
-
-
         </RelativeLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -153,11 +156,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="GST Amount"
+                    android:text="Vendor"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/project"
+                    android:id="@+id/vendor1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
@@ -219,7 +222,7 @@
                     android:id="@+id/total_amount1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="\u20B9 61384" />
+                    android:text="\u20B9 885" />
 
             </LinearLayout>
 
@@ -233,16 +236,16 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Invoice "
+                    android:text="Subject "
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/invoice_number1"
+                    android:id="@+id/subject"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:text="758703"
-                    android:textColor="@color/colorPrimary" />
+
+                    android:text="" />
 
             </LinearLayout>
 
@@ -257,15 +260,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Vendor"
+                    android:text="GST"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/vendor_name1"
+                    android:id="@+id/gst"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:text="1" />
+                    android:text="" />
             </LinearLayout>
 
         </LinearLayout>
@@ -297,11 +299,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
                     android:text="Payment"
                     android:textStyle="bold" />
 
                 <Button
-                    android:id="@+id/payment_button1"
+                    android:id="@+id/add_payment1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/colorPrimary"
@@ -309,6 +313,18 @@
                     android:textAllCaps="false"
                     android:textColor="@color/colorWhite"
                     android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/add_new_po_button1"
+                    android:layout_width="70sp"
+                    android:layout_height="20sp"
+                    android:layout_marginLeft="7dp"
+                    android:background="@drawable/button_bg_rounded_corners_purple"
+                    android:text="Add PO"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="12sp"
+                    android:visibility="gone" />
 
             </LinearLayout>
 
@@ -320,20 +336,21 @@
                 android:layout_toRightOf="@+id/payment_layout"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:text="Percentage PO received"
+                    android:text="% of Payment received"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/percentage_po_received"
+                    android:id="@+id/percentage_payment_received"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="24.4%" />
+                    android:text="" />
 
             </LinearLayout>
 
@@ -352,25 +369,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:text="PO \nreceived"
+                    android:text="PO NO."
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/po_received"
+                    android:id="@+id/po_no1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="	PO/IT-EXP/2020-21/16" />
-
-                <Button
-                    android:id="@+id/add_new_po_button1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/colorPrimary"
-                    android:padding="2dp"
-                    android:text="Add new PO"
-                    android:textAllCaps="false"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="12sp" />
+                    android:gravity="center_horizontal"
+                    android:text="	"
+                    android:textColor="@color/colorPrimary" />
+                <!--                <Button-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:background="@color/colorPrimary"-->
+                <!--                    android:textColor="@color/colorWhite"-->
+                <!--                    android:textSize="12sp"-->
+                <!--                    android:padding="2dp"-->
+                <!--                    android:text="Add new PO"/>-->
 
             </LinearLayout>
 
@@ -385,14 +401,29 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="PO NO"
+                    android:gravity="center_horizontal"
+                    android:text="Invoice Received"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/order_id"
+                    android:id="@+id/invoice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2514546" />
+
+                    android:gravity="center_horizontal"
+                    android:text="Invoice Received"
+                    android:textColor="@color/colorPrimary" />
+
+                <Button
+                    android:id="@+id/add_invoice1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:padding="2dp"
+                    android:text="Add new Invoice"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="12sp" />
             </LinearLayout>
 
         </LinearLayout>

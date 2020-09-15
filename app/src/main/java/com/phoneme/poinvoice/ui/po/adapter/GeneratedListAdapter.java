@@ -18,6 +18,9 @@ import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class GeneratedListAdapter extends RecyclerView.Adapter<GeneratedListAdapter.ViewHolder> {
@@ -118,9 +121,17 @@ public class GeneratedListAdapter extends RecyclerView.Adapter<GeneratedListAdap
 //            if(poDataModelList.get(position).getSgst_amount()!=null){
 //
 //            }
+            String dateString=new String();
+            try{
+                java.util.Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(poDataModelList.get(position).getPo_date());
+                DateFormat targetFormat = new SimpleDateFormat("MMM dd,yyyy");
+                dateString=targetFormat.format(date1);
+            }catch(Exception e){
 
+            }
 
-            this.Date.setText(poDataModelList.get(position).getPo_date());
+            //this.Date.setText(poDataModelList.get(position).getPo_date());
+            this.Date.setText(dateString);
             this.Vendor.setText(poDataModelList.get(position).getVendor_name());
             this.TotalAmount.setText("\u20B9 "+poDataModelList.get(position).getGrand_total());
             this.Subject.setText(poDataModelList.get(position).getSubject());
@@ -135,7 +146,7 @@ public class GeneratedListAdapter extends RecyclerView.Adapter<GeneratedListAdap
 
     @Override
     public GeneratedListAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i){
-        View view= LayoutInflater.from(mcontext).inflate(R.layout.adapter_generated_list2,viewGroup,false);
+        View view= LayoutInflater.from(mcontext).inflate(R.layout.adapter_generated_list_new_ui,viewGroup,false);
         return new ViewHolder(view);
     }
 
