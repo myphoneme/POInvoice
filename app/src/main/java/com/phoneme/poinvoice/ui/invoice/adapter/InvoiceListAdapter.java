@@ -150,7 +150,7 @@ public class InvoiceListAdapter extends RecyclerView.Adapter<InvoiceListAdapter.
             }catch(ParseException e){
 
             }
-            
+
         }
 
 //        public void setData(ProjectModel item, int position) {
