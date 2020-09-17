@@ -38,7 +38,7 @@
                 android:src="@drawable/logopngphoneme" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@+id/organisation"
@@ -75,7 +75,6 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-
                     <Button
                         android:id="@+id/payment_button"
                         android:layout_width="90sp"
@@ -96,6 +95,10 @@
                         android:textAllCaps="false"
                         android:textColor="@color/colorWhite"
                         android:textSize="12sp" />
+
+
+
+
 
                 </LinearLayout>
 

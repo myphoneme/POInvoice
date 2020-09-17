@@ -39,7 +39,7 @@
                 android:src="@drawable/logopngphoneme" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@+id/organisation"
@@ -93,13 +93,17 @@
                         android:layout_height="20sp"
                         android:layout_marginLeft="7dp"
                         android:background="@drawable/button_bg_rounded_corners_purple"
-                        android:gravity="left"
+                        android:gravity="center_horizontal"
                         android:paddingLeft="5dp"
                         android:paddingRight="5dp"
                         android:text="Add Invoice"
                         android:textAllCaps="false"
                         android:textColor="@color/colorWhite"
                         android:textSize="12sp" />
+
+
+
+
 
                 </LinearLayout>
 
