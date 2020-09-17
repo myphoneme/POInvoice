@@ -8,8 +8,40 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            android:layout_gravity="center_vertical"
+            android:background="#6C18A4">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center_vertical"
+                android:text="PO Template"
+                android:textColor="@color/text_white"
+                android:textSize="24sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
         <Button
             android:id="@+id/add_new_po_template"
+            android:layout_width="90sp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_bg_rounded_corners_purple"
+            android:text="Add new PO Template"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:textSize="12sp"
+            android:layout_alignParentLeft="true"/>
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/add_new_po_template1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
@@ -17,6 +49,7 @@
             android:textSize="12sp"
             android:textAllCaps="false"
             android:padding="2dp"
+            android:visibility="gone"
             android:text="Add new PO Template"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_po_template"

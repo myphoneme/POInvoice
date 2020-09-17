@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     app:cardElevation="5dp">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,7 +15,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/date"
+                android:id="@+id/state"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -31,7 +30,7 @@
             android:layout_marginTop="5dp">
 
             <ImageView
-                android:id="@+id/organisation"
+                android:id="@+id/logo"
                 android:layout_width="40dp"
                 android:layout_height="20dp"
                 android:layout_alignParentLeft="true"
@@ -42,11 +41,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@+id/organisation"
+                android:layout_toRightOf="@+id/logo"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/po_no"
+                    android:id="@+id/gst_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
@@ -55,7 +54,7 @@
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/abcdef"
+                    android:id="@+id/title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
@@ -65,7 +64,17 @@
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/vendor"
+                    android:id="@+id/template_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="left"
+                    android:text="Indian Agricultural Research Institute, (IARI)"
+                    android:textColor="@color/edittextcolor"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/address_line1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="left"
@@ -73,36 +82,45 @@
                     android:textColor="@color/edittextcolor"
                     android:textSize="14sp" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/address_line2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="Indian Agricultural Research Institute, (IARI)"
+                    android:textColor="@color/edittextcolor"
+                    android:textSize="14sp" />
 
-                    <Button
-                        android:id="@+id/add_payment"
-                        android:layout_width="90sp"
-                        android:layout_height="20sp"
-                        android:background="@drawable/button_bg_rounded_corners_purple"
-                        android:text="Add Payment"
-                        android:textAllCaps="false"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="12sp" />
+                <TextView
+                    android:id="@+id/address_line3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="Indian Agricultural Research Institute, (IARI)"
+                    android:textColor="@color/edittextcolor"
+                    android:textSize="14sp" />
+<!--                -->
+<!--                <TextView-->
+<!--                    android:id="@+id/address_line3"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:gravity="center_horizontal"-->
+<!--                    android:text=""/>-->
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                    <Button
-                        android:id="@+id/add_invoice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20sp"
-                        android:layout_marginLeft="7dp"
-                        android:background="@drawable/button_bg_rounded_corners_purple"
-                        android:gravity="center_horizontal"
-                        android:paddingLeft="5dp"
-                        android:paddingRight="5dp"
-                        android:text="Add Invoice"
-                        android:textAllCaps="false"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="12sp" />
-
-
-                </LinearLayout>
+                <Button
+                    android:id="@+id/edit_button"
+                    android:layout_width="90sp"
+                    android:layout_height="20sp"
+                    android:background="@drawable/button_bg_rounded_corners_purple"
+                    android:text="Edit"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="12sp" />
+            </LinearLayout>
 
             </LinearLayout>
 
@@ -122,312 +140,303 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
+            android:visibility="gone"
+            android:orientation="horizontal">
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Date"
-                    android:textStyle="bold" />
-
+                    android:text="Title"
+                    android:textStyle="bold"/>
                 <TextView
-                    android:id="@+id/date1"
+                    android:gravity="center_horizontal"
+                    android:id="@+id/title1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="06 Dec 2019" />
+                    android:text=""/>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Vendor"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:text="State"/>
 
                 <TextView
-                    android:id="@+id/vendor1"
+                    android:id="@+id/state1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:text="" />
+                    android:text=""/>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="organisation"
-                    android:textStyle="bold" />
+                    android:text="Template Name"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/template_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Noida, U.P. 201305"/>
+                />
+            </LinearLayout>
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="#c0c0c0"
+            android:visibility="gone"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:visibility="gone"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Address Line 1"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:gravity="center_horizontal"
+                    android:id="@+id/address_line11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="Address line 2"/>
+
+                <TextView
+                    android:id="@+id/address_line21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text=""/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="Address Line 3"/>
+
+
+                <TextView
+                    android:id="@+id/address_line31"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text=""/>
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="#c0c0c0"
+            android:visibility="gone"/>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+<!--            <LinearLayout-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_weight="2"-->
+<!--                android:gravity="center_horizontal"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:orientation="vertical">-->
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Address Line 3"-->
+<!--                    android:textStyle="bold"/>-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/address_line31"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:gravity="center_horizontal"-->
+<!--                    android:text="Noida, U.P. 201305"/>-->
+
+<!--            </LinearLayout>-->
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="GST NO1"/>
+
+                <TextView
+                    android:id="@+id/gst_no1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="Logo1"/>
+
 
                 <ImageView
-                    android:id="@+id/organisation1"
+                    android:id="@+id/logo1"
                     android:layout_width="40dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/logopngphoneme" />
+                    android:src="@drawable/logopngphoneme"
+                    />
             </LinearLayout>
 
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"
-            android:background="#c0c0c0"
-            android:visibility="gone" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Total amount"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/total_amount1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="\u20B9 885" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
                 android:orientation="vertical">
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Subject "
-                    android:textStyle="bold" />
+                    android:text="1Action"
+                    android:textStyle="bold"/>
 
-                <TextView
-                    android:id="@+id/subject"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-
-                    android:text="" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_alignParentRight="true"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="GST"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/gst"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"
-            android:background="#c0c0c0"
-            android:visibility="gone" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <LinearLayout
-                android:id="@+id/payment_layout"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:gravity="center_horizontal"
-                    android:text="Payment"
-                    android:textStyle="bold" />
 
                 <Button
-                    android:id="@+id/add_payment1"
+                    android:id="@+id/edit_button1"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/colorPrimary"
-                    android:text="Add New Payment"
+                    android:layout_height="25dp"
+                    android:text="Edit"
                     android:textAllCaps="false"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="12sp" />
-
-                <Button
-                    android:id="@+id/add_new_po_button1"
-                    android:layout_width="70sp"
-                    android:layout_height="20sp"
-                    android:layout_marginLeft="7dp"
-                    android:background="@drawable/button_bg_rounded_corners_purple"
-                    android:text="Add PO"
-                    android:textAllCaps="false"
-                    android:textColor="@color/colorWhite"
                     android:textSize="12sp"
-                    android:visibility="gone" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/percentage_po_layout"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:layout_toRightOf="@+id/payment_layout"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:orientation="vertical"
-                android:visibility="gone">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:text="% of Payment received"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/percentage_payment_received"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:id="@+id/po_received_layout"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:layout_toRightOf="@+id/percentage_po_layout"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:text="PO NO."
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/po_no1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:text="	"
-                    android:textColor="@color/colorPrimary" />
-                <!--                <Button-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:background="@color/colorPrimary"-->
-                <!--                    android:textColor="@color/colorWhite"-->
-                <!--                    android:textSize="12sp"-->
-                <!--                    android:padding="2dp"-->
-                <!--                    android:text="Add new PO"/>-->
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:layout_toRightOf="@+id/po_received_layout"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:text="Invoice Received"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/invoice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:gravity="center_horizontal"
-                    android:text="Invoice Received"
-                    android:textColor="@color/colorPrimary" />
-
-                <Button
-                    android:id="@+id/add_invoice1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/colorPrimary"
-                    android:padding="2dp"
-                    android:text="Add new Invoice"
-                    android:textAllCaps="false"
                     android:textColor="@color/colorWhite"
-                    android:textSize="12sp" />
+                    android:background="@color/colorPrimary"/>
+
             </LinearLayout>
 
         </LinearLayout>
+
+<!--        <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="1dp"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_marginLeft="5dp"-->
+<!--            android:layout_marginRight="5dp"-->
+<!--            android:background="#c0c0c0"/>-->
+
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_margin="5dp"-->
+<!--        android:orientation="horizontal">-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:gravity="center_horizontal"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:orientation="vertical">-->
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Action"-->
+<!--                android:textStyle="bold"/>-->
+
+
+<!--            <Button-->
+<!--                android:id="@+id/edit_button2"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="25dp"-->
+<!--                android:text="Edit"-->
+<!--                android:textSize="12sp"-->
+<!--                android:textColor="@color/colorWhite"-->
+<!--                android:background="@color/colorPrimary"/>-->
+
+<!--        </LinearLayout>-->
+<!--    </LinearLayout>-->
+
+
+
+
 
 
     </LinearLayout>
