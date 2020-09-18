@@ -49,6 +49,7 @@ import com.phoneme.poinvoice.ui.invoice.network.PoPaymentPOSTResponse;
 import com.phoneme.poinvoice.ui.invoice.network.PoUploadPOSTResponse;
 import com.phoneme.poinvoice.ui.invoice.network.UPloadPOPaymentGetResponse;
 import com.phoneme.poinvoice.ui.invoice.network.VendorAddPostResponse;
+import com.phoneme.poinvoice.ui.po.model.VendorRevenueDataModel;
 import com.phoneme.poinvoice.ui.po.network.AddNewPoTemplateGetResponse;
 import com.phoneme.poinvoice.ui.po.network.GeneratedListFinalPOGetResponse;
 import com.phoneme.poinvoice.ui.po.network.GeneratedListFunnelPOGetResponse;
@@ -63,11 +64,14 @@ import com.phoneme.poinvoice.ui.po.network.PoGeneratePostResponse;
 import com.phoneme.poinvoice.ui.po.network.PoTemplateEditGETResponse;
 import com.phoneme.poinvoice.ui.po.network.PoTemplateEditPOSTResponse;
 import com.phoneme.poinvoice.ui.po.network.PoTemplateListResponse;
+import com.phoneme.poinvoice.ui.po.network.RegionRevenueGetResponse;
 import com.phoneme.poinvoice.ui.po.network.VendorAddGetResponse;
 import com.phoneme.poinvoice.ui.po.network.VendorEditGetResponse;
 import com.phoneme.poinvoice.ui.po.network.VendorEditPostResponse;
 import com.phoneme.poinvoice.ui.po.network.VendorListResponse;
 import com.phoneme.poinvoice.ui.invoice.network.UploadPOGetResponse;
+import com.phoneme.poinvoice.ui.po.network.VendorRevenueGetResponse;
+
 import com.phoneme.poinvoice.user.network.OTPVerifactionResponse;
 
 import java.util.ArrayList;
@@ -117,6 +121,13 @@ public interface GetDataService {
 
 	@GET("/invoiceapis/Po/polist/{yr}")
 	Call<GeneratedListCompleteResponse> getGeneratedListComplete(@Path("yr") String year);
+
+	@GET("/invoiceapis/Po/vendorrevenue/{yr}")
+	Call<VendorRevenueGetResponse> getVendorRevenueListComplete(@Path("yr") String year);
+
+	@GET("/invoiceapis/Po/regionrevenue/{yr}")
+	Call<RegionRevenueGetResponse> getRegionRevenueListComplete(@Path("yr") String year);
+
 
 	@GET("/invoiceapis/Po/uploadpayment")
 	Call<GeneratedListPOPaymentGetResponse> getGeneratedListPOPaymentData(@Query("id") String id);

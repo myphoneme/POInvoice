@@ -85,6 +85,20 @@ public class PODataModel {
     @SerializedName("download")
     private String download;
 
+    @SerializedName("vendor_state_name")
+    private String vendor_state_name;
+
+    @SerializedName("invoice_amount")
+    private String invoice_amount;
+
+    public String getInvoice_amount(){
+        return this.invoice_amount;
+    }
+
+    public String getVendor_state_name(){
+        return this.vendor_state_name;
+    }
+
     public String getDownload(){
         return this.download;
     }

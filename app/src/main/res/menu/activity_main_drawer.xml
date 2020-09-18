@@ -79,6 +79,18 @@
         android:icon="@drawable/ic_menu_manage"
         android:title="@string/menu_client_list"
         />
+
+    <item
+        android:id="@+id/nav_vendorwise_revenue"
+        android:icon="@drawable/ic_menu_manage"
+        android:title="@string/menu_vendorwise_revenue"
+        />
+
+    <item
+        android:id="@+id/nav_regionwise_revenue"
+        android:icon="@drawable/ic_menu_manage"
+        android:title="@string/menu_regionwise_revenue"
+        />
     <!--        <item-->
     <!--            android:id="@+id/nav_create_new_po_templatge"-->
     <!--            android:icon="@drawable/ic_menu_manage"-->

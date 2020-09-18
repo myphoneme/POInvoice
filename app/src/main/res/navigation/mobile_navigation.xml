@@ -133,6 +133,20 @@
         android:label="@string/menu_client_create"
         tools:layout="@layout/fragment_client_create"
         />
+
+    <fragment
+        android:id="@+id/nav_regionwise_revenue"
+        android:name="com.phoneme.poinvoice.ui.po.fragment.RegionWiseRevenueListFragment"
+        android:label="@string/menu_regionwise_revenue"
+        tools:layout="@layout/fragment_regionwise_revenuse_list"
+        />
+
+    <fragment
+        android:id="@+id/nav_vendorwise_revenue"
+        android:name="com.phoneme.poinvoice.ui.po.fragment.VendorWiseRevenueListFragment"
+        android:label="@string/menu_vendorwise_revenue"
+        tools:layout="@layout/fragment_vendorwise_revenue_list"
+        />
     <fragment
         android:id="@+id/nav_share"
         android:name="com.phoneme.poinvoice.ui.share.ShareFragment"

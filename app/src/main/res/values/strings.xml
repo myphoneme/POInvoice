@@ -26,6 +26,8 @@
     <string name="menu_client_list">Client List</string>
     <string name="menu_client_edit">Client Edit</string>
     <string name="menu_client_create">Client Create</string>
+    <string name="menu_regionwise_revenue">Regionwise Revenue</string>
+    <string name="menu_vendorwise_revenue">Vendorwise Revenue</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
 
