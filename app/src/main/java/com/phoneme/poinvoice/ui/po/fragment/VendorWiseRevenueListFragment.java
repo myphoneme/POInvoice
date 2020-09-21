@@ -22,7 +22,9 @@ import com.phoneme.poinvoice.R;
 import com.phoneme.poinvoice.config.RetrofitClientInstance;
 import com.phoneme.poinvoice.interfaces.GetDataService;
 import com.phoneme.poinvoice.ui.po.adapter.VendorListAdapter;
+import com.phoneme.poinvoice.ui.po.adapter.VendorWiseRevenueListAdapter;
 import com.phoneme.poinvoice.ui.po.model.VendorDataModel;
+import com.phoneme.poinvoice.ui.po.model.VendorRevenueDataModel;
 import com.phoneme.poinvoice.ui.po.network.VendorListResponse;
 import com.phoneme.poinvoice.ui.po.network.VendorRevenueGetResponse;
 import com.phoneme.poinvoice.ui.po.viewmodel.VendorListViewModel;
@@ -60,7 +62,7 @@ public class VendorWiseRevenueListFragment extends Fragment implements VendorLis
 //        recyclerView.setAdapter(adapter);
 //        LinearLayoutManager linearVertical = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
 //        recyclerView.setLayoutManager(linearVertical);
-        getVendorListData(Page);
+        //getVendorListData(Page);
         Button button=(Button)view.findViewById(R.id.add_vendor_button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +92,8 @@ public class VendorWiseRevenueListFragment extends Fragment implements VendorLis
         call.enqueue(new Callback<VendorRevenueGetResponse>() {
             @Override
             public void onResponse(Call<VendorRevenueGetResponse> call, Response<VendorRevenueGetResponse> response) {
-
+                //setAdapters();
+                setVendorWiseRevenueAdapter(response.body().getVendorRevenueDataModelList());
             }
 
             @Override
@@ -132,7 +135,12 @@ public class VendorWiseRevenueListFragment extends Fragment implements VendorLis
         }
 
     }
-
+    private void setVendorWiseRevenueAdapter(List<VendorRevenueDataModel> vendorRevenueDataModelList){
+        VendorWiseRevenueListAdapter adapter=new VendorWiseRevenueListAdapter(getContext(),vendorRevenueDataModelList);
+        recyclerView.setAdapter(adapter);
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
+        recyclerView.setLayoutManager(linearLayoutManager);
+    }
     private void setAdapter(List<VendorDataModel> vendorDataModelList){
         VendorListAdapter adapter=new VendorListAdapter(getContext(),this,vendorDataModelList);
         recyclerView.setAdapter(adapter);
