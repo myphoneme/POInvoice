@@ -47,7 +47,7 @@ public class ClientListAdapter extends RecyclerView.Adapter<ClientListAdapter.Vi
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(mcontext).inflate(R.layout.adapter_client_list, viewGroup, false);
+        View view = LayoutInflater.from(mcontext).inflate(R.layout.adapter_client_list_new_ui, viewGroup, false);
         return new ViewHolder(view);
     }
 

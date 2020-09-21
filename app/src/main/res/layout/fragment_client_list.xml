@@ -1,34 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="74dp"
+        android:layout_gravity="center_vertical"
+        android:background="#6C18A4">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Client"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center_vertical"
+            android:text="CLIENT LISTING"
+            android:textColor="@color/text_white"
+            android:textSize="24sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp">
+    <Button
+        android:id="@+id/create_client"
+        android:layout_width="90sp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_bg_rounded_corners_purple"
+        android:text="Add new Client"
+        android:textAllCaps="false"
+        android:textColor="@color/colorWhite"
+        android:textSize="12sp"
+        android:layout_alignParentLeft="true"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            />
+            android:text="Client" />
+
         <Button
-            android:id="@+id/create_client"
+            android:id="@+id/create_client1"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:layout_margin="5dp"
             android:layout_alignParentRight="true"
+            android:layout_margin="5dp"
             android:background="@drawable/button_bg_rounded_corners"
             android:text="Add new Client"
             android:textAllCaps="false"
             android:textColor="@color/text_white" />
     </RelativeLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_client_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="vertical"
         android:layout_margin="5dp"
-        />
+        android:scrollbars="vertical" />
 
 </LinearLayout>
