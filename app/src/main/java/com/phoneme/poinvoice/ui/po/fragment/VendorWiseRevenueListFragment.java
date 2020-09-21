@@ -24,6 +24,7 @@ import com.phoneme.poinvoice.interfaces.GetDataService;
 import com.phoneme.poinvoice.ui.po.adapter.VendorListAdapter;
 import com.phoneme.poinvoice.ui.po.model.VendorDataModel;
 import com.phoneme.poinvoice.ui.po.network.VendorListResponse;
+import com.phoneme.poinvoice.ui.po.network.VendorRevenueGetResponse;
 import com.phoneme.poinvoice.ui.po.viewmodel.VendorListViewModel;
 
 import java.util.List;
@@ -31,6 +32,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.http.Path;
 
 public class VendorWiseRevenueListFragment extends Fragment implements VendorListAdapter.OnItemClickListener{
 
@@ -45,13 +47,6 @@ public class VendorWiseRevenueListFragment extends Fragment implements VendorLis
         vendorListViewModel =
                 ViewModelProviders.of(this).get(VendorListViewModel.class);
         View root = inflater.inflate(R.layout.fragment_vendorwise_revenue_list, container, false);
-//        final TextView textView = root.findViewById(R.id.text_home);
-//        vendorListViewModel.getText().observe(this, new Observer<String>() {
-//            @Override
-//            public void onChanged(@Nullable String s) {
-//                textView.setText(s);
-//            }
-//        });
         return root;
     }
 
@@ -89,7 +84,21 @@ public class VendorWiseRevenueListFragment extends Fragment implements VendorLis
     public void onItemClick2(int position){
 
     }
+    private void getVendorWiseRevenueData(String year){
+        GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+        Call<VendorRevenueGetResponse> call=service.getVendorRevenueListComplete(year);
+        call.enqueue(new Callback<VendorRevenueGetResponse>() {
+            @Override
+            public void onResponse(Call<VendorRevenueGetResponse> call, Response<VendorRevenueGetResponse> response) {
 
+            }
+
+            @Override
+            public void onFailure(Call<VendorRevenueGetResponse> call, Throwable t) {
+
+            }
+        });
+    }
     private void getVendorListData(final int page){
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
         Call<VendorListResponse> call=service.getVendorList();
@@ -143,6 +152,7 @@ public class VendorWiseRevenueListFragment extends Fragment implements VendorLis
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String year=yearsString[YearsSpinner.getSelectedItemPosition()];
+                getVendorWiseRevenueData(year);
                 //getInvoiceListData(year);
                 //getGeneratedListCompleteData(year);
             }

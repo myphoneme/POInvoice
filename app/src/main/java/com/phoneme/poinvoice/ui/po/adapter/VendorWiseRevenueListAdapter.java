@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,26 +19,26 @@ import com.phoneme.poinvoice.ui.po.model.VendorDataModel;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-public class RegionWiseRevenueListAdapter extends RecyclerView.Adapter<RegionWiseRevenueListAdapter.ViewHolder> {
+public class VendorWiseRevenueListAdapter extends RecyclerView.Adapter<VendorWiseRevenueListAdapter.ViewHolder> {
     private Context mcontext;
     private  OnItemClickListener listener;
     private List<VendorDataModel> vendorDataModelList;
     private List<PODataModel> poDataModelList;
     private SimpleDateFormat formatter;
-    public RegionWiseRevenueListAdapter(Context context){
+    public VendorWiseRevenueListAdapter(Context context){
         this.mcontext=context;
     }
-    public RegionWiseRevenueListAdapter(Context context,List<PODataModel> poDataModels){
+    public VendorWiseRevenueListAdapter(Context context, List<PODataModel> poDataModels){
         this.mcontext=context;
         this.poDataModelList=poDataModels;
     }
 
-    public RegionWiseRevenueListAdapter(Context context, OnItemClickListener listener){
+    public VendorWiseRevenueListAdapter(Context context, OnItemClickListener listener){
         this.mcontext=context;
         this.listener=listener;
     }
 
-    public RegionWiseRevenueListAdapter(Context context, OnItemClickListener listener, List<VendorDataModel> vendorDataModelList){
+    public VendorWiseRevenueListAdapter(Context context, OnItemClickListener listener, List<VendorDataModel> vendorDataModelList){
         this.mcontext=context;
         this.listener=listener;
         formatter = new SimpleDateFormat("yyyy-MM-dd");
