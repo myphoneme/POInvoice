@@ -1,9 +1,12 @@
 package com.phoneme.poinvoice.ui.po.fragment;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -18,6 +21,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.loader.content.CursorLoader;
 import androidx.navigation.NavController;
@@ -65,6 +69,7 @@ public class UploadPaymentInvoiceFragment extends Fragment {
     private List<PODataModel> poDataModelList;
     private PODataModel poDataModel;
 
+    private static final int PERMISSION_STORAGE_CODE=1000;
     public static final String MULTIPART_FORM_DATA = "multipart/form-data";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -97,13 +102,33 @@ public class UploadPaymentInvoiceFragment extends Fragment {
         uploadfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent galleryIntent = new Intent(Intent.ACTION_PICK,
-                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(galleryIntent, 0);
+//                Intent galleryIntent = new Intent(Intent.ACTION_PICK,
+//                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//                startActivityForResult(galleryIntent, 0);
+
+                if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.M){
+                    if(ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE)== PackageManager.PERMISSION_DENIED){
+                        String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+                        requestPermissions(permissions,PERMISSION_STORAGE_CODE);
+                    }else{
+//                        new DownloadFileFromURL().execute(file_url);
+                        uploadStartFunc();
+                    }
+                }else{
+//                    new DownloadFileFromURL().execute(file_url);
+                    uploadStartFunc();
+                }
             }
         });
         getPaymentData(id);
         //getPaymentData2(id);
+    }
+
+    private void uploadStartFunc(){
+
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK,
+                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(galleryIntent, 0);
     }
 
     private void getData(){
@@ -256,4 +281,17 @@ public class UploadPaymentInvoiceFragment extends Fragment {
         });
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        //super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch(requestCode) {
+            case PERMISSION_STORAGE_CODE:
+                if(grantResults.length>0 && grantResults[0]== PackageManager.PERMISSION_GRANTED){
+                    //new DownloadFileFromURL().execute(file_url);
+                    uploadStartFunc();
+                }else{
+                    //Toast.makeText(this,"Permission denied",Toast.LENGTH_LONG).show();
+                }
+        }
+    }
 }
