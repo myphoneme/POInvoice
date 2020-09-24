@@ -1,9 +1,17 @@
 package com.phoneme.poinvoice.ui.invoice.fragment;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.ProgressDialog;
+import android.content.pm.PackageManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,13 +31,23 @@ import com.phoneme.poinvoice.ui.invoice.adapter.InvoiceFinalFunnelItemAdapter;
 import com.phoneme.poinvoice.ui.invoice.model.InvoiceProductsDataModel;
 import com.phoneme.poinvoice.ui.invoice.network.InvoiceFinalInvoiceGetResponse;
 import com.phoneme.poinvoice.ui.invoice.network.InvoiceFunnelInvoiceGetResponse;
+import com.phoneme.poinvoice.ui.po.fragment.PODataFinalFunnelFragment;
 import com.squareup.picasso.Picasso;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.content.Context.NOTIFICATION_SERVICE;
 
 public class FinalInvoiceFragment extends Fragment {
 
@@ -45,6 +63,21 @@ public class FinalInvoiceFragment extends Fragment {
     private ImageView Logo;
     private String base_url_image="http://support.phoneme.in/assets/images/userimage/";
 
+    private ProgressDialog pDialog;
+
+    public static final int progress_bar_type = 0;
+
+    private Button downloadPDFButton;
+
+    private String filename=new String();
+    //private static String file_url="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf";
+    //private static String link1="http://support.phoneme.in/invoiceapis/Po/funnelpopdf?id=29";
+    //private static String link2="http://support.phoneme.in/Po/funnelpopdf?id=29";
+    private static String file_url=new String();
+
+    private String folderPath= Environment.getExternalStorageDirectory() + "/Download/MyPDFs/";
+
+    private static final int PERMISSION_STORAGE_CODE=1000;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         invoiceViewModel =
@@ -260,7 +293,7 @@ public class FinalInvoiceFragment extends Fragment {
         grandTotal="Grand Total: ₹"+data.getInvoiceDataModelList().get(0).getGrand_total();
 
         Company.setText(data.getInvoiceListDataModelList().get(0).getTemplate_name());
-        FromCompany.setText("44"+fromAddressdata);
+        FromCompany.setText(fromAddressdata);
         ToCompany.setText(toAddressdata);
         InvoicePoData.setText(po_invoice_data);
         TermsConditions.setText(termsConditions);
@@ -279,5 +312,132 @@ public class FinalInvoiceFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         LinearLayoutManager linearVertical = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearVertical);
+    }
+
+
+
+    class DownloadFileFromURL extends AsyncTask<String, String, String> {
+
+        /**
+         * Before starting background thread
+         * Show Progress Bar Dialog
+         */
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            //showDialog(progress_bar_type);
+        }
+
+        /**
+         * Downloading file in background thread
+         */
+        @Override
+        protected String doInBackground(String... f_url) {
+            int count;
+            try {
+                Toast.makeText(getContext(),"Submit Button clicked",Toast.LENGTH_LONG).show();
+
+                URL url = new URL(f_url[0]);
+                //filename=getFileName(f_url[0]);
+                filename="convert.pdf";
+                URLConnection conection = url.openConnection();
+                conection.connect();
+                // this will be useful so that you can show a tipical 0-100% progress bar
+                int lenghtOfFile = conection.getContentLength();
+
+                // download the file
+                InputStream input = new BufferedInputStream(url.openStream(), 8192);
+
+                // Output stream
+                OutputStream output = new FileOutputStream(folderPath+ filename);
+                byte data[] = new byte[1024];
+
+                long total = 0;
+
+                while ((count = input.read(data)) != -1) {
+                    total += count;
+                    // publishing the progress....
+                    // After this onProgressUpdate will be called
+                    publishProgress("" + (int) ((total * 100) / lenghtOfFile));
+
+                    // writing data to file
+                    output.write(data, 0, count);
+                }
+
+                // flushing output
+                output.flush();
+
+                // closing streams
+                output.close();
+                input.close();
+
+            } catch (Exception e) {
+//                Toast.makeText(getApplicationContext(),"Catch",Toast.LENGTH_LONG).show();
+
+                Log.e("Error: ", e.getMessage());
+            }
+
+            return null;
+        }
+
+        /**
+         * Updating progress bar
+         */
+        protected void onProgressUpdate(String... progress) {
+            // setting progress percentage
+            //pDialog.setProgress(Integer.parseInt(progress[0]));
+        }
+
+        /**
+         * After completing background task
+         * Dismiss the progress dialog
+         **/
+        @Override
+        protected void onPostExecute(String file_url) {
+            // dismiss the dialog after the file was downloaded
+            //dismissDialog(progress_bar_type);
+            //Toast.makeText(getApplicationContext(),"download complete"+filename,Toast.LENGTH_LONG).show();
+
+            System.out.println("fileurl="+file_url);
+            //createNotification(btnShowProgress,filename);
+        }
+
+    }
+
+    public void createNotification(View view, String filename) {
+        Notification noti = new Notification.Builder(getContext())
+                .setContentTitle("Download")
+                .setContentText("File "+filename+" downloaded").setSmallIcon(R.drawable.ic_launcher_background)
+                .build();
+//                .setContentIntent(pendingIntent).build();
+        NotificationManager notificationManager = (NotificationManager) getContext().getSystemService(NOTIFICATION_SERVICE);
+        // hide the notification after its selected
+        noti.flags |= Notification.FLAG_AUTO_CANCEL;
+
+        notificationManager.notify(0, noti);
+
+    }
+
+    private void createDirectoryAndSaveFile(String folderPath) {
+
+        File direct = new File(folderPath);
+
+        if (!direct.exists()) {
+            File wallpaperDirectory = new File(folderPath);
+            wallpaperDirectory.mkdirs();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        //super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch(requestCode) {
+            case PERMISSION_STORAGE_CODE:
+                if(grantResults.length>0 && grantResults[0]== PackageManager.PERMISSION_GRANTED){
+                    //new PODataFinalFunnelFragment.DownloadFileFromURL().execute(file_url);
+                }else{
+                    //Toast.makeText(this,"Permission denied",Toast.LENGTH_LONG).show();
+                }
+        }
     }
 }
