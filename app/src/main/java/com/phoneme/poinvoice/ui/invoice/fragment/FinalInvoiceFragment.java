@@ -72,7 +72,7 @@ public class FinalInvoiceFragment extends Fragment {
     private String filename=new String();
     //private static String file_url="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf";
     //private static String link1="http://support.phoneme.in/invoiceapis/Po/funnelpopdf?id=29";
-    //private static String link2="http://support.phoneme.in/Po/funnelpopdf?id=29";
+    //private static String link2= "http://support.phoneme.in/Po/funnelpopdf?id=29";
     private static String file_url=new String();
 
     private String folderPath= Environment.getExternalStorageDirectory() + "/Download/MyPDFs/";
