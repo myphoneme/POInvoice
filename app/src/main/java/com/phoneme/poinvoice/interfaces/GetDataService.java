@@ -136,6 +136,9 @@ public interface GetDataService {
 	@GET("/invoiceapis/po/funnelpo")
 	Call<GeneratedListFunnelPOGetResponse> getGeneratedListFunnelPOData(@Query("id") String id);
 
+	@GET("/invoiceapis/po/funnelpopdf")
+	Call<GeneratedListFunnelPOGetResponse> getGeneratedListFunnelPOPDFData(@Query("id") String id);
+
 
 	@GET("/invoiceapis/po/finalpo")
 	Call<GeneratedListFinalPOGetResponse> getGeneratedListFinalPOData(@Query("id") String id);
