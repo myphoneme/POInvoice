@@ -189,85 +189,11 @@ public class FinalInvoiceFragment extends Fragment {
                 converttoPdf(result);
                 //toConvertHtmlStringToPdfAPI();
                 System.out.println("resulthtml="+result);
-                Toast.makeText(getContext(), "gethtml", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Getting ready for Pdf", Toast.LENGTH_LONG).show();
 //                tv.setText(result);
             }
         });
     }
-
-//    private void createPdf() {
-//
-//        PdfDocument document = new PdfDocument();
-//        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(b.getWidth(), b.getHeight(), 1).create();
-//        PdfDocument.Page page = document.startPage(pageInfo);
-//
-//        Canvas canvas = page.getCanvas();
-//
-//
-//        Paint paint = new Paint();
-//        paint.setColor(Color.parseColor("#ffffff"));
-//        canvas.drawPaint(paint);
-//
-//
-//        Bitmap bitmap = Bitmap.createScaledBitmap(b, b.getWidth(), b.getHeight(), true);
-//
-//        paint.setColor(Color.BLUE);
-//        canvas.drawBitmap(bitmap, 0, 0, null);
-//        document.finishPage(page);
-//        File filePath = new File(path);
-//        try {
-//            document.writeTo(new FileOutputStream(filePath));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            Toast.makeText(this, "Something wrong: " + e.toString(), Toast.LENGTH_LONG).show();
-//        }
-//
-//        // close the document
-//        document.close();
-//
-//        openPdf(path);// You can open pdf after complete
-//    }
-//
-//    private void takeScreenShot() {
-//
-//        File folder = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Signature/");
-//
-//        if (!folder.exists()) {
-//            boolean success = folder.mkdir();
-//        }
-//
-//        path = folder.getAbsolutePath();
-//        path = path + "/" + signature_pdf_ + System.currentTimeMillis() + ".pdf";// path where pdf will be stored
-//
-//        View u = findViewById(R.id.scroll);
-//        NestedScrollView z = (NestedScrollView) findViewById(R.id.scroll); // parent view
-//        totalHeight = z.getChildAt(0).getHeight();// parent view height
-//        totalWidth = z.getChildAt(0).getWidth();// parent view width
-//
-//        //Save bitmap to  below path
-//        String extr = Environment.getExternalStorageDirectory() + "/Signature/";
-//        File file = new File(extr);
-//        if (!file.exists())
-//            file.mkdir();
-//        String fileName = signature_img_ + ".jpg";
-//        myPath = new File(extr, fileName);
-//        imagesUri = myPath.getPath();
-//        FileOutputStream fos = null;
-//        b = getBitmapFromView(u, totalHeight, totalWidth);
-//
-//        try {
-//            fos = new FileOutputStream(myPath);
-//            b.compress(Bitmap.CompressFormat.PNG, 100, fos);
-//            fos.flush();
-//            fos.close();
-//
-//        } catch (Exception e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//        }
-//        createPdf();// create pdf after creating bitmap and saving
-//
-//    }
 
     private void getFinalData(String id) {
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);

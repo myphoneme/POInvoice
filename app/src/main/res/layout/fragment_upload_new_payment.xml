@@ -18,7 +18,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center_vertical"
-                android:text="New Payment"
+                android:text="Add New Payment"
                 android:textColor="@color/text_white"
                 android:textSize="24sp" />
         </RelativeLayout>

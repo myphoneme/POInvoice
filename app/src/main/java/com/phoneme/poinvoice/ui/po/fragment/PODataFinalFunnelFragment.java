@@ -176,7 +176,7 @@ public class PODataFinalFunnelFragment extends Fragment {
                 converttoPdf(result);
                 //toConvertHtmlStringToPdfAPI();
                 System.out.println("resulthtml="+result);
-                Toast.makeText(getContext(), "gethtml", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Getting ready for Pdf", Toast.LENGTH_LONG).show();
 //                tv.setText(result);
             }
         });

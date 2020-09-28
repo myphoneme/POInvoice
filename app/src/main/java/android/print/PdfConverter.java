@@ -10,6 +10,7 @@ import android.print.PrintDocumentAdapter;
 import android.util.Log;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 import java.io.File;
 
@@ -56,7 +57,10 @@ public class PdfConverter implements Runnable {
                     documentAdapter.onWrite(new PageRange[]{PageRange.ALL_PAGES}, getOutputFileDescriptor(), null, new PrintDocumentAdapter.WriteResultCallback() {
                         @Override
                         public void onWriteFinished(PageRange[] pages) {
+                            Toast.makeText(mContext, "Pdf Downloaded "+mPdfFile.getName(), Toast.LENGTH_LONG).show();
                             destroy();
+
+
                         }
                     });
                 }
