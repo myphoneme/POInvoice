@@ -61,7 +61,7 @@ public class PODataFinalFunnelFragment extends Fragment {
     private RecyclerView recyclerView;
     private GeneratedListFinalPOGetResponse finalData;
     private GeneratedListFunnelPOGetResponse funnelData;
-    private TextView Company, FromCompany, ToCompany, TermsConditions, TotalWithoutGST, CGSTPERCENTAMOUNT, SGSTPERCENTAMOUNT;
+    private TextView Company, FromCompany, ToCompany, TermsConditions, TotalWithoutGST, CGSTPERCENTAMOUNT, SGSTPERCENTAMOUNT,purchaseOrder;
     private TextView GrandTotal;
     private Button downloadPDFButton;
     private ImageView Logo;
@@ -84,6 +84,8 @@ public class PODataFinalFunnelFragment extends Fragment {
     private String folderPath= Environment.getExternalStorageDirectory() + "/Download/MyPDFs/";
     //private String folderPath= Environment.getExternalStorageDirectory() + "/Download/";
     private static final int PERMISSION_STORAGE_CODE=1000;
+    private String file_name=new String();
+    private String organization,id;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         invoiceViewModel =
@@ -96,8 +98,8 @@ public class PODataFinalFunnelFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        final String id = getArguments().getString("id");
-        String organization = getArguments().getString("organization");
+        id = getArguments().getString("id");
+         organization = getArguments().getString("organization");
 
 //        String id = "11";
 //        String organization = "2";
@@ -113,31 +115,36 @@ public class PODataFinalFunnelFragment extends Fragment {
         Logo=(ImageView)view.findViewById(R.id.logo);
         recyclerView=(RecyclerView)view.findViewById(R.id.recyclerview_items);
         downloadPDFButton=(Button)view.findViewById(R.id.downloadpdfbutton);
+        purchaseOrder=(TextView)view.findViewById(R.id.purchase_order);
         downloadPDFButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                file_url="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf";
 //
-//                if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
-//                    if(getContext().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)== PackageManager.PERMISSION_DENIED){
-//                        String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
-//                        requestPermissions(permissions,PERMISSION_STORAGE_CODE);
-//                    }else{
-//                        new DownloadFileFromURL().execute(file_url);
-//                    }
-//                }else{
-//                    new DownloadFileFromURL().execute(file_url);
-//                }
-
-                //onBrowseClick(view,id);
-
-                //gethtml("http://support.phoneme.in/invoiceapis/Po/funnelpopdf2?id="+id);
-
-                if (organization.equalsIgnoreCase("2") || organization.equalsIgnoreCase("4") || organization.equalsIgnoreCase("5")) {
-                    gethtml("http://support.phoneme.in/invoiceapis/Po/finalpopdf2?id="+id);
-                } else {
-                    gethtml("http://support.phoneme.in/invoiceapis/Po/funnelpopdf2?id="+id);
+                if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
+                    if(getContext().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)== PackageManager.PERMISSION_DENIED){
+                        String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+                        requestPermissions(permissions,PERMISSION_STORAGE_CODE);
+                    }else{
+                        if (organization.equalsIgnoreCase("2") || organization.equalsIgnoreCase("4") || organization.equalsIgnoreCase("5")) {
+                            gethtml("http://support.phoneme.in/invoiceapis/Po/finalpopdf2?id="+id);
+                        } else {
+                            gethtml("http://support.phoneme.in/invoiceapis/Po/funnelpopdf2?id="+id);
+                        }
+                    }
+                }else{
+                    if (organization.equalsIgnoreCase("2") || organization.equalsIgnoreCase("4") || organization.equalsIgnoreCase("5")) {
+                        gethtml("http://support.phoneme.in/invoiceapis/Po/finalpopdf2?id="+id);
+                    } else {
+                        gethtml("http://support.phoneme.in/invoiceapis/Po/funnelpopdf2?id="+id);
+                    }
                 }
+
+//                if (organization.equalsIgnoreCase("2") || organization.equalsIgnoreCase("4") || organization.equalsIgnoreCase("5")) {
+//                    gethtml("http://support.phoneme.in/invoiceapis/Po/finalpopdf2?id="+id);
+//                } else {
+//                    gethtml("http://support.phoneme.in/invoiceapis/Po/funnelpopdf2?id="+id);
+//                }
 
             }
         });
@@ -152,7 +159,8 @@ public class PODataFinalFunnelFragment extends Fragment {
     private void converttoPdf(String string){
 
         PdfConverter converter = PdfConverter.getInstance();
-        File file = new File(Environment.getExternalStorageDirectory().toString(), "filepdf.pdf");
+        //File file = new File(Environment.getExternalStorageDirectory().toString(), "filepdf.pdf");
+        File file = new File(Environment.getExternalStorageDirectory().toString(), file_name+".pdf");
         String htmlString = "<html><body><p>WHITE (default)</p></body></html>";
         //converter.convert(getContext(), htmlString, file);
         converter.convert(getContext(), string, file);
@@ -242,6 +250,9 @@ public class PODataFinalFunnelFragment extends Fragment {
         cgst_percentage_amount = "CGST @" + data.getPoDataModelList().get(0).getCgst() + " ₹" + data.getPoDataModelList().get(0).getCgst_amount();
         sgst_percentage_amount = "CGST @" + data.getPoDataModelList().get(0).getSgst() + " ₹" + data.getPoDataModelList().get(0).getSgst_amount();
         grandTotal="Grand Total: ₹"+ data.getPoDataModelList().get(0).getGrand_total();
+        String po_number=data.getPoDataModelList().get(0).getPo_number();
+        purchaseOrder.setText("Purchase Order:"+po_number);
+        file_name=po_number.replace("/","_");
         FromCompany.setText(fromAddressdata);
         ToCompany.setText(toAddressdata);
         TermsConditions.setText(terms_conditions);
@@ -275,6 +286,9 @@ public class PODataFinalFunnelFragment extends Fragment {
         cgst_percentage_amount = "CGST @" + data.getPoDataModelList().get(0).getCgst() + " ₹" + data.getPoDataModelList().get(0).getCgst_amount();
         sgst_percentage_amount = "CGST @" + data.getPoDataModelList().get(0).getSgst() + " ₹" + data.getPoDataModelList().get(0).getSgst_amount();
         grandTotal="Grand Total: ₹"+ data.getPoDataModelList().get(0).getGrand_total();
+        String po_number=data.getPoDataModelList().get(0).getPo_number();
+        purchaseOrder.setText("Purchase Order:"+po_number);
+        file_name=po_number.replace("/","_");
         FromCompany.setText(fromAddressdata);
         ToCompany.setText(toAddressdata);
         TermsConditions.setText(terms_conditions);
@@ -413,7 +427,12 @@ public class PODataFinalFunnelFragment extends Fragment {
         switch(requestCode) {
             case PERMISSION_STORAGE_CODE:
                 if(grantResults.length>0 && grantResults[0]== PackageManager.PERMISSION_GRANTED){
-                    new DownloadFileFromURL().execute(file_url);
+                    //new DownloadFileFromURL().execute(file_url);
+                    if (organization.equalsIgnoreCase("2") || organization.equalsIgnoreCase("4") || organization.equalsIgnoreCase("5")) {
+                        gethtml("http://support.phoneme.in/invoiceapis/Po/finalpopdf2?id="+id);
+                    } else {
+                        gethtml("http://support.phoneme.in/invoiceapis/Po/funnelpopdf2?id="+id);
+                    }
                 }else{
                     //Toast.makeText(this,"Permission denied",Toast.LENGTH_LONG).show();
                 }

@@ -1,5 +1,6 @@
 package com.phoneme.poinvoice.ui.invoice.fragment;
 
+import android.Manifest;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.ProgressDialog;
@@ -8,6 +9,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.print.PdfConverter;
@@ -89,6 +91,8 @@ public class FinalInvoiceFragment extends Fragment {
     private String folderPath= Environment.getExternalStorageDirectory() + "/Download/MyPDFs/";
 
     private static final int PERMISSION_STORAGE_CODE=1000;
+    private String file_name=new String();
+    private String id,name;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         invoiceViewModel =
@@ -101,8 +105,8 @@ public class FinalInvoiceFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        final String id = getArguments().getString("id");
-        String name= getArguments().getString("name");
+        id = getArguments().getString("id");
+        name= getArguments().getString("name");
         Toast.makeText(getContext(),"id="+id, Toast.LENGTH_LONG).show();
         Company=(TextView)view.findViewById(R.id.company);
         Logo=(ImageView)view.findViewById(R.id.logo);
@@ -125,18 +129,32 @@ public class FinalInvoiceFragment extends Fragment {
         downloadPDFButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //onBrowseClick(view,id);
-                //gethtml("http://support.phoneme.in/invoiceapis/Po/funnelpopdf2?id=8");
-                //gethtml("http://support.phoneme.in/invoiceapis/Po/funnelpopdf2?id="+id);
-                //gethtml("http://support.phoneme.in/invoiceapis/invoice/funnelinvoicepdf?id="+id);
-
-                if (name.equalsIgnoreCase("2") || name.equalsIgnoreCase("4") || name.equalsIgnoreCase("5")) {
-                    gethtml("http://support.phoneme.in/invoiceapis/invoice/finalinvoicepdf?id="+id);
-                } else {
-                    gethtml("http://support.phoneme.in/invoiceapis/invoice/funnelinvoicepdf?id="+id);
+                if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
+                    if(getContext().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)== PackageManager.PERMISSION_DENIED){
+                        String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+                        requestPermissions(permissions,PERMISSION_STORAGE_CODE);
+                    }else{
+                        if (name.equalsIgnoreCase("2") || name.equalsIgnoreCase("4") || name.equalsIgnoreCase("5")) {
+                            gethtml("http://support.phoneme.in/invoiceapis/invoice/finalinvoicepdf?id="+id);
+                        } else {
+                            gethtml("http://support.phoneme.in/invoiceapis/invoice/funnelinvoicepdf?id="+id);
+                        }
+                    }
+                }else{
+                    if (name.equalsIgnoreCase("2") || name.equalsIgnoreCase("4") || name.equalsIgnoreCase("5")) {
+                        gethtml("http://support.phoneme.in/invoiceapis/invoice/finalinvoicepdf?id="+id);
+                    } else {
+                        gethtml("http://support.phoneme.in/invoiceapis/invoice/funnelinvoicepdf?id="+id);
+                    }
                 }
 
-                //converttoPdf("url");
+
+
+//                if (name.equalsIgnoreCase("2") || name.equalsIgnoreCase("4") || name.equalsIgnoreCase("5")) {
+//                    gethtml("http://support.phoneme.in/invoiceapis/invoice/finalinvoicepdf?id="+id);
+//                } else {
+//                    gethtml("http://support.phoneme.in/invoiceapis/invoice/funnelinvoicepdf?id="+id);
+//                }
             }
         });
     }
@@ -154,7 +172,8 @@ public class FinalInvoiceFragment extends Fragment {
     private void converttoPdf(String string){
 
         PdfConverter converter = PdfConverter.getInstance();
-        File file = new File(Environment.getExternalStorageDirectory().toString(), "filepdf.pdf");
+//        File file = new File(Environment.getExternalStorageDirectory().toString(), "filepdf.pdf");
+        File file = new File(Environment.getExternalStorageDirectory().toString(), file_name+".pdf");
         String htmlString = "<html><body><p>WHITE (default)</p></body></html>";
         //converter.convert(getContext(), htmlString, file);
         converter.convert(getContext(), string, file);
@@ -168,7 +187,7 @@ public class FinalInvoiceFragment extends Fragment {
             public void onCompleted(Exception e, String result) {
                 //html=result;
                 converttoPdf(result);
-                toConvertHtmlStringToPdfAPI();
+                //toConvertHtmlStringToPdfAPI();
                 System.out.println("resulthtml="+result);
                 Toast.makeText(getContext(), "gethtml", Toast.LENGTH_LONG).show();
 //                tv.setText(result);
@@ -307,7 +326,8 @@ public class FinalInvoiceFragment extends Fragment {
         po_invoice_data="Invoice#"+data.getInvoiceDataModelList().get(0).getInvoice_number()+"\n"
                 +"Po No:"+data.getInvoiceDataModelList().get(0).getOrder_id()+"\n"
                 +"Invoice Date:"+data.getInvoiceDataModelList().get(0).getDuedate();
-
+        file_name=data.getInvoiceDataModelList().get(0).getInvoice_number();
+        file_name=file_name.replace("/","_");
         total_without_gst="Total without GST: ₹"+data.getInvoiceDataModelList().get(0).getTotal();
         termsConditions=data.getInvoiceDataModelList().get(0).getRemarks();
         cgst_percentage_amount = "CGST @" + data.getInvoiceDataModelList().get(0).getCgst() + "% ₹" + data.getInvoiceDataModelList().get(0).getCgst_amount();
@@ -349,6 +369,8 @@ public class FinalInvoiceFragment extends Fragment {
                 +"Po No:"+data.getInvoiceDataModelList().get(0).getOrder_id()+"\n"
                 +"Invoice Date:"+data.getInvoiceDataModelList().get(0).getDuedate();
 
+        file_name=data.getInvoiceDataModelList().get(0).getInvoice_number();
+        file_name=file_name.replace("/","_");
         total_without_gst="Total without GST: ₹"+data.getInvoiceDataModelList().get(0).getTotal();
         termsConditions=data.getInvoiceDataModelList().get(0).getRemarks();
         cgst_percentage_amount = "CGST @" + data.getInvoiceDataModelList().get(0).getCgst() + "% ₹" + data.getInvoiceDataModelList().get(0).getCgst_amount();
@@ -498,6 +520,11 @@ public class FinalInvoiceFragment extends Fragment {
             case PERMISSION_STORAGE_CODE:
                 if(grantResults.length>0 && grantResults[0]== PackageManager.PERMISSION_GRANTED){
                     //new PODataFinalFunnelFragment.DownloadFileFromURL().execute(file_url);
+                    if (name.equalsIgnoreCase("2") || name.equalsIgnoreCase("4") || name.equalsIgnoreCase("5")) {
+                        gethtml("http://support.phoneme.in/invoiceapis/invoice/finalinvoicepdf?id="+id);
+                    } else {
+                        gethtml("http://support.phoneme.in/invoiceapis/invoice/funnelinvoicepdf?id="+id);
+                    }
                 }else{
                     //Toast.makeText(this,"Permission denied",Toast.LENGTH_LONG).show();
                 }
