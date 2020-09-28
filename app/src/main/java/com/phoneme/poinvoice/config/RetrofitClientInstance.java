@@ -34,16 +34,29 @@ public class RetrofitClientInstance {
     //private static final String BASE_URL = "http://phoneme.in/anujitbhu/napolean/ticketingapici/index.php/";
     private static final String BASE_URL_old = "https://phoneme.in/";//with http yash phone was giving error
     private static final String BASE_URL = "http://support.phoneme.in/";//with http yash phone was giving error
+
     //private static final String BASE_URL ="http://myphoneme.com/";
 
     //private static final String BASE_URL=BuildConfig.SERVER_URL;
     private static final String BASE_URL_INFRA_MONIORING="https://www.phoneme.in/anujitbhu/ticketing/";
     private static final String BASE_URL_INFRA_MONITORING_COMMAND="http://mh.nhp.org.in/";
     //private static final String BASE_URL = "http://phoneme.in/";
+
+    private static final String BASE_URL_PDF="http://api.html2pdfrocket.com/";
     public static Retrofit getRetrofitInstance() {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+        }
+        return retrofit;
+    }
+
+    public static Retrofit getRetrofitInstancepdf() {
+        if (retrofit == null) {
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(BASE_URL_PDF)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }

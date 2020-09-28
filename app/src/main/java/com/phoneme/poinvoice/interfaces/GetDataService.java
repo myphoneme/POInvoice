@@ -80,6 +80,7 @@ import java.util.Map;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
@@ -177,6 +178,11 @@ public interface GetDataService {
 
 	@GET("/invoiceapis/clientlist/add")
 	Call<ClientCreateGetResponse> getClientCreateData();
+
+	//pdf
+	@FormUrlEncoded
+	@POST("/pdf")
+	Call<Object> postPdffile(@FieldMap Map<String, String> vendorData);
 
 
 	@FormUrlEncoded

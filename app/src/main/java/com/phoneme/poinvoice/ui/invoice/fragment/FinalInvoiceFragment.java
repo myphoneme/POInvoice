@@ -3,6 +3,7 @@ package com.phoneme.poinvoice.ui.invoice.fragment;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -46,11 +47,16 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
+import okhttp3.Request;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
 
 import static android.content.Context.NOTIFICATION_SERVICE;
 
@@ -120,15 +126,16 @@ public class FinalInvoiceFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 //onBrowseClick(view,id);
-                gethtml("http://support.phoneme.in/invoiceapis/Po/funnelpopdf2?id=8");
+                //gethtml("http://support.phoneme.in/invoiceapis/Po/funnelpopdf2?id=8");
+                gethtml("http://support.phoneme.in/invoiceapis/Po/funnelpopdf2?id="+id);
                 //converttoPdf("url");
             }
         });
     }
 
     public void onBrowseClick(View v,String id) {
-        String url = "http://support.phoneme.in/invoiceapis/Po/funnelpopdf2?id=8";
-    //    String url = "http://support.phoneme.in/invoiceapis/Po/funnelpopdf2?id="+id;
+    //    String url = "http://support.phoneme.in/invoiceapis/Po/funnelpopdf2?id=8";
+        String url = "http://support.phoneme.in/invoiceapis/Po/funnelpopdf2?id="+id;
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         // Note the Chooser below. If no applications match,
         // Android displays a system message.So here there is no need for try-catch.
@@ -143,6 +150,7 @@ public class FinalInvoiceFragment extends Fragment {
         String htmlString = "<html><body><p>WHITE (default)</p></body></html>";
         //converter.convert(getContext(), htmlString, file);
         converter.convert(getContext(), string, file);
+
     }
 
     private void gethtml(String url){
@@ -152,6 +160,7 @@ public class FinalInvoiceFragment extends Fragment {
             public void onCompleted(Exception e, String result) {
                 //html=result;
                 converttoPdf(result);
+                toConvertHtmlStringToPdfAPI();
                 System.out.println("resulthtml="+result);
                 Toast.makeText(getContext(), "gethtml", Toast.LENGTH_LONG).show();
 //                tv.setText(result);
@@ -486,4 +495,83 @@ public class FinalInvoiceFragment extends Fragment {
                 }
         }
     }
+
+    public void toConvertHtmlStringToPdfAPI(){
+        //String strApiKey = "af6f46c4-471c-4ce8-8b70-3c78e8ec796b";//Web api Parameter
+        String strApiKey="7bfe5430-580d-4d84-8047-a0bee8763a8a";
+        String strValue = "<h1>An <strong>Example</strong>HTML String</h1>"; //Web api Parameter
+        String webUrl = "http://api.html2pdfrocket.com/pdf";//Web Api Url
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("apiKey", strApiKey);
+        params.put("value", strValue);
+        webUrl = "http://api.html2pdfrocket.com/pdf";
+        String mUrl = webUrl;
+        getPdfFromApi(params);
+
+
+    }
+
+    private void  getPdfFromApi(HashMap<String,String> map) {
+        GetDataService service = RetrofitClientInstance.getRetrofitInstancepdf().create(GetDataService.class);
+        Call<Object> call=service.postPdffile(map);
+        call.enqueue(new Callback<Object>() {
+            @Override
+            public void onResponse(Call<Object> call, Response<Object> response1) {
+                try {
+                    if (response1 != null) {
+                        byte[] respone=(byte[]) response1.body();
+                        Random r = new Random();
+                        int i1 = r.nextInt(80 - 65) + 65;
+                        String fileName = "sample" + i1 + ".pdf";
+                        File root = new File(Environment.getExternalStorageDirectory(), "HtmlStringToPDF");
+                        if (!root.exists()) {
+                            root.mkdirs();
+                        }
+                        if (root.exists()) {
+
+
+                            //File gpxfile = new File(root, "sample" + i1 + ".pdf");
+                            File gpxfile = new File(root, "abcc.pdf");
+                            OutputStream op = new FileOutputStream(gpxfile);
+                            gpxfile.setWritable(true);
+                            op.write(respone);
+                            op.flush();
+                            op.close();
+
+
+                        }
+                        //tvConversionContent.setText(response.toString());
+                        Toast.makeText(getContext(), "Content Write To the file name sample" + i1 + ".pdf in WebPageToImage Directory", Toast.LENGTH_LONG).show();
+                        System.out.print("Response ----------------------" + respone.toString());
+
+                    }
+                } catch (Exception e) {
+                    Log.d("KEY_ERROR", "UNABLE TO DOWNLOAD FILE");
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Object> call, Throwable t) {
+
+            }
+        });
+        //InvoiceFunnelInvoiceGetResponse
+//        Call<InvoiceFunnelInvoiceGetResponse> call=service.getInvoiceListFunnelPOData(id);
+//        call.enqueue(new Callback<InvoiceFunnelInvoiceGetResponse>() {
+//            @Override
+//            public void onResponse(Call<InvoiceFunnelInvoiceGetResponse> call, Response<InvoiceFunnelInvoiceGetResponse> response) {
+//                funnelData=response.body();
+//                setFunnelData(funnelData);
+//            }
+//
+//            @Override
+//            public void onFailure(Call<InvoiceFunnelInvoiceGetResponse> call, Throwable t) {
+//
+//            }
+//        });
+
+    }
+
 }
+

@@ -51,4 +51,10 @@ dependencies {
       androidTestImplementation 'androidx.test.ext:junit:1.1.0'
       androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     implementation 'com.koushikdutta.ion:ion:3.0.9'
+
+      implementation 'com.mcxiaoke.volley:library-aar:1.0.0'
+      //implementation 'org.apache.httpcomponents:httpclient:4.5'
+     /* implementation ('org.apache.httpcomponents:httpmime:4.3') {
+            exclude module: "httpclient"
+      }*/
 }
