@@ -127,7 +127,15 @@ public class FinalInvoiceFragment extends Fragment {
             public void onClick(View view) {
                 //onBrowseClick(view,id);
                 //gethtml("http://support.phoneme.in/invoiceapis/Po/funnelpopdf2?id=8");
-                gethtml("http://support.phoneme.in/invoiceapis/Po/funnelpopdf2?id="+id);
+                //gethtml("http://support.phoneme.in/invoiceapis/Po/funnelpopdf2?id="+id);
+                //gethtml("http://support.phoneme.in/invoiceapis/invoice/funnelinvoicepdf?id="+id);
+
+                if (name.equalsIgnoreCase("2") || name.equalsIgnoreCase("4") || name.equalsIgnoreCase("5")) {
+                    gethtml("http://support.phoneme.in/invoiceapis/invoice/finalinvoicepdf?id="+id);
+                } else {
+                    gethtml("http://support.phoneme.in/invoiceapis/invoice/funnelinvoicepdf?id="+id);
+                }
+
                 //converttoPdf("url");
             }
         });

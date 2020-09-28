@@ -11,6 +11,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.print.PdfConverter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +28,8 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.Ion;
 import com.phoneme.poinvoice.R;
 import com.phoneme.poinvoice.config.RetrofitClientInstance;
 import com.phoneme.poinvoice.interfaces.GetDataService;
@@ -126,7 +129,16 @@ public class PODataFinalFunnelFragment extends Fragment {
 //                    new DownloadFileFromURL().execute(file_url);
 //                }
 
-                onBrowseClick(view,id);
+                //onBrowseClick(view,id);
+
+                //gethtml("http://support.phoneme.in/invoiceapis/Po/funnelpopdf2?id="+id);
+
+                if (organization.equalsIgnoreCase("2") || organization.equalsIgnoreCase("4") || organization.equalsIgnoreCase("5")) {
+                    gethtml("http://support.phoneme.in/invoiceapis/Po/finalpopdf2?id="+id);
+                } else {
+                    gethtml("http://support.phoneme.in/invoiceapis/Po/funnelpopdf2?id="+id);
+                }
+
             }
         });
 
@@ -135,6 +147,31 @@ public class PODataFinalFunnelFragment extends Fragment {
         } else {
             getFunnelData(id);
         }
+    }
+
+    private void converttoPdf(String string){
+
+        PdfConverter converter = PdfConverter.getInstance();
+        File file = new File(Environment.getExternalStorageDirectory().toString(), "filepdf.pdf");
+        String htmlString = "<html><body><p>WHITE (default)</p></body></html>";
+        //converter.convert(getContext(), htmlString, file);
+        converter.convert(getContext(), string, file);
+
+    }
+
+    private void gethtml(String url){
+        final String html="";
+        Ion.with(getContext()).load(url).asString().setCallback(new FutureCallback<String>() {
+            @Override
+            public void onCompleted(Exception e, String result) {
+                //html=result;
+                converttoPdf(result);
+                //toConvertHtmlStringToPdfAPI();
+                System.out.println("resulthtml="+result);
+                Toast.makeText(getContext(), "gethtml", Toast.LENGTH_LONG).show();
+//                tv.setText(result);
+            }
+        });
     }
 
     public void onBrowseClick(View v,String id) {
