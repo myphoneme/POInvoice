@@ -36,7 +36,7 @@ public class InvoiceFinalFunnelItemAdapter extends RecyclerView.Adapter<InvoiceF
             item.setText(poItemDataList.get(position).getProduct());
             item_description.setText(poItemDataList.get(position).getDescription());
             quantity.setText(poItemDataList.get(position).getQty());
-            unitPrice.setText("₹"+poItemDataList.get(position).getPrice());
+            unitPrice.setText("pappu"+"₹"+poItemDataList.get(position).getPrice());
             subTotal.setText("₹"+poItemDataList.get(position).getSubtotal());
         }
     }

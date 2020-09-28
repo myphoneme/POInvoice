@@ -3,10 +3,13 @@ package com.phoneme.poinvoice.ui.invoice.fragment;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.print.PdfConverter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +26,8 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.Ion;
 import com.phoneme.poinvoice.R;
 import com.phoneme.poinvoice.config.RetrofitClientInstance;
 import com.phoneme.poinvoice.interfaces.GetDataService;
@@ -90,7 +95,7 @@ public class FinalInvoiceFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        String id = getArguments().getString("id");
+        final String id = getArguments().getString("id");
         String name= getArguments().getString("name");
         Toast.makeText(getContext(),"id="+id, Toast.LENGTH_LONG).show();
         Company=(TextView)view.findViewById(R.id.company);
@@ -104,13 +109,54 @@ public class FinalInvoiceFragment extends Fragment {
         SGSTPERCENTAMOUNT = (TextView) view.findViewById(R.id.sgst_percent_amount);
         GrandTotal=(TextView)view.findViewById(R.id.grand_total);
         recyclerView=(RecyclerView)view.findViewById(R.id.recyclerview_items);
-
+        downloadPDFButton=(Button)view.findViewById(R.id.downloadpdfbutton);
 
         if (name.equalsIgnoreCase("2") || name.equalsIgnoreCase("4") || name.equalsIgnoreCase("5")) {
             getFinalData(id);
         } else {
             getFunnelData(id);
         }
+        downloadPDFButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //onBrowseClick(view,id);
+                gethtml("http://support.phoneme.in/invoiceapis/Po/funnelpopdf2?id=8");
+                //converttoPdf("url");
+            }
+        });
+    }
+
+    public void onBrowseClick(View v,String id) {
+        String url = "http://support.phoneme.in/invoiceapis/Po/funnelpopdf2?id=8";
+    //    String url = "http://support.phoneme.in/invoiceapis/Po/funnelpopdf2?id="+id;
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        // Note the Chooser below. If no applications match,
+        // Android displays a system message.So here there is no need for try-catch.
+        startActivity(Intent.createChooser(intent, "Browse with"));
+
+    }
+
+    private void converttoPdf(String string){
+
+        PdfConverter converter = PdfConverter.getInstance();
+        File file = new File(Environment.getExternalStorageDirectory().toString(), "filepdf.pdf");
+        String htmlString = "<html><body><p>WHITE (default)</p></body></html>";
+        //converter.convert(getContext(), htmlString, file);
+        converter.convert(getContext(), string, file);
+    }
+
+    private void gethtml(String url){
+        final String html="";
+        Ion.with(getContext()).load(url).asString().setCallback(new FutureCallback<String>() {
+            @Override
+            public void onCompleted(Exception e, String result) {
+                //html=result;
+                converttoPdf(result);
+                System.out.println("resulthtml="+result);
+                Toast.makeText(getContext(), "gethtml", Toast.LENGTH_LONG).show();
+//                tv.setText(result);
+            }
+        });
     }
 
 //    private void createPdf() {

@@ -4,7 +4,9 @@ import android.Manifest;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -91,7 +93,7 @@ public class PODataFinalFunnelFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        String id = getArguments().getString("id");
+        final String id = getArguments().getString("id");
         String organization = getArguments().getString("organization");
 
 //        String id = "11";
@@ -111,18 +113,20 @@ public class PODataFinalFunnelFragment extends Fragment {
         downloadPDFButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                file_url="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf";
+//                file_url="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf";
+//
+//                if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
+//                    if(getContext().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)== PackageManager.PERMISSION_DENIED){
+//                        String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+//                        requestPermissions(permissions,PERMISSION_STORAGE_CODE);
+//                    }else{
+//                        new DownloadFileFromURL().execute(file_url);
+//                    }
+//                }else{
+//                    new DownloadFileFromURL().execute(file_url);
+//                }
 
-                if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
-                    if(getContext().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)== PackageManager.PERMISSION_DENIED){
-                        String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
-                        requestPermissions(permissions,PERMISSION_STORAGE_CODE);
-                    }else{
-                        new DownloadFileFromURL().execute(file_url);
-                    }
-                }else{
-                    new DownloadFileFromURL().execute(file_url);
-                }
+                onBrowseClick(view,id);
             }
         });
 
@@ -131,6 +135,16 @@ public class PODataFinalFunnelFragment extends Fragment {
         } else {
             getFunnelData(id);
         }
+    }
+
+    public void onBrowseClick(View v,String id) {
+        String url = "http://support.phoneme.in/invoiceapis/Po/funnelpopdf2?id=8";
+        //String url = "http://support.phoneme.in/invoiceapis/Po/funnelpopdf2?id="+id;
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        // Note the Chooser below. If no applications match,
+        // Android displays a system message.So here there is no need for try-catch.
+        startActivity(Intent.createChooser(intent, "Browse with"));
+
     }
 
     private void getFinalData(String id) {
