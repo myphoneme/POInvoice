@@ -173,7 +173,8 @@ public class FinalInvoiceFragment extends Fragment {
 
         PdfConverter converter = PdfConverter.getInstance();
 //        File file = new File(Environment.getExternalStorageDirectory().toString(), "filepdf.pdf");
-        File file = new File(Environment.getExternalStorageDirectory().toString(), file_name+".pdf");
+        //File file = new File(Environment.getExternalStorageDirectory().toString(), file_name+".pdf");
+        File file = new File(Environment.getExternalStorageDirectory().toString()+"/Download/", file_name+".pdf");
         String htmlString = "<html><body><p>WHITE (default)</p></body></html>";
         //converter.convert(getContext(), htmlString, file);
         converter.convert(getContext(), string, file);
