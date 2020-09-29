@@ -45,6 +45,7 @@ import com.squareup.picasso.Picasso;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
@@ -186,8 +187,15 @@ public class FinalInvoiceFragment extends Fragment {
             @Override
             public void onCompleted(Exception e, String result) {
                 //html=result;
-                converttoPdf(result);
+                //converttoPdf(result);
                 //toConvertHtmlStringToPdfAPI();
+
+                HashMap<String,String> map=new HashMap<String,String>();
+                map.put("apiKey","7bfe5430-580d-4d84-8047-a0bee8763a8a");
+                map.put("value",result);
+                getPdfFromRetrofit(map,result);
+
+
                 System.out.println("resulthtml="+result);
                 Toast.makeText(getContext(), "Getting ready for Pdf", Toast.LENGTH_LONG).show();
 //                tv.setText(result);
@@ -467,72 +475,162 @@ public class FinalInvoiceFragment extends Fragment {
         params.put("value", strValue);
         webUrl = "http://api.html2pdfrocket.com/pdf";
         String mUrl = webUrl;
-        getPdfFromApi(params);
+        //getPdfFromApi(params);
 
 
     }
 
-    private void  getPdfFromApi(HashMap<String,String> map) {
+    private void getPdfFromRetrofit(HashMap<String,String> map,String value){
         GetDataService service = RetrofitClientInstance.getRetrofitInstancepdf().create(GetDataService.class);
-        Call<Object> call=service.postPdffile(map);
-        call.enqueue(new Callback<Object>() {
-            @Override
-            public void onResponse(Call<Object> call, Response<Object> response1) {
-                try {
-                    if (response1 != null) {
-                        byte[] respone=(byte[]) response1.body();
-                        Random r = new Random();
-                        int i1 = r.nextInt(80 - 65) + 65;
-                        String fileName = "sample" + i1 + ".pdf";
-                        File root = new File(Environment.getExternalStorageDirectory(), "HtmlStringToPDF");
-                        if (!root.exists()) {
-                            root.mkdirs();
-                        }
-                        if (root.exists()) {
+        //Call<ResponseBody> call=service.postPdffile(map);
+        String url="http://support.phoneme.in/invoiceapis/Po/funnelpopdf2?id=8";
+        String url2="http://api.html2pdfrocket.com/pdf?apiKey=7bfe5430-580d-4d84-8047-a0bee8763a8a&value=<h1>An <strong>Example</strong>HTML String</h1>&FileName=hoja.pdf";
+        String url3="http://api.html2pdfrocket.com/pdf?apiKey=7bfe5430-580d-4d84-8047-a0bee8763a8a&value="+value;
+        String url4="http://api.html2pdfrocket.com/pdf?apiKey=7bfe5430-580d-4d84-8047-a0bee8763a8a&value="+"http://support.phoneme.in/invoiceapis/Po/funnelpopdf2?id=8&OutputFormat=pdf";
 
-
-                            //File gpxfile = new File(root, "sample" + i1 + ".pdf");
-                            File gpxfile = new File(root, "abcc.pdf");
-                            OutputStream op = new FileOutputStream(gpxfile);
-                            gpxfile.setWritable(true);
-                            op.write(respone);
-                            op.flush();
-                            op.close();
-
-
-                        }
-                        //tvConversionContent.setText(response.toString());
-                        Toast.makeText(getContext(), "Content Write To the file name sample" + i1 + ".pdf in WebPageToImage Directory", Toast.LENGTH_LONG).show();
-                        System.out.print("Response ----------------------" + respone.toString());
-
-                    }
-                } catch (Exception e) {
-                    Log.d("KEY_ERROR", "UNABLE TO DOWNLOAD FILE");
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Object> call, Throwable t) {
-
-            }
-        });
-        //InvoiceFunnelInvoiceGetResponse
-//        Call<InvoiceFunnelInvoiceGetResponse> call=service.getInvoiceListFunnelPOData(id);
-//        call.enqueue(new Callback<InvoiceFunnelInvoiceGetResponse>() {
+        Call<ResponseBody> call=service.downloadFileWithDynamicUrlSync(url4);
+//        call.enqueue(new Callback<ResponseBody>() {
 //            @Override
-//            public void onResponse(Call<InvoiceFunnelInvoiceGetResponse> call, Response<InvoiceFunnelInvoiceGetResponse> response) {
-//                funnelData=response.body();
-//                setFunnelData(funnelData);
+//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//                Toast.makeText(getContext(),"response="+response.body(), Toast.LENGTH_LONG).show();
+//                boolean writtenToDisk = writeResponseBodyToDisk(response.body());
 //            }
 //
 //            @Override
-//            public void onFailure(Call<InvoiceFunnelInvoiceGetResponse> call, Throwable t) {
+//            public void onFailure(Call<ResponseBody> call, Throwable t) {
 //
 //            }
 //        });
 
+
+
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, final Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    Log.d("TAG", "server contacted and has file");
+
+                    new AsyncTask<Void, Void, Void>() {
+                        @Override
+                        protected Void doInBackground(Void... voids) {
+                            boolean writtenToDisk = writeResponseBodyToDisk( response.body());
+
+                            Log.d("TAG", "file download was a success? " + writtenToDisk);
+                            return null;
+                        }
+                    }.execute();
+                }
+                else {
+                    Log.d("TAG", "server contact failed");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.e("TAG", "error");
+            }
+        });
     }
+
+    private boolean writeResponseBodyToDisk(ResponseBody body) {
+        try {
+            // todo change the file location/name according to your needs
+            File futureStudioIconFile = new File(getActivity().getExternalFilesDir(null) + File.separator + "Future_Studio_Icon.pdf");
+            //File path = Environment.getExternalStorageDirectory().toString();
+            File file = new File( Environment.getExternalStorageDirectory().toString(), "file_name.pdf");
+            //folderPath+ filename
+            InputStream inputStream = null;
+            OutputStream outputStream = null;
+
+            try {
+                byte[] fileReader = new byte[4096];
+
+                long fileSize = body.contentLength();
+                long fileSizeDownloaded = 0;
+
+                inputStream = body.byteStream();
+                outputStream = new FileOutputStream(futureStudioIconFile);
+                //outputStream = new FileOutputStream(folderPath+ filename);
+                outputStream = new FileOutputStream(file);
+
+                while (true) {
+                    int read = inputStream.read(fileReader);
+
+                    if (read == -1) {
+                        break;
+                    }
+
+                    outputStream.write(fileReader, 0, read);
+
+                    fileSizeDownloaded += read;
+
+                    Log.d("Tagra", "file download: " + fileSizeDownloaded + " of " + fileSize);
+                }
+
+                outputStream.flush();
+
+                return true;
+            } catch (IOException e) {
+                return false;
+            } finally {
+                if (inputStream != null) {
+                    inputStream.close();
+                }
+
+                if (outputStream != null) {
+                    outputStream.close();
+                }
+            }
+        } catch (IOException e) {
+            return false;
+        }
+    }
+//    private void  getPdfFromApi(HashMap<String,String> map) {
+//        GetDataService service = RetrofitClientInstance.getRetrofitInstancepdf().create(GetDataService.class);
+//        Call<Object> call=service.postPdffile(map);
+//        call.enqueue(new Callback<Object>() {
+//            @Override
+//            public void onResponse(Call<Object> call, Response<Object> response1) {
+//                try {
+//                    if (response1 != null) {
+//                        byte[] respone=(byte[]) response1.body();
+//                        Random r = new Random();
+//                        int i1 = r.nextInt(80 - 65) + 65;
+//                        String fileName = "sample" + i1 + ".pdf";
+//                        File root = new File(Environment.getExternalStorageDirectory(), "HtmlStringToPDF");
+//                        if (!root.exists()) {
+//                            root.mkdirs();
+//                        }
+//                        if (root.exists()) {
+//
+//
+//                            //File gpxfile = new File(root, "sample" + i1 + ".pdf");
+//                            File gpxfile = new File(root, "abcc.pdf");
+//                            OutputStream op = new FileOutputStream(gpxfile);
+//                            gpxfile.setWritable(true);
+//                            op.write(respone);
+//                            op.flush();
+//                            op.close();
+//
+//
+//                        }
+//                        //tvConversionContent.setText(response.toString());
+//                        Toast.makeText(getContext(), "Content Write To the file name sample" + i1 + ".pdf in WebPageToImage Directory", Toast.LENGTH_LONG).show();
+//                        System.out.print("Response ----------------------" + respone.toString());
+//
+//                    }
+//                } catch (Exception e) {
+//                    Log.d("KEY_ERROR", "UNABLE TO DOWNLOAD FILE");
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Object> call, Throwable t) {
+//
+//            }
+//        });
+//    }
 
 }
 

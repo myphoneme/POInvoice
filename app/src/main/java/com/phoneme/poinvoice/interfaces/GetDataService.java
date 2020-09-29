@@ -92,6 +92,9 @@ import retrofit2.http.Part;
 import retrofit2.http.PartMap;
 import retrofit2.http.Query;
 import retrofit2.http.Path;
+import retrofit2.http.QueryMap;
+import retrofit2.http.Streaming;
+import retrofit2.http.Url;
 
 public interface GetDataService {
 	//    // https://phoneme.in/android/napolean
@@ -179,10 +182,18 @@ public interface GetDataService {
 	@GET("/invoiceapis/clientlist/add")
 	Call<ClientCreateGetResponse> getClientCreateData();
 
+	//pdf download
+	@Streaming
+	@GET
+	Call<ResponseBody> downloadFileWithDynamicUrlSync(@Url String fileUrl);
+
+	@GET("/pdf")
+	Call<ResponseBody> getpdfFile(@QueryMap Map<String, String> filedata);
+
 	//pdf
 	@FormUrlEncoded
 	@POST("/pdf")
-	Call<Object> postPdffile(@FieldMap Map<String, String> vendorData);
+	Call<ResponseBody> postPdffile(@FieldMap Map<String, String> filedata);
 
 
 	@FormUrlEncoded
