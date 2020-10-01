@@ -126,8 +126,13 @@ public class UploadPaymentInvoiceFragment extends Fragment {
 
     private void uploadStartFunc(){
 
-        Intent galleryIntent = new Intent(Intent.ACTION_PICK,
-                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        //Intent galleryIntent = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+        Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
+
+        //galleryIntent.addCategory(Intent.CATEGORY_OPENABLE);
+        galleryIntent.setType("*/*");
+
         startActivityForResult(galleryIntent, 0);
     }
 
@@ -177,8 +182,10 @@ public class UploadPaymentInvoiceFragment extends Fragment {
                 imagePath=getRealPathFromURI(selectedImage);
                 File file=new File(imagePath);
                 file_name.setText("file.getName()");
+                Toast.makeText(getContext(), "Selected file name="+file.getName(), Toast.LENGTH_LONG).show();
 
             }
+            Toast.makeText(getContext(), "Selected data="+data, Toast.LENGTH_LONG).show();
         } catch (Exception e) {
             //Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG).show();
         }
