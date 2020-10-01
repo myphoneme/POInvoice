@@ -53,7 +53,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.http.Query;
 
-public class UploadPaymentInvoiceFragment extends Fragment {
+public class UploadPaymentInvoiceFragment extends Fragment  {
 
     private EditText dob;
     Calendar myCalendar;
