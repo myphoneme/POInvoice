@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
@@ -36,6 +37,10 @@ public class VendorListFragment extends Fragment implements VendorListAdapter.On
     private RecyclerView recyclerView;
     private int Page=1;
     private List<VendorDataModel> vendorDataModelList;
+
+    private EditText searchEdit;
+    private VendorListAdapter adapter;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         vendorListViewModel =
@@ -63,11 +68,23 @@ public class VendorListFragment extends Fragment implements VendorListAdapter.On
 //        recyclerView.setLayoutManager(linearVertical);
         getVendorListData(Page);
         Button button=(Button)view.findViewById(R.id.add_vendor_button);
+
+        Button searchButton = (Button) view.findViewById(R.id.search_button);
+        searchEdit = (EditText) view.findViewById(R.id.search_text);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
                 navController.navigate(R.id.nav_vendor_add);
+            }
+        });
+
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String searchString = searchEdit.getText().toString();
+                getVendorListSearchData(searchString);
             }
         });
     }
@@ -83,6 +100,24 @@ public class VendorListFragment extends Fragment implements VendorListAdapter.On
 
     }
 
+    private void getVendorListSearchData(String search){
+        GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+        Call<VendorListResponse> call=service.getVendorList();//This api will change when search api is created
+        call.enqueue(new Callback<VendorListResponse>() {
+            @Override
+            public void onResponse(Call<VendorListResponse> call, Response<VendorListResponse> response) {
+                vendorDataModelList.removeAll(  vendorDataModelList);
+                vendorDataModelList=response.body().getVendordata();
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Call<VendorListResponse> call, Throwable t) {
+                vendorDataModelList.removeAll(  vendorDataModelList);
+                adapter.notifyDataSetChanged();
+            }
+        });
+    }
     private void getVendorListData(final int page){
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
         Call<VendorListResponse> call=service.getVendorList();
@@ -118,7 +153,7 @@ public class VendorListFragment extends Fragment implements VendorListAdapter.On
     }
 
     private void setAdapter(List<VendorDataModel> vendorDataModelList){
-        VendorListAdapter adapter=new VendorListAdapter(getContext(),this,vendorDataModelList);
+        adapter=new VendorListAdapter(getContext(),this,vendorDataModelList);
         recyclerView.setAdapter(adapter);
         LinearLayoutManager linearVertical = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearVertical);

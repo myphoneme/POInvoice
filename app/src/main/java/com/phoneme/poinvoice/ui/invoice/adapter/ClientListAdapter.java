@@ -58,7 +58,7 @@ public class ClientListAdapter extends RecyclerView.Adapter<ClientListAdapter.Vi
             return this.clientDataModelList.size();
         }
 
-        return 1;
+        return 0;
     }
 
     public void onBindViewHolder(ViewHolder vh, int position) {

@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,9 +35,10 @@ import retrofit2.Response;
 public class ClientListFragment extends Fragment implements ClientListAdapter.OnItemClickListener{
     private RecyclerView recyclerView;
     private List<ClientDataModel> clientDataModelList;
-
+    private EditText searchEdit;
 
     private Button CreateClient;
+    private ClientListAdapter adapter;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState){
         View root = inflater.inflate(R.layout.fragment_client_list, container, false);
@@ -46,6 +49,10 @@ public class ClientListFragment extends Fragment implements ClientListAdapter.On
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         CreateClient=(Button)view.findViewById(R.id.create_client);
+
+        Button searchButton = (Button) view.findViewById(R.id.search_button);
+        searchEdit = (EditText) view.findViewById(R.id.search_text);
+
         CreateClient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,6 +61,18 @@ public class ClientListFragment extends Fragment implements ClientListAdapter.On
             }
         });
         recyclerView=(RecyclerView)view.findViewById(R.id.recyclerview_client_list);
+
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String searchString = searchEdit.getText().toString();
+                Toast.makeText(getContext()," search clicked", Toast.LENGTH_LONG).show();
+                //String year = yearsString[YearsSpinner.getSelectedItemPosition()];
+                //getInvoiceListSearchData(searchString);
+                getClientListSearchData(searchString);
+            }
+        });
+
         getClientListData();
 //        setAdapter();
     }
@@ -61,13 +80,36 @@ public class ClientListFragment extends Fragment implements ClientListAdapter.On
     private void setAdapter(List<ClientDataModel> clientDataModelList){
 
         //ClientListAdapter adapter=new ClientListAdapter(getContext());
-        ClientListAdapter adapter=new ClientListAdapter(getContext(),this,clientDataModelList);
+        adapter=new ClientListAdapter(getContext(),this,clientDataModelList);
         recyclerView.setAdapter(adapter);
         LinearLayoutManager linearVertical = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearVertical);
 
     }
 
+    private void getClientListSearchData(String search){
+        GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+        Call<ClientListGetResponse> call=service.getClientList();//This api will change when search api is done
+        call.enqueue(new Callback<ClientListGetResponse>() {
+            @Override
+            public void onResponse(Call<ClientListGetResponse> call, Response<ClientListGetResponse> response) {
+                if(response!=null && response.body()!=null && response.body().getClientDataModelList()!=null){
+                    clientDataModelList.removeAll(clientDataModelList);
+                    clientDataModelList=response.body().getClientDataModelList();
+                    adapter.notifyDataSetChanged();
+                }else{
+                    clientDataModelList.removeAll(clientDataModelList);
+                    adapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ClientListGetResponse> call, Throwable t) {
+                clientDataModelList.removeAll(clientDataModelList);
+                adapter.notifyDataSetChanged();
+            }
+        });
+    }
     private void getClientListData(){
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
         Call<ClientListGetResponse> call=service.getClientList();

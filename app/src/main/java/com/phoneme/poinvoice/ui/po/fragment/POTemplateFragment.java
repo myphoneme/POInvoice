@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
@@ -35,6 +36,8 @@ public class POTemplateFragment extends Fragment implements POTemplateAdapter.On
     private com.phoneme.poinvoice.ui.po.viewmodel.POTemplateViewModel POTemplateViewModel;
     private RecyclerView recyclerView;
     private List<PoTemplateDataModel> poTemplateDataModelList;
+    private EditText searchEdit;
+    private POTemplateAdapter adapter;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 //        POTemplateViewModel =
@@ -50,11 +53,21 @@ public class POTemplateFragment extends Fragment implements POTemplateAdapter.On
 
         recyclerView=(RecyclerView)view.findViewById(R.id.recyclerview_po_template);
         Button createpotemplate=(Button)view.findViewById(R.id.add_new_po_template);
+        Button searchButton = (Button) view.findViewById(R.id.search_button);
+        searchEdit = (EditText) view.findViewById(R.id.search_text);
+
         createpotemplate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
                 navController.navigate(R.id.nav_create_new_po_templatge);
+            }
+        });
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String searchString = searchEdit.getText().toString();
+                getPoTemplateListSearchData(searchString);
             }
         });
         getPoTemplateListData();
@@ -75,11 +88,29 @@ public class POTemplateFragment extends Fragment implements POTemplateAdapter.On
     public void onItemClick2(int position){}
 
     private void setAdapter(List<PoTemplateDataModel> poTemplateDataModelList){
-        POTemplateAdapter adapter=new POTemplateAdapter(getContext(),this,poTemplateDataModelList);
+        adapter=new POTemplateAdapter(getContext(),this,poTemplateDataModelList);
         recyclerView.setAdapter(adapter);
         LinearLayoutManager linearVertical = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearVertical);
 
+    }
+    private void getPoTemplateListSearchData(String search){
+        GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+        Call<PoTemplateListResponse> call=service.getPoTemplateList();//to be changed where search api is created
+        call.enqueue(new Callback<PoTemplateListResponse>() {
+            @Override
+            public void onResponse(Call<PoTemplateListResponse> call, Response<PoTemplateListResponse> response) {
+                poTemplateDataModelList.removeAll( poTemplateDataModelList);
+                poTemplateDataModelList=response.body().getPotemplate_data();
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Call<PoTemplateListResponse> call, Throwable t) {
+                poTemplateDataModelList.removeAll( poTemplateDataModelList);
+                adapter.notifyDataSetChanged();
+            }
+        });
     }
 
     private void getPoTemplateListData(){
