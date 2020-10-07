@@ -125,13 +125,16 @@ public class GeneratedListFragment extends Fragment implements GeneratedListAdap
 
     private void getGeneratedListSearchCompleteData(String year, String search) {
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-        Call<GeneratedListCompleteResponse> call = service.getGeneratedListComplete(year);//This line will be changed after search api is done
+        //Call<GeneratedListCompleteResponse> call = service.getGeneratedListComplete(year);//This line will be changed after search api is done
+        Call<GeneratedListCompleteResponse> call = service.getGeneratedListSearchComplete(year,search);//This line will be changed after search api is done
+
         call.enqueue(new Callback<GeneratedListCompleteResponse>() {
             @Override
             public void onResponse(Call<GeneratedListCompleteResponse> call, Response<GeneratedListCompleteResponse> response) {
                 if (response != null && response.body() != null && response.body().getPoDataModelList() != null && !response.body().getPoDataModelList().isEmpty() && response.body().getPoDataModelList().size() > 0) {
                     poDataModelList.removeAll(poDataModelList);
                     poDataModelList=response.body().getPoDataModelList();
+                    adapter.setNewData(poDataModelList);
                     adapter.notifyDataSetChanged();
                 } else {
                     poDataModelList.removeAll(poDataModelList);

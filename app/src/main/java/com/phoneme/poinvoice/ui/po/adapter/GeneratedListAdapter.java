@@ -167,4 +167,8 @@ public class GeneratedListAdapter extends RecyclerView.Adapter<GeneratedListAdap
         void onItemClick2(int position);
         void onItemClick3(int position);
     }
+
+    public void setNewData( List<PODataModel> poDataModelList){
+        this.poDataModelList=poDataModelList;
+    }
 }

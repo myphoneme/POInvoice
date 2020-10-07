@@ -103,7 +103,7 @@ public interface GetDataService {
 	Call<InvoiceListResponse> getInvoiceList(@Query("year") String year);
 
 	@GET("/invoiceapis/invoice/search2/")
-	Call<InvoiceListResponse> getInvoiceSearchList(@Query("year") String year,@Query("year") String text);
+	Call<InvoiceListResponse> getInvoiceSearchList(@Query("year") String year,@Query("text") String text);
 
 	@GET("/invoiceapis/Invoice/uploadinvoicepayment")
 	Call<UPloadPOPaymentGetResponse> getPOPaymentUploadData(@Query("id") String id);
@@ -125,6 +125,9 @@ public interface GetDataService {
 
 	@GET("/invoiceapis/Po/polist/{yr}")
 	Call<GeneratedListCompleteResponse> getGeneratedListComplete(@Path("yr") String year);
+
+	@GET("/invoiceapis/Po/search2/")
+	Call<GeneratedListCompleteResponse> getGeneratedListSearchComplete(@Query("yr") String year,@Query("text") String text);
 
 	@GET("/invoiceapis/Po/vendorrevenue/{yr}")
 	Call<VendorRevenueGetResponse> getVendorRevenueListComplete(@Path("yr") String year);

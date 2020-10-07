@@ -181,4 +181,8 @@ public class InvoiceListAdapter extends RecyclerView.Adapter<InvoiceListAdapter.
         void onItemClick2(int position);
         void onItemClick3(int position);
     }
+
+    public void setNewData(List<InvoiceRowModel> invoiceRowModelList){
+        this.invoiceRowModelList=invoiceRowModelList;
+    }
 }

@@ -58,13 +58,7 @@ public class InvoiceFragment extends Fragment implements InvoiceListAdapter.OnIt
         invoiceViewModel =
                 ViewModelProviders.of(this).get(InvoiceViewModel.class);
         View root = inflater.inflate(R.layout.fragment_invoice, container, false);
-//        final TextView textView = root.findViewById(R.id.text_gallery);
-//        invoiceViewModel.getText().observe(this, new Observer<String>() {
-//            @Override
-//            public void onChanged(@Nullable String s) {
-//                textView.setText(s);
-//            }
-//        });
+
         Toast.makeText(getContext(), "onCreateView", Toast.LENGTH_LONG).show();
 
         return root;
@@ -154,6 +148,7 @@ public class InvoiceFragment extends Fragment implements InvoiceListAdapter.OnIt
                     invoiceRowModelList.removeAll(invoiceRowModelList);
                     invoiceRowModelList = response.body().getInvoicerowList();
                     Toast.makeText(getContext()," search data present size="+invoiceRowModelList.size() , Toast.LENGTH_LONG).show();
+                    adapter.setNewData(invoiceRowModelList);
                     adapter.notifyDataSetChanged();
                 } else {
                     Toast.makeText(getContext()," search  data absent", Toast.LENGTH_LONG).show();
