@@ -114,6 +114,9 @@ public interface GetDataService {
 	@GET("/invoiceapis/vendor/vendorlist")
 	Call<VendorListResponse> getVendorList();
 
+	@GET("/invoiceapis/vendor/search")
+	Call<VendorListResponse> getVendorListSearch(@Query("text") String search);
+
 	@GET("/invoiceapis/vendor/vendorlist")
 	Call<VendorListResponse> getVendorList_Page(@Query("page") int page);
 
@@ -166,6 +169,9 @@ public interface GetDataService {
 
 	@GET("/invoiceapis/po/potemplate2")
 	Call<PoTemplateListResponse> getPoTemplateList();
+
+	@GET("/invoiceapis/po/searchpotemplate")
+	Call<PoTemplateListResponse> getPoTemplateListSearch(@Query("text") String search);
 
 	@GET("/invoiceapis/po/generatenewpo")
 	Call<PoGenerateGetResponse> getPoGenerate();

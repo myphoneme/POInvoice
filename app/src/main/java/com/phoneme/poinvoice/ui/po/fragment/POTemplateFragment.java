@@ -30,6 +30,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.http.Query;
 
 public class POTemplateFragment extends Fragment implements POTemplateAdapter.OnItemClickListener{
 
@@ -96,18 +97,21 @@ public class POTemplateFragment extends Fragment implements POTemplateAdapter.On
     }
     private void getPoTemplateListSearchData(String search){
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-        Call<PoTemplateListResponse> call=service.getPoTemplateList();//to be changed where search api is created
+        //Call<PoTemplateListResponse> call=service.getPoTemplateList();//to be changed where search api is created
+        Call<PoTemplateListResponse> call=service.getPoTemplateListSearch(search);
         call.enqueue(new Callback<PoTemplateListResponse>() {
             @Override
             public void onResponse(Call<PoTemplateListResponse> call, Response<PoTemplateListResponse> response) {
                 poTemplateDataModelList.removeAll( poTemplateDataModelList);
                 poTemplateDataModelList=response.body().getPotemplate_data();
+                adapter.setNewData(poTemplateDataModelList);
                 adapter.notifyDataSetChanged();
             }
 
             @Override
             public void onFailure(Call<PoTemplateListResponse> call, Throwable t) {
                 poTemplateDataModelList.removeAll( poTemplateDataModelList);
+                adapter.setNewData(poTemplateDataModelList);
                 adapter.notifyDataSetChanged();
             }
         });

@@ -134,4 +134,8 @@ public class POTemplateAdapter extends RecyclerView.Adapter<POTemplateAdapter.Vi
         void onItemClick(int position);
         void onItemClick2(int position);
     }
+
+    public void setNewData(List<PoTemplateDataModel> poTemplateDataModelList){
+        this.poTemplateDataModelList=poTemplateDataModelList;
+    }
 }

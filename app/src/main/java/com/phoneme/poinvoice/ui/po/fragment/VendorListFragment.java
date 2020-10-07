@@ -43,16 +43,9 @@ public class VendorListFragment extends Fragment implements VendorListAdapter.On
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        vendorListViewModel =
-                ViewModelProviders.of(this).get(VendorListViewModel.class);
+//        vendorListViewModel =
+//                ViewModelProviders.of(this).get(VendorListViewModel.class);
         View root = inflater.inflate(R.layout.fragment_vendorlist, container, false);
-//        final TextView textView = root.findViewById(R.id.text_home);
-//        vendorListViewModel.getText().observe(this, new Observer<String>() {
-//            @Override
-//            public void onChanged(@Nullable String s) {
-//                textView.setText(s);
-//            }
-//        });
         return root;
     }
 
@@ -102,18 +95,21 @@ public class VendorListFragment extends Fragment implements VendorListAdapter.On
 
     private void getVendorListSearchData(String search){
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-        Call<VendorListResponse> call=service.getVendorList();//This api will change when search api is created
+        //Call<VendorListResponse> call=service.getVendorList();//This api will change when search api is created
+        Call<VendorListResponse> call=service.getVendorListSearch(search);//This api will change when search api is created
         call.enqueue(new Callback<VendorListResponse>() {
             @Override
             public void onResponse(Call<VendorListResponse> call, Response<VendorListResponse> response) {
                 vendorDataModelList.removeAll(  vendorDataModelList);
                 vendorDataModelList=response.body().getVendordata();
+                adapter.setNewData(vendorDataModelList);
                 adapter.notifyDataSetChanged();
             }
 
             @Override
             public void onFailure(Call<VendorListResponse> call, Throwable t) {
                 vendorDataModelList.removeAll(  vendorDataModelList);
+                adapter.setNewData(vendorDataModelList);
                 adapter.notifyDataSetChanged();
             }
         });

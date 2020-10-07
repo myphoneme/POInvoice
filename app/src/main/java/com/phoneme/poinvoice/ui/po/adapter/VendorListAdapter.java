@@ -141,4 +141,7 @@ public class VendorListAdapter extends RecyclerView.Adapter<VendorListAdapter.Vi
         void onItemClick2(int position);
     }
 
+    public void setNewData(List<VendorDataModel> vendorDataModelList){
+        this.vendorDataModelList=vendorDataModelList;
+    }
 }
