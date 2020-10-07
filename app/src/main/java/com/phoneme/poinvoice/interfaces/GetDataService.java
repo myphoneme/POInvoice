@@ -102,6 +102,9 @@ public interface GetDataService {
 	@GET("/invoiceapis/invoice/invoicelist/")
 	Call<InvoiceListResponse> getInvoiceList(@Query("year") String year);
 
+	@GET("/invoiceapis/invoice/search2/")
+	Call<InvoiceListResponse> getInvoiceSearchList(@Query("year") String year,@Query("year") String text);
+
 	@GET("/invoiceapis/Invoice/uploadinvoicepayment")
 	Call<UPloadPOPaymentGetResponse> getPOPaymentUploadData(@Query("id") String id);
 

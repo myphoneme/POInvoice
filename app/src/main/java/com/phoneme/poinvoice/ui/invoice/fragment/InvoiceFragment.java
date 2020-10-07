@@ -39,6 +39,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.http.Query;
 
 public class InvoiceFragment extends Fragment implements InvoiceListAdapter.OnItemClickListener {
 
@@ -143,7 +144,8 @@ public class InvoiceFragment extends Fragment implements InvoiceListAdapter.OnIt
 
     private void getInvoiceListSearchData(String year, String search) {
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-        Call<InvoiceListResponse> call = service.getInvoiceList(year);//This will change .When search api will be used
+        //Call<InvoiceListResponse> call = service.getInvoiceList(year);//This will change .When search api will be used
+        Call<InvoiceListResponse> call= service.getInvoiceSearchList(year,search);
         call.enqueue(new Callback<InvoiceListResponse>() {
             @Override
             public void onResponse(Call<InvoiceListResponse> call, Response<InvoiceListResponse> response) {
@@ -151,6 +153,7 @@ public class InvoiceFragment extends Fragment implements InvoiceListAdapter.OnIt
                     Toast.makeText(getContext()," search data present", Toast.LENGTH_LONG).show();
                     invoiceRowModelList.removeAll(invoiceRowModelList);
                     invoiceRowModelList = response.body().getInvoicerowList();
+                    Toast.makeText(getContext()," search data present size="+invoiceRowModelList.size() , Toast.LENGTH_LONG).show();
                     adapter.notifyDataSetChanged();
                 } else {
                     Toast.makeText(getContext()," search  data absent", Toast.LENGTH_LONG).show();
