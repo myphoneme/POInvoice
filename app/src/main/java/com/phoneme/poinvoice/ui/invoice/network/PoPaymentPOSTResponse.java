@@ -16,4 +16,11 @@ public class PoPaymentPOSTResponse {
     public boolean isAdded(){
         return this.added;
     }
+
+    @SerializedName("insertcheck")
+    private boolean insertcheck;
+
+    public boolean isInsertcheck(){
+        return this.insertcheck;
+    }
 }

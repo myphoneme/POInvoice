@@ -185,8 +185,14 @@ public class AddInvoiceFragment extends Fragment {
     }
 
     private void uploadStartFunc(){
-        Intent galleryIntent = new Intent(Intent.ACTION_PICK,
-                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//        Intent galleryIntent = new Intent(Intent.ACTION_PICK,
+//                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+        Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
+
+        //galleryIntent.addCategory(Intent.CATEGORY_OPENABLE);
+        galleryIntent.setType("*/*");
+
         startActivityForResult(galleryIntent, 0);
     }
     @Override

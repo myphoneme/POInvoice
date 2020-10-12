@@ -184,4 +184,8 @@ public class ClientListAdapter extends RecyclerView.Adapter<ClientListAdapter.Vi
 
         void onItemClick3(int position);
     }
+
+    public void setNewData(List<ClientDataModel> clientDataModelList){
+        this.clientDataModelList = clientDataModelList;
+    }
 }

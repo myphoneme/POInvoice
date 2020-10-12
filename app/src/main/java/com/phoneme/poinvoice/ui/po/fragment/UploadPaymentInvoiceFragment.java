@@ -130,7 +130,7 @@ public class UploadPaymentInvoiceFragment extends Fragment  {
 
         Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
 
-        //galleryIntent.addCategory(Intent.CATEGORY_OPENABLE);
+        galleryIntent.addCategory(Intent.CATEGORY_OPENABLE);
         galleryIntent.setType("*/*");
 
         startActivityForResult(galleryIntent, 0);
@@ -164,6 +164,9 @@ public class UploadPaymentInvoiceFragment extends Fragment  {
 
         RequestBody ID=createPartFromString(id);
         map.put("id",ID);
+
+        Toast.makeText(getContext(),"id="+id,Toast.LENGTH_LONG).show();
+
 
         postDataWithImage(map);
     }
@@ -274,9 +277,20 @@ public class UploadPaymentInvoiceFragment extends Fragment  {
         call.enqueue(new Callback<PoPaymentPOSTResponse>() {
             @Override
             public void onResponse(Call<PoPaymentPOSTResponse> call, Response<PoPaymentPOSTResponse> response) {
-                Toast.makeText(getContext(),"Succes",Toast.LENGTH_LONG).show();
-                NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
-                navController.popBackStack();
+                if(response.isSuccessful()){
+                    Toast.makeText(getContext(),"Succes",Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getContext(),"insert check="+response.body().isInsertcheck(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),"insert success="+response.isSuccessful(),Toast.LENGTH_LONG).show();
+
+                    Toast.makeText(getContext(),"insert check="+response.message(),Toast.LENGTH_LONG).show();
+                    System.out.println("response="+response.message());
+                    //NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+                    //navController.popBackStack();
+
+                }else{
+                    Toast.makeText(getContext(),"insert failed"+response.message(),Toast.LENGTH_LONG).show();
+                }
+
             }
 
             @Override

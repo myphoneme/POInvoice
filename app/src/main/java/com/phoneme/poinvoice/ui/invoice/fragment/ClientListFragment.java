@@ -31,6 +31,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.http.Query;
 
 public class ClientListFragment extends Fragment implements ClientListAdapter.OnItemClickListener{
     private RecyclerView recyclerView;
@@ -89,16 +90,19 @@ public class ClientListFragment extends Fragment implements ClientListAdapter.On
 
     private void getClientListSearchData(String search){
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-        Call<ClientListGetResponse> call=service.getClientList();//This api will change when search api is done
+        //Call<ClientListGetResponse> call=service.getClientList();//This api will change when search api is done
+        Call<ClientListGetResponse> call=service.getClientListSearch(search);
         call.enqueue(new Callback<ClientListGetResponse>() {
             @Override
             public void onResponse(Call<ClientListGetResponse> call, Response<ClientListGetResponse> response) {
                 if(response!=null && response.body()!=null && response.body().getClientDataModelList()!=null){
                     clientDataModelList.removeAll(clientDataModelList);
                     clientDataModelList=response.body().getClientDataModelList();
+                    adapter.setNewData(clientDataModelList);
                     adapter.notifyDataSetChanged();
                 }else{
                     clientDataModelList.removeAll(clientDataModelList);
+                    adapter.setNewData(clientDataModelList);
                     adapter.notifyDataSetChanged();
                 }
             }
@@ -106,6 +110,7 @@ public class ClientListFragment extends Fragment implements ClientListAdapter.On
             @Override
             public void onFailure(Call<ClientListGetResponse> call, Throwable t) {
                 clientDataModelList.removeAll(clientDataModelList);
+                adapter.setNewData(clientDataModelList);
                 adapter.notifyDataSetChanged();
             }
         });

@@ -185,6 +185,9 @@ public interface GetDataService {
     @GET("/invoiceapis/clientlist/")
 	Call<ClientListGetResponse> getClientList();
 
+    @GET("/invoiceapis/clientlist/search/")
+    Call<ClientListGetResponse> getClientListSearch(@Query("text") String search);
+
 	@GET("/invoiceapis/clientlist/edit")
     Call<ClientEditGetResponse> getClientEditData(@Query("Id") String id);
 
