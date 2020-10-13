@@ -126,14 +126,41 @@ public class UploadPaymentInvoiceFragment extends Fragment  {
 
     private void uploadStartFunc(){
 
-        //Intent galleryIntent = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//        Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
+//
+//        galleryIntent.addCategory(Intent.CATEGORY_OPENABLE);
+//        //galleryIntent.setType("*/*");//working
+//        galleryIntent.setType("image/*|application/pdf");
+//
+//        String[] mimetypes = {"image/*", "application/pdf"};
+//        galleryIntent.putExtra(Intent.EXTRA_MIME_TYPES, mimetypes);
 
-        Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
-
-        galleryIntent.addCategory(Intent.CATEGORY_OPENABLE);
-        galleryIntent.setType("*/*");
-
+        Intent galleryIntent = getFileChooserIntent();
         startActivityForResult(galleryIntent, 0);
+    }
+
+    private Intent getFileChooserIntent() {
+        String[] mimeTypes = {"image/*", "application/pdf"};
+
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            intent.setType(mimeTypes.length == 1 ? mimeTypes[0] : "*/*");
+            if (mimeTypes.length > 0) {
+                intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
+            }
+        } else {
+            String mimeTypesStr = "";
+
+            for (String mimeType : mimeTypes) {
+                mimeTypesStr += mimeType + "|";
+            }
+
+            intent.setType(mimeTypesStr.substring(0, mimeTypesStr.length() - 1));
+        }
+
+        return intent;
     }
 
     private void getData(){
