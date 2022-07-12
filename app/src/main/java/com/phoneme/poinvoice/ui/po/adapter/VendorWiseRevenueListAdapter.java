@@ -100,7 +100,9 @@ public class VendorWiseRevenueListAdapter extends RecyclerView.Adapter<VendorWis
     @Override
     public int getItemCount() {
 //        return this.poDataModelList.size();
-        return this.vendorRevenueDataModelList.size();
+        if(this.vendorRevenueDataModelList!=null && !this.vendorRevenueDataModelList.isEmpty())
+            return this.vendorRevenueDataModelList.size();
+        else return 0;
     }
 
     public interface OnItemClickListener {

@@ -43,7 +43,7 @@ public class RegionWiseRevenueListFragment extends Fragment implements RegionWis
     private int Page=1;
     private List<VendorDataModel> vendorDataModelList;
     private List<PODataModel> poDataModelList;
-    String[] yearsString = {"2020-21","2019-20","2018-19","2017-18"};
+    String[] yearsString = {"2022-23","2021-22","2020-21","2019-20","2018-19","2017-18"};
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
