@@ -51,7 +51,7 @@ public class InvoiceFragment extends Fragment implements InvoiceListAdapter.OnIt
     InvoiceListAdapter adapter;
 
     //    private String years=new String[];
-    String[] yearsString = {"2020-21", "2019-20", "2018-19", "2017-18"};
+    String[] yearsString = {"2022-23","2021-22","2020-21", "2019-20", "2018-19", "2017-18"};
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -178,7 +178,7 @@ public class InvoiceFragment extends Fragment implements InvoiceListAdapter.OnIt
                     System.out.println("onresponse=" + response.body().getInvoicerowList().get(0).getDuedate());
                     invoiceRowModelList = response.body().getInvoicerowList();
                     setAdapter(response.body().getInvoicerowList());
-                } else {
+                } else if(invoiceRowModelList!=null && invoiceRowModelList.size()>0){
                     invoiceRowModelList.removeAll(invoiceRowModelList);
                     setAdapter(response.body().getInvoicerowList());
                 }
